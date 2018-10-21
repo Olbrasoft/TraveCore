@@ -2,7 +2,7 @@
 {
     public abstract class IdentityConfiguration<TEntity> : EntityConfigurationWithSchemaName<TEntity> where TEntity : class, IHaveDateTimeOfCreation
     {
-        protected IdentityConfiguration(string tableName) : base("Identity",tableName)
+        protected IdentityConfiguration(string tableName) : base("Identity", tableName)
         {
         }
     }
