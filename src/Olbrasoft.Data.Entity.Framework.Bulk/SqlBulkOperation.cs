@@ -43,7 +43,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                     catch (InvalidOperationException ex)
                     {
                         if (!ex.Message.Contains(ColumnMappingExceptionMessage))
-                            throw ex;
+                            throw;
                         context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo)); // Exception specify missing db column: Invalid column name ''
                         if (!tableInfo.BulkConfig.UseTempDB)
                             context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName));
@@ -87,7 +87,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                     catch (InvalidOperationException ex)
                     {
                         if (!ex.Message.Contains(ColumnMappingExceptionMessage))
-                            throw ex;
+                            throw;
                         await context.Database.ExecuteSqlCommandAsync(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo));
                         if (!tableInfo.BulkConfig.UseTempDB)
                             await context.Database.ExecuteSqlCommandAsync(SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName));

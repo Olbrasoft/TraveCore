@@ -13,23 +13,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data.Entit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data.Entity.Unit.Tests", "test\Olbrasoft.Travel.Data.Entity.Unit.Tests\Olbrasoft.Travel.Data.Entity.Unit.Tests.csproj", "{73F79F7B-ED9A-41A0-876A-704CA4AA3A26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests", "test\Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests\Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.csproj", "{7C65F2E7-CA7B-49A2-A68E-225D52F8788D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests", "test\Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests\Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.csproj", "{7C65F2E7-CA7B-49A2-A68E-225D52F8788D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Data.Entity.Framework", "src\Olbrasoft.Travel.Data.Entity.Framework\Olbrasoft.Travel.Data.Entity.Framework.csproj", "{4FADC143-7B9D-4798-8700-5FFBB074F238}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data.Entity.Framework", "src\Olbrasoft.Travel.Data.Entity.Framework\Olbrasoft.Travel.Data.Entity.Framework.csproj", "{4FADC143-7B9D-4798-8700-5FFBB074F238}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Data.Entity.Configuration.Unit.Tests", "test\Olbrasoft.Travel.Data.Entity.Configuration.Unit.Tests\Olbrasoft.Travel.Data.Entity.Configuration.Unit.Tests.csproj", "{56A1AA8B-5ADF-44B5-BC61-30149BB358BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data.Entity.Configuration.Unit.Tests", "test\Olbrasoft.Travel.Data.Entity.Configuration.Unit.Tests\Olbrasoft.Travel.Data.Entity.Configuration.Unit.Tests.csproj", "{56A1AA8B-5ADF-44B5-BC61-30149BB358BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Data.Entity.Configuration", "src\Olbrasoft.Travel.Data.Entity.Configuration\Olbrasoft.Travel.Data.Entity.Configuration.csproj", "{6FEF50FA-BAF2-42E3-9D0A-699B7C63CEC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data.Entity.Configuration", "src\Olbrasoft.Travel.Data.Entity.Configuration\Olbrasoft.Travel.Data.Entity.Configuration.csproj", "{6FEF50FA-BAF2-42E3-9D0A-699B7C63CEC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Expedia.Affiliate.Network", "src\Olbrasoft.Travel.Expedia.Affiliate.Network\Olbrasoft.Travel.Expedia.Affiliate.Network.csproj", "{10987B49-89F8-4053-BF7B-D725B459DD06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Expedia.Affiliate.Network", "src\Olbrasoft.Travel.Expedia.Affiliate.Network\Olbrasoft.Travel.Expedia.Affiliate.Network.csproj", "{10987B49-89F8-4053-BF7B-D725B459DD06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Expedia.Affiliate.Network.Unit.Tests", "test\Olbrasoft.Travel.Expedia.Affiliate.Network.Unit.Tests\Olbrasoft.Travel.Expedia.Affiliate.Network.Unit.Tests.csproj", "{BF18DDBC-544E-4E81-AE20-76645900CF6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Expedia.Affiliate.Network.Unit.Tests", "test\Olbrasoft.Travel.Expedia.Affiliate.Network.Unit.Tests\Olbrasoft.Travel.Expedia.Affiliate.Network.Unit.Tests.csproj", "{BF18DDBC-544E-4E81-AE20-76645900CF6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpatialLibraryTest", "SpatialLibraryTest\SpatialLibraryTest.csproj", "{39A15DF1-F8DB-4FB5-B6DB-253825163BA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpatialLibraryTest", "SpatialLibraryTest\SpatialLibraryTest.csproj", "{39A15DF1-F8DB-4FB5-B6DB-253825163BA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Data.Entity.Framework.Bulk", "src\Olbrasoft.Data.Entity.Framework.Bulk\Olbrasoft.Data.Entity.Framework.Bulk.csproj", "{3E403A0F-ECF1-4179-81A0-B9C883D5A533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Data.Entity.Framework.Bulk", "src\Olbrasoft.Data.Entity.Framework.Bulk\Olbrasoft.Data.Entity.Framework.Bulk.csproj", "{3E403A0F-ECF1-4179-81A0-B9C883D5A533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Data.Entity.Framework.Bulk.Unit.Tests", "test\Olbrasoft.Data.Entity.Framework.Bulk.Unit.Tests\Olbrasoft.Data.Entity.Framework.Bulk.Unit.Tests.csproj", "{3B8FF0BA-DDD2-46E8-BF83-24D2BB021F33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Data.Entity.Framework.Bulk.Unit.Tests", "test\Olbrasoft.Data.Entity.Framework.Bulk.Unit.Tests\Olbrasoft.Data.Entity.Framework.Bulk.Unit.Tests.csproj", "{3B8FF0BA-DDD2-46E8-BF83-24D2BB021F33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Data.Entity.Framework.Bulk.Integration.Tests", "test\Olbrasoft.Data.Entity.Framework.Bulk.Integration.Tests\Olbrasoft.Data.Entity.Framework.Bulk.Integration.Tests.csproj", "{DD6ECBF3-EB06-41A6-A002-894EA4212DD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{3B8FF0BA-DDD2-46E8-BF83-24D2BB021F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B8FF0BA-DDD2-46E8-BF83-24D2BB021F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B8FF0BA-DDD2-46E8-BF83-24D2BB021F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD6ECBF3-EB06-41A6-A002-894EA4212DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD6ECBF3-EB06-41A6-A002-894EA4212DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD6ECBF3-EB06-41A6-A002-894EA4212DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD6ECBF3-EB06-41A6-A002-894EA4212DD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{56A1AA8B-5ADF-44B5-BC61-30149BB358BC} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{BF18DDBC-544E-4E81-AE20-76645900CF6F} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{3B8FF0BA-DDD2-46E8-BF83-24D2BB021F33} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
+		{DD6ECBF3-EB06-41A6-A002-894EA4212DD8} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66165930-814C-4C37-89DF-3F97EC492B90}

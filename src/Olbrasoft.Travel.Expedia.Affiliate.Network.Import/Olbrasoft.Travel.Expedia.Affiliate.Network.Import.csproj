@@ -6,12 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Importer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0-preview3-35497" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity.Framework\Olbrasoft.Travel.Data.Entity.Framework.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Travel.Expedia.Affiliate.Network\Olbrasoft.Travel.Expedia.Affiliate.Network.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading.Tasks;
 using EFCore.BulkExtensions;
 using FastMember;
@@ -19,18 +18,18 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
     public class TableInfo
     {
         public string Schema { get; set; }
-        public string SchemaFormated => Schema != null ? $"[{Schema}]." : "";
+        public string SchemaFormatted => Schema != null ? $"[{Schema}]." : "";
         public string TableName { get; set; }
-        public string FullTableName => $"{SchemaFormated}[{TableName}]";
+        public string FullTableName => $"{SchemaFormatted}[{TableName}]";
         public List<string> PrimaryKeys { get; set; }
         public bool HasSinglePrimaryKey { get; set; }
         public bool UpdateByPropertiesAreNullable { get; set; }
 
-        protected string TempDBPrefix => BulkConfig.UseTempDB ? "#" : "";
-        public string TempTableSufix { get; set; }
-        public string TempTableName => $"{TableName}{TempTableSufix}";
-        public string FullTempTableName => $"{SchemaFormated}[{TempDBPrefix}{TempTableName}]";
-        public string FullTempOutputTableName => $"{SchemaFormated}[{TempDBPrefix}{TempTableName}Output]";
+        protected string TempDbPrefix => BulkConfig.UseTempDB ? "#" : "";
+        public string TempTableSuffix { get; set; }
+        public string TempTableName => $"{TableName}{TempTableSuffix}";
+        public string FullTempTableName => $"{SchemaFormatted}[{TempDbPrefix}{TempTableName}]";
+        public string FullTempOutputTableName => $"{SchemaFormatted}[{TempDbPrefix}{TempTableName}Output]";
 
         public bool CreatedOutputTable => (BulkConfig.SetOutputIdentity && HasSinglePrimaryKey) || BulkConfig.CalculateStats;
 
@@ -54,12 +53,12 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                 BulkConfig = bulkConfig ?? new BulkConfig()
             };
 
-            bool isExplicitTransaction = context.Database.GetDbConnection().State == ConnectionState.Open;
-            if (tableInfo.BulkConfig.UseTempDB == true && !isExplicitTransaction && operationType != OperationType.Insert)
+            var isExplicitTransaction = context.Database.GetDbConnection().State == ConnectionState.Open;
+            if (tableInfo.BulkConfig.UseTempDB && !isExplicitTransaction && operationType != OperationType.Insert)
             {
                 tableInfo.BulkConfig.UseTempDB = false;
-                // If BulkOps is not in explicit transaction then tempdb[#] can only be used with Insert, other Operations done with customTemp table.
-                // Otherwise throws exception: 'Cannot access destination table' (gets Droped too early because transaction ends before operation is finished)
+                // If BulkOps is not in explicit transaction then tempDb[#] can only be used with Insert, other Operations done with customTemp table.
+                // Otherwise throws exception: 'Cannot access destination table' (gets Dropped too early because transaction ends before operation is finished)
             }
 
             var isDeleteOperation = operationType == OperationType.Delete;
@@ -68,7 +67,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         }
 
         #region Main
-        public void LoadData<T>(DbContext context, bool loadOnlyPKColumn)
+        public void LoadData<T>(DbContext context, bool loadOnlyPkColumn)
         {
             var entityType = context.Model.FindEntityType(typeof(T));
             if (entityType == null)
@@ -77,10 +76,10 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             var relationalData = entityType.Relational();
             Schema = relationalData.Schema ?? "dbo";
             TableName = relationalData.TableName;
-            TempTableSufix = "Temp" + Guid.NewGuid().ToString().Substring(0, 8); // 8 chars of Guid as tableNameSufix to avoid same name collision with other tables
+            TempTableSuffix = "Temp" + Guid.NewGuid().ToString().Substring(0, 8); // 8 chars of Guid as tableNameSufix to avoid same name collision with other tables
 
-            bool AreSpecifiedUpdateByProperties = BulkConfig.UpdateByProperties?.Count() > 0;
-            PrimaryKeys = AreSpecifiedUpdateByProperties ? BulkConfig.UpdateByProperties : entityType.FindPrimaryKey().Properties.Select(a => a.Name).ToList();
+            var areSpecifiedUpdateByProperties = BulkConfig.UpdateByProperties?.Count() > 0;
+            PrimaryKeys = areSpecifiedUpdateByProperties ? BulkConfig.UpdateByProperties : entityType.FindPrimaryKey().Properties.Select(a => a.Name).ToList();
             HasSinglePrimaryKey = PrimaryKeys.Count == 1;
 
             var allProperties = entityType.GetProperties().AsEnumerable();
@@ -88,21 +87,25 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             var allNavigationProperties = entityType.GetNavigations().Where(a => a.GetTargetType().IsOwned());
             HasOwnedTypes = allNavigationProperties.Any();
 
-            // timestamp datatype can only be set by database, that's property having [Timestamp] Attribute but keep if one with [ConcurrencyCheck]
-            var timeStampProperties = allProperties.Where(a => a.IsConcurrencyToken == true && a.ValueGenerated == ValueGenerated.OnAddOrUpdate && a.BeforeSaveBehavior == PropertySaveBehavior.Ignore);
-            TimeStampColumn = timeStampProperties.FirstOrDefault()?.Relational().ColumnName; // expected to be only One
-            var properties = allProperties.Except(timeStampProperties);
+            // timestamp dataType can only be set by database, that's property having [Timestamp] Attribute but keep if one with [ConcurrencyCheck]
+            var allPropertiesArray = allProperties as IProperty[] ?? allProperties.ToArray();
+            var timeStampProperties = allPropertiesArray.Where(a => a.IsConcurrencyToken && a.ValueGenerated == ValueGenerated.OnAddOrUpdate && a.BeforeSaveBehavior == PropertySaveBehavior.Ignore);
 
-            OutputPropertyColumnNamesDict = properties.ToDictionary(a => a.Name, b => b.Relational().ColumnName);
+            var timeStampPropertiesArray = timeStampProperties as IProperty[] ?? timeStampProperties.ToArray();
+            TimeStampColumn = timeStampPropertiesArray.FirstOrDefault()?.Relational().ColumnName; // expected to be only One
+            var properties = allPropertiesArray.Except(timeStampPropertiesArray);
 
-            properties = properties.Where(a => a.Relational().ComputedColumnSql == null);
+            var propertiesArray = properties as IProperty[] ?? properties.ToArray();
+            OutputPropertyColumnNamesDict = propertiesArray.ToDictionary(a => a.Name, b => b.Relational().ColumnName);
 
-            bool AreSpecifiedPropertiesToInclude = BulkConfig.PropertiesToInclude?.Count() > 0;
-            bool AreSpecifiedPropertiesToExclude = BulkConfig.PropertiesToExclude?.Count() > 0;
+            propertiesArray = propertiesArray.Where(a => a.Relational().ComputedColumnSql == null).ToArray();
 
-            if (AreSpecifiedPropertiesToInclude)
+            var areSpecifiedPropertiesToInclude = BulkConfig.PropertiesToInclude?.Count() > 0;
+            var areSpecifiedPropertiesToExclude = BulkConfig.PropertiesToExclude?.Count() > 0;
+
+            if (areSpecifiedPropertiesToInclude)
             {
-                if (AreSpecifiedUpdateByProperties) // Adds UpdateByProperties to PropertyToInclude if they are not already explicitly listed
+                if (areSpecifiedUpdateByProperties) // Adds UpdateByProperties to PropertyToInclude if they are not already explicitly listed
                 {
                     foreach (var updateByProperty in BulkConfig.UpdateByProperties)
                     {
@@ -124,27 +127,27 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                 }
             }
 
-            UpdateByPropertiesAreNullable = properties.Any(a => PrimaryKeys.Contains(a.Name) && a.IsNullable);
+            UpdateByPropertiesAreNullable = propertiesArray.Any(a => PrimaryKeys.Contains(a.Name) && a.IsNullable);
 
-            if (AreSpecifiedPropertiesToInclude || AreSpecifiedPropertiesToExclude)
+            if (areSpecifiedPropertiesToInclude || areSpecifiedPropertiesToExclude)
             {
-                if (AreSpecifiedPropertiesToInclude && AreSpecifiedPropertiesToExclude)
+                if (areSpecifiedPropertiesToInclude && areSpecifiedPropertiesToExclude)
                     throw new InvalidOperationException("Only one group of properties, either PropertiesToInclude or PropertiesToExclude can be specifed, specifying both not allowed.");
-                if (AreSpecifiedPropertiesToInclude)
-                    properties = properties.Where(a => BulkConfig.PropertiesToInclude.Contains(a.Name));
-                if (AreSpecifiedPropertiesToExclude)
-                    properties = properties.Where(a => !BulkConfig.PropertiesToExclude.Contains(a.Name));
+                if (areSpecifiedPropertiesToInclude)
+                    propertiesArray = propertiesArray.Where(a => BulkConfig.PropertiesToInclude.Contains(a.Name)).ToArray();
+                if (areSpecifiedPropertiesToExclude)
+                    propertiesArray = propertiesArray.Where(a => !BulkConfig.PropertiesToExclude.Contains(a.Name)).ToArray();
             }
 
-            if (loadOnlyPKColumn)
+            if (loadOnlyPkColumn)
             {
-                PropertyColumnNamesDict = properties.Where(a => PrimaryKeys.Contains(a.Name)).ToDictionary(a => a.Name, b => b.Relational().ColumnName);
+                PropertyColumnNamesDict = propertiesArray.Where(a => PrimaryKeys.Contains(a.Name)).ToDictionary(a => a.Name, b => b.Relational().ColumnName);
             }
             else
             {
-                PropertyColumnNamesDict = properties.ToDictionary(a => a.Name, b => b.Relational().ColumnName);
-                ShadowProperties = new HashSet<string>(properties.Where(p => p.IsShadowProperty).Select(p => p.Relational().ColumnName));
-                foreach (var property in properties.Where(p => p.GetValueConverter() != null))
+                PropertyColumnNamesDict = propertiesArray.ToDictionary(a => a.Name, b => b.Relational().ColumnName);
+                ShadowProperties = new HashSet<string>(propertiesArray.Where(p => p.IsShadowProperty).Select(p => p.Relational().ColumnName));
+                foreach (var property in propertiesArray.Where(p => p.GetValueConverter() != null))
                     ConvertibleProperties.Add(property.Relational().ColumnName, property.GetValueConverter());
             }
         }
@@ -160,12 +163,11 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             sqlBulkCopy.BulkCopyTimeout = BulkConfig.BulkCopyTimeout ?? sqlBulkCopy.BulkCopyTimeout;
             sqlBulkCopy.EnableStreaming = BulkConfig.EnableStreaming;
 
-            if (setColumnMapping)
+            if (!setColumnMapping) return;
+
+            foreach (var element in PropertyColumnNamesDict)
             {
-                foreach (var element in PropertyColumnNamesDict)
-                {
-                    sqlBulkCopy.ColumnMappings.Add(element.Key, element.Value);
-                }
+                sqlBulkCopy.ColumnMappings.Add(element.Key, element.Value);
             }
         }
         #endregion
@@ -173,7 +175,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         #region SqlCommands
         public void CheckHasIdentity(DbContext context)
         {
-            int hasIdentity = 0;
+            var hasIdentity = 0;
             if (HasSinglePrimaryKey)
             {
                 var sqlConnection = context.Database.GetDbConnection();
@@ -273,7 +275,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
 
         public static string GetUniquePropertyValues<T>(T entity, List<string> propertiesNames, TypeAccessor accessor)
         {
-            string result = String.Empty;
+            var result = String.Empty;
             foreach (var propertyName in propertiesNames)
             {
                 result += accessor[entity, propertyName];
@@ -296,29 +298,32 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
 
         public void UpdateReadEntities<T>(IList<T> entities, IList<T> existingEntities)
         {
-            List<string> propertyNames = PropertyColumnNamesDict.Keys.ToList();
-            List<string> selectByPropertyNames = PropertyColumnNamesDict.Keys.Where(a => PrimaryKeys.Contains(a)).ToList();
+            var propertyNames = PropertyColumnNamesDict.Keys.ToList();
+            var selectByPropertyNames = PropertyColumnNamesDict.Keys.Where(a => PrimaryKeys.Contains(a)).ToList();
 
             var accessor = TypeAccessor.Create(typeof(T), true);
-            Dictionary<string, T> existingEntitiesDict = new Dictionary<string, T>();
+            var existingEntitiesDict = new Dictionary<string, T>();
+            string uniquePropertyValues;
+
+
             foreach (var existingEntity in existingEntities)
             {
-                string uniqueProperyValues = GetUniquePropertyValues(existingEntity, selectByPropertyNames, accessor);
-                existingEntitiesDict.Add(uniqueProperyValues, existingEntity);
+                uniquePropertyValues = GetUniquePropertyValues(existingEntity, selectByPropertyNames, accessor);
+                existingEntitiesDict.Add(uniquePropertyValues, existingEntity);
             }
 
-            for (int i = 0; i < NumberOfEntities; i++)
+            for (var i = 0; i < NumberOfEntities; i++)
             {
                 var entity = entities[i];
-                string uniqueProperyValues = GetUniquePropertyValues(entity, selectByPropertyNames, accessor);
-                if (existingEntitiesDict.ContainsKey(uniqueProperyValues))
-                {
-                    var existingEntity = existingEntitiesDict[uniqueProperyValues];
+                 uniquePropertyValues = GetUniquePropertyValues(entity, selectByPropertyNames, accessor);
 
-                    foreach (var propertyName in propertyNames)
-                    {
-                        accessor[entities[i], propertyName] = accessor[existingEntity, propertyName];
-                    }
+                if (!existingEntitiesDict.ContainsKey(uniquePropertyValues)) continue;
+
+                var existingEntity = existingEntitiesDict[uniquePropertyValues];
+
+                foreach (var propertyName in propertyNames)
+                {
+                    accessor[entities[i], propertyName] = accessor[existingEntity, propertyName];
                 }
             }
         }
@@ -348,34 +353,34 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         {
             if (BulkConfig.SetOutputIdentity && HasSinglePrimaryKey)
             {
-                string sqlQuery = SqlQueryBuilder.SelectFromOutputTable(this);
+                var sqlQuery = SqlQueryBuilder.SelectFromOutputTable(this);
                 var entitiesWithOutputIdentity = QueryOutputTable<T>(context, sqlQuery).ToList();
                 UpdateEntitiesIdentity(entities, entitiesWithOutputIdentity);
             }
-            if (BulkConfig.CalculateStats)
-            {
-                string sqlQueryCount =  SqlQueryBuilder.SelectCountIsUpdateFromOutputTable(this);
 
-                int numberUpdated = GetNumberUpdated(context);
-                BulkConfig.StatsInfo = new StatsInfo
-                {
-                    StatsNumberUpdated = numberUpdated,
-                    StatsNumberInserted = entities.Count - numberUpdated
-                };
-            }
+            if (!BulkConfig.CalculateStats) return;
+
+            SqlQueryBuilder.SelectCountIsUpdateFromOutputTable(this);
+
+            var numberUpdated = GetNumberUpdated(context);
+            BulkConfig.StatsInfo = new StatsInfo
+            {
+                StatsNumberUpdated = numberUpdated,
+                StatsNumberInserted = entities.Count - numberUpdated
+            };
         }
 
         public async Task LoadOutputDataAsync<T>(DbContext context, IList<T> entities) where T : class
         {
             if (BulkConfig.SetOutputIdentity && HasSinglePrimaryKey)
             {
-                string sqlQuery = SqlQueryBuilder.SelectFromOutputTable(this);
+                var sqlQuery = SqlQueryBuilder.SelectFromOutputTable(this);
                 var entitiesWithOutputIdentity = await QueryOutputTableAsync<T>(context, sqlQuery).ToListAsync().ConfigureAwait(false);
                 UpdateEntitiesIdentity(entities, entitiesWithOutputIdentity);
             }
             if (BulkConfig.CalculateStats)
             {
-                int numberUpdated = await GetNumberUpdatedAsync(context);
+                var numberUpdated = await GetNumberUpdatedAsync(context);
                 BulkConfig.StatsInfo = new StatsInfo
                 {
                     StatsNumberUpdated = numberUpdated,
@@ -411,12 +416,12 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
 
         private static Expression<Func<DbContext, IQueryable<T>>> OrderBy<T>(Expression<Func<DbContext, IQueryable<T>>> source, string ordering)
         {
-            Type entityType = typeof(T);
-            PropertyInfo property = entityType.GetProperty(ordering);
-            ParameterExpression parameter = Expression.Parameter(entityType);
-            MemberExpression propertyAccess = Expression.MakeMemberAccess(parameter, property);
-            LambdaExpression orderByExp = Expression.Lambda(propertyAccess, parameter);
-            MethodCallExpression resultExp = Expression.Call(typeof(Queryable), "OrderBy", new Type[] { entityType, property.PropertyType }, source.Body, Expression.Quote(orderByExp));
+            var entityType = typeof(T);
+            var property = entityType.GetProperty(ordering);
+            var parameter = Expression.Parameter(entityType);
+            var propertyAccess = Expression.MakeMemberAccess(parameter, property);
+            var orderByExp = Expression.Lambda(propertyAccess, parameter);
+            var resultExp = Expression.Call(typeof(Queryable), "OrderBy", new[] { entityType, property.PropertyType }, source.Body, Expression.Quote(orderByExp));
             return Expression.Lambda<Func<DbContext, IQueryable<T>>>(resultExp, source.Parameters);
         }
         #endregion

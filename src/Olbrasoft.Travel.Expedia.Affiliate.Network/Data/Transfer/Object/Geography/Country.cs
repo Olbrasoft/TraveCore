@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Geogra
     /// <summary>
     /// https://support.ean.com/hc/en-us/articles/115005784405-V3-Database-Files-Geography-Data
     /// File Name: CountryList.txt
-    /// Zip File Name: https://www.ian.com/affiliatecenter/include/V2/new/CountryList.zip 
+    /// Zip File Name: https://www.ian.com/affiliatecenter/include/V2/new/CountryList.zip
     /// This file contains a list of valid countries around the world.
     /// </summary>
     public class Country
@@ -37,9 +37,9 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Geogra
         /// </summary>
         [StringLength(256)]
         public string
-        Transliteration { get; set; }
+        Transliteration
+        { get; set; }
 
-        
         // ReSharper disable once InconsistentNaming
         /// <summary>
         ///  The ContinentID is also a link to the continent name in the region parent table.
