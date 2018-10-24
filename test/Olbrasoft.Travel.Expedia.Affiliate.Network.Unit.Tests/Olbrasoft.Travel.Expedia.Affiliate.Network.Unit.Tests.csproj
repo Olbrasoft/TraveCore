@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Olbrasoft.Travel.Expedia.Affiliate.Network.Import\Olbrasoft.Travel.Expedia.Affiliate.Network.Import.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Travel.Expedia.Affiliate.Network\Olbrasoft.Travel.Expedia.Affiliate.Network.csproj" />
   </ItemGroup>
 
 </Project>

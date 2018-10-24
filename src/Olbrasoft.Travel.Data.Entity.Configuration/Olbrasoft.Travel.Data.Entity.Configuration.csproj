@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Identity\IdentityUserLoginConfiguration.cs" />
+    <Compile Remove="Identity\IdentityUserRoleConfiguration.cs" />
+    <Compile Remove="Identity\IdentityUserTokenConfiguration.cs" />
+    <Compile Remove="Identity\MembershipConfiguration.cs" />
+    <Compile Remove="Identity\RoleClaimConfiguration.cs" />
+    <Compile Remove="Identity\RoleConfiguration.cs" />
+    <Compile Remove="Identity\UserClaimConfiguration.cs" />
+    <Compile Remove="Identity\UserLoginConfiguration.cs" />
+    <Compile Remove="Identity\UserTokenConfiguration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity\Olbrasoft.Travel.Data.Entity.csproj" />
+  </ItemGroup>
+
+</Project>
