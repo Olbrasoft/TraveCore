@@ -1,9 +1,17 @@
-﻿using System;
+﻿using Olbrasoft.Travel.Data.Entity.Geography;
+using Olbrasoft.Travel.Data.Entity.Globalization;
+using Olbrasoft.Travel.Data.Repository;
+using Olbrasoft.Travel.Data.Repository.Geography;
+using Olbrasoft.Travel.Data.Repository.Globalization;
+using Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Geography;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using GeoAPI.Geometries;
+using NetTopologySuite.Geometries;
 
 namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 {
@@ -320,12 +328,13 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             return localizedRegions.ToArray();
         }
 
-        public static DbGeography CreatePoint(double latitude, double longitude)
+        public static IPoint CreatePoint(double latitude, double longitude)
         {
-            var point = string.Format(CultureInfo.InvariantCulture.NumberFormat,
-                "POINT({0} {1})", longitude, latitude);
+            //var point = string.Format(CultureInfo.InvariantCulture.NumberFormat,
+            //    "POINT({0} {1})", longitude, latitude);
             // 4326 is most common coordinate system used by GPS/Maps
-            return DbGeography.PointFromText(point, 4326);
+            return  new Point(new Coordinate(latitude,longitude));
+            //DbGeography.PointFromText(point, 4326);
         }
 
         protected static string ParsePath(string url)

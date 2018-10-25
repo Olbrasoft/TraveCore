@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace EFCore.BulkExtensions
+namespace Olbrasoft.Data.Entity.Framework.Bulk
 {
     public class BulkConfig
     {
@@ -33,6 +33,10 @@ namespace EFCore.BulkExtensions
         public SqlBulkCopyOptions SqlBulkCopyOptions { get; set; }
 
         protected bool HasOutput { get; set; }
+
+        public HashSet<string> IgnoreColumns { get; set; } = new HashSet<string>();
+
+        public HashSet<string> IgnoreColumnsUpdate { get; set; } = new HashSet<string>();
     }
 
     public class StatsInfo

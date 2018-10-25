@@ -9,5 +9,11 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         public DbSet<Region> Regions { get; set; }
         public DbSet<SubClass> SubClasses { get; set; }
         public DbSet<RegionToType> RegionsToTypes { get; set; }
-    }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
+    } 
 }
