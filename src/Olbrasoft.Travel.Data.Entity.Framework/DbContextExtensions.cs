@@ -13,7 +13,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
 
 
         /// <summary>
-        ///     aReturns the name of the specified property of the specified type.
+        ///     Returns the name of the specified property of the specified type.
         /// </summary>
         /// <typeparam name="T">
         ///     The type the property is a member of.
