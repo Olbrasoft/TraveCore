@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Olbrasoft.Data.Entity.Framework.Bulk;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Entity.Framework.Bulk;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework
 {
     public static class DbContextExtensions
     {
-
-
         /// <summary>
         ///     Returns the name of the specified property of the specified type.
         /// </summary>
@@ -41,10 +39,10 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
 
             return ((PropertyInfo)memberExpression.Member).Name;
         }
-        
-        public static void BulkUpdate<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, int batchSize = 90000 ,params Expression<Func<T,object>>[] ignoreProperties) where T : class
+
+        public static void BulkUpdate<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, int batchSize = 90000, params Expression<Func<T, object>>[] ignoreProperties) where T : class
         {
-            var batchesToUpdate =entities.SplitToEnumerableOfList(batchSize);
+            var batchesToUpdate = entities.SplitToEnumerableOfList(batchSize);
             var ignoreColumnsUpdate = new HashSet<string>(ignoreProperties.Select(GetPropertyName));
             const string creatorColumn = "CreatorId";
 
@@ -57,27 +55,27 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
 
             foreach (var batch in batchesToUpdate)
             {
-              context.BulkUpdate(batch, new BulkConfig
-              {
+                context.BulkUpdate(batch, new BulkConfig
+                {
                     BatchSize = batchSize,
                     BulkCopyTimeout = 480,
                     IgnoreColumns = new HashSet<string>(new[] { "DateAndTimeOfCreation" }),
                     IgnoreColumnsUpdate = ignoreColumnsUpdate
-              });
-              onSaved(EventArgs.Empty);
+                });
+                onSaved(EventArgs.Empty);
             }
         }
 
         public static void BulkUpdate<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, params Expression<Func<T, object>>[] ignoreProperties) where T : class
         {
-            BulkUpdate(context,entities,onSaved,90000,ignoreProperties);
+            BulkUpdate(context, entities, onSaved, 90000, ignoreProperties);
         }
-        
-        public static void  BulkInsert<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, int batchSize = 90000, params Expression<Func<T, object>>[] ignoreProperties) where T : class
+
+        public static void BulkInsert<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, int batchSize = 90000, params Expression<Func<T, object>>[] ignoreProperties) where T : class
         {
             var batchesToInsert = entities.SplitToEnumerableOfList(batchSize);
             var ignoreColumnsInsert = new HashSet<string>(ignoreProperties.Select(GetPropertyName));
-            
+
             const string createDateColumn = "DateAndTimeOfCreation";
             if (!ignoreColumnsInsert.Contains(createDateColumn)) ignoreColumnsInsert.Add(createDateColumn);
 
@@ -88,14 +86,14 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
 
             foreach (var batch in batchesToInsert)
             {
-               context.BulkInsert(batch,
-                    new BulkConfig
-                    {
-                        BatchSize = batchSize,
-                        BulkCopyTimeout = 480,
-                        IgnoreColumns = ignoreColumnsInsert
-                    });
-                
+                context.BulkInsert(batch,
+                     new BulkConfig
+                     {
+                         BatchSize = batchSize,
+                         BulkCopyTimeout = 480,
+                         IgnoreColumns = ignoreColumnsInsert
+                     });
+
                 onSaved(EventArgs.Empty);
             }
         }
@@ -104,6 +102,5 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         {
             BulkInsert(context, entities, onSaved, 90000, ignoreProperties);
         }
-        
     }
 }

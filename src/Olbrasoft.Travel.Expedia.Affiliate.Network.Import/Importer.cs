@@ -181,6 +181,8 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
                     CreatorId = creatorId
                 };
 
+                region.CenterCoordinates.SRID = 4326;
+
                 lock (LockMe)
                 {
                     regions.Enqueue(region);
