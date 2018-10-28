@@ -11,6 +11,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
     public static class DbContextExtensions
     {
 
+
         /// <summary>
         ///     Returns the name of the specified property of the specified type.
         /// </summary>
