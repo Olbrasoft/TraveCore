@@ -8,10 +8,13 @@ namespace Olbrasoft.Travel.Data.Entity.Configuration.Geography
         public override void GeographyConfiguration(EntityTypeBuilder<TypeOfRegion> builder)
         {
             builder.HasIndex(typeOfRegion => typeOfRegion.Name).IsUnique();
+            builder.Property(p => p.Description).HasMaxLength(50).IsRequired();
+            builder.HasIndex(p => p.Description).IsUnique();
         }
 
         public TypeOfRegionConfiguration() : base("TypesOfRegions")
         {
+
         }
     }
 }

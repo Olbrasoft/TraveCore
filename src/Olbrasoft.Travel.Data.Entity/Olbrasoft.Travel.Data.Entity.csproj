@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="2.2.0-preview2-35157" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Olbrasoft.Travel\Olbrasoft.Travel.csproj" />
+  </ItemGroup>
+
 </Project>

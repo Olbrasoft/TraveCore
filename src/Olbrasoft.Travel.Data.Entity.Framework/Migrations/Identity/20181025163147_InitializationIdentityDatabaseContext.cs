@@ -2,7 +2,7 @@
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
 {
-    public partial class Initialization : Migration
+    public partial class InitializationIdentityDatabaseContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -12,6 +12,8 @@ namespace Olbrasoft.Travel.Data.Repository
 
         IOfManyToMany<T> ManyToMany<T>() where T : ManyToMany;
 
+        ITypesOfRegionsRepository TypesOfRegions();
+
         Property.IManyToManyRepository<T> PropertyManyToMany<T>() where T : ManyToMany;
 
         Geography.IManyToManyRepository<T> GeographyManyToMany<T>() where T : ManyToMany;

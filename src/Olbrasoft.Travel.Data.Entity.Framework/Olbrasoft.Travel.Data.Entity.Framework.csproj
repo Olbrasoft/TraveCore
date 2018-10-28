@@ -9,14 +9,17 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
     <PackageReference Include="SharpRepository.EfCoreRepository" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Data.Entity.Framework.Bulk\Olbrasoft.Data.Entity.Framework.Bulk.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Extensions\Olbrasoft.Extensions.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity.Configuration\Olbrasoft.Travel.Data.Entity.Configuration.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Travel\Olbrasoft.Travel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -100,6 +100,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Repository
         {
             base.Add(entity);
             OnSaved(EventArgs.Empty);
+
         }
 
         public new void Add(IEnumerable<T> entities)

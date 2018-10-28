@@ -9,6 +9,8 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(EntityConfigurationWithSchemaName<>).Assembly);
+
+         
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

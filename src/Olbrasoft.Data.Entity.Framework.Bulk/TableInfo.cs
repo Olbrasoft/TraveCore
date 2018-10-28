@@ -62,7 +62,21 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
 
             var isDeleteOperation = operationType == OperationType.Delete;
             tableInfo.LoadData<T>(context, isDeleteOperation);
+
+            foreach (var ignoreColumn in tableInfo.BulkConfig.IgnoreColumns)
+            {
+                tableInfo.PropertyColumnNamesDict.Remove(ignoreColumn);
+            }
+
+            if (operationType != OperationType.Update) return tableInfo;
+
+            foreach (var ignoreColumn in tableInfo.BulkConfig.IgnoreColumnsUpdate)
+            {
+                tableInfo.PropertyColumnNamesDict.Remove(ignoreColumn);
+            }
+
             return tableInfo;
+            
         }
 
         #region Main

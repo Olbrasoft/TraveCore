@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.Entity.Configuration.Globalization
 
             builder.Property(p => p.LongName).HasMaxLength(510);
 
-            builder.HasOne(lr => lr.Region).WithMany(r => r.LocalizedRegions).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(lr => lr.Region).WithMany(r => r.LocalizedRegions).HasForeignKey(p=>p.Id).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(lr => lr.Language).WithMany(l => l.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
 

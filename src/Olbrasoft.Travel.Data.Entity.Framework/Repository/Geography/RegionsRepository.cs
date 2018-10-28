@@ -56,6 +56,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Repository.Geography
         public new void Add(Region region)
         {
             region = Rebuild(new[] { region }).FirstOrDefault();
+          
             base.Add(region);
         }
 

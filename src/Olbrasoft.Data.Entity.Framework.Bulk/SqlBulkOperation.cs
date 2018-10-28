@@ -13,17 +13,44 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
     internal static class SqlBulkOperation
     {
         internal static string ColumnMappingExceptionMessage => "The given ColumnMapping does not match up with any column in the source or destination";
-        
+
+        //public static void Insert<T>(DbContext context, IList<T> entities, TableInfo tableInfo, Action<decimal> progress)
+        //{
+        //    var sqlConnection = OpenAndGetSqlConnection(context);
+        //    var transaction = context.Database.CurrentTransaction;
+        //    try
+        //    {
+        //        using (var sqlBulkCopy = GetSqlBulkCopy(sqlConnection, transaction, tableInfo.BulkConfig.KeepIdentity))
+        //        {
+        //            sqlBulkCopy.BulkCopyTimeout = 960;
+        //            tableInfo.SetSqlBulkCopyConfig(sqlBulkCopy, entities, progress);
+        //            using (var reader = ObjectReaderEx.Create(entities, tableInfo.ShadowProperties, context, tableInfo.PropertyColumnNamesDict.Keys.ToArray()))
+        //            {
+        //                sqlBulkCopy.WriteToServer(reader);
+        //            }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        if (transaction == null)
+        //        {
+        //            sqlConnection.Close();
+        //        }
+        //    }
+        //}
+
+
         #region MainOps
         public static void Insert<T>(DbContext context, IList<T> entities, TableInfo tableInfo, Action<decimal> progress)
         {
-            var sqlConnection = OpenAndGetSqlConnection(context);
+           
+                 var sqlConnection = OpenAndGetSqlConnection(context);
             var transaction = context.Database.CurrentTransaction;
             try
             {
                 using (var sqlBulkCopy = GetSqlBulkCopy(sqlConnection, transaction, tableInfo.BulkConfig.SqlBulkCopyOptions))
                 {
-                    bool setColumnMapping = !tableInfo.HasOwnedTypes;
+                    var setColumnMapping = !tableInfo.HasOwnedTypes; 
                     tableInfo.SetSqlBulkCopyConfig(sqlBulkCopy, entities, setColumnMapping, progress);
                     try
                     {
@@ -103,33 +130,78 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             }
         }
 
+
+
+
+        //public static void Merge<T>(DbContext context, IList<T> entities, TableInfo tableInfo, OperationType operationType, Action<decimal> progress) where T : class
+        //{
+        //    tableInfo.InsertToTempTable = true;
+        //    tableInfo.CheckHasIdentity(context);
+
+        //    context.Database.CommandTimeout = 960;
+
+        //    context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName));
+
+        //    if (tableInfo.BulkConfig.SetOutputIdentity)
+        //    {
+        //        context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempOutputTableName));
+        //    }
+        //    try
+        //    {
+        //        Insert(context, entities, tableInfo, progress);
+        //        context.Database.ExecuteSqlCommand(SqlQueryBuilder.MergeTable(tableInfo, operationType));
+        //        context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempTableName));
+
+        //        if (!tableInfo.BulkConfig.SetOutputIdentity || !tableInfo.HasSinglePrimaryKey) return;
+        //        try
+        //        {
+        //            tableInfo.UpdateOutputIdentity(context, entities);
+        //            var dp = SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName);
+        //            context.Database.ExecuteSqlCommand(dp);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName));
+        //            throw;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempTableName));
+        //        throw;
+        //    }
+        //}
+
         public static void Merge<T>(DbContext context, IList<T> entities, TableInfo tableInfo, OperationType operationType, Action<decimal> progress) where T : class
         {
             tableInfo.InsertToTempTable = true;
-            if(tableInfo.BulkConfig.UpdateByProperties == null || tableInfo.BulkConfig.UpdateByProperties.Count() == 0)
+            if(tableInfo.BulkConfig.UpdateByProperties == null || tableInfo.BulkConfig.UpdateByProperties.Count == 0)
                 tableInfo.CheckHasIdentity(context);
 
+            context.Database.SetCommandTimeout(960);
+
             context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo));
+
             if (tableInfo.CreatedOutputTable)
             {
                 context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempOutputTableName, tableInfo, true));
             }
+
             try
             {
                 Insert(context, entities, tableInfo, progress);
                 context.Database.ExecuteSqlCommand(SqlQueryBuilder.MergeTable(tableInfo, operationType));
 
-                if (tableInfo.CreatedOutputTable)
+                if (!tableInfo.CreatedOutputTable) return;
+
+                try
                 {
-                    try
-                    {
-                        tableInfo.LoadOutputData(context, entities);
-                    }
-                    finally
-                    {
-                        if (!tableInfo.BulkConfig.UseTempDB)
-                            context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName));
-                    }
+                    tableInfo.LoadOutputData(context, entities);
+                }
+                finally
+                {
+                    if (!tableInfo.BulkConfig.UseTempDB)
+                        context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName));
                 }
             }
             finally
@@ -332,17 +404,30 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             }
             return context.Database.GetDbConnection() as SqlConnection;
         }
+        
 
-        private static SqlBulkCopy GetSqlBulkCopy(SqlConnection sqlConnection, IDbContextTransaction transaction, SqlBulkCopyOptions sqlBulkCopyOptions = SqlBulkCopyOptions.Default)
+        //private static SqlBulkCopy GetSqlBulkCopy(SqlConnection sqlConnection, DbContextTransaction transaction, bool keepIdentity = false)
+        //{
+        //    if (transaction == null)
+        //    {
+        //        return keepIdentity ? new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.KeepIdentity, null) : new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.CheckConstraints, null);
+        //    }
+
+        //    var sqlTransaction = (SqlTransaction)transaction.GetDbTransaction();
+        //    return keepIdentity ? new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.KeepIdentity, sqlTransaction) : new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.CheckConstraints, sqlTransaction);
+        //}
+
+        private static SqlBulkCopy GetSqlBulkCopy(SqlConnection sqlConnection, IDbContextTransaction transaction, SqlBulkCopyOptions sqlBulkCopyOptions = SqlBulkCopyOptions.CheckConstraints )
         {
             if (transaction == null)
             {
-                return new SqlBulkCopy(sqlConnection, sqlBulkCopyOptions, null);
+              return   new SqlBulkCopy(sqlConnection, sqlBulkCopyOptions, null);
             }
 
             var sqlTransaction = (SqlTransaction)transaction.GetDbTransaction();
-            return new SqlBulkCopy(sqlConnection, sqlBulkCopyOptions, sqlTransaction);
+            return new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.KeepIdentity, sqlTransaction);
         }
         #endregion
     }
+
 }

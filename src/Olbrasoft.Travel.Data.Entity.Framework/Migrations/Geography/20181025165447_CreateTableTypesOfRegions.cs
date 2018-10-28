@@ -1,11 +1,10 @@
-﻿using GeoAPI.Geometries;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
 {
-    public partial class Regions : Migration
+    public partial class CreateTableTypesOfRegions : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                 name: "Geography");
 
             migrationBuilder.CreateTable(
-                name: "Regions",
+                name: "TypesOfRegions",
                 schema: "Geography",
                 columns: table => new
                 {
@@ -21,15 +20,14 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateAndTimeOfCreation = table.Column<DateTime>(nullable: false, defaultValueSql: "getutcdate()"),
                     CreatorId = table.Column<int>(nullable: false),
-                    Coordinates = table.Column<IPolygon>(nullable: true),
-                    CenterCoordinates = table.Column<IPoint>(nullable: true),
-                    EanId = table.Column<long>(nullable: false)
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Regions", x => x.Id);
+                    table.PrimaryKey("PK_TypesOfRegions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Regions_Users_CreatorId",
+                        name: "FK_TypesOfRegions_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalSchema: "Identity",
                         principalTable: "Users",
@@ -38,16 +36,30 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Regions_CreatorId",
+                name: "IX_TypesOfRegions_CreatorId",
                 schema: "Geography",
-                table: "Regions",
+                table: "TypesOfRegions",
                 column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TypesOfRegions_Description",
+                schema: "Geography",
+                table: "TypesOfRegions",
+                column: "Description",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TypesOfRegions_Name",
+                schema: "Geography",
+                table: "TypesOfRegions",
+                column: "Name",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Regions",
+                name: "TypesOfRegions",
                 schema: "Geography");
         }
     }

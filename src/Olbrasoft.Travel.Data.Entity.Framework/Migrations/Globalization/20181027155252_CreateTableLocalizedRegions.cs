@@ -3,7 +3,7 @@ using System;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
 {
-    public partial class LocalizedRegions : Migration
+    public partial class CreateTableLocalizedRegions : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,8 +20,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                     CreatorId = table.Column<int>(nullable: false),
                     LanguageId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 255, nullable: false),
-                    LongName = table.Column<string>(maxLength: 510, nullable: true),
-                    RegionId = table.Column<int>(nullable: true)
+                    LongName = table.Column<string>(maxLength: 510, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -34,19 +33,19 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_LocalizedRegions_Regions_Id",
+                        column: x => x.Id,
+                        principalSchema: "Geography",
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_LocalizedRegions_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalSchema: "Globalization",
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LocalizedRegions_Regions_RegionId",
-                        column: x => x.RegionId,
-                        principalSchema: "Geography",
-                        principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -60,12 +59,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                 schema: "Globalization",
                 table: "LocalizedRegions",
                 column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRegions_RegionId",
-                schema: "Globalization",
-                table: "LocalizedRegions",
-                column: "RegionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

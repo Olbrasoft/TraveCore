@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
-using Olbrasoft.Travel.Geography;
-using System;
+﻿using System;
 using System.Linq;
-using System.Reflection;
-using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
+using NUnit.Framework;
+using Olbrasoft.Extensions;
+using Olbrasoft.Travel.Geography;
 
-namespace Olbrasoft.Travel.Unit.Tests
+namespace Olbrasoft.Travel.Unit.Tests.Geography
 {
     [TestFixture]
     internal class RegionTypeTest
@@ -79,20 +78,6 @@ namespace Olbrasoft.Travel.Unit.Tests
                 Assert.IsTrue(result == pointOfInterest);
                 Assert.IsTrue(description == result.GetDescription());
             });
-        }
-    }
-
-    public static class EnumExtensions
-    {
-        public static string GetDescription(this Enum value)
-        {
-            return
-                value
-                    .GetType()
-                    .GetMember(value.ToString())
-                    .FirstOrDefault()
-                    ?.GetCustomAttribute<DescriptionAttribute>()
-                    ?.Description;
         }
     }
 }

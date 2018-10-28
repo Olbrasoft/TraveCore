@@ -33,19 +33,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Data.Entity.Frame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Data.Entity.Framework.Bulk.Integration.Tests", "test\Olbrasoft.Data.Entity.Framework.Bulk.Integration.Tests\Olbrasoft.Data.Entity.Framework.Bulk.Integration.Tests.csproj", "{DD6ECBF3-EB06-41A6-A002-894EA4212DD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Data.Unit.Tests", "test\Olbrasoft.Travel.Data.Unit.Tests\Olbrasoft.Travel.Data.Unit.Tests.csproj", "{2C7BEEC9-0EEB-4B6C-8F8C-87B0AB502D87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data.Unit.Tests", "test\Olbrasoft.Travel.Data.Unit.Tests\Olbrasoft.Travel.Data.Unit.Tests.csproj", "{2C7BEEC9-0EEB-4B6C-8F8C-87B0AB502D87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Data", "src\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj", "{49E12F70-ABD2-44B8-A621-E6F057F7DF8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Data", "src\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj", "{49E12F70-ABD2-44B8-A621-E6F057F7DF8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Data", "src\Olbrasoft.Data\Olbrasoft.Data.csproj", "{8D927CC4-7A57-4ED4-8860-09EB941D5298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Data", "src\Olbrasoft.Data\Olbrasoft.Data.csproj", "{8D927CC4-7A57-4ED4-8860-09EB941D5298}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel", "src\Olbrasoft.Travel\Olbrasoft.Travel.csproj", "{E6312D7E-5E7C-46CC-8B99-5355AD0386FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel", "src\Olbrasoft.Travel\Olbrasoft.Travel.csproj", "{E6312D7E-5E7C-46CC-8B99-5355AD0386FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Unit.Tests", "test\Olbrasoft.Travel.Unit.Tests\Olbrasoft.Travel.Unit.Tests.csproj", "{881F303A-1406-4069-A9F1-788B84834A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Extensions", "src\Olbrasoft.Extensions\Olbrasoft.Extensions.csproj", "{CA186A73-343A-4AEB-AB9D-D0CE7F6C1023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Extensions", "src\Olbrasoft.Extensions\Olbrasoft.Extensions.csproj", "{CA186A73-343A-4AEB-AB9D-D0CE7F6C1023}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Extensions.Unit.Tests", "test\Olbrasoft.Extensions.Unit.Tests\Olbrasoft.Extensions.Unit.Tests.csproj", "{8CDD5DEC-79B9-4EBF-978D-1F4FF47640C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Extensions.Unit.Tests", "test\Olbrasoft.Extensions.Unit.Tests\Olbrasoft.Extensions.Unit.Tests.csproj", "{8CDD5DEC-79B9-4EBF-978D-1F4FF47640C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Entity.Configuration.Globalization
 
             builder.HasIndex(p => p.EanLanguageCode).IsUnique();
 
-            builder.HasOne(l => l.Creator).WithMany(u => u.Languages);
+           // builder.HasOne(l => l.Creator).WithMany(u => u.Languages);
 
             builder.Property(p => p.EanLanguageCode).HasMaxLength(5).IsRequired();
 

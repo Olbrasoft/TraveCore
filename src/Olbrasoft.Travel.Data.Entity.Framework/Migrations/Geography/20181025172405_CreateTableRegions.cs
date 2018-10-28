@@ -1,30 +1,35 @@
-﻿using System;
+﻿using GeoAPI.Geometries;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
+namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
 {
-    public partial class Languages : Migration
+    public partial class CreateTableRegions : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Globalization");
+                name: "Geography");
 
             migrationBuilder.CreateTable(
-                name: "Languages",
-                schema: "Globalization",
+                name: "Regions",
+                schema: "Geography",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateAndTimeOfCreation = table.Column<DateTime>(nullable: false, defaultValueSql: "getutcdate()"),
                     CreatorId = table.Column<int>(nullable: false),
-                    EanLanguageCode = table.Column<string>(maxLength: 5, nullable: false)
+                    Coordinates = table.Column<IPolygon>(nullable: true),
+                    CenterCoordinates = table.Column<IPoint>(nullable: true),
+                    EanId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Languages", x => x.Id);
+                    table.PrimaryKey("PK_Regions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Languages_Users_CreatorId",
+                        name: "FK_Regions_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalSchema: "Identity",
                         principalTable: "Users",
@@ -33,24 +38,17 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Languages_CreatorId",
-                schema: "Globalization",
-                table: "Languages",
+                name: "IX_Regions_CreatorId",
+                schema: "Geography",
+                table: "Regions",
                 column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Languages_EanLanguageCode",
-                schema: "Globalization",
-                table: "Languages",
-                column: "EanLanguageCode",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Languages",
-                schema: "Globalization");
+                name: "Regions",
+                schema: "Geography");
         }
     }
 }

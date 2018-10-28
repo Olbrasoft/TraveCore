@@ -2,7 +2,7 @@
 
 namespace Olbrasoft.Extensions.Unit.Tests
 {
-    enum SomeEnum
+    internal enum SomeEnum
     {
         [Description("Description of SomeEnumItem")]
         SomeEnumItem,

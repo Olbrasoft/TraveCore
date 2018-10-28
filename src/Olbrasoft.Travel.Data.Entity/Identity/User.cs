@@ -1,23 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using Olbrasoft.Travel.Data.Entity.Geography;
+﻿using Olbrasoft.Travel.Data.Entity.Geography;
 using Olbrasoft.Travel.Data.Entity.Globalization;
+using System;
+using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Entity.Identity
 {
-    public class User : Microsoft.AspNetCore.Identity.IdentityUser<int>,  IHaveDateTimeOfCreation
+    public class User : Microsoft.AspNetCore.Identity.IdentityUser<int>, IHaveDateTimeOfCreation
     {
-     
         //public virtual ICollection<Role> Roles { get; set; }
 
         public DateTime DateAndTimeOfCreation { get; set; }
 
+        /// <summary>
+        /// Types of Regions created by the User.
+        /// </summary>
         public virtual ICollection<TypeOfRegion> TypesOfRegions { get; set; }
 
         /// <summary>
         /// Regions created by the User.
         /// </summary>
-       public virtual ICollection<Region> Regions { get; set; }
+        public virtual ICollection<Region> Regions { get; set; }
 
         /// <summary>
         /// SubClasses created by the User.
@@ -30,21 +32,21 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         /// </summary>
         public virtual ICollection<RegionToType> RegionsToTypes { get; set; }
 
-        ///// <summary>
-        ///// Linking Regions To Regions created by the User.
-        ///// Example Country to Continent or City to Country.
-        ///// </summary>
-        //public virtual ICollection<RegionToRegion> RegionsToRegions { get; set; }
+        /// <summary>
+        /// Linking Regions To Regions created by the User.
+        /// Example Country to Continent or City to Country.
+        /// </summary>
+        public virtual ICollection<RegionToRegion> RegionsToRegions { get; set; }
 
-        ///// <summary>
-        ///// Countries created by the User.
-        ///// </summary>
-        //public virtual ICollection<Country> Countries { get; set; }
+        /// <summary>
+        /// Countries created by the User.
+        /// </summary>
+        public virtual ICollection<Country> Countries { get; set; }
 
-        ///// <summary>
-        ///// Airports created by the User.
-        ///// </summary>
-        //public ICollection<Airport> Airports { get; set; }
+        /// <summary>
+        /// Airports created by the User.
+        /// </summary>
+        public ICollection<Airport> Airports { get; set; }
 
         /// <summary>
         /// Languages created by the User.

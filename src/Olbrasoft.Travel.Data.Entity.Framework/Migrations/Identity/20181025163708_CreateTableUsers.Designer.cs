@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Olbrasoft.Travel.Data.Entity.Framework;
 
-namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
+namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
 {
-    [DbContext(typeof(GeographyDatabaseContext))]
-    [Migration("20181023161342_SubClasses")]
-    partial class SubClasses
+    [DbContext(typeof(IdentityDatabaseContext))]
+    [Migration("20181025163708_CreateTableUsers")]
+    partial class CreateTableUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,35 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Regions","Geography");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.RegionToType", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<int>("ToId");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<int?>("RegionId");
+
+                    b.Property<int?>("SubClassId");
+
+                    b.HasKey("Id", "ToId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("RegionId");
+
+                    b.HasIndex("SubClassId");
+
+                    b.HasIndex("ToId");
+
+                    b.ToTable("RegionsToTypes","Geography");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.SubClass", b =>
@@ -85,6 +114,10 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("getutcdate()");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -93,10 +126,69 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
 
                     b.HasIndex("CreatorId");
 
+                    b.HasIndex("Description")
+                        .IsUnique();
+
                     b.HasIndex("Name")
                         .IsUnique();
 
                     b.ToTable("TypesOfRegions","Geography");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.Language", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("EanLanguageCode")
+                        .IsRequired()
+                        .HasMaxLength(5);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("EanLanguageCode")
+                        .IsUnique();
+
+                    b.ToTable("Languages","Globalization");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedRegion", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<int>("LanguageId");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LongName")
+                        .HasMaxLength(510);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<int?>("RegionId");
+
+                    b.HasKey("Id", "LanguageId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("LocalizedRegions","Globalization");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Identity.User", b =>
@@ -152,9 +244,31 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.Region", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
-                        .WithMany("Regions")
+                        .WithMany()
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.RegionToType", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "Region")
+                        .WithMany("RegionsToTypes")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.SubClass", "SubClass")
+                        .WithMany()
+                        .HasForeignKey("SubClassId");
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.TypeOfRegion", "TypeOfRegion")
+                        .WithMany("RegionsToTypes")
+                        .HasForeignKey("ToId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.SubClass", b =>
@@ -168,8 +282,34 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.TypeOfRegion", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
-                        .WithMany("TypesOfRegions")
+                        .WithMany()
                         .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.Language", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedRegion", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Globalization.Language", "Language")
+                        .WithMany("LocalizedRegions")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "Region")
+                        .WithMany("LocalizedRegions")
+                        .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

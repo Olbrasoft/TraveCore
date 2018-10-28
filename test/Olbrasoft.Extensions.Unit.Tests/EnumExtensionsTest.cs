@@ -1,12 +1,10 @@
 ﻿using NUnit.Framework;
 
-
 namespace Olbrasoft.Extensions.Unit.Tests
 {
     [TestFixture]
     internal class EnumExtensionsTest
     {
-
         [Test]
         public void GetDescription()
         {
@@ -16,12 +14,8 @@ namespace Olbrasoft.Extensions.Unit.Tests
             //Act
             var result = SomeEnum.SomeEnumItem.GetDescription();
 
-
             //Assert
-            Assert.IsTrue(result==description);
+            Assert.IsTrue(result == description);
         }
-            
-
-
     }
 }

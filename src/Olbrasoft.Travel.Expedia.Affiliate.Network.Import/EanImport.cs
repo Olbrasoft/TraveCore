@@ -5,9 +5,12 @@ using Castle.DynamicProxy;
 using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Microsoft.EntityFrameworkCore;
+using NetTopologySuite.Geometries;
 using Olbrasoft.Travel.Data.Entity.Framework;
 using Olbrasoft.Travel.Data.Entity.Framework.Repository.Geography;
 using Olbrasoft.Travel.Data.Entity.Framework.Repository.Globalization;
+using Olbrasoft.Travel.Data.Entity.Geography;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Entity.Identity;
 using Olbrasoft.Travel.Data.Repository;
@@ -71,15 +74,21 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
                     .DependsOn(Dependency.OnValue("creatorId", user.Id), Dependency.OnValue("defaultLanguageId", defaultLanguage.Id))
             );
 
-            using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
-            {
-                regionsImporter.Import(@"D:\Ean\ParentRegionList.txt");
-            }
+
+
+
+            //using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
+            //{
+            //    regionsImporter.Import(@"D:\Ean\ParentRegionList.txt");
+            //}
 
             //using (var countriesImporter = container.Resolve<IImporter>(nameof(CountriesImporter)))
             //{
             //    countriesImporter.Import(@"D:\Ean\CountryList.txt");
             //}
+
+            //todo Set null CenterCoordinates and Coordinates in Countries ProbablyMissingCountries
+
 
             //using (var neighborhoodsImporter = container.Resolve<IImporter>(nameof(NeighborhoodsImporter)))
             //{
@@ -96,10 +105,10 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             //    pointsOfInterestImporter.Import(@"D:\Ean\PointsOfInterestCoordinatesList.txt");
             //}
 
-            //using (var airportsImporter = container.Resolve<IImporter>(nameof(AirportsImporter)))
-            //{
-            //    airportsImporter.Import(@"D:\Ean\AirportCoordinatesList.txt");
-            //}
+            using (var airportsImporter = container.Resolve<IImporter>(nameof(AirportsImporter)))
+            {
+                airportsImporter.Import(@"D:\Ean\AirportCoordinatesList.txt");
+            }
 
             //using (var trainMetroStationsImporter = container.Resolve<IImporter>(nameof(TrainMetroStationsImporter)))
             //{
@@ -255,7 +264,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
                 .WithService.AllInterfaces()
             );
 
-            container.Register(Classes.FromAssemblyNamed("Olbrasoft.Travel.Data.Entity")
+            container.Register(Classes.FromAssemblyNamed("Olbrasoft.Travel.Data.Entity.Framework")
                    .Where(type => type.Name.EndsWith("Repository"))
                    .WithService.AllInterfaces()
                );
@@ -364,20 +373,20 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<RegionsImporter>().Named(nameof(RegionsImporter))
                 .Interceptors<IInterceptor>());
 
-            //container.Register(Component.For(typeof(IImporter)).ImplementedBy<PointsOfInterestImporter>()
-            //    .Named(nameof(PointsOfInterestImporter)).Interceptors<IInterceptor>());
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<CountriesImporter>()
+                .Named(nameof(CountriesImporter)).Interceptors<IInterceptor>());
 
-            //container.Register(Component.For(typeof(IImporter)).ImplementedBy<CountriesImporter>()
-            //    .Named(nameof(CountriesImporter)).Interceptors<IInterceptor>());
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<NeighborhoodsImporter>()
+                .Named(nameof(NeighborhoodsImporter)).Interceptors<IInterceptor>());
 
-            //container.Register(Component.For(typeof(IImporter)).ImplementedBy<NeighborhoodsImporter>()
-            //    .Named(nameof(NeighborhoodsImporter)).Interceptors<IInterceptor>());
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<RegionsTypesOfCitiesImporter>()
+                .Named(nameof(RegionsTypesOfCitiesImporter)).Interceptors<IInterceptor>());
 
-            //container.Register(Component.For(typeof(IImporter)).ImplementedBy<RegionsTypesOfCitiesImporter>()
-            //    .Named(nameof(RegionsTypesOfCitiesImporter)).Interceptors<IInterceptor>());
-
-            //container.Register(Component.For(typeof(IImporter)).ImplementedBy<AirportsImporter>()
-            //    .Named(nameof(AirportsImporter)).Interceptors<IInterceptor>());
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<PointsOfInterestImporter>()
+                .Named(nameof(PointsOfInterestImporter)).Interceptors<IInterceptor>());
+            
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<AirportsImporter>()
+                .Named(nameof(AirportsImporter)).Interceptors<IInterceptor>());
 
             //container.Register(Component.For(typeof(IImporter)).ImplementedBy<TrainMetroStationsImporter>()
             //    .Named(nameof(TrainMetroStationsImporter)).Interceptors<IInterceptor>());

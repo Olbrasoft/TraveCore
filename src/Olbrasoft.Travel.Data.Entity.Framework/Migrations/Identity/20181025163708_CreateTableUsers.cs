@@ -4,7 +4,7 @@ using System;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
 {
-    public partial class Users : Migration
+    public partial class CreateTableUsers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

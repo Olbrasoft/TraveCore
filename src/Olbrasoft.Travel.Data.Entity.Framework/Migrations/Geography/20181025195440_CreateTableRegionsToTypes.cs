@@ -3,7 +3,7 @@ using System;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
 {
-    public partial class RegionsToTypes : Migration
+    public partial class CreateTableRegionsToTypes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,8 +19,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                     DateAndTimeOfCreation = table.Column<DateTime>(nullable: false, defaultValueSql: "getutcdate()"),
                     CreatorId = table.Column<int>(nullable: false),
                     ToId = table.Column<int>(nullable: false),
-                    SubClassId = table.Column<int>(nullable: true),
-                    RegionId = table.Column<int>(nullable: true)
+                    SubClassId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,8 +32,8 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RegionsToTypes_Regions_RegionId",
-                        column: x => x.RegionId,
+                        name: "FK_RegionsToTypes_Regions_Id",
+                        column: x => x.Id,
                         principalSchema: "Geography",
                         principalTable: "Regions",
                         principalColumn: "Id",
@@ -60,12 +59,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Geography
                 schema: "Geography",
                 table: "RegionsToTypes",
                 column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegionsToTypes_RegionId",
-                schema: "Geography",
-                table: "RegionsToTypes",
-                column: "RegionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RegionsToTypes_SubClassId",

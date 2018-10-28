@@ -9,8 +9,8 @@ using Olbrasoft.Travel.Data.Entity.Framework;
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
 {
     [DbContext(typeof(IdentityDatabaseContext))]
-    [Migration("20181022191314_Initialization")]
-    partial class Initialization
+    [Migration("20181025163147_InitializationIdentityDatabaseContext")]
+    partial class InitializationIdentityDatabaseContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Data.Entity.Globalization
     public class Language : OwnerCreatorIdAndCreator
     {
         public string EanLanguageCode { get; set; }
-      
+
         public virtual ICollection<LocalizedRegion> LocalizedRegions { get; set; }
 
         //public virtual ICollection<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using GeoAPI.Geometries;
@@ -333,7 +334,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             //var point = string.Format(CultureInfo.InvariantCulture.NumberFormat,
             //    "POINT({0} {1})", longitude, latitude);
             // 4326 is most common coordinate system used by GPS/Maps
-            return  new Point(new Coordinate(latitude,longitude));
+            return  new Point(new Coordinate(longitude,latitude));
             //DbGeography.PointFromText(point, 4326);
         }
 

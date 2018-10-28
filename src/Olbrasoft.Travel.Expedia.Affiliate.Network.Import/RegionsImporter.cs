@@ -42,7 +42,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             var subClasses = ImportSubClasses(FactoryOfRepositories.GeographyNamesRepository<SubClass>(), subClassNames, CreatorId);
 
             ImportRegionsToTypes(parentRegions, FactoryOfRepositories.GeographyManyToMany<RegionToType>(), batchSize,
-                eanRegionIdsToIds, FactoryOfRepositories.GeographyNamesRepository<TypeOfRegion>().NamesToIds, subClasses, CreatorId);
+                eanRegionIdsToIds, FactoryOfRepositories.TypesOfRegions().DescriptionsToIds, subClasses, CreatorId);
 
             ImportLocalized(parentRegions, FactoryOfRepositories.OfLocalized<LocalizedRegion>(), batchSize, eanRegionIdsToIds, DefaultLanguageId, CreatorId);
 
@@ -185,13 +185,13 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             IManyToManyRepository<RegionToType> repository,
             int batchSize,
             IReadOnlyDictionary<long, int> eanIdsToIds,
-            IReadOnlyDictionary<string, int> namesToTypeIds,
+            IReadOnlyDictionary<string, int> descriptionsToTypeIds,
             IReadOnlyDictionary<string, int> namesToSubClassIds,
             int creatorId)
         {
             LogBuild<RegionToType>();
             var regionsToTypes =
-                BuildRegionsToTypes(parentRegions, eanIdsToIds, namesToTypeIds, namesToSubClassIds, creatorId);
+                BuildRegionsToTypes(parentRegions, eanIdsToIds, descriptionsToTypeIds, namesToSubClassIds, creatorId);
             var count = regionsToTypes.Length;
             LogAssembled(count);
 
@@ -202,7 +202,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
         private static RegionToType[] BuildRegionsToTypes(IEnumerable<ParentRegion> parentRegions,
           IReadOnlyDictionary<long, int> eanIdsToIds,
-          IReadOnlyDictionary<string, int> namesToTypeIds,
+          IReadOnlyDictionary<string, int> descriptionsToTypeIds,
           IReadOnlyDictionary<string, int> namesToSubClassIds,
           int creatorId
       )
@@ -214,7 +214,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             {
                 if (!regionIds.Contains(parentRegion.RegionID) &&
                      eanIdsToIds.TryGetValue(parentRegion.RegionID, out var id) &&
-                     namesToTypeIds.TryGetValue(parentRegion.RegionType, out var toId))
+                     descriptionsToTypeIds.TryGetValue(parentRegion.RegionType, out var toId))
                 {
                     var regionToType = new RegionToType
                     {
@@ -236,7 +236,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
                 if (regionIds.Contains(parentRegion.ParentRegionID) ||
                     !eanIdsToIds.TryGetValue(parentRegion.ParentRegionID, out var pId) ||
-                    !namesToTypeIds.TryGetValue(parentRegion.ParentRegionType, out var pToId)) continue;
+                    !descriptionsToTypeIds.TryGetValue(parentRegion.ParentRegionType, out var pToId)) continue;
                 {
                     var regionToType = new RegionToType
                     {
