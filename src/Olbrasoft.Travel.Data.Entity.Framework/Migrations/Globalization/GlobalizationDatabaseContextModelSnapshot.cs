@@ -20,15 +20,71 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.Airport", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(3);
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.ToTable("Airports","Geography");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.Country", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(2);
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.ToTable("Countries","Geography");
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.Region", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<IPoint>("CenterCoordinates");
+                    b.Property<IPoint>("CenterCoordinates")
+                        .HasColumnType("geography");
 
-                    b.Property<IPolygon>("Coordinates");
+                    b.Property<IPolygon>("Coordinates")
+                        .HasColumnType("geography");
 
                     b.Property<int>("CreatorId");
 
@@ -43,6 +99,27 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Regions","Geography");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.RegionToRegion", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<int>("ToId");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.HasKey("Id", "ToId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("ToId");
+
+                    b.ToTable("RegionsToRegions","Geography");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.RegionToType", b =>
@@ -153,6 +230,40 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                     b.ToTable("Languages","Globalization");
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedAccommodation", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<int>("LanguageId");
+
+                    b.Property<string>("CheckInTime")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("CheckOutTime")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(80);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(70);
+
+                    b.HasKey("Id", "LanguageId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("LocalizedAccommodations","Globalization");
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedRegion", b =>
                 {
                     b.Property<int>("Id");
@@ -179,6 +290,31 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                     b.HasIndex("LanguageId");
 
                     b.ToTable("LocalizedRegions","Globalization");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedTypeOfAccommodation", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<int>("LanguageId");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id", "LanguageId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("LocalizedTypesOfAccommodations","Globalization");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Identity.User", b =>
@@ -231,11 +367,161 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                     b.ToTable("Users","Identity");
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Accommodation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdditionalAddress")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int?>("AirportId");
+
+                    b.Property<IPoint>("CenterCoordinates")
+                        .IsRequired();
+
+                    b.Property<int?>("ChainId");
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<int>("EanId");
+
+                    b.Property<int>("SequenceNumber");
+
+                    b.Property<decimal>("StarRating");
+
+                    b.Property<int>("TypeOfAccommodationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AirportId");
+
+                    b.HasIndex("ChainId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("EanId")
+                        .IsUnique();
+
+                    b.HasIndex("TypeOfAccommodationId");
+
+                    b.ToTable("Accommodations","Property");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Chain", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<int>("EanId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("EanId")
+                        .IsUnique();
+
+                    b.ToTable("Chains","Property");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfAccommodation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<int>("EanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("EanId")
+                        .IsUnique();
+
+                    b.ToTable("TypesOfAccommodations","Property");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.Airport", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("Airports")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "Region")
+                        .WithOne("AdditionalAirportProperties")
+                        .HasForeignKey("Olbrasoft.Travel.Data.Entity.Geography.Airport", "Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.Country", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("Countries")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "Region")
+                        .WithOne("AdditionalCountryProperties")
+                        .HasForeignKey("Olbrasoft.Travel.Data.Entity.Geography.Country", "Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.Region", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
                         .WithMany("Regions")
                         .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Geography.RegionToRegion", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("RegionsToRegions")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "Region")
+                        .WithMany("ToChildRegions")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "ParentRegion")
+                        .WithMany("ToParentRegions")
+                        .HasForeignKey("ToId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -285,6 +571,24 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedAccommodation", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("LocalizedAccommodations")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.Accommodation", "Accommodation")
+                        .WithMany("LocalizedAccommodations")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Globalization.Language", "Language")
+                        .WithMany("LocalizedAccommodations")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedRegion", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
@@ -301,6 +605,66 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                         .WithMany("LocalizedRegions")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedTypeOfAccommodation", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("LocalizedTypesOfAccommodations")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.TypeOfAccommodation", "TypeOfAccommodation")
+                        .WithMany("LocalizedTypesOfAccommodations")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Globalization.Language", "Language")
+                        .WithMany("LocalizedTypesOfAccommodations")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Accommodation", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Airport", "Airport")
+                        .WithMany()
+                        .HasForeignKey("AirportId");
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.Chain", "Chain")
+                        .WithMany()
+                        .HasForeignKey("ChainId");
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Country", "Country")
+                        .WithMany("Accommodations")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("Accommodations")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.TypeOfAccommodation", "TypeOfAccommodation")
+                        .WithMany()
+                        .HasForeignKey("TypeOfAccommodationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Chain", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("Chains")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfAccommodation", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("TypesOfAccommodations")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

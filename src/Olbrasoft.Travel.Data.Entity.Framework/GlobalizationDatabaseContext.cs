@@ -7,5 +7,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
     {
         public DbSet<Language> Languages { get; set; }
         public DbSet<LocalizedRegion> LocalizedRegions { get; set; }
+        public DbSet<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }
+        public DbSet<LocalizedAccommodation> LocalizedAccommodations { get; set; }
     }
 }

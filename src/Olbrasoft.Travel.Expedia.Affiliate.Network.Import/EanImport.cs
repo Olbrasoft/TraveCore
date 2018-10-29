@@ -10,6 +10,7 @@ using NetTopologySuite.Geometries;
 using Olbrasoft.Travel.Data.Entity.Framework;
 using Olbrasoft.Travel.Data.Entity.Framework.Repository.Geography;
 using Olbrasoft.Travel.Data.Entity.Framework.Repository.Globalization;
+using Olbrasoft.Travel.Data.Entity.Framework.Repository.Property;
 using Olbrasoft.Travel.Data.Entity.Geography;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Entity.Identity;
@@ -76,7 +77,6 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
 
 
-
             //using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
             //{
             //    regionsImporter.Import(@"D:\Ean\ParentRegionList.txt");
@@ -123,6 +123,11 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             //using (var typesOfAccommodationsImporter = container.Resolve<IImporter>(nameof(TypesOfAccommodationsImporter)))
             //{
             //    typesOfAccommodationsImporter.Import(@"D:\Ean\PropertyTypeList.txt");
+            //}
+
+            //using (var accommodationsImporter = container.Resolve<IImporter>(nameof(ChainsImporter)))
+            //{
+            //    accommodationsImporter.Import(@"D:\Ean\ChainList.txt");
             //}
 
             //using (var accommodationsImporter = container.Resolve<IImporter>(nameof(AccommodationsImporter)))
@@ -252,7 +257,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
             //container.Register(Component.For<RoutingDatabaseContext>().ImplementedBy<RoutingDatabaseContext>());
             container.Register(Component.For<IdentityDatabaseContext>().ImplementedBy<IdentityDatabaseContext>());
-            //container.Register(Component.For<PropertyDatabaseContext>().ImplementedBy<PropertyDatabaseContext>());
+            container.Register(Component.For<PropertyDatabaseContext>().ImplementedBy<PropertyDatabaseContext>());
             container.Register(Component.For<GeographyDatabaseContext>().ImplementedBy<GeographyDatabaseContext>());
             container.Register(Component.For<GlobalizationDatabaseContext>().ImplementedBy<GlobalizationDatabaseContext>());
 
@@ -295,7 +300,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             container.Register(Component.For(typeof(IOfLocalized<>))
                 .ImplementedBy(typeof(LocalizedRepository<>)));
 
-            //container.Register(Component.For(typeof(IMappedPropertiesRepository<>)).ImplementedBy(typeof(MappedPropertiesRepository<>)));
+            container.Register(Component.For(typeof(IMappedPropertiesRepository<>)).ImplementedBy(typeof(MappedPropertiesRepository<>)));
 
             container.Register(Component.For<IInterceptor>().ImplementedBy<ImportInterceptor>());
 
@@ -314,21 +319,32 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
         {
             RegisterGeographyImporters(container);
 
+            RegisterPropertyImporters(container);
+
            // RegisterAccoImporters(container);
 
             return container;
         }
 
+        private static void RegisterPropertyImporters(IWindsorContainer container)
+        {
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<TypesOfAccommodationsImporter>()
+                .Named(nameof(TypesOfAccommodationsImporter)).Interceptors<IInterceptor>());
+
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<ChainsImporter>()
+                .Named(nameof(ChainsImporter)).Interceptors<IInterceptor>());
+
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<AccommodationsImporter>()
+                .Named(nameof(AccommodationsImporter)).Interceptors<IInterceptor>());
+        }
+
         //private static void RegisterAccoImporters(IWindsorContainer container)
         //{
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<TypesOfAccommodationsImporter>()
-        //        .Named(nameof(TypesOfAccommodationsImporter)).Interceptors<IInterceptor>());
 
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<ChainsImporter>()
-        //        .Named(nameof(ChainsImporter)).Interceptors<IInterceptor>());
 
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<AccommodationsImporter>()
-        //        .Named(nameof(AccommodationsImporter)).Interceptors<IInterceptor>());
+
+
+
 
         //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<DescriptionsImporter>()
         //        .Named(nameof(DescriptionsImporter)).Interceptors<IInterceptor>());

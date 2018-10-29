@@ -11,13 +11,13 @@ namespace Olbrasoft.Travel.Data.Entity.Property
         {
             LocalizedAccommodations = new HashSet<LocalizedAccommodation>();
 
-            LocalizedDescriptionsOfAccommodations = new HashSet<LocalizedDescriptionOfAccommodation>();
+            //LocalizedDescriptionsOfAccommodations = new HashSet<LocalizedDescriptionOfAccommodation>();
 
-            PhotosOfAccommodations = new HashSet<PhotoOfAccommodation>();
+            //PhotosOfAccommodations = new HashSet<PhotoOfAccommodation>();
 
-            TypesOfRooms = new HashSet<TypeOfRoom>();
+            //TypesOfRooms = new HashSet<TypeOfRoom>();
 
-            AccommodationsToAttributes = new HashSet<AccommodationToAttribute>();
+            //AccommodationsToAttributes = new HashSet<AccommodationToAttribute>();
         }
 
         public int SequenceNumber { get; set; }
@@ -36,7 +36,7 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
         public int? AirportId { get; set; }
 
-        public int? ChainId { get; set; }
+        public int ChainId { get; set; }
 
         public int EanId { get; set; } = int.MinValue;
 
@@ -50,12 +50,12 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
         public ICollection<LocalizedAccommodation> LocalizedAccommodations { get; set; }
 
-        public ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
+        //public ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
 
-        public ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
+        //public ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
 
-        public ICollection<TypeOfRoom> TypesOfRooms { get; set; }
+        //public ICollection<TypeOfRoom> TypesOfRooms { get; set; }
 
-        public ICollection<AccommodationToAttribute> AccommodationsToAttributes { get; set; }
+        //public ICollection<AccommodationToAttribute> AccommodationsToAttributes { get; set; }
     }
 }

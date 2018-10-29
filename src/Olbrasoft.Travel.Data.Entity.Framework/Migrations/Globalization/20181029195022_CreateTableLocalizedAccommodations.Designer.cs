@@ -4,15 +4,17 @@ using GeoAPI.Geometries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Olbrasoft.Travel.Data.Entity.Framework;
 
-namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
+namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
 {
-    [DbContext(typeof(PropertyDatabaseContext))]
-    partial class PropertyDatabaseContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(GlobalizationDatabaseContext))]
+    [Migration("20181029195022_CreateTableLocalizedAccommodations")]
+    partial class CreateTableLocalizedAccommodations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -385,9 +387,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
                     b.Property<IPoint>("CenterCoordinates")
                         .IsRequired();
 
-                    b.Property<int>("ChainId")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(0);
+                    b.Property<int?>("ChainId");
 
                     b.Property<int>("CountryId");
 
@@ -634,9 +634,8 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
                         .HasForeignKey("AirportId");
 
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Property.Chain", "Chain")
-                        .WithMany("Accommodations")
-                        .HasForeignKey("ChainId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany()
+                        .HasForeignKey("ChainId");
 
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Country", "Country")
                         .WithMany("Accommodations")

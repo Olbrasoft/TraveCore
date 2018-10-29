@@ -2,6 +2,7 @@
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using System;
 using System.Collections.Generic;
+using Olbrasoft.Travel.Data.Entity.Property;
 
 namespace Olbrasoft.Travel.Data.Entity.Identity
 {
@@ -58,30 +59,30 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         /// </summary>
         public virtual ICollection<LocalizedRegion> LocalizedRegions { get; set; }
 
-        ///// <summary>
-        ///// TypesOfAccommodations created by the User.
-        ///// </summary>
-        //public virtual ICollection<TypeOfAccommodation> TypesOfAccommodations { get; set; }
+        /// <summary>
+        /// TypesOfAccommodations created by the User.
+        /// </summary>
+        public virtual ICollection<TypeOfAccommodation> TypesOfAccommodations { get; set; }
 
-        ///// <summary>
-        ///// LocalizedTypesOfAccommodations created by the User.
-        ///// </summary>
-        //public virtual ICollection<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }
+        /// <summary>
+        /// LocalizedTypesOfAccommodations created by the User.
+        /// </summary>
+        public virtual ICollection<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }
 
-        ///// <summary>
-        ///// Chains created by the User.
-        ///// </summary>
-        //public virtual ICollection<Chain> Chains { get; set; }
+        /// <summary>
+        /// Chains created by the User.
+        /// </summary>
+        public virtual ICollection<Chain> Chains { get; set; }
 
-        ///// <summary>
-        ///// Accommodations created by the User.
-        ///// </summary>
-        //public virtual ICollection<Accommodation> Accommodations { get; set; }
+        /// <summary>
+        /// Accommodations created by the User.
+        /// </summary>
+        public virtual ICollection<Accommodation> Accommodations { get; set; }
 
-        ///// <summary>
-        ///// LocalizedAccommodations created by the User.
-        ///// </summary>
-        //public virtual ICollection<LocalizedAccommodation> LocalizedAccommodations { get; set; }
+        /// <summary>
+        /// LocalizedAccommodations created by the User.
+        /// </summary>
+        public virtual ICollection<LocalizedAccommodation> LocalizedAccommodations { get; set; }
 
         ///// <summary>
         ///// Types of LocalizedDescriptionsOfAccommodations created by the User.

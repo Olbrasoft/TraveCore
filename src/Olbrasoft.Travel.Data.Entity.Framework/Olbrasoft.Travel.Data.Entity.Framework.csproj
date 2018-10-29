@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\Globalization\20181029181704_CreateTableLocalizedTypesOfAccommodations.cs" />
+    <Compile Remove="Migrations\Property\20181029191726_CreateTableAccommodations.cs" />
+    <Compile Remove="Migrations\Property\20181029192109_CreateTableAccommodations.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0-preview3-35497" />

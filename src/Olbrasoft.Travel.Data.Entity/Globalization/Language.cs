@@ -8,9 +8,9 @@ namespace Olbrasoft.Travel.Data.Entity.Globalization
 
         public virtual ICollection<LocalizedRegion> LocalizedRegions { get; set; }
 
-        //public virtual ICollection<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }
+        public virtual ICollection<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }
 
-        //public virtual ICollection<LocalizedAccommodation> LocalizedAccommodations { get; set; }
+        public virtual ICollection<LocalizedAccommodation> LocalizedAccommodations { get; set; }
 
         //public virtual ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
 

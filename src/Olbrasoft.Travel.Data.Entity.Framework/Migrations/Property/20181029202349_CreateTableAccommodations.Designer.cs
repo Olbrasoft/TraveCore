@@ -4,15 +4,17 @@ using GeoAPI.Geometries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Olbrasoft.Travel.Data.Entity.Framework;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
 {
     [DbContext(typeof(PropertyDatabaseContext))]
-    partial class PropertyDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20181029202349_CreateTableAccommodations")]
+    partial class CreateTableAccommodations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

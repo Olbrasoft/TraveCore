@@ -3,44 +3,40 @@ using System;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
 {
-    public partial class CreateTableLocalizedRegions : Migration
+    public partial class CreateTableLocalizedTypesOfAccommodations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "Globalization");
-
             migrationBuilder.CreateTable(
-                name: "LocalizedRegions",
+                name: "LocalizedTypesOfAccommodations",
                 schema: "Globalization",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
-                    DateAndTimeOfCreation = table.Column<DateTime>(nullable: false, defaultValueSql: "getutcdate()"),
-                    CreatorId = table.Column<int>(nullable: false),
                     LanguageId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 255, nullable: false),
-                    LongName = table.Column<string>(maxLength: 510, nullable: true)
+                    Name = table.Column<string>(maxLength: 256, nullable: false),
+                    CreatorId = table.Column<int>(nullable: false),
+                    DateAndTimeOfCreation = table.Column<DateTime>(nullable: false, defaultValueSql: "getutcdate()"),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocalizedRegions", x => new { x.Id, x.LanguageId });
+                    table.PrimaryKey("PK_LocalizedTypesOfAccommodations", x => new { x.Id, x.LanguageId });
                     table.ForeignKey(
-                        name: "FK_LocalizedRegions_Users_CreatorId",
+                        name: "FK_LocalizedTypesOfAccommodations_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalSchema: "Identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_LocalizedRegions_Regions_Id",
+                        name: "FK_LocalizedTypesOfAccommodations_TypesOfAccommodations_Id",
                         column: x => x.Id,
-                        principalSchema: "Geography",
-                        principalTable: "Regions",
+                        principalSchema: "Property",
+                        principalTable: "TypesOfAccommodations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LocalizedRegions_Languages_LanguageId",
+                        name: "FK_LocalizedTypesOfAccommodations_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalSchema: "Globalization",
                         principalTable: "Languages",
@@ -49,22 +45,22 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRegions_CreatorId",
+                name: "IX_LocalizedTypesOfAccommodations_CreatorId",
                 schema: "Globalization",
-                table: "LocalizedRegions",
+                table: "LocalizedTypesOfAccommodations",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRegions_LanguageId",
+                name: "IX_LocalizedTypesOfAccommodations_LanguageId",
                 schema: "Globalization",
-                table: "LocalizedRegions",
+                table: "LocalizedTypesOfAccommodations",
                 column: "LanguageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "LocalizedRegions",
+                name: "LocalizedTypesOfAccommodations",
                 schema: "Globalization");
         }
     }

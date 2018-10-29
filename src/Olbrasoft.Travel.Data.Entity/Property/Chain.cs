@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Olbrasoft.Travel.Data.Entity.Property
 {
     public class Chain : OwnerCreatorIdAndCreator, IHaveEanId<int>, IHaveName
@@ -6,6 +8,6 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
         public string Name { get; set; }
 
-//        public virtual ICollection<Accommodation> Accommodations { get; set; }
+        public virtual ICollection<Accommodation> Accommodations { get; set; }
     }
 }

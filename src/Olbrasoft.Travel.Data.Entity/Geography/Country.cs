@@ -1,4 +1,6 @@
-﻿namespace Olbrasoft.Travel.Data.Entity.Geography
+﻿using System.Collections.Generic;
+
+namespace Olbrasoft.Travel.Data.Entity.Geography
 {
     public class Country : OwnerCreatorIdAndCreator, IAdditionalRegionInfo
     {
@@ -8,6 +10,6 @@
 
         public virtual Region Region { get; set; }
 
-       // public virtual ICollection<Property.Accommodation> Accommodations { get; set; }
+        public virtual ICollection<Property.Accommodation> Accommodations { get; set; }
     }
 }

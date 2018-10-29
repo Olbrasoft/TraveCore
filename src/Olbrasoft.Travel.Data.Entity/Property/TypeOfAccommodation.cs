@@ -7,8 +7,8 @@ namespace Olbrasoft.Travel.Data.Entity.Property
     {
         public int EanId { get; set; } = int.MinValue;
 
-       public virtual ICollection<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }
+        public virtual ICollection<LocalizedTypeOfAccommodation> LocalizedTypesOfAccommodations { get; set; }
 
-       public virtual ICollection<Accommodation> Accommodations { get; set; }
+      // public virtual ICollection<Accommodation> Accommodations { get; set; }
     }
 }

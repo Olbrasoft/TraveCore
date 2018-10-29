@@ -1,4 +1,6 @@
-﻿namespace Olbrasoft.Travel.Data.Entity.Globalization
+﻿using Olbrasoft.Travel.Data.Entity.Property;
+
+namespace Olbrasoft.Travel.Data.Entity.Globalization
 {
     public class LocalizedAccommodation : Localized
     {
@@ -10,6 +12,6 @@
 
         public string CheckOutTime { get; set; }
 
-       // public virtual Accommodation Accommodation { get; set; }
+        public virtual Accommodation Accommodation { get; set; }
     }
 }
