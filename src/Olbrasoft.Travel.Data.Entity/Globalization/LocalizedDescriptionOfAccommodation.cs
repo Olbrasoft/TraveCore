@@ -1,4 +1,5 @@
 ﻿using System;
+using Olbrasoft.Travel.Data.Entity.Property;
 
 namespace Olbrasoft.Travel.Data.Entity.Globalization
 {
@@ -16,9 +17,9 @@ namespace Olbrasoft.Travel.Data.Entity.Globalization
 
         public DateTime DateAndTimeOfCreation { get; set; }
 
-       // public virtual Accommodation Accommodation { get; set; }
+        public virtual Accommodation Accommodation { get; set; }
 
-      //  public virtual TypeOfDescription TypeOfDescription { get; set; }
+        public virtual TypeOfDescription TypeOfDescription { get; set; }
 
         public virtual Language Language { get; set; }
 

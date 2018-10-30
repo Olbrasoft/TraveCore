@@ -140,11 +140,11 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             //    descriptionsImporter.Import(@"D:\Ean\PropertyDescriptionList.txt");
             //}
 
-            //using (var pathsExtensionsCaptionsImporter =
-            //    container.Resolve<IImporter>(nameof(PathsExtensionsCaptionsImporter)))
-            //{
-            //    pathsExtensionsCaptionsImporter.Import(@"D:\Ean\HotelImageList.txt");
-            //}
+            using (var pathsExtensionsCaptionsImporter =
+                container.Resolve<IImporter>(nameof(PathsExtensionsCaptionsImporter)))
+            {
+                pathsExtensionsCaptionsImporter.Import(@"D:\Ean\HotelImageList.txt");
+            }
 
             //using (var photosOfAccommodationsImporter =
             //    container.Resolve<IImporter>(nameof(PhotosOfAccommodationsImporter)))
@@ -255,7 +255,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
         {
             var container = new WindsorContainer();
 
-            //container.Register(Component.For<RoutingDatabaseContext>().ImplementedBy<RoutingDatabaseContext>());
+            container.Register(Component.For<RoutingDatabaseContext>().ImplementedBy<RoutingDatabaseContext>());
             container.Register(Component.For<IdentityDatabaseContext>().ImplementedBy<IdentityDatabaseContext>());
             container.Register(Component.For<PropertyDatabaseContext>().ImplementedBy<PropertyDatabaseContext>());
             container.Register(Component.For<GeographyDatabaseContext>().ImplementedBy<GeographyDatabaseContext>());
@@ -288,8 +288,8 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             container.Register(Component.For(typeof(Travel.Data.Repository.Geography.INamesRepository<>))
                 .ImplementedBy(typeof(Travel.Data.Entity.Framework.Repository.Geography.NamesRepository<>)));
 
-            //container.Register(Component.For(typeof(Travel.Data.Repository.Property.INamesRepository<>))
-            //    .ImplementedBy(typeof(Travel.Data.Entity.Framework.Repository.Property.NamesRepository<>)));
+            container.Register(Component.For(typeof(Travel.Data.Repository.Property.INamesRepository<>))
+                .ImplementedBy(typeof(Travel.Data.Entity.Framework.Repository.Property.NamesRepository<>)));
 
             container.Register(Component.For(typeof(Travel.Data.Repository.Geography.IManyToManyRepository<>))
                 .ImplementedBy(typeof(Travel.Data.Entity.Framework.Repository.Geography.ManyToManyRepository<>)));
@@ -321,10 +321,14 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
             RegisterPropertyImporters(container);
 
-           // RegisterAccoImporters(container);
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<PathsExtensionsCaptionsImporter>()
+                .Named(nameof(PathsExtensionsCaptionsImporter)).Interceptors<IInterceptor>());
+
 
             return container;
         }
+
+       
 
         private static void RegisterPropertyImporters(IWindsorContainer container)
         {
@@ -336,21 +340,17 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<AccommodationsImporter>()
                 .Named(nameof(AccommodationsImporter)).Interceptors<IInterceptor>());
+
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<DescriptionsImporter>()
+                .Named(nameof(DescriptionsImporter)).Interceptors<IInterceptor>());
         }
+
 
         //private static void RegisterAccoImporters(IWindsorContainer container)
         //{
+        
 
-
-
-
-
-
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<DescriptionsImporter>()
-        //        .Named(nameof(DescriptionsImporter)).Interceptors<IInterceptor>());
-
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<PathsExtensionsCaptionsImporter>()
-        //        .Named(nameof(PathsExtensionsCaptionsImporter)).Interceptors<IInterceptor>());
+       
 
         //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<PhotosOfAccommodationsImporter>()
         //        .Named(nameof(PhotosOfAccommodationsImporter)).Interceptors<IInterceptor>());

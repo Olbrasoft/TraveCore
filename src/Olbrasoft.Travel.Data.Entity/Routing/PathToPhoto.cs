@@ -7,6 +7,6 @@ namespace Olbrasoft.Travel.Data.Entity.Routing
     {
         public string Path { get; set; }
 
-        public virtual ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
+      // public virtual ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
     }
 }

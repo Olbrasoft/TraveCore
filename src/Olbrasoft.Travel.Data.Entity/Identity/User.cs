@@ -3,6 +3,7 @@ using Olbrasoft.Travel.Data.Entity.Globalization;
 using System;
 using System.Collections.Generic;
 using Olbrasoft.Travel.Data.Entity.Property;
+using Olbrasoft.Travel.Data.Entity.Routing;
 
 namespace Olbrasoft.Travel.Data.Entity.Identity
 {
@@ -84,35 +85,35 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         /// </summary>
         public virtual ICollection<LocalizedAccommodation> LocalizedAccommodations { get; set; }
 
-        ///// <summary>
-        ///// Types of LocalizedDescriptionsOfAccommodations created by the User.
-        ///// </summary>
-        //public virtual ICollection<TypeOfDescription> TypesOfDescriptions { get; set; }
+        /// <summary>
+        /// Types of LocalizedDescriptionsOfAccommodations created by the User.
+        /// </summary>
+        public virtual ICollection<TypeOfDescription> TypesOfDescriptions { get; set; }
 
-        ///// <summary>
-        ///// LocalizedDescriptionsOfAccommodations created by the User.
-        ///// </summary>
-        //public virtual ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
+        /// <summary>
+        /// LocalizedDescriptionsOfAccommodations created by the User.
+        /// </summary>
+        public virtual ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
 
-        ///// <summary>
-        ///// Paths of Photos created by the User
-        ///// </summary>
-        //public virtual ICollection<PathToPhoto> PathsOfPhotos { get; set; }
+        /// <summary>
+        /// Paths of Photos created by the User
+        /// </summary>
+        public virtual ICollection<PathToPhoto> PathsOfPhotos { get; set; }
 
-        ///// <summary>
-        ///// Files Extensions created by the User.
-        ///// </summary>
-        //public virtual ICollection<FileExtension> FilesExtensions { get; set; }
+        /// <summary>
+        /// Files Extensions created by the User.
+        /// </summary>
+        public virtual ICollection<FileExtension> FilesExtensions { get; set; }
 
-        ///// <summary>
-        ///// Captions created by the User.
-        ///// </summary>
-        //public virtual ICollection<Caption> Captions { get; set; }
+        /// <summary>
+        /// Captions created by the User.
+        /// </summary>
+        public virtual ICollection<Caption> Captions { get; set; }
 
-        ///// <summary>
-        ///// Localized Captions created by the User.
-        ///// </summary>
-        //public virtual ICollection<LocalizedCaption> LocalizedCaptions { get; set; }
+        /// <summary>
+        /// Localized Captions created by the User.
+        /// </summary>
+        public virtual ICollection<LocalizedCaption> LocalizedCaptions { get; set; }
 
         ///// <summary>
         ///// Photos of Accommodations created by the User.

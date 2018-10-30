@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using GeoAPI.Geometries;
 using Olbrasoft.Travel.Data.Entity.Geography;
 using Olbrasoft.Travel.Data.Entity.Globalization;
+using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Entity.Property
 {
@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Data.Entity.Property
         {
             LocalizedAccommodations = new HashSet<LocalizedAccommodation>();
 
-            //LocalizedDescriptionsOfAccommodations = new HashSet<LocalizedDescriptionOfAccommodation>();
+            LocalizedDescriptionsOfAccommodations = new HashSet<LocalizedDescriptionOfAccommodation>();
 
             //PhotosOfAccommodations = new HashSet<PhotoOfAccommodation>();
 
@@ -50,7 +50,7 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
         public ICollection<LocalizedAccommodation> LocalizedAccommodations { get; set; }
 
-        //public ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
+        public ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
 
         //public ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
 

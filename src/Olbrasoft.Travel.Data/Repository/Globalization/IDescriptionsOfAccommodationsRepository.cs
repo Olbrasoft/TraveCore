@@ -3,7 +3,7 @@ using SharpRepository.Repository;
 
 namespace Olbrasoft.Travel.Data.Repository.Globalization
 {
-    public interface IDescriptionsOfAccommodationsRepository : IRepository<LocalizedDescriptionOfAccommodation>, ICompoundKeyRepository<LocalizedDescriptionOfAccommodation, int, int, int>
+    public interface IDescriptionsOfAccommodationsRepository : Olbrasoft.Data.Repository.Bulk.IRepository<LocalizedDescriptionOfAccommodation>, ICompoundKeyRepository<LocalizedDescriptionOfAccommodation, int, int, int>
     {
     }
 }
