@@ -4,15 +4,17 @@ using GeoAPI.Geometries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Olbrasoft.Travel.Data.Entity.Framework;
 
-namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
+namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
 {
-    [DbContext(typeof(GlobalizationDatabaseContext))]
-    partial class GlobalizationDatabaseContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PropertyDatabaseContext))]
+    [Migration("20181030203154_CreateTableTypesOfRooms")]
+    partial class CreateTableTypesOfRooms
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -368,33 +370,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                     b.HasIndex("LanguageId");
 
                     b.ToTable("LocalizedTypesOfAccommodations","Globalization");
-                });
-
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedTypeOfRoom", b =>
-                {
-                    b.Property<int>("Id");
-
-                    b.Property<int>("LanguageId");
-
-                    b.Property<int>("CreatorId");
-
-                    b.Property<DateTime>("DateAndTimeOfCreation")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.HasKey("Id", "LanguageId");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("LocalizedTypesOfRooms","Globalization");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Identity.User", b =>
@@ -903,24 +878,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
 
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Globalization.Language", "Language")
                         .WithMany("LocalizedTypesOfAccommodations")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.LocalizedTypeOfRoom", b =>
-                {
-                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
-                        .WithMany("LocalizedTypesOfRooms")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.TypeOfRoom", "TypeOfRoom")
-                        .WithMany("LocalizedTypesOfRooms")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Olbrasoft.Travel.Data.Entity.Globalization.Language", "Language")
-                        .WithMany("LocalizedTypesOfRooms")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

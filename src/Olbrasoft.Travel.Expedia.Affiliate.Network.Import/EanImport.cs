@@ -146,22 +146,22 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             //    pathsExtensionsCaptionsImporter.Import(@"D:\Ean\HotelImageList.txt");
             //}
 
-            using (var photosOfAccommodationsImporter =
-                container.Resolve<IImporter>(nameof(PhotosOfAccommodationsImporter)))
-            {
-                photosOfAccommodationsImporter.Import(@"D:\Ean\HotelImageList.txt");
-            }
+            //using (var photosOfAccommodationsImporter =
+            //    container.Resolve<IImporter>(nameof(PhotosOfAccommodationsImporter)))
+            //{
+            //    photosOfAccommodationsImporter.Import(@"D:\Ean\HotelImageList.txt");
+            //}
 
             //using (var typesOfRoomsImporter = container.Resolve<IImporter>(nameof(TypesOfRoomsImporter)))
             //{
             //    typesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
             //}
 
-            //using (var localizedTypesOfRoomsImporter =
-            //    container.Resolve<IImporter>(nameof(LocalizedTypesOfRoomsImporter)))
-            //{
-            //    localizedTypesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
-            //}
+            using (var localizedTypesOfRoomsImporter =
+                container.Resolve<IImporter>(nameof(LocalizedTypesOfRoomsImporter)))
+            {
+                localizedTypesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
+            }
 
             //using (var roomsTypesImagesImporter = container.Resolve<IImporter>(nameof(RoomsTypesImagesImporter)))
             //{
@@ -346,6 +346,12 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<PhotosOfAccommodationsImporter>()
                 .Named(nameof(PhotosOfAccommodationsImporter)).Interceptors<IInterceptor>());
+
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<TypesOfRoomsImporter>()
+                .Named(nameof(TypesOfRoomsImporter)).Interceptors<IInterceptor>());
+
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<LocalizedTypesOfRoomsImporter>()
+                .Named(nameof(LocalizedTypesOfRoomsImporter)).Interceptors<IInterceptor>());
         }
 
 
@@ -357,11 +363,9 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
 
 
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<TypesOfRoomsImporter>()
-        //        .Named(nameof(TypesOfRoomsImporter)).Interceptors<IInterceptor>());
 
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<LocalizedTypesOfRoomsImporter>()
-        //        .Named(nameof(LocalizedTypesOfRoomsImporter)).Interceptors<IInterceptor>());
+
+
 
         //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<RoomsTypesImagesImporter>()
         //        .Named(nameof(RoomsTypesImagesImporter)).Interceptors<IInterceptor>());

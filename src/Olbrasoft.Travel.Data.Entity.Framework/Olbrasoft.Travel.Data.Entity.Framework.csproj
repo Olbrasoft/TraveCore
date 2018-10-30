@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\Globalization\20181029181704_CreateTableLocalizedTypesOfAccommodations.cs" />
+    <Compile Remove="Migrations\Globalization\20181030204755_CreateTableLocalizedTypesOfRooms.cs" />
     <Compile Remove="Migrations\Property\20181029191726_CreateTableAccommodations.cs" />
     <Compile Remove="Migrations\Property\20181029192109_CreateTableAccommodations.cs" />
     <Compile Remove="Migrations\Routing\20181030100023_CreateTablePathsToPhotos.cs" />

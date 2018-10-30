@@ -11,5 +11,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         public DbSet<LocalizedAccommodation> LocalizedAccommodations { get; set; }
         public DbSet<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
         public DbSet<LocalizedCaption> LocalizedCaptions { get; set; }
+        public DbSet<LocalizedTypeOfRoom> LocalizedTypesOfRooms { get; set; }
     }
 }

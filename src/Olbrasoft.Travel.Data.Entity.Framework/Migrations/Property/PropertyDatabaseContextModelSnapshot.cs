@@ -610,6 +610,31 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
                     b.ToTable("TypesOfDescriptions","Property");
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccommodationId");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<int>("EanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccommodationId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("TypesOfRooms","Property");
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Routing.FileExtension", b =>
                 {
                     b.Property<int>("Id")
@@ -939,6 +964,19 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
                         .WithMany("TypesOfDescriptions")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfRoom", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.Accommodation", "Accommodation")
+                        .WithMany()
+                        .HasForeignKey("AccommodationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("TypesOfRooms")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Routing.FileExtension", b =>
