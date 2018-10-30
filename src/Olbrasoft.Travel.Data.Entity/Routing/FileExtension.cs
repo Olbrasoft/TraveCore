@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Olbrasoft.Travel.Data.Entity.Property;
+﻿using Olbrasoft.Travel.Data.Entity.Property;
+using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Entity.Routing
 {
@@ -7,6 +7,6 @@ namespace Olbrasoft.Travel.Data.Entity.Routing
     {
         public string Extension { get; set; }
 
-//        public virtual ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
+        public virtual ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
     }
 }

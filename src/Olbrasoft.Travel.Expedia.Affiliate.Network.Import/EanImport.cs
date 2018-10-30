@@ -140,17 +140,17 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             //    descriptionsImporter.Import(@"D:\Ean\PropertyDescriptionList.txt");
             //}
 
-            using (var pathsExtensionsCaptionsImporter =
-                container.Resolve<IImporter>(nameof(PathsExtensionsCaptionsImporter)))
-            {
-                pathsExtensionsCaptionsImporter.Import(@"D:\Ean\HotelImageList.txt");
-            }
-
-            //using (var photosOfAccommodationsImporter =
-            //    container.Resolve<IImporter>(nameof(PhotosOfAccommodationsImporter)))
+            //using (var pathsExtensionsCaptionsImporter =
+            //    container.Resolve<IImporter>(nameof(PathsExtensionsCaptionsImporter)))
             //{
-            //    photosOfAccommodationsImporter.Import(@"D:\Ean\HotelImageList.txt");
+            //    pathsExtensionsCaptionsImporter.Import(@"D:\Ean\HotelImageList.txt");
             //}
+
+            using (var photosOfAccommodationsImporter =
+                container.Resolve<IImporter>(nameof(PhotosOfAccommodationsImporter)))
+            {
+                photosOfAccommodationsImporter.Import(@"D:\Ean\HotelImageList.txt");
+            }
 
             //using (var typesOfRoomsImporter = container.Resolve<IImporter>(nameof(TypesOfRoomsImporter)))
             //{
@@ -343,17 +343,19 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
 
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<DescriptionsImporter>()
                 .Named(nameof(DescriptionsImporter)).Interceptors<IInterceptor>());
+
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<PhotosOfAccommodationsImporter>()
+                .Named(nameof(PhotosOfAccommodationsImporter)).Interceptors<IInterceptor>());
         }
 
 
         //private static void RegisterAccoImporters(IWindsorContainer container)
         //{
-        
 
-       
 
-        //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<PhotosOfAccommodationsImporter>()
-        //        .Named(nameof(PhotosOfAccommodationsImporter)).Interceptors<IInterceptor>());
+
+
+
 
         //    container.Register(Component.For(typeof(IImporter)).ImplementedBy<TypesOfRoomsImporter>()
         //        .Named(nameof(TypesOfRoomsImporter)).Interceptors<IInterceptor>());

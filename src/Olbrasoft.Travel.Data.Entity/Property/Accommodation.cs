@@ -13,7 +13,7 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
             LocalizedDescriptionsOfAccommodations = new HashSet<LocalizedDescriptionOfAccommodation>();
 
-            //PhotosOfAccommodations = new HashSet<PhotoOfAccommodation>();
+            PhotosOfAccommodations = new HashSet<PhotoOfAccommodation>();
 
             //TypesOfRooms = new HashSet<TypeOfRoom>();
 
@@ -52,7 +52,7 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
         public ICollection<LocalizedDescriptionOfAccommodation> LocalizedDescriptionsOfAccommodations { get; set; }
 
-        //public ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
+        public ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
 
         //public ICollection<TypeOfRoom> TypesOfRooms { get; set; }
 

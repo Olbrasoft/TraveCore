@@ -115,10 +115,10 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         /// </summary>
         public virtual ICollection<LocalizedCaption> LocalizedCaptions { get; set; }
 
-        ///// <summary>
-        ///// Photos of Accommodations created by the User.
-        ///// </summary>
-        //public virtual ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
+        /// <summary>
+        /// Photos of Accommodations created by the User.
+        /// </summary>
+        public virtual ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
 
         ///// <summary>
         ///// Rooms created by the User.
