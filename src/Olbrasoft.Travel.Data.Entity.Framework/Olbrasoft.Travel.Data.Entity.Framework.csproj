@@ -11,6 +11,7 @@
     <Compile Remove="Migrations\Property\20181029192109_CreateTableAccommodations.cs" />
     <Compile Remove="Migrations\Property\20181031071902_CreateTablePhotosOfAccommodationsToTypesOfRooms.cs" />
     <Compile Remove="Migrations\Property\20181031073628_CreateTablePhotosOfAccommodationsToTypesOfRooms.cs" />
+    <Compile Remove="Migrations\Property\20181031170814_AddTypesOfAttributes.cs" />
     <Compile Remove="Migrations\Routing\20181030100023_CreateTablePathsToPhotos.cs" />
   </ItemGroup>
 

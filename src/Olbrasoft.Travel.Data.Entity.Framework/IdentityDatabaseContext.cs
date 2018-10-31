@@ -18,6 +18,12 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
                 Id = 1,
                 UserName = nameof(GeographyDatabaseContext)
             });
+
+            builder.Entity<User>().HasData(new User
+            {
+                Id = 3,
+                UserName = nameof(PropertyDatabaseContext)
+            });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

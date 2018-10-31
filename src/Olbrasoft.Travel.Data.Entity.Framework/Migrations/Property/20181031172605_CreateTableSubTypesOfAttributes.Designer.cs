@@ -4,15 +4,17 @@ using GeoAPI.Geometries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Olbrasoft.Travel.Data.Entity.Framework;
 
-namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
+namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
 {
-    [DbContext(typeof(IdentityDatabaseContext))]
-    partial class IdentityDatabaseContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PropertyDatabaseContext))]
+    [Migration("20181031172605_CreateTableSubTypesOfAttributes")]
+    partial class CreateTableSubTypesOfAttributes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -445,32 +447,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
                         .HasName("UserNameIndex");
 
                     b.ToTable("Users","Identity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "241e3843-dd9d-4ce2-b4ae-2edf7e0b1536",
-                            DateAndTimeOfCreation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "GeographyDatabaseContext"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e670a801-ba01-45d3-b3c9-5fe79e33f800",
-                            DateAndTimeOfCreation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "PropertyDatabaseContext"
-                        });
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Accommodation", b =>
@@ -637,6 +613,29 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
                     b.ToTable("PhotosOfAccommodationsToTypesOfRooms","Property");
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.SubTypeOfAttribute", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("SubTypesOfAttributes","Property");
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfAccommodation", b =>
                 {
                     b.Property<int>("Id")
@@ -682,6 +681,22 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
                     b.HasIndex("CreatorId");
 
                     b.ToTable("TypesOfAttributes","Property");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatorId = 3,
+                            DateAndTimeOfCreation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Amenity"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatorId = 3,
+                            DateAndTimeOfCreation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Policy"
+                        });
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfDescription", b =>
@@ -1083,6 +1098,14 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.SubTypeOfAttribute", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany("SubTypesOfAttributes")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfAccommodation", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
@@ -1094,7 +1117,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Identity
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfAttribute", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
-                        .WithMany()
+                        .WithMany("TypesOfAttributes")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

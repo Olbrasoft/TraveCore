@@ -135,15 +135,15 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         /// </summary>
         public virtual ICollection<PhotoOfAccommodationToTypeOfRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
 
-        ///// <summary>
-        ///// Types of Attributes created by the User.
-        ///// </summary>
-        //public virtual ICollection<TypeOfAttribute> TypesOfAttributes { get; set; }
+        /// <summary>
+        /// Types of Attributes created by the User.
+        /// </summary>
+        public virtual ICollection<TypeOfAttribute> TypesOfAttributes { get; set; }
 
-        ///// <summary>
-        ///// Sub Types Of Attributes created by the User.
-        ///// </summary>
-        //public virtual ICollection<SubTypeOfAttribute> SubTypesOfAttributes { get; set; }
+        /// <summary>
+        /// Sub Types Of Attributes created by the User.
+        /// </summary>
+        public virtual ICollection<SubTypeOfAttribute> SubTypesOfAttributes { get; set; }
 
         ///// <summary>
         ///// Attributes created by the User.
