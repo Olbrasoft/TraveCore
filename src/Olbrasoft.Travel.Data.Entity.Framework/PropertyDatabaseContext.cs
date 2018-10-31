@@ -12,5 +12,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         public DbSet<Caption> Captions { get; set; }
         public DbSet<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
         public DbSet<TypeOfRoom> TypesOfRooms { get; set; }
+        public DbSet<PhotoOfAccommodationToTypeOfRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
     }
 }

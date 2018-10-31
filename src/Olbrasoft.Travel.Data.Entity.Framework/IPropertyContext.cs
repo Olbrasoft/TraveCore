@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         DbSet<Caption> Captions { get; set; }
         DbSet<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
         DbSet<TypeOfRoom> TypesOfRooms { get; set; }
-        //DbSet<PhotoOfAccommodationToTypeOfRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
+        DbSet<PhotoOfAccommodationToTypeOfRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
         //DbSet<TypeOfAttribute> TypesOfAttributes { get; set; }
         //DbSet<SubTypeOfAttribute> SubTypesOfAttributes { get; set; }
         //DbSet<Attribute> Attributes { get; set; }

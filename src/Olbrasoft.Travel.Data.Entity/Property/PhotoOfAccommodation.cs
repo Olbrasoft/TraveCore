@@ -25,6 +25,6 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
         public Caption Caption { get; set; }
 
-        //public ICollection<PhotoOfAccommodationToTypeOfRoom> ToTypesOfRooms { get; set; }
+        public ICollection<PhotoOfAccommodationToTypeOfRoom> ToTypesOfRooms { get; set; }
     }
 }

@@ -130,10 +130,10 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         /// </summary>
         public virtual ICollection<LocalizedTypeOfRoom> LocalizedTypesOfRooms { get; set; }
 
-        ///// <summary>
-        ///// Photos of Accommodations to Types of Rooms created by the User.
-        ///// </summary>
-        //public virtual ICollection<PhotoOfAccommodationToTypeOfRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
+        /// <summary>
+        /// Photos of Accommodations to Types of Rooms created by the User.
+        /// </summary>
+        public virtual ICollection<PhotoOfAccommodationToTypeOfRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
 
         ///// <summary>
         ///// Types of Attributes created by the User.
