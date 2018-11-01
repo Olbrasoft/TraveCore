@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <ProjectReference Include="..\Olbrasoft.Collections\Olbrasoft.Collections.csproj" />
   </ItemGroup>
 
 </Project>

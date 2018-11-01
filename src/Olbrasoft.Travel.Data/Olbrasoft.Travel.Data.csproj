@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Globalization\Olbrasoft.Globalization.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity\Olbrasoft.Travel.Data.Entity.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿using FastMember;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Microsoft.SqlServer.Types;
+//using Microsoft.SqlServer.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,19 +54,19 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         {
             var value = base.GetValue(i);
 
-            switch (value)
-            {
-                case NetTopologySuite.Geometries.Point dbPoint:
-                    {
-                        var chars = new SqlChars(dbPoint.AsText());
-                        return SqlGeography.STGeomFromText(chars, dbPoint.SRID);
-                    }
-                case NetTopologySuite.Geometries.Polygon dbPolygon:
-                    {
-                        var chars = new SqlChars(dbPolygon.AsText());
-                        return SqlGeography.STGeomFromText(chars, dbPolygon.SRID);
-                    }
-            }
+            //switch (value)
+            //{
+            //    case NetTopologySuite.Geometries.Point dbPoint:
+            //        {
+            //            var chars = new SqlChars(dbPoint.AsText());
+            //            return SqlGeography.STGeomFromText(chars, dbPoint.SRID);
+            //        }
+            //    case NetTopologySuite.Geometries.Polygon dbPolygon:
+            //        {
+            //            var chars = new SqlChars(dbPolygon.AsText());
+            //            return SqlGeography.STGeomFromText(chars, dbPolygon.SRID);
+            //        }
+            //}
 
             return value;
         }

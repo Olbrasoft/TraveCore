@@ -9,7 +9,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="2.2.0-preview3-35497" />
-    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0-preview3-27014-02" />
   </ItemGroup>
 
