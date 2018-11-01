@@ -503,6 +503,37 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
                     b.ToTable("Accommodations","Property");
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Attribute", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Ban");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<DateTime>("DateAndTimeOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<int>("EanId");
+
+                    b.Property<int>("SubTypeOfAttributeId");
+
+                    b.Property<int>("TypeOfAttributeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("SubTypeOfAttributeId");
+
+                    b.HasIndex("TypeOfAttributeId");
+
+                    b.ToTable("Attributes","Property");
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Caption", b =>
                 {
                     b.Property<int>("Id");
@@ -1077,6 +1108,24 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Property
                         .WithMany()
                         .HasForeignKey("TypeOfAccommodationId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Attribute", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.SubTypeOfAttribute", "SubTypeOfAttribute")
+                        .WithMany("Attributes")
+                        .HasForeignKey("SubTypeOfAttributeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.TypeOfAttribute", "TypeOfAttribute")
+                        .WithMany("Attributes")
+                        .HasForeignKey("TypeOfAttributeId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.Caption", b =>

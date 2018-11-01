@@ -15,9 +15,9 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
             PhotosOfAccommodations = new HashSet<PhotoOfAccommodation>();
 
-            //TypesOfRooms = new HashSet<TypeOfRoom>();
+            TypesOfRooms = new HashSet<TypeOfRoom>();
 
-            //AccommodationsToAttributes = new HashSet<AccommodationToAttribute>();
+            AccommodationsToAttributes = new HashSet<AccommodationToAttribute>();
         }
 
         public int SequenceNumber { get; set; }
@@ -54,8 +54,8 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 
         public ICollection<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }
 
-        //public ICollection<TypeOfRoom> TypesOfRooms { get; set; }
+        public ICollection<TypeOfRoom> TypesOfRooms { get; set; }
 
-        //public ICollection<AccommodationToAttribute> AccommodationsToAttributes { get; set; }
+        public ICollection<AccommodationToAttribute> AccommodationsToAttributes { get; set; }
     }
 }

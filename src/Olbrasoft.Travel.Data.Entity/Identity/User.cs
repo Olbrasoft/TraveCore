@@ -145,19 +145,20 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         /// </summary>
         public virtual ICollection<SubTypeOfAttribute> SubTypesOfAttributes { get; set; }
 
-        ///// <summary>
-        ///// Attributes created by the User.
-        ///// </summary>
-        //public virtual ICollection<Property.Attribute> Attributes { get; set; }
+        /// <summary>
+        /// Attributes created by the User.
+        /// </summary>
+        public virtual ICollection<Property.Attribute> Attributes { get; set; }
 
-        ///// <summary>
-        ///// Accommodations to Attributes created by the User.
-        ///// </summary>
-        //public virtual ICollection<AccommodationToAttribute> AccommodationsToAttributes { get; set; }
+        /// <summary>
+        /// Localized Attributes created by the User.
+        /// </summary>
+        public virtual ICollection<LocalizedAttribute> LocalizedAttributes { get; set; }
 
-        ///// <summary>
-        ///// Localized Attributes created by the User.
-        ///// </summary>
-        //public virtual ICollection<LocalizedAttribute> LocalizedAttributes { get; set; }
+        /// <summary>
+        /// Accommodations to Attributes created by the User.
+        /// </summary>
+        public virtual ICollection<AccommodationToAttribute> AccommodationsToAttributes { get; set; }
+
     }
 }

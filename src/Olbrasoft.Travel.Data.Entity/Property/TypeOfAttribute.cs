@@ -4,6 +4,6 @@ namespace Olbrasoft.Travel.Data.Entity.Property
 {
     public class TypeOfAttribute : BaseName
     {
-      //  public ICollection<Attribute> Attributes { get; set; }
+        public ICollection<Attribute> Attributes { get; set; }
     }
 }

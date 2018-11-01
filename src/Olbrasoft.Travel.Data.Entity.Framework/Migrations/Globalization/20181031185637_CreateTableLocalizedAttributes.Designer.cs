@@ -4,15 +4,17 @@ using GeoAPI.Geometries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Olbrasoft.Travel.Data.Entity.Framework;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
 {
     [DbContext(typeof(GlobalizationDatabaseContext))]
-    partial class GlobalizationDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20181031185637_CreateTableLocalizedAttributes")]
+    partial class CreateTableLocalizedAttributes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,34 +206,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                         .IsUnique();
 
                     b.ToTable("TypesOfRegions","Geography");
-                });
-
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.AccommodationToAttribute", b =>
-                {
-                    b.Property<int>("AccommodationId");
-
-                    b.Property<int>("AttributeId");
-
-                    b.Property<int>("LanguageId");
-
-                    b.Property<int>("CreatorId");
-
-                    b.Property<DateTime>("DateAndTimeOfCreation")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("Text")
-                        .HasMaxLength(800);
-
-                    b.HasKey("AccommodationId", "AttributeId", "LanguageId");
-
-                    b.HasIndex("AttributeId");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("AccommodationsToAttributes","Globalization");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.Language", b =>
@@ -955,29 +929,6 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.AccommodationToAttribute", b =>
-                {
-                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.Accommodation", "Accommodation")
-                        .WithMany("AccommodationsToAttributes")
-                        .HasForeignKey("AccommodationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Olbrasoft.Travel.Data.Entity.Property.Attribute", "Attribute")
-                        .WithMany("AccommodationsToAttributes")
-                        .HasForeignKey("AttributeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
-                        .WithMany("AccommodationsToAttributes")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Olbrasoft.Travel.Data.Entity.Globalization.Language", "Language")
-                        .WithMany("AccommodationsToAttributes")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Globalization.Language", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Identity.User", "Creator")
@@ -1258,7 +1209,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Globalization
             modelBuilder.Entity("Olbrasoft.Travel.Data.Entity.Property.TypeOfRoom", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Property.Accommodation", "Accommodation")
-                        .WithMany("TypesOfRooms")
+                        .WithMany()
                         .HasForeignKey("AccommodationId")
                         .OnDelete(DeleteBehavior.Cascade);
 

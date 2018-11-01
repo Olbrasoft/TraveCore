@@ -2,6 +2,7 @@
 using Olbrasoft.Travel.Data.Entity.Property;
 using Olbrasoft.Travel.Property;
 using System;
+using Attribute = Olbrasoft.Travel.Data.Entity.Property.Attribute;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework
 {
@@ -17,6 +18,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         public DbSet<PhotoOfAccommodationToTypeOfRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
         public DbSet<TypeOfAttribute> TypesOfAttributes { get; set; }
         public DbSet<SubTypeOfAttribute> SubTypesOfAttributes { get; set; }
+        public DbSet<Attribute> Attributes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

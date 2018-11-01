@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Olbrasoft.Travel.Data.Entity.Property;
+using System;
+using Attribute =Olbrasoft.Travel.Data.Entity.Property.Attribute;
 
 namespace Olbrasoft.Travel.Data.Entity.Globalization
 {
@@ -18,9 +20,9 @@ namespace Olbrasoft.Travel.Data.Entity.Globalization
 
         public Identity.User Creator { get; set; }
 
-        //   public Accommodation Accommodation { get; set; }
+        public Accommodation Accommodation { get; set; }
 
-        // public Attribute Attribute { get; set; }
+        public  Attribute Attribute { get; set; }
 
         public Language Language { get; set; }
     }
