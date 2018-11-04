@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Olbrasoft.Pagination;
+using System.Collections.Generic;
 using System.Linq;
-using Olbrasoft.Pagination;
 
 namespace Olbrasoft.Travel.Data.Transfer.Object
 {

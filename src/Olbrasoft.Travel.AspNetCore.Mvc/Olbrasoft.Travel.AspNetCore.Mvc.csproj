@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Content\bootstrap-grid.css.map" />
+    <None Include="wwwroot\Content\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\Content\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\Content\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\Content\bootstrap.css.map" />
+    <None Include="wwwroot\Content\bootstrap.min.css.map" />
+    <None Include="wwwroot\Content\Fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\Content\Fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\Content\Fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\Content\Fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\Content\Fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\Content\Fonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\Content\Fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\Content\Fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Windsor" Version="4.1.1" />
+    <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="7.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Olbrasoft.Travel.Business\Olbrasoft.Travel.Business.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity.Framework\Olbrasoft.Travel.Data.Entity.Framework.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity\Olbrasoft.Travel.Data.Entity.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Travel.Data.Mapping\Olbrasoft.Travel.Data.Mapping.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

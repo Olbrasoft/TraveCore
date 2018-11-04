@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("app.config.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: true)
                 .Build();
 
             var connectionString = configuration.GetConnectionString("TravelCoreConnectionString");

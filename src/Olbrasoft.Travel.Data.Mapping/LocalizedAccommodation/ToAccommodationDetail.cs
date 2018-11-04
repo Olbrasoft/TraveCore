@@ -10,8 +10,8 @@ namespace Olbrasoft.Travel.Data.Mapping.LocalizedAccommodation
             CreateMap<Entity.Globalization.LocalizedAccommodation, AccommodationDetail>()
                 .ForMember(d => d.Address, opt => opt.MapFrom(src => src.Accommodation.Address))
                 .ForMember(d => d.StarRating, opt => opt.MapFrom(src => src.Accommodation.StarRating))
-                .ForMember(d => d.Latitude, opt => opt.MapFrom(src => src.Accommodation.CenterCoordinates.X))
-                .ForMember(d => d.Longitude, opt => opt.MapFrom(src => src.Accommodation.CenterCoordinates.Y))
+                .ForMember(d => d.Latitude, opt => opt.MapFrom(src => src.Accommodation.CenterCoordinates.Y))
+                .ForMember(d => d.Longitude, opt => opt.MapFrom(src => src.Accommodation.CenterCoordinates.X))
                 ;
         }
     }

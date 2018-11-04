@@ -1,0 +1,628 @@
+﻿@using Olbrasoft.Travel.Data.Transfer.Object
+@model Olbrasoft.Travel.Data.Transfer.Object.AccommodationDetail
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@Model.Name</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.travel.star.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/select_option1.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/fancybox.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/isotope.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/optionswitch.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/settings.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/navigation.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- CUSTOM CSS -->
+    <link href="~/Content/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/default.css" id="option_color">
+
+    <!-- FAVICON -->
+    @*<link rel="shortcut icon" type="image/png" href="img/favicon.png" />*@
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+
+        i.glyphicon-star, i.glyphicon-star-empty {
+            color: #ff891e;
+        }
+
+        div#map {
+            height: 400px;
+            width: 100%;
+        }
+
+        .bis.glyphicon-star {
+            text-shadow: 0 0 1px black,0 0 1px black,0 0 1px black,0 0 1px black;
+        }
+
+        .payment {
+            font-size: 42px;
+        }
+
+        .quantity {
+        }
+    </style>
+</head>
+
+<body class="body-wrapper ">
+    <div class="main-wrapper">
+
+        <!-- HEADER -->
+        <header>
+            <nav style="background:rgba(0,0,0,.8); color: white; height:70px;" class="navbar navbar-default navbar-main navbar-fixed-top lightHeader" role="navigation">
+                <div class="row" style="margin-top: 0px; padding-top: 0px;">
+                    <div class="col-sm-6">
+                        <div style="margin-left: 5px;">
+                            <h1 style="margin-top: 1px;" class="h5">@Model.Name</h1>
+                            @Html.Raw(Html.AccommodationStarRating(Model.StarRating))
+                            @Model.Address
+                        </div>
+                    </div>
+
+                    <div class="navbar-header col-sm-6">
+
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown singleDrop ">
+                                    @Html.ActionLink("Accommodations", "Index")
+                                </li>
+
+                                <li class="dropdown singleDrop ">
+                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PAGES</a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class=""><a href="about-us.html">About Us</a></li>
+                                        <li class=""><a href="contact.html">Contact Us</a></li>
+                                        <li class="dropdown dropdown-submenu ">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Gallery <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                            <ul class="dropdown-menu ">
+                                                <li class=""><a href="gallery-grid.html">Gallery Grid</a></li>
+                                                <li class=""><a href="gallery-masonry.html">Gallery Masonry</a></li>
+                                                <li class=""><a href="gallery-photo-slider.html">Photo Slider</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown dropdown-submenu ">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Destinations <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-left">
+                                                <li class=""><a href="destination-cities.html">Destination Cities</a></li>
+                                                <li class=""><a href="destination-single-city.html">Single Destination</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="404.html">404 Not Found</a></li>
+                                        <li><a href="coming-soon.html">Coming Soon</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown singleDrop ">
+                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown dropdown-submenu">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog Grid View <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li class=""><a href="blog-grid-three-col.html">Blog Grid 3 Col</a></li>
+                                                <li class=""><a href="blog-grid-two-col.html">Blog Grid 2 Col</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown dropdown-submenu">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog List View <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li class=""><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
+                                                <li class=""><a href="blog-list-left-sidebar.html">blog-list-left-sidebar.html</a></li>
+                                                <li class=""><a href="blog-list-fullwidth.html">Blog List Fullwidth</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown dropdown-submenu">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Single Blog Post <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li class=""><a href="blog-single-right-sidebar.html">Right Sidebar</a></li>
+                                                <li class=""><a href="blog-single-left-sidebar.html">Left Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown singleDrop ">
+                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class=""><a href="dashboard.html">Dashboard</a></li>
+                                        <li class=""><a href="booking.html">Booking</a></li>
+                                        <li class=""><a href="profile.html">Profile</a></li>
+                                        <li class=""><a href="setting.html">Settings</a></li>
+                                        <li class=""><a href="" data-toggle="modal" data-target="#signup">Signup</a></li>
+                                        <li class=""><a href="" data-toggle="modal" data-target="#login">Login</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown singleDrop ">
+                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shortcodes</a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class=""><a href="accordion-and-toggles.html">Accordions &amp; Toggles</a></li>
+                                        <li class=""><a href="tabs-and-dropdown.html">Tabs &amp; Dropdowns</a></li>
+                                        <li class=""><a href="pricing-table.html">Pricing Tables</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown searchBox">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <span class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search..." aria-describedby="basic-addon2">
+                                                <span class="input-group-addon" id="basic-addon2">Search</span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <section class="mainContentSection singleHotel">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-8 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="package-carousel" class="carousel slide" data-ride="carousel">
+
+                                    @{
+                                        var active = "active";
+                                    }
+
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#package-carousel" data-slide-to="0" class=""></li>
+                                        <li data-target="#package-carousel" data-slide-to="1" class=""></li>
+                                        <li data-target="#package-carousel" data-slide-to="2" class="active"></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+
+                                        @foreach (var photo in Model.Photos)
+                                        {
+
+                                            <div class="item @active">
+                                                <img alt="" src="@photo">
+                                            </div>
+
+                                            active = string.Empty;
+
+                                        }
+                                    </div>
+                                    <a class="left carousel-control" href="#package-carousel" data-slide="prev"><span class="glyphicon glyphicon-menu-left"></span></a>
+                                    <a class="right carousel-control" href="#package-carousel" data-slide="next"><span class="glyphicon glyphicon-menu-right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="description-aria">
+                                    <div class="sectionTitle2">
+
+                                        @Html.Raw(Model.Description)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="rooms-types-aria">
+                                    <div class="sectionTitle2">
+                                        <h2>rooms types</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                    </div>
+
+                                    <div class="roomCategory">
+
+                                        @foreach (var room in Model.Rooms)
+                                        {
+                                            <div class="sub-title">
+                                                <h4>@room.Name</h4>
+
+                                                @Html.Raw(room.Description)
+                                            </div>
+
+                                            <div class="roomGallery">
+                                                @foreach (var photo in room.Photos)
+                                                {
+                                                    <div class="single-item">
+                                                        <a class="fancybox-pop" rel="portfolio-1" href="@photo">
+                                                            <img src="@photo" alt="Double Room">
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <hr>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="location-aria">
+                                    <div class="sectionTitle2">
+                                        <h2>Location</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                    </div>
+                                    <div id="map"></div>
+                                    <script asyn defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClWgMtjkbBjUJJx8DunzJKINP8tDouRIY&callback=initMap"></script>
+                                    <script>
+                                        function initMap() {
+
+                                            var mapOptions = {
+                                                center: new window.google.maps.LatLng(@Model.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture),  @Model.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture) ),
+                                                zoom: 4,
+                                                mapTypeId: window.google.maps.MapTypeId.ROADMAP
+                                            };
+
+                                            var map = new window.google.maps.Map(document.getElementById("map"),
+                                                mapOptions);
+
+                                            var image =
+                                                'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+                                            var marker = new window.google.maps.Marker({
+                                                position:
+                                                    new window.google.maps.LatLng(@Model.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture),  @Model.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture) ),
+                                                map: map,
+                                                icon: image
+                                            });
+
+                                            var a = marker.position;
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="col-sm-4 col-xs-12">
+                        <div class="singleCartSidebar">
+                            <div class="panel panel-default" style="border-color: #545454;">
+                                <div class="panel-heading" style="background-color: #e7eaed;">Check availability</div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-12 col-xs-4" for="inputSuccess3">Check in:</label>
+                                                    <div class="col-md-8 col-sm-12 col-xs-8 datepickerWrap">
+                                                        <div class="input-group date ed-datepicker filterDate" data-provide="datepicker">
+                                                            <input id="In" style="background-color: #f1f3f4;border-color: #545454;" type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                                            <div class="input-group-addon">
+                                                                <span class="far fa-calendar-alt"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-12 col-xs-4" for="inputSuccess3">Check out:</label>
+                                                    <div class="col-md-8 col-sm-12 col-xs-8 datepickerWrap">
+                                                        <div class="input-group date ed-datepicker filterDate" data-provide="datepicker">
+                                                            <input style="background-color: #f1f3f4;border-color:#545454;" id="Out" type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                                            <div class="input-group-addon">
+                                                                <span class="far fa-calendar-alt"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-12 col-xs-4" for="inputSuccess3">Rooms type:</label>
+                                                    <div class="col-md-8 col-sm-12 col-xs-8 datepickerWrap">
+                                                        <div class="searchFilter" style="background-color: #f1f3f4;border-color:#545454;">
+                                                            <select style="background-color: #f1f3f4;border-color:#545454;" name="guiest_id3" id="Rooms" class="select-drop">
+                                                                <option value="0">Double Room</option>
+                                                                <option value="1">Single Room</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-12 col-xs-4" for="inputSuccess3">Guest:</label>
+                                                    <div class="col-md-8 col-sm-12 col-xs-8 datepickerWrap">
+                                                        <div class="count-input">
+                                                            <a class="incr-btn" data-action="decrease" href="#"><i class="fas fa-user-minus" aria-hidden="true" style="font-size: 56%"></i></a>
+                                                            <input style="background-color: #f1f3f4;border-color:#545454;" class="quantity" type="text" value="1">
+                                                            <a class="incr-btn" data-action="increase" href="#"><i class="fas fa-user-plus" aria-hidden="true" style="font-size: 56%"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="totalCost" style="border-color:#545454;">
+                                                    <div class="col-xs-8 totalCostLeft">
+                                                        <p>Total Cost</p>
+                                                    </div>
+                                                    <div class="col-xs-4 totalCostRight">$198</div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <a href="#" style="border-color: #545454" class="btn btn-block buttonTransparent">Check now <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if(Model.Attributes.Where(p => p.SubTypeId == 1).Any())
+                        { 
+                            <ul class="descriptionList" style="padding-top: 20px;">
+                                @foreach (var amenityOfAccommodation in Model.Attributes.Where(p => p.SubTypeId == 1))
+                                {
+                                    <li style="padding-top: 10px;">
+                                        <span class="fa-stack">
+                                            <i title="@amenityOfAccommodation.Description @amenityOfAccommodation.Text" class="@Html.GetAmenityOfAccommodationClassContent(amenityOfAccommodation) fa-stack-1x" style="color: #ff891e;"></i>
+                                            @if (amenityOfAccommodation.Ban)
+                                            {
+                                                <i class="fa fa-ban fa-stack-2x text-danger" style="color: #ff891e;"></i>
+                                            }
+                                        </span>
+                                        @amenityOfAccommodation.Description @amenityOfAccommodation.Text
+                                    </li>
+
+                                }
+                            </ul>
+                        }
+
+                        @if (Model.Attributes.Where(p => p.SubTypeId == 3 || p.SubTypeId == 4 || p.SubTypeId == 6).Any())
+                        {
+                            <ul class="descriptionList" style="padding-top: 20px;">
+                                @foreach (var amenityOfAccommodation in Model.Attributes.Where(p => p.SubTypeId == 3 || p.SubTypeId == 4 || p.SubTypeId == 6))
+                                {
+                                    <li style="padding-top: 10px;">
+                                        <span class="fa-stack">
+                                            <i title="@amenityOfAccommodation.Description @amenityOfAccommodation.Text" class="@Html.GetClassContent(amenityOfAccommodation) fa-stack-1x" style="color: #ff891e;"></i>
+                                            @if (amenityOfAccommodation.Ban)
+                                            {
+                                                <i class="fa fa-ban fa-stack-2x text-danger" style="color: #ff891e;"></i>
+                                            }
+                                        </span>
+                                        @amenityOfAccommodation.Description @amenityOfAccommodation.Text
+                                    </li>
+                                }
+                            </ul>
+                        }
+
+                        @if (Model.Attributes.Where(p => p.SubTypeId == 5).Any())
+                        {
+                            <ul class="descriptionList" style="padding-top: 20px;">
+                                @foreach (var amenityOfAccommodation in Model.Attributes.Where(p => p.SubTypeId == 5))
+                                {
+                                    <li style="padding-top: 10px;">
+                                        <span class="fa-stack">
+                                            <i title="@amenityOfAccommodation.Description @amenityOfAccommodation.Text" class="@Html.GetPaymentClassContent(amenityOfAccommodation) fa-stack-1x" style="color: #ff891e;"></i>
+                                            @if (amenityOfAccommodation.Ban)
+                                            {
+                                                <i class="fa fa-ban fa-stack-2x text-danger" style="color: #ff891e;"></i>
+                                            }
+                                        </span>
+                                        @amenityOfAccommodation.Description @amenityOfAccommodation.Text
+                                    </li>
+                                }
+                            </ul>
+                        }
+
+                        @if (Model.Attributes.Where(p => p.SubTypeId == 2).Any())
+                        {
+                            <ul class="descriptionList" style="padding-top: 20px;">
+                                @foreach (var amenityOfAccommodation in Model.Attributes.Where(p => p.SubTypeId == 2))
+                                {
+                                    <li style="padding-top: 10px;">
+                                        <span class="fa-stack">
+                                            <i title="@amenityOfAccommodation.Description @amenityOfAccommodation.Text" class="@Html.GetAmenityOfRoomClassContent(amenityOfAccommodation) fa-stack-1x" style="color: #ff891e;"></i>
+                                            @if (amenityOfAccommodation.Ban)
+                                            {
+                                                <i class="fa fa-ban fa-stack-2x text-danger" style="color: #ff891e;"></i>
+                                            }
+                                        </span>
+                                        @amenityOfAccommodation.Description @amenityOfAccommodation.Text
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED SECTION -->
+        <section class="relatedSection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="sectionTitle2">
+                            <h2>you may also like</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="footerContent">
+                                @*<a href="index.html" class="footer-logo"><img src="img/logo-color-sm.png" alt="footer-logo"></a>*@
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="footerContent">
+                                <h5>contact us</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod.</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-home" aria-hidden="true"></i>61 Park Street, Fifth Avenue, NY</li>
+                                    <li><i class="fa fa-phone" aria-hidden="true"></i>[88] 657 524 332</li>
+                                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailTo:info@star-travel.com">info@star-travel.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="footerContent">
+                                <h5>newsletter</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do. </p>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter your email" aria-describedby="basic-addon21">
+                                    <span class="input-group-addon" id="basic-addon21"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+                                </div>
+                                <ul class="list-inline">
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyRight clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-push-6 col-xs-12">
+                            <ul class="list-inline">
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Support</a></li>
+                                <li><a href="#">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-sm-pull-6 col-xs-12">
+                            <div class="copyRightText">
+                                <p>Copyright © 2016. All Rights Reserved by <a target="_blank" href="http://www.iamabdus.com/">Abdus</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade signupLoging" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modalContentCustom">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create your account</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control bg-ash" id="exampleInputEmail" placeholder="Full Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control bg-ash" id="exampleInputPassword" placeholder="Email">
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> I agree to the terms of use and privacy.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </form>
+                    <div class="or">
+                        or
+                    </div>
+                    <a class="btn btn-default btnSocial" href="#">Log in with facebook</a>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="dontHaveAccount">
+                        <p>Don’t have an Account?<a href=""> Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade signupLoging" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modalContentCustom">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Log in to your account</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <input type="email" class="form-control bg-ash" id="exampleInputPassword1" placeholder="Email">
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                            <a class="forgotPass clerfix" href="">Fogot Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </form>
+                    <div class="or">
+                        or
+                    </div>
+                    <a class="btn btn-default btnSocial" href="#">Log in with facebook</a>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="dontHaveAccount">
+                        <p>Don’t have an Account?<a href=""> Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/jquery.selectbox-0.1.3.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/waypoints.min.js"></script>
+    <script src="~/Scripts/jquery.counterup.min.js"></script>
+    <script src="~/Scripts/isotope.min.js"></script>
+    <script src="~/Scripts/jquery.fancybox.pack.js"></script>
+    <script src="~/Scripts/isotope-triger.js"></script>
+    <script src="~/Scripts/jquery.syotimer.js"></script>
+    <script src="~/Scripts/slick.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/optionswitcher.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
 {
     public class IdentityDatabaseContext : DbContext, IIdentityContext
     {
+       
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -29,7 +30,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("app.config.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: true)
                 .Build();
 
             var connectionString = configuration.GetConnectionString("TravelCoreConnectionString");
