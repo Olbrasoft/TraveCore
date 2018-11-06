@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
   </ItemGroup>
 

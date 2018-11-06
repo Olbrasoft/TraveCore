@@ -1,8 +1,8 @@
-﻿using Olbrasoft.Travel.ExpediaAffiliateNetwork.DataTransferObject.Property;
+﻿using System;
+using System.Collections.Generic;
 using Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Geography;
 using Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Property;
-using System;
-using System.Collections.Generic;
+using Olbrasoft.Travel.ExpediaAffiliateNetwork.DataTransferObject.Property;
 
 namespace Olbrasoft.Travel.Expedia.Affiliate.Network
 {
@@ -10,11 +10,11 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network
     {
         private static IEnumerable<EanFile> _eanFiles;
 
-        public static IEnumerable<EanFile> GetEanFiles()
+        public static IEnumerable<EanFile>  GetEanFiles()
         {
             return _eanFiles ?? (_eanFiles = BuildEanFiles());
         }
-
+        
         private static IEnumerable<EanFile> BuildEanFiles()
         {
             var files = new List<EanFile>()
@@ -255,6 +255,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network
                     TypeOfEanFile.Property,
                     typeof(WhatToExpectMultiLanguage)
                 ),
+
             };
 
             return files;

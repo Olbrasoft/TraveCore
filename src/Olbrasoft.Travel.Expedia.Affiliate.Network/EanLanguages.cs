@@ -54,7 +54,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network
                 new EanLanguage{LanguageCode="sk_SK",Name="Slovak"},
                 new EanLanguage{LanguageCode="th_TH",Name="Thai"},
                 new EanLanguage{LanguageCode="tr_TR",Name="Turkish"},
-                new EanLanguage{LanguageCode="uk_UA",Name="Ukranian"},
+                new EanLanguage{LanguageCode="uk_UA",Name="Ukrainian"},
                 new EanLanguage{LanguageCode="vi_VN",Name="Vietnamese"},
                 new EanLanguage{LanguageCode="zh_TW",Name="Traditional Chinese"},
                 new EanLanguage{LanguageCode="zh_CN",Name="Simplified Chinese"},

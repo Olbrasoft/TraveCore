@@ -7,7 +7,6 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Geogra
     {
     }
 
-
     /// <summary>
     /// https://support.ean.com/hc/en-us/articles/115005784405-V3-Database-Files-Geography-Data
     /// File Name: ParentRegionList.txt

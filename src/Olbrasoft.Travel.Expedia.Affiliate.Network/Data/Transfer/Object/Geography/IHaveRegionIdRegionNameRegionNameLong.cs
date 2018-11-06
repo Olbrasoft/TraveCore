@@ -1,6 +1,5 @@
 ﻿namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Geography
 {
-
     public interface IHaveRegionIdRegionNameRegionNameLong
     {
         // ReSharper disable once InconsistentNaming

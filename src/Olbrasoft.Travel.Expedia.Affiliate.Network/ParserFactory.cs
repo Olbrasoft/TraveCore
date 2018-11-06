@@ -9,7 +9,7 @@
 
         public IPathsHotelsImagesParser Create()
         {
-            return new PathsHotelsImages();
+           return new PathsHotelsImages();
         }
     }
 }

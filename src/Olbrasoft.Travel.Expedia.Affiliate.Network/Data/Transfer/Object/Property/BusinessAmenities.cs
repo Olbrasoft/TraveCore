@@ -1,4 +1,4 @@
-﻿
+﻿using Olbrasoft.Travel.ExpediaAffiliateNetwork.DataTransferObject.Property;
 
 namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Property
 {

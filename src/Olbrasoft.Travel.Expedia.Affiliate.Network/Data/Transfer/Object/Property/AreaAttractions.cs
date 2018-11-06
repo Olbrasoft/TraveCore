@@ -1,4 +1,6 @@
-﻿namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Property
+﻿using Olbrasoft.Travel.ExpediaAffiliateNetwork.DataTransferObject.Property;
+
+namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Property
 {
     /// <summary>
     /// https://support.ean.com/hc/en-us/articles/115005784325

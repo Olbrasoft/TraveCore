@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj" />
     <ProjectReference Include="..\..\src\Olbrasoft.Travel.Business\Olbrasoft.Travel.Business.csproj" />
     <ProjectReference Include="..\..\src\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
   </ItemGroup>

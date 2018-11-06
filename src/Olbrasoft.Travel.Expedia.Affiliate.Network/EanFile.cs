@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network
     public class EanFile
     {
         public bool IsMultilanguage => GetIsMultilanguage(DownloadUrl);
-
+        
         public EanFile(Uri downloadUrl, TypeOfEanFile typeOfEanFile, Type assignedEntityType)
         {
             DownloadUrl = downloadUrl;
@@ -19,10 +19,11 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network
 
         public Type AssignedEntityType { get; }
 
+
         public static bool GetIsMultilanguage(Uri uri)
-        {
-            var filename = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
-            return filename.EndsWith("xx_XX");
+        {          
+           var filename = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
+           return filename.EndsWith("xx_XX");
         }
     }
 }

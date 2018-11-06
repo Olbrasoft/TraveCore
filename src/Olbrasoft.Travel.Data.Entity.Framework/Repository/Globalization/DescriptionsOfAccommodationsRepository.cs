@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Olbrasoft.Travel.Data.Entity.Globalization;
+using Olbrasoft.Travel.Data.Repository.Globalization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Olbrasoft.Travel.Data.Entity.Globalization;
-using Olbrasoft.Travel.Data.Repository.Globalization;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Repository.Globalization
 {
     public class DescriptionsOfAccommodationsRepository : SharpRepository.EfCoreRepository.EfCoreRepository<LocalizedDescriptionOfAccommodation, int, int, int>, IDescriptionsOfAccommodationsRepository
     {
-
         protected new IGlobalizationContext Context { get; }
 
         public event EventHandler Saved;
@@ -52,12 +51,12 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Repository.Globalization
 
             if (forInsert.Count > 0)
             {
-               base.Context.BulkInsert(forInsert, OnSaved, batchSize);
+                base.Context.BulkInsert(forInsert, OnSaved, batchSize);
             }
 
             if (forUpdate.Count > 0)
             {
-               base.Context.BulkUpdate(forUpdate, OnSaved, batchSize, ignorePropertiesWhenUpdating);
+                base.Context.BulkUpdate(forUpdate, OnSaved, batchSize, ignorePropertiesWhenUpdating);
             }
         }
 

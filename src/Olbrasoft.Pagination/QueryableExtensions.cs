@@ -13,6 +13,7 @@ namespace Olbrasoft.Pagination
         /// <param name="source"> An <see cref="IQueryable{TSource}" /> to create a list from.</param>
         /// <param name="paging">Paging information</param>
         /// <returns>The input sequence typed as <see cref="IPagedList{TSource}" />.</returns>
+
         public static IPagedList<TSource> AsPagedList<TSource>(this IQueryable<TSource> source, IPageInfo paging)
         {
             if (source == null)

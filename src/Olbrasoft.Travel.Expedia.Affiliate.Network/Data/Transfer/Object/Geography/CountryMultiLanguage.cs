@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Data.Transfer.Object.Geogra
     /// <summary>
     /// https://support.ean.com/hc/en-us/articles/115005784405-V3-Database-Files-Geography-Data
     /// File Name: CountryList_xx_XX.txt
-    /// Zip File Name:https://www.ian.com/affiliatecenter/include/V2/new/CountryList_xx_XX.zip
+    /// Zip File Name:https://www.ian.com/affiliatecenter/include/V2/new/CountryList_xx_XX.zip 
     /// This file holds all non-English language translations for the records located in the CountryList file.
     /// Use the URL format provided above, substituting the _xx_XX suffix with your desired:
     /// https://support.ean.com/hc/en-us/articles/115005813145
