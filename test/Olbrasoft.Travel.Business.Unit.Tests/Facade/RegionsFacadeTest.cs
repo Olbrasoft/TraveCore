@@ -57,8 +57,8 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
         {
             var providerMock = new Mock<IProvider>();
 
-            providerMock.Setup(p => p.Create<GetCountriesByLanguageId>())
-                .Returns(new GetCountriesByLanguageId(providerMock.Object));
+            providerMock.Setup(p => p.Create<CountriesByLanguageIdQuery>())
+                .Returns(new CountriesByLanguageIdQuery(providerMock.Object));
             
             return new RegionsFacade(providerMock.Object);
         }

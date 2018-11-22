@@ -81,6 +81,10 @@
       <Project>{63b91b8f-a335-408a-b158-fa7501298914}</Project>
       <Name>Olbrasoft.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Olbrasoft.Globalization\Olbrasoft.Globalization.csproj">
+      <Project>{84CD3092-E076-4C15-9EB3-7A219376B321}</Project>
+      <Name>Olbrasoft.Globalization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj">
       <Project>{4944b51a-79a1-4aa3-9bcb-6b1fc0dc2fb9}</Project>
       <Name>Olbrasoft.Pagination</Name>

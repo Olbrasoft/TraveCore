@@ -10,13 +10,13 @@ using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 {
-    public class AccommodationDetailById : HandlerWithDependentSource<GetAccommodationDetailById, LocalizedAccommodation, AccommodationDetail>
+    public class AccommodationDetailById : HandlerWithDependentSource<AccommodationDetailByIdAndLanguageIdQuery, LocalizedAccommodation, AccommodationDetail>
     {
         public AccommodationDetailById(IHaveGlobalizationQueryable<LocalizedAccommodation> ownerQueryable, IProjection projector) : base(ownerQueryable, projector)
         {
         }
 
-        public override AccommodationDetail Handle(GetAccommodationDetailById query)
+        public override AccommodationDetail Handle(AccommodationDetailByIdAndLanguageIdQuery query)
         {
             var accommodationDetail = ProjectToAccommodationsDetails(Source, query).First();
 
@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
             return accommodationDetail;
         }
 
-        public override async Task<AccommodationDetail> HandleAsync(GetAccommodationDetailById query, CancellationToken cancellationToken)
+        public override async Task<AccommodationDetail> HandleAsync(AccommodationDetailByIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var accommodationDetail = await ProjectToAccommodationsDetails(Source, query).FirstAsync(cancellationToken);
 
@@ -41,7 +41,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
             return accommodationDetail;
         }
 
-        private IQueryable<AccommodationDescription> ProjectToAccommodationDescriptions(IQueryable<LocalizedAccommodation> source, GetAccommodationDetailById query)
+        private IQueryable<AccommodationDescription> ProjectToAccommodationDescriptions(IQueryable<LocalizedAccommodation> source, AccommodationDetailByIdAndLanguageIdQuery query)
         {
             var descriptions = source
                     .SelectMany(p => p.Accommodation.LocalizedDescriptionsOfAccommodations)
@@ -50,7 +50,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
             return ProjectTo<AccommodationDescription>(descriptions);
         }
 
-        private IQueryable<AccommodationDetail> ProjectToAccommodationsDetails(IQueryable<LocalizedAccommodation> source, GetAccommodationDetailById query)
+        private IQueryable<AccommodationDetail> ProjectToAccommodationsDetails(IQueryable<LocalizedAccommodation> source, AccommodationDetailByIdAndLanguageIdQuery query)
         {
             var localizedAccommodations = source.Include(p => p.Accommodation).Where(la => la.Id == query.Id && la.LanguageId == query.LanguageId);
 

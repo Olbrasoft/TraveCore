@@ -15,7 +15,7 @@ namespace Olbrasoft.Travel.Business.Facade
         
         public Task<IEnumerable<CountryItem>> GetCountriesAsync(int languageId, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var query = QueryProvider.Create<GetCountriesByLanguageId>();
+            var query = QueryProvider.Create<CountriesByLanguageIdQuery>();
             query.LanguageId = languageId;
 
             return query.ExecuteAsync(cancellationToken);

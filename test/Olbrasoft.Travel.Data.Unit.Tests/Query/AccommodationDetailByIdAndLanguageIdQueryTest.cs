@@ -7,8 +7,22 @@ using Olbrasoft.Travel.Data.Transfer.Object;
 namespace Olbrasoft.Travel.Data.Unit.Tests.Query
 {
     [TestFixture]
-    internal class GetAccommodationDetailByIdTest
+    internal class AccommodationDetailByIdAndLanguageIdQueryTest
     {
+        [Test]
+        public void Instance_Is_ByLanguageIdQuery_Of_AccommodationDetail()
+        {
+            //Arrange
+            var type = typeof(ByLanguageIdQuery<AccommodationDetail>);
+            var providerMock = new Mock<IProvider>();
+
+            //Act
+            var query = new AccommodationDetailByIdAndLanguageIdQuery(providerMock.Object);
+
+            //Assert
+            Assert.IsInstanceOf(type, query);
+        }
+
         [Test]
         public void Instance_Implement_Interface_IQueryOfAccommodationDetail()
         {
@@ -16,7 +30,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
             var dispatcherMock = new Mock<IProvider>();
 
             //Act
-            var query = new GetAccommodationDetailById(dispatcherMock.Object);
+            var query = new AccommodationDetailByIdAndLanguageIdQuery(dispatcherMock.Object);
 
             //Assert
             Assert.IsInstanceOf<IQuery<AccommodationDetail>>(query);
@@ -27,7 +41,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
         {
             //Arrange
             var dispatcherMock = new Mock<IProvider>();
-            var query = new GetAccommodationDetailById(dispatcherMock.Object)
+            var query = new AccommodationDetailByIdAndLanguageIdQuery(dispatcherMock.Object)
             {
                 LanguageId = 1033,
             };
@@ -44,7 +58,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
         {
             //Arrange
             var dispatcherMock = new Mock<IProvider>();
-            var query = new GetAccommodationDetailById(dispatcherMock.Object)
+            var query = new AccommodationDetailByIdAndLanguageIdQuery(dispatcherMock.Object)
             {
                 Id = 42,
             };

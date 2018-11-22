@@ -24,7 +24,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
             var handler = new AccommodationDetailById(localizedAccommodationsMock.Object,projectionMock.Object);
 
             //Assert
-            Assert.IsInstanceOf<IHandle<GetAccommodationDetailById, AccommodationDetail>>(handler);
+            Assert.IsInstanceOf<IHandle<AccommodationDetailByIdAndLanguageIdQuery, AccommodationDetail>>(handler);
         }
 
         //[Test]
@@ -39,9 +39,9 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
 
         //    var processorMock = new Mock<IQueryProcessor>();
 
-        //    var getAccommodationDetailById= new GetAccommodationDetailById(processorMock.Object);
+        //    var getAccommodationDetailById= new AccommodationDetailByIdAndLanguageIdQuery(processorMock.Object);
 
-        //    //var accommodationDetailByIdMock =new Mock<GetAccommodationDetailById>();
+        //    //var accommodationDetailByIdMock =new Mock<AccommodationDetailByIdAndLanguageIdQuery>();
         //    //accommodationDetailByIdMock.Setup(p => p.Id).Returns(0);
         //    //accommodationDetailByIdMock.Setup(p => p.LanguageId).Returns(1033);
 

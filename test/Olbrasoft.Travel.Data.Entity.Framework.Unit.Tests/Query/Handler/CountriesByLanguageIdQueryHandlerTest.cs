@@ -21,7 +21,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
         public void Instance_Is_QueryHandler_Of_GetCountriesByLanguageId_Comma_Country_Comma_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(QueryHandler<GetCountriesByLanguageId, Country, IEnumerable<CountryItem>>);
+            var type = typeof(QueryHandler<CountriesByLanguageIdQuery, Country, IEnumerable<CountryItem>>);
 
 
             //Act
@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
             //Arrange
             var handler = Handler();
             var providerMock = new Mock<IProvider>();
-            var query = new GetCountriesByLanguageId(providerMock.Object);
+            var query = new CountriesByLanguageIdQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);
@@ -49,7 +49,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
         
         private static CountriesByLanguageIdQueryHandler Handler()
         {
-            var ownerQueryableMock = new Mock<IHaveQueryable<Country>>();
+            var ownerQueryableMock = new Mock<IHavePropertyQueryable<Country>>();
             ownerQueryableMock.Setup(p => p.Queryable).Returns(new List<Country>().AsQueryable());
             
             var projectorMock = new Mock<IProjection>();

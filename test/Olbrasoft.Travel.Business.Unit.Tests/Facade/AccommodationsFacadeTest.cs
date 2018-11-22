@@ -141,7 +141,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
         {
             var queryDispatcher = new Mock<IProvider>();
 
-            queryDispatcher.Setup(p => p.Execute(It.IsAny<GetAccommodationDetailById>()))
+            queryDispatcher.Setup(p => p.Execute(It.IsAny<AccommodationDetailByIdAndLanguageIdQuery>()))
                 .Returns(new AccommodationDetail());
 
             var items = new[]
@@ -161,8 +161,8 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
 
             var providerMock = new Mock<IProvider>();
 
-            providerMock.Setup(p => p.Create<GetAccommodationDetailById>())
-                .Returns(new GetAccommodationDetailById(queryDispatcher.Object));
+            providerMock.Setup(p => p.Create<AccommodationDetailByIdAndLanguageIdQuery>())
+                .Returns(new AccommodationDetailByIdAndLanguageIdQuery(queryDispatcher.Object));
 
             providerMock.Setup(p => p.Create<GetPagedAccommodationItems>())
                 .Returns(new GetPagedAccommodationItems(queryDispatcher.Object));

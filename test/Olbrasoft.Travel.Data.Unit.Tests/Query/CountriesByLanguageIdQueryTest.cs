@@ -8,8 +8,22 @@ using Olbrasoft.Travel.Data.Query;
 namespace Olbrasoft.Travel.Data.Unit.Tests.Query
 {
     [TestFixture]
-    internal class GetCountriesByLanguageIdTest
+    internal class CountriesByLanguageIdQueryTest
     {
+        [Test]
+        public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_CountryItem()
+        {
+            //Arrange
+            var type = typeof(ByLanguageIdQuery<IEnumerable<CountryItem>>);
+
+            //Act
+            var query = GetCountriesByLanguageId();
+
+            //Assert
+            Assert.IsInstanceOf(type, query);
+
+        }
+
         [Test]
         public void Instance_Is_QueryWithDependentProvider_Of_IEnumerable_Of_CountryItem()
         {
@@ -50,12 +64,12 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
             Assert.IsTrue(languageId == query.LanguageId);
         }
 
-        private static GetCountriesByLanguageId GetCountriesByLanguageId()
+        private static CountriesByLanguageIdQuery GetCountriesByLanguageId()
         {
             var providerMock = new Mock<IProvider>();
 
             //Act
-            var query = new GetCountriesByLanguageId(providerMock.Object);
+            var query = new CountriesByLanguageIdQuery(providerMock.Object);
             return query;
         }
     }

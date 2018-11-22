@@ -11,19 +11,19 @@ using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 {
-    public class CountriesByLanguageIdQueryHandler : QueryHandler<GetCountriesByLanguageId,Country,IEnumerable<CountryItem>>
+    public class CountriesByLanguageIdQueryHandler : QueryHandler<CountriesByLanguageIdQuery,Country,IEnumerable<CountryItem>>
     {
         public CountriesByLanguageIdQueryHandler(IHavePropertyQueryable<Country> ownerQueryable, IProjection projector) : base(ownerQueryable, projector)
         {
         }
 
-        public override async Task<IEnumerable<CountryItem>> HandleAsync(GetCountriesByLanguageId query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<CountryItem>> HandleAsync(CountriesByLanguageIdQuery query, CancellationToken cancellationToken)
         {
            return await ProjectionToCountryItems(Source, query, Projector).ToArrayAsync(cancellationToken);
         }
 
 
-        protected IQueryable<CountryItem> ProjectionToCountryItems(IQueryable<Country> source , GetCountriesByLanguageId query, IProjection projector)
+        protected IQueryable<CountryItem> ProjectionToCountryItems(IQueryable<Country> source , CountriesByLanguageIdQuery query, IProjection projector)
         {
             var regions = source.Select(p => p.Region);
             var localizedRegions =
