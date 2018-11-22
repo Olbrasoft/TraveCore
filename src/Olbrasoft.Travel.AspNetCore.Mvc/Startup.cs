@@ -19,6 +19,7 @@ using Olbrasoft.Travel.Business.Facade;
 using Olbrasoft.Travel.Data.Transfer.Object;
 using Olbrasoft.Dependence.Inversion.Of.Control.Containers.Castle;
 using Olbrasoft.Travel.Data;
+using Olbrasoft.Travel.Data.Entity.Geography;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Entity.Property;
 
@@ -79,6 +80,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             container.Register(Component.For<IHavePropertyQueryable<TypeOfRoom>>()
                 .ImplementedBy<PropertyQueryableOwner<TypeOfRoom>>().LifestyleCustom<MsScopedLifestyleManager>());
 
+            container.Register(Component.For<IHavePropertyQueryable<Country>>()
+                .ImplementedBy<PropertyQueryableOwner<Country>>().LifestyleCustom<MsScopedLifestyleManager>());
+            
             container.Register(Component.For<IHaveGlobalizationQueryable<AccommodationToAttribute>>()
                 .ImplementedBy<GlobalizationQueryableOwner<AccommodationToAttribute>>()
                 .LifestyleCustom<MsScopedLifestyleManager>());
@@ -120,7 +124,10 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
                     .LifestyleCustom<MsScopedLifestyleManager>()
             );
 
-
+            container.Register(
+            Component.For<IRegions>().ImplementedBy<RegionsFacade>()
+                .LifestyleCustom<MsScopedLifestyleManager>()
+                );
 
             return WindsorRegistrationHelper.CreateServiceProvider(container, services);
         }

@@ -4,7 +4,7 @@ using Olbrasoft.Travel.Data.Entity;
 
 namespace Olbrasoft.Data.Unit.Tests.Entity
 {
-    [TestFixture()]
+    [TestFixture]
     internal class CreationInfoTest
     {
         [Test]

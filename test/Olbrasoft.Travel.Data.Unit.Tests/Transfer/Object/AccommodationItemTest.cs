@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using NUnit.Framework.Internal;
 using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Object

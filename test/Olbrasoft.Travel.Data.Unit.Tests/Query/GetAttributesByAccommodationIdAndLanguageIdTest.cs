@@ -9,7 +9,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
 {
     internal class GetAttributesByAccommodationIdAndLanguageIdTest
     {
-        [NUnit.Framework.Test]
+        [Test]
         public void Instance_Implement_Interface_IQuery_Of_IEnumerable_Of_Attributes()
         {
             //Arrange
@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
 
             //Act
             var query = new GetAttributesByAccommodationIdAndLanguageId(providerMock.Object);
-
+            
             //Assert
             Assert.IsInstanceOf(type, query);
         }

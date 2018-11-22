@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
     internal class PhotosByAccommodationIdTest
     {
         [Test]
-        public void MyTestMethod()
+        public void Instance_Is_AsyncHandlerWithDependentSource_Of_GetPhotosByAccommodationId_Comma_PhotoOfAccommodation_Comma_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
             var type =

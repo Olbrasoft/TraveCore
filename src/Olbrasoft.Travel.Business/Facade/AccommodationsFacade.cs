@@ -11,14 +11,12 @@ using Olbrasoft.Travel.Data.Query;
 
 namespace Olbrasoft.Travel.Business.Facade
 {
-    public class AccommodationsFacade : IAccommodations
+    public class AccommodationsFacade : Olbrasoft.Business.Facade, IAccommodations
     {
-        protected IProvider QueryProvider { get; }
         protected IAccommodationItemPhotoMerge Merger { get; }
 
-        public AccommodationsFacade(IProvider queryProvider, IAccommodationItemPhotoMerge merger)
+        public AccommodationsFacade(IProvider queryProvider, IAccommodationItemPhotoMerge merger):base(queryProvider)
         {
-            QueryProvider = queryProvider;
             Merger = merger;
         }
 

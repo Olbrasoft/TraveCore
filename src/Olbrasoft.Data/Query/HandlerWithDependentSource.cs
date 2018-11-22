@@ -11,7 +11,7 @@ namespace Olbrasoft.Data.Query
         protected IQueryable<TSource> Source { get; }
         protected IProjection Projector { get; }
 
-        protected HandlerWithDependentSource(IHaveQueryable<TSource> ownerQueryable, IProjection projector)
+        protected HandlerWithDependentSource(IHaveQueryable<TSource> ownerQueryable, IProjection projector) 
         {
             Source = ownerQueryable.Queryable;
             Projector = projector;

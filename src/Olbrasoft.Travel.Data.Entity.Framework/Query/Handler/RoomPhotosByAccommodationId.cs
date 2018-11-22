@@ -24,7 +24,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 
         protected IQueryable<RoomPhoto> ProjectionToRoomPhotos(IQueryable<PhotoOfAccommodation> photosOfAccommodations, GetRoomPhotosByAccommodationId query, IProjection projector)
         {
-            var photosOfRooms = Source.SelectMany(p => p.ToTypesOfRooms).Select(p => p.Id);
+            var photosOfRooms = photosOfAccommodations.SelectMany(p => p.ToTypesOfRooms).Select(p => p.Id);
 
             photosOfAccommodations = photosOfAccommodations
                 .Include(p => p.ToTypesOfRooms)

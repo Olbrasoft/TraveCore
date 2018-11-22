@@ -13,6 +13,20 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
     [TestFixture]
     internal class AccommodationsFacadeTest
     {
+
+        [Test]
+        public void Instance_Is_Facade()
+        {
+            //Arrange
+            var type = typeof(Olbrasoft.Business.Facade);
+
+            //Act
+            var facade = CreateAccommodationsFacade();
+
+            //Assert
+            Assert.IsInstanceOf(type,facade);
+        }
+
         [Test]
         public void Instance_Implement_Interfaces()
         {
@@ -28,6 +42,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
                 Assert.IsInstanceOf(type, facade);
             });
         }
+        
 
         [Test]
         public void Get_Return_AccommodationDetail()
@@ -119,6 +134,8 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
             //Assert
             Assert.IsInstanceOf<Task<IResultWithTotalCount<AccommodationItem>>>(accommodationItemsTask);
         }
+
+
 
         private static AccommodationsFacade CreateAccommodationsFacade()
         {

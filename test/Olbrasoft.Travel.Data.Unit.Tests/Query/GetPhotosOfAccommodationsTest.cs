@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
     internal class GetPhotosOfAccommodationsTest
     {
         [Test]
-        public void Instance_Implement_Interface_IQuery()
+        public void Instance_Implement_Interface_IQuery_Of_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
             var type = typeof(IQuery<IEnumerable<AccommodationPhoto>>);
