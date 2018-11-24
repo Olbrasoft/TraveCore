@@ -605,7 +605,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Routing
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "Region")
-                        .WithOne("AdditionalAirportProperties")
+                        .WithOne("ExpandingInformationAboutAirport")
                         .HasForeignKey("Olbrasoft.Travel.Data.Entity.Geography.Airport", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -618,7 +618,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Migrations.Routing
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Olbrasoft.Travel.Data.Entity.Geography.Region", "Region")
-                        .WithOne("AdditionalCountryProperties")
+                        .WithOne("ExpandingInformationAboutCountry")
                         .HasForeignKey("Olbrasoft.Travel.Data.Entity.Geography.Country", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

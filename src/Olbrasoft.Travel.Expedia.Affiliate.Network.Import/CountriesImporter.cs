@@ -126,7 +126,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
                     CreatorId = CreatorId
                 };
 
-                region.AdditionalCountryProperties = country;
+                region.ExpandingInformationAboutCountry = country;
 
                 regionsRepository.Add(region);
 

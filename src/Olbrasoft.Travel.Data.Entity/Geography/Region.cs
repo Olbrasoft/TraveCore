@@ -1,7 +1,7 @@
 ﻿using GeoAPI.Geometries;
+using Olbrasoft.Travel.Data.Entity.Globalization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Olbrasoft.Travel.Data.Entity.Globalization;
 
 namespace Olbrasoft.Travel.Data.Entity.Geography
 {
@@ -29,12 +29,10 @@ namespace Olbrasoft.Travel.Data.Entity.Geography
 
         public ICollection<LocalizedRegion> LocalizedRegions { get; set; }
 
-        public Country AdditionalCountryProperties { get; set; }
+        public Continent ExpandingInformationAboutContinent { get; set; }
 
-        public Airport AdditionalAirportProperties { get; set; }
+        public Country ExpandingInformationAboutCountry { get; set; }
+
+        public Airport ExpandingInformationAboutAirport { get; set; }
     }
-
-
-
-    
 }

@@ -141,11 +141,11 @@ namespace Olbrasoft.Travel.Business.Facade
             return query;
         }
 
-        private GetPagedAccommodationItems GetPagedAccommodationItems(
+        private PagedAccommodationItemsByLanguageIdQuery GetPagedAccommodationItems(
             IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedAccommodation>, IOrderedQueryable<LocalizedAccommodation>> sorting
         )
         {
-            var query = QueryProvider.Create<GetPagedAccommodationItems>();
+            var query = QueryProvider.Create<PagedAccommodationItemsByLanguageIdQuery>();
             query.Paging = pagingSettings;
             query.LanguageId = languageId;
             query.Sorting = sorting;

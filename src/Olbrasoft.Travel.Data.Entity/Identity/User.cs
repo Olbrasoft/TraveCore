@@ -46,6 +46,11 @@ namespace Olbrasoft.Travel.Data.Entity.Identity
         public virtual ICollection<Country> Countries { get; set; }
 
         /// <summary>
+        /// Continents created by the User.
+        /// </summary>
+        public virtual ICollection<Continent> Continents { get; set; }
+
+        /// <summary>
         /// Airports created by the User.
         /// </summary>
         public ICollection<Airport> Airports { get; set; }

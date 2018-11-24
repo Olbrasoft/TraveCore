@@ -11,13 +11,13 @@ using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 {
-    public class PagedAccommodationItems : HandlerWithDependentSource<GetPagedAccommodationItems, LocalizedAccommodation, IResultWithTotalCount<AccommodationItem>>
+    public class PagedAccommodationItems : HandlerWithDependentSource<PagedAccommodationItemsByLanguageIdQuery, LocalizedAccommodation, IResultWithTotalCount<AccommodationItem>>
     {
         public PagedAccommodationItems(IHaveGlobalizationQueryable<LocalizedAccommodation> ownerQueryable, IProjection projector) : base(ownerQueryable, projector)
         {
         }
 
-        public override IResultWithTotalCount<AccommodationItem> Handle(GetPagedAccommodationItems query)
+        public override IResultWithTotalCount<AccommodationItem> Handle(PagedAccommodationItemsByLanguageIdQuery query)
         {
             var localizedAccommodations = PreHandle(Source, query);
 
@@ -33,7 +33,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
             return result;
         }
 
-        public override async Task<IResultWithTotalCount<AccommodationItem>> HandleAsync(GetPagedAccommodationItems query, CancellationToken cancellationToken)
+        public override async Task<IResultWithTotalCount<AccommodationItem>> HandleAsync(PagedAccommodationItemsByLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var localizedAccommodations = PreHandle(Source, query);
 
@@ -49,7 +49,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
             return result;
         }
 
-        private static IQueryable<LocalizedAccommodation> PreHandle(IQueryable<LocalizedAccommodation> source, GetPagedAccommodationItems query)
+        private static IQueryable<LocalizedAccommodation> PreHandle(IQueryable<LocalizedAccommodation> source, PagedAccommodationItemsByLanguageIdQuery query)
         {
             var localizedAccommodationQueryable = source.Include(p => p.Accommodation).Where(p => p.LanguageId == query.LanguageId);
 

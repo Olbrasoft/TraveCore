@@ -157,15 +157,15 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
                 Result = items
             };
 
-            queryDispatcher.Setup(p => p.Execute(It.IsAny<GetPagedAccommodationItems>())).Returns(result);
+            queryDispatcher.Setup(p => p.Execute(It.IsAny<PagedAccommodationItemsByLanguageIdQuery>())).Returns(result);
 
             var providerMock = new Mock<IProvider>();
 
             providerMock.Setup(p => p.Create<AccommodationDetailByIdAndLanguageIdQuery>())
                 .Returns(new AccommodationDetailByIdAndLanguageIdQuery(queryDispatcher.Object));
 
-            providerMock.Setup(p => p.Create<GetPagedAccommodationItems>())
-                .Returns(new GetPagedAccommodationItems(queryDispatcher.Object));
+            providerMock.Setup(p => p.Create<PagedAccommodationItemsByLanguageIdQuery>())
+                .Returns(new PagedAccommodationItemsByLanguageIdQuery(queryDispatcher.Object));
 
             providerMock.Setup(p => p.Create<GetPhotosOfAccommodations>())
                 .Returns(new GetPhotosOfAccommodations(queryDispatcher.Object));

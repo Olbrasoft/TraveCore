@@ -9,6 +9,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
     [TestFixture]
     internal class AccommodationDetailByIdAndLanguageIdQueryTest
     {
+
         [Test]
         public void Instance_Is_ByLanguageIdQuery_Of_AccommodationDetail()
         {

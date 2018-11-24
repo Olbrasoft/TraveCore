@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.Entity.Configuration.Geography
 
             builder.HasOne(country => country.Creator).WithMany(user => user.Countries).OnDelete(DeleteBehavior.Restrict);
             
-            builder.HasOne(country => country.Region).WithOne(region => region.AdditionalCountryProperties)
+            builder.HasOne(country => country.Region).WithOne(region => region.ExpandingInformationAboutCountry)
                 .HasForeignKey<Country>(p => p.Id).OnDelete(DeleteBehavior.Cascade);
         }
     }

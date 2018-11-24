@@ -15,10 +15,10 @@ namespace Olbrasoft.Travel.Data.Entity.Configuration.Geography
         {
              //builder.HasOne(r => r.Creator).WithMany(u => u.Regions).OnDelete(DeleteBehavior.Cascade).IsRequired();
 
-            //builder.HasOne(p => p.AdditionalCountryProperties).WithOne(country => country.Region).HasForeignKey<Country>(p=>p.Id)
+            //builder.HasOne(p => p.ExpandingInformationAboutCountry).WithOne(country => country.Region).HasForeignKey<Country>(p=>p.Id)
             //    .OnDelete(DeleteBehavior.Cascade);
 
-            //    HasOptional(p => p.AdditionalAirportProperties).WithRequired(p => p.Region).WillCascadeOnDelete(true);
+            //    HasOptional(p => p.ExpandingInformationAboutAirport).WithRequired(p => p.Region).WillCascadeOnDelete(true);
         }
     }
 }

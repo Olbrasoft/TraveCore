@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
             var handler = new PagedAccommodationItems(localizedAccommodationsMock.Object,projectionMock.Object);
 
             //Assert
-            Assert.IsInstanceOf<IHandle<GetPagedAccommodationItems, IResultWithTotalCount<AccommodationItem>>>(handler);
+            Assert.IsInstanceOf<IHandle<PagedAccommodationItemsByLanguageIdQuery, IResultWithTotalCount<AccommodationItem>>>(handler);
         }
     }
 }
