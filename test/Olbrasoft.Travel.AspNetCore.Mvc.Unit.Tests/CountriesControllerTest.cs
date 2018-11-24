@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
     internal class CountriesControllerTest
     {
         [Test]
-        public void Instance_Is_Controller()
+        public void Inherits_From_Controller()
         {
             //Arrange
             var type = typeof(Controller);

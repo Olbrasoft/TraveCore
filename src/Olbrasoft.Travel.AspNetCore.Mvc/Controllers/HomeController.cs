@@ -7,7 +7,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
     public class HomeController : Controller
     {
         
-        public HomeController(IGetInfo facade, IIdentityContext context)
+        public HomeController()
         {
            
         }
