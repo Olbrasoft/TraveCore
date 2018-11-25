@@ -3,49 +3,44 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Query;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Query;
 using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 {
-    public class AccommodationDetailById : HandlerWithDependentSource<AccommodationDetailByIdAndLanguageIdQuery, LocalizedAccommodation, AccommodationDetail>
+    public class AccommodationDetailByIdAndLanguageIdQueryHandler: TravelQueryHandler<IPropertyContext, AccommodationDetailByIdAndLanguageIdQuery, IQueryable<Property.Accommodation>,
+        AccommodationDetail>
     {
-        public AccommodationDetailById(IHaveGlobalizationQueryable<LocalizedAccommodation> ownerQueryable, IProjection projector) : base(ownerQueryable, projector)
+        public AccommodationDetailByIdAndLanguageIdQueryHandler(IPropertyContext context, IProjection projector) : base(context, projector)
         {
+
         }
 
-        public override AccommodationDetail Handle(AccommodationDetailByIdAndLanguageIdQuery query)
+        protected override IQueryable<Property.Accommodation> GetSource()
         {
-            var accommodationDetail = ProjectToAccommodationsDetails(Source, query).First();
-
-            var defaultDescription = ProjectToAccommodationDescriptions(Source, query)
-                .FirstOrDefault(p => p.TypeOfDescriptionId == 1)?
-                .Text;
-
-            accommodationDetail.Description = defaultDescription;
-
-            return accommodationDetail;
+            return Context.Accommodations;
         }
 
         public override async Task<AccommodationDetail> HandleAsync(AccommodationDetailByIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
-            var accommodationDetail = await ProjectToAccommodationsDetails(Source, query).FirstAsync(cancellationToken);
+            var localizedAccommodations = Source.SelectMany(p => p.LocalizedAccommodations);
 
-            var defaultDescription = (await ProjectToAccommodationDescriptions(Source, query)
-                .FirstOrDefaultAsync(p => p.TypeOfDescriptionId == 1, cancellationToken))?.Text;
+            var accommodationDetail = await ProjectToAccommodationsDetails(localizedAccommodations, query).FirstAsync(cancellationToken);
+
+            var defaultDescription = (await ProjectToAccommodationDescriptions(localizedAccommodations, query).FirstOrDefaultAsync(p => p.TypeOfDescriptionId == 1, cancellationToken))?.Text;
 
             accommodationDetail.Description = defaultDescription;
 
             return accommodationDetail;
+            
         }
 
         private IQueryable<AccommodationDescription> ProjectToAccommodationDescriptions(IQueryable<LocalizedAccommodation> source, AccommodationDetailByIdAndLanguageIdQuery query)
         {
             var descriptions = source
-                    .SelectMany(p => p.Accommodation.LocalizedDescriptionsOfAccommodations)
-                    .Where(p => p.AccommodationId == query.Id && p.LanguageId == query.LanguageId);
+                .SelectMany(p => p.Accommodation.LocalizedDescriptionsOfAccommodations)
+                .Where(p => p.AccommodationId == query.Id && p.LanguageId == query.LanguageId);
 
             return ProjectTo<AccommodationDescription>(descriptions);
         }

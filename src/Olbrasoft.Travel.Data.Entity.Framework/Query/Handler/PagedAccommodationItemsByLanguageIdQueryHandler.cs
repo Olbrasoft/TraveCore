@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Query;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Query;
@@ -11,32 +10,21 @@ using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 {
-    public class PagedAccommodationItems : HandlerWithDependentSource<PagedAccommodationItemsByLanguageIdQuery, LocalizedAccommodation, IResultWithTotalCount<AccommodationItem>>
+    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<IPropertyContext,PagedAccommodationItemsByLanguageIdQuery, IQueryable<Property.Accommodation>,
+        IResultWithTotalCount<AccommodationItem>>
     {
-        public PagedAccommodationItems(IHaveGlobalizationQueryable<LocalizedAccommodation> ownerQueryable, IProjection projector) : base(ownerQueryable, projector)
+        public PagedAccommodationItemsByLanguageIdQueryHandler(IPropertyContext context, IProjection projector) : base(context, projector)
         {
         }
 
-        public override IResultWithTotalCount<AccommodationItem> Handle(PagedAccommodationItemsByLanguageIdQuery query)
+        protected override IQueryable<Property.Accommodation> GetSource()
         {
-            var localizedAccommodations = PreHandle(Source, query);
-
-            var accommodationItems = ProjectTo<AccommodationItem>(localizedAccommodations);
-
-            var result = new ResultWithTotalCount<AccommodationItem>
-            {
-                Result = accommodationItems.Skip(query.Paging.CalculateSkip()).Take(query.Paging.PageSize).ToArray(),
-
-                TotalCount = accommodationItems.Count()
-            };
-
-            return result;
+            return Context.Accommodations;
         }
 
         public override async Task<IResultWithTotalCount<AccommodationItem>> HandleAsync(PagedAccommodationItemsByLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var localizedAccommodations = PreHandle(Source, query);
-
             var accommodationItems = ProjectTo<AccommodationItem>(localizedAccommodations);
 
             var result = new ResultWithTotalCount<AccommodationItem>
@@ -49,9 +37,11 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
             return result;
         }
 
-        private static IQueryable<LocalizedAccommodation> PreHandle(IQueryable<LocalizedAccommodation> source, PagedAccommodationItemsByLanguageIdQuery query)
+        private static IQueryable<LocalizedAccommodation> PreHandle(IQueryable<Property.Accommodation> source, PagedAccommodationItemsByLanguageIdQuery query)
         {
-            var localizedAccommodationQueryable = source.Include(p => p.Accommodation).Where(p => p.LanguageId == query.LanguageId);
+            var localizedAccommodations = source.SelectMany(p => p.LocalizedAccommodations);
+
+            var localizedAccommodationQueryable = localizedAccommodations.Include(p => p.Accommodation).Where(p => p.LanguageId == query.LanguageId);
 
             var localizedAccommodationOrderedQueryable = query.Sorting(localizedAccommodationQueryable);
 

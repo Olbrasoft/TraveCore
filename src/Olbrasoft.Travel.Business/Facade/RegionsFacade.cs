@@ -12,7 +12,15 @@ namespace Olbrasoft.Travel.Business.Facade
         public RegionsFacade(IProvider queryProvider) : base(queryProvider)
         {
         }
-        
+
+        public Task<IEnumerable<ContinentItem>> GetContinentsAsync(int languageId, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var query = QueryProvider.Create<ContinentsByLanguageIdQuery>();
+            query.LanguageId = languageId;
+
+            return query.ExecuteAsync(cancellationToken);
+        }
+
         public Task<IEnumerable<CountryItem>> GetCountriesAsync(int languageId, CancellationToken cancellationToken = default(CancellationToken))
         {
             var query = QueryProvider.Create<CountriesByLanguageIdQuery>();

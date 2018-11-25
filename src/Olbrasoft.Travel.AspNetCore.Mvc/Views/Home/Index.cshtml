@@ -1,8 +1,16 @@
-﻿@{
+﻿@model IEnumerable<Olbrasoft.Travel.Data.Transfer.Object.ContinentItem>
+@{
     ViewBag.Title = "TravelDatabaseContext";
 }
 
 <h2>Travel</h2>
 <div>
-    @Html.ActionLink("Accommodations", "Index", "Accommodations", new { area = "" }, new { @class = "navbar-brand" })
+    @Html.ActionLink("Accommodations", "Index", "Accommodations", new { area = "" })
+    <br/>
+    @foreach (var continent in Model)
+    {
+        <div>
+            @continent.Name
+        </div>
+    }
 </div>

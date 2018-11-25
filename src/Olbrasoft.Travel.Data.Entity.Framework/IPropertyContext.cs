@@ -7,7 +7,7 @@ namespace Olbrasoft.Travel.Data.Entity.Framework
     {
         DbSet<TypeOfAccommodation> TypesOfAccommodations { get; set; }
         DbSet<Chain> Chains { get; set; }
-        DbSet<Accommodation> Accommodations { get; set; }
+        DbSet<Property.Accommodation> Accommodations { get; set; }
         DbSet<TypeOfDescription> TypesOfDescriptions { get; set; }
         DbSet<Caption> Captions { get; set; }
         DbSet<PhotoOfAccommodation> PhotosOfAccommodations { get; set; }

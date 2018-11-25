@@ -7,8 +7,24 @@ using Olbrasoft.Travel.Data.Query;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Query
 {
-    internal class GetAttributesByAccommodationIdAndLanguageIdTest
+    internal class AttributesByAccommodationIdAndLanguageIdQueryTest
     {
+
+        [Test]
+        public void Inherits_From_ByLanguageIdQuery_Of_Attribute()
+        {
+            //Arrange
+            var type = typeof(ByLanguageIdQuery<IEnumerable<Data.Transfer.Object.Attribute>>);
+            var providerMock = new Mock<IProvider>();
+
+            //Act
+            var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
+
+            //Assert
+            Assert.IsInstanceOf(type, query);
+
+        }
+
         [Test]
         public void Instance_Implement_Interface_IQuery_Of_IEnumerable_Of_Attributes()
         {
@@ -17,7 +33,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
             var providerMock = new Mock<IProvider>();
 
             //Act
-            var query = new GetAttributesByAccommodationIdAndLanguageId(providerMock.Object);
+            var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
             
             //Assert
             Assert.IsInstanceOf(type, query);
@@ -31,7 +47,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
             var providerMock = new Mock<IProvider>();
 
             //Act
-            var query = new GetAttributesByAccommodationIdAndLanguageId(providerMock.Object);
+            var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
 
             //Assert
             Assert.IsInstanceOf(type, query);
@@ -45,7 +61,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
             var providerMock = new Mock<IProvider>();
 
             //Act
-            var query = new GetAttributesByAccommodationIdAndLanguageId(providerMock.Object);
+            var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
 
             //Assert
             Assert.IsInstanceOf(type, query);

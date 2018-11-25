@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Olbrasoft.Travel.AspNetCore.Mvc.Models;
 using Olbrasoft.Travel.Data.Entity.Framework;
 using System;
 using Olbrasoft.Data.Mapping;
@@ -19,7 +18,6 @@ using Olbrasoft.Travel.Business.Facade;
 using Olbrasoft.Travel.Data.Transfer.Object;
 using Olbrasoft.Dependence.Inversion.Of.Control.Containers.Castle;
 using Olbrasoft.Travel.Data;
-using Olbrasoft.Travel.Data.Entity.Geography;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Entity.Property;
 
@@ -49,18 +47,13 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             //services.AddScoped<IIdentityContext, IdentityDatabaseContext>();
 
             var container = new WindsorContainer();
-
-            container.Register(
-                Component.For<IGetInfo>().ImplementedBy<InfoFacade>()
-
-            );
+            
 
             container.Register(
                 Component.For<IIdentityContext>().ImplementedBy<IdentityDatabaseContext>()
                     .LifestyleCustom<MsScopedLifestyleManager>()
             );
-
-
+            
             container.Register(Component.For<IGlobalizationContext>().ImplementedBy<GlobalizationDatabaseContext>()
                 .LifestyleCustom<MsScopedLifestyleManager>()
             );
@@ -69,6 +62,11 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
                 .LifestyleCustom<MsScopedLifestyleManager>()
             );
 
+            container.Register(Component.For<IGeographyContext>().ImplementedBy<GeographyDatabaseContext>()
+                .LifestyleCustom<MsScopedLifestyleManager>()
+            );
+
+            
             container.Register(Component.For<IHaveGlobalizationQueryable<LocalizedAccommodation>>()
                 .ImplementedBy<GlobalizationQueryableOwner<LocalizedAccommodation>>()
                 .LifestyleCustom<MsScopedLifestyleManager>());
@@ -77,11 +75,10 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
                 .ImplementedBy<PropertyQueryableOwner<PhotoOfAccommodation>>()
                 .LifestyleCustom<MsScopedLifestyleManager>());
 
+            
             container.Register(Component.For<IHavePropertyQueryable<TypeOfRoom>>()
                 .ImplementedBy<PropertyQueryableOwner<TypeOfRoom>>().LifestyleCustom<MsScopedLifestyleManager>());
 
-            container.Register(Component.For<IHavePropertyQueryable<Country>>()
-                .ImplementedBy<PropertyQueryableOwner<Country>>().LifestyleCustom<MsScopedLifestyleManager>());
             
             container.Register(Component.For<IHaveGlobalizationQueryable<AccommodationToAttribute>>()
                 .ImplementedBy<GlobalizationQueryableOwner<AccommodationToAttribute>>()

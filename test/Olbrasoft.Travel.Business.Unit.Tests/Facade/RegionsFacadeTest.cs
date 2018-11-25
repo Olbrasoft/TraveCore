@@ -52,14 +52,32 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
             Assert.IsInstanceOf(type,result);
         }
 
+        [Test]
+        public void GetContinentsAsync_Returns_Task_Of_IEnumerable_Of_ContinentItem()
+        {
+            //Arrange
+            var type = typeof(Task<IEnumerable<ContinentItem>>);
+            var facade = Facade();
+
+            //Act
+            var result = facade.GetContinentsAsync(1033);
+            
+            //Assert
+            Assert.IsInstanceOf(type, result);
+
+        }
+
 
         private static RegionsFacade Facade()
         {
             var providerMock = new Mock<IProvider>();
 
+            providerMock.Setup(p => p.Create<ContinentsByLanguageIdQuery>())
+                .Returns(new ContinentsByLanguageIdQuery(providerMock.Object));
+
             providerMock.Setup(p => p.Create<CountriesByLanguageIdQuery>())
                 .Returns(new CountriesByLanguageIdQuery(providerMock.Object));
-            
+
             return new RegionsFacade(providerMock.Object);
         }
     }

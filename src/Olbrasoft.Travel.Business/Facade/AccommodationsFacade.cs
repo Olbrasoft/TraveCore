@@ -48,9 +48,9 @@ namespace Olbrasoft.Travel.Business.Facade
             return accommodationDetail;
         }
 
-        private GetAttributesByAccommodationIdAndLanguageId AttributesQuery(int accommodationId, int languageId)
+        private AttributesByAccommodationIdAndLanguageIdQuery AttributesQuery(int accommodationId, int languageId)
         {
-            var query = QueryProvider.Create<GetAttributesByAccommodationIdAndLanguageId>();
+            var query = QueryProvider.Create<AttributesByAccommodationIdAndLanguageIdQuery>();
             query.AccommodationId = accommodationId;
             query.LanguageId = languageId;
             return query;
