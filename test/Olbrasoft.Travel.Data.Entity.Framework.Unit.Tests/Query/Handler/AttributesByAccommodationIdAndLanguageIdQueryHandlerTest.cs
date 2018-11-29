@@ -57,4 +57,4 @@ namespace Olbrasoft.Travel.Data.Entity.Framework.Unit.Tests.Query.Handler
             return handler;
         }
     }
-}
+} 

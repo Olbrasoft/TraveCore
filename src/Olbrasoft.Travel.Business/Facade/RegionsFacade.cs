@@ -28,5 +28,16 @@ namespace Olbrasoft.Travel.Business.Facade
 
             return query.ExecuteAsync(cancellationToken);
         }
+
+        public Task<IEnumerable<CountryItem>> GetCountriesAsync(int continentId, int languageId,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+
+            var query = QueryProvider.Create<CountriesByContinentIdAndLanguageIdQuery>();
+            query.ContinentId = continentId;
+            query.LanguageId = languageId;
+
+            return query.ExecuteAsync(cancellationToken);
+        }
     }
 }

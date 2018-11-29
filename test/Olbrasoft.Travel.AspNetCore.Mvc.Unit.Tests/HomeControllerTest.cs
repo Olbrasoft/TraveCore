@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.Travel.AspNetCore.Mvc.Controllers;
 using Olbrasoft.Travel.Business;
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
 {
@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
             var controller = Controller();
 
             //Assert
-            Assert.IsInstanceOf(type,controller);
+            Assert.IsInstanceOf(type, controller);
         }
 
         private static HomeController Controller()
@@ -44,6 +44,18 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
             Assert.IsInstanceOf(type, result);
         }
 
+        [Test]
+        public void Continent_Return_Task_Of_IActionResult()
+        {
+            //Arrange
+            var controller = Controller();
+            var type = typeof(Task<IActionResult>);
 
+            //Act
+            var result = controller.Continent(1);
+
+            //Assert
+            Assert.IsInstanceOf(type, result);
+        }
     }
 }

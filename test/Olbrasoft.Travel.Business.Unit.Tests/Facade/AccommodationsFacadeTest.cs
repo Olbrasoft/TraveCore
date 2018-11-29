@@ -141,7 +141,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
         {
             var queryDispatcher = new Mock<IProvider>();
 
-            queryDispatcher.Setup(p => p.Execute(It.IsAny<AccommodationDetailByIdAndLanguageIdQuery>()))
+            queryDispatcher.Setup(p => p.Execute(It.IsAny<AccommodationDetailByAccommodationIdAndLanguageIdQuery>()))
                 .Returns(new AccommodationDetail());
 
             var items = new[]
@@ -161,14 +161,14 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
 
             var providerMock = new Mock<IProvider>();
 
-            providerMock.Setup(p => p.Create<AccommodationDetailByIdAndLanguageIdQuery>())
-                .Returns(new AccommodationDetailByIdAndLanguageIdQuery(queryDispatcher.Object));
+            providerMock.Setup(p => p.Create<AccommodationDetailByAccommodationIdAndLanguageIdQuery>())
+                .Returns(new AccommodationDetailByAccommodationIdAndLanguageIdQuery(queryDispatcher.Object));
 
             providerMock.Setup(p => p.Create<PagedAccommodationItemsByLanguageIdQuery>())
                 .Returns(new PagedAccommodationItemsByLanguageIdQuery(queryDispatcher.Object));
 
-            providerMock.Setup(p => p.Create<GetPhotosOfAccommodations>())
-                .Returns(new GetPhotosOfAccommodations(queryDispatcher.Object));
+            providerMock.Setup(p => p.Create<PhotosOfAccommodationsByAccommodationIdsQuery>())
+                .Returns(new PhotosOfAccommodationsByAccommodationIdsQuery(queryDispatcher.Object));
 
             var mockMerger = new AccommodationItemPhotoMerge();
 

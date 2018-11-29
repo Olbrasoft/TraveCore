@@ -53,6 +53,24 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
         }
 
         [Test]
+        public void GetCountriesAsync_By_continentId_And_languageId_Returns_Task_Of_IEnumerable_Of_CountryItem()
+        {
+            //Arrange
+            //Arrange
+            var type = typeof(Task<IEnumerable<CountryItem>>);
+            var facade = Facade();
+
+            //Act
+            var result = facade.GetCountriesAsync(256,1033);
+
+
+            //Assert
+            Assert.IsInstanceOf(type, result);
+
+        }
+
+
+        [Test]
         public void GetContinentsAsync_Returns_Task_Of_IEnumerable_Of_ContinentItem()
         {
             //Arrange
@@ -68,6 +86,8 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
         }
 
 
+
+
         private static RegionsFacade Facade()
         {
             var providerMock = new Mock<IProvider>();
@@ -77,6 +97,10 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
 
             providerMock.Setup(p => p.Create<CountriesByLanguageIdQuery>())
                 .Returns(new CountriesByLanguageIdQuery(providerMock.Object));
+
+            providerMock.Setup(p => p.Create<CountriesByContinentIdAndLanguageIdQuery>())
+                .Returns(new CountriesByContinentIdAndLanguageIdQuery(providerMock.Object));
+
 
             return new RegionsFacade(providerMock.Object);
         }

@@ -72,24 +72,24 @@ namespace Olbrasoft.Travel.Business.Facade
             return ofRooms;
         }
 
-        private GetRoomPhotosByAccommodationId PhotosOfRoomsQuery(int accommodationId)
+        private RoomPhotosByAccommodationIdQuery PhotosOfRoomsQuery(int accommodationId)
         {
-            var query = QueryProvider.Create<GetRoomPhotosByAccommodationId>();
+            var query = QueryProvider.Create<RoomPhotosByAccommodationIdQuery>();
             query.AccommodationId = accommodationId;
             return query;
         }
 
-        private GetRooms RoomsQuery(int id, int languageId)
+        private RoomsByAccommodationIdAndLanguageIdQuery RoomsQuery(int id, int languageId)
         {
-            var query = QueryProvider.Create<GetRooms>();
+            var query = QueryProvider.Create<RoomsByAccommodationIdAndLanguageIdQuery>();
             query.AccommodationId = id;
             query.LanguageId = languageId;
             return query;
         }
 
-        private GetPhotosByAccommodationId AccommodationPhotosQuery(int accommodationId)
+        private PhotosByAccommodationIdQuery AccommodationPhotosQuery(int accommodationId)
         {
-            var query = QueryProvider.Create<GetPhotosByAccommodationId>();
+            var query = QueryProvider.Create<PhotosByAccommodationIdQuery>();
             query.AccommodationId = accommodationId;
             return query;
         }
@@ -133,9 +133,9 @@ namespace Olbrasoft.Travel.Business.Facade
             return Merger.Merge(master, slave);
         }
 
-        private GetPhotosOfAccommodations GetDefaultPhotosOfAccommodations(IEnumerable<int> accommodationIds)
+        private PhotosOfAccommodationsByAccommodationIdsQuery GetDefaultPhotosOfAccommodations(IEnumerable<int> accommodationIds)
         {
-            var query = QueryProvider.Create<GetPhotosOfAccommodations>();
+            var query = QueryProvider.Create<PhotosOfAccommodationsByAccommodationIdsQuery>();
             query.AccommodationIds = accommodationIds;
             query.OnlyDefaultPhotos = true;
             return query;
@@ -152,11 +152,11 @@ namespace Olbrasoft.Travel.Business.Facade
             return query;
         }
 
-        private AccommodationDetailByIdAndLanguageIdQuery AccommodationDetailQuery(int id, int languageId)
+        private AccommodationDetailByAccommodationIdAndLanguageIdQuery AccommodationDetailQuery(int id, int languageId)
         {
-            var query = QueryProvider.Create<AccommodationDetailByIdAndLanguageIdQuery>();
+            var query = QueryProvider.Create<AccommodationDetailByAccommodationIdAndLanguageIdQuery>();
 
-            query.Id = id;
+            query.AccommodationId = id;
             query.LanguageId = languageId;
             return query;
         }

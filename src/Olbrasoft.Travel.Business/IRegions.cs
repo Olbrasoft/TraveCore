@@ -9,8 +9,12 @@ namespace Olbrasoft.Travel.Business
     {
         Task<IEnumerable<ContinentItem>> GetContinentsAsync(int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
-
+        
         Task<IEnumerable<CountryItem>> GetCountriesAsync(int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<IEnumerable<CountryItem>> GetCountriesAsync(int continentId, int languageId,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
+
 }

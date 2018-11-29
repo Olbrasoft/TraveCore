@@ -13,7 +13,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
     {
         private readonly IParserFactory _parserFactory;
         protected IParser<ParentRegion> Parser;
-        protected Queue<ParentRegion> ParentRegions = new Queue<ParentRegion>();
+        protected Queue<ParentRegion>  ParentRegions = new Queue<ParentRegion>();
 
         public RegionsImporter(IProvider provider, IParserFactory parserFactory, IFactoryOfRepositories factoryOfRepositories, SharedProperties sharedProperties, ILoggingImports logger)
             : base(provider, factoryOfRepositories, sharedProperties, logger)
@@ -78,6 +78,7 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             IReadOnlyDictionary<long, int> eanRegionIdsToIds,
             int creatorId)
         {
+            
             var regionsToRegions = new HashSet<RegionToRegion>();
             foreach (var parentRegion in parentRegions)
             {
@@ -86,10 +87,11 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
                     !eanRegionIdsToIds.TryGetValue(parentRegion.RegionID, out var regionId)
                 )
                 {
+                    //throw new Exception(parentRegion.RegionID.ToString() + "," + parentRegion.ParentRegionID.ToString());
                     continue;
                 }
 
-                var regionToRegion = new RegionToRegion()
+                var regionToRegion = new RegionToRegion
                 {
                     Id = regionId,
                     ToId = parentRegionId,

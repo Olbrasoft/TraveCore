@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Query
 {
-    public class GetPhotosOfAccommodations : QueryWithDependentProvider<IEnumerable<AccommodationPhoto>>
+    public class PhotosOfAccommodationsByAccommodationIdsQuery : QueryWithDependentProvider<IEnumerable<AccommodationPhoto>>
     {
         public IEnumerable<int> AccommodationIds { get; set; }
         public bool OnlyDefaultPhotos { get; set; }
 
-        public GetPhotosOfAccommodations(IProvider queryProvider) : base(queryProvider)
+        public PhotosOfAccommodationsByAccommodationIdsQuery(IProvider queryProvider) : base(queryProvider)
         {
         }
     }

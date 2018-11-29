@@ -18,5 +18,8 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
             var countries = await _regions.GetCountriesAsync(1033);
             return View(countries);
         }
+
+
+
     }
 }

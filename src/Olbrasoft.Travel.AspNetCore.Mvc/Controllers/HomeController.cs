@@ -18,6 +18,13 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
             var continents = await _regions.GetContinentsAsync(1033);
             return View(continents);
         }
-        
+
+
+        public async Task<IActionResult> Continent(int? id)
+        {
+            if (id == null) return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status400BadRequest);
+            var countries = await _regions.GetCountriesAsync((int)id,1033);
+            return View(countries);
+        }
     }
 }

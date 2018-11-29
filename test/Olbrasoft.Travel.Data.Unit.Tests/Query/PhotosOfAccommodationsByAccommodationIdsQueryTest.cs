@@ -9,7 +9,7 @@ using Olbrasoft.Travel.Data.Query;
 namespace Olbrasoft.Travel.Data.Unit.Tests.Query
 {
     [TestFixture]
-    internal class GetPhotosOfAccommodationsTest
+    internal class PhotosOfAccommodationsByAccommodationIdsQueryTest
     {
         [Test]
         public void Instance_Implement_Interface_IQuery_Of_IEnumerable_Of_AccommodationPhoto()
@@ -68,11 +68,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
         }
 
 
-        private static GetPhotosOfAccommodations CreateQuery()
+        private static PhotosOfAccommodationsByAccommodationIdsQuery CreateQuery()
         {
             var dispatcher = new Mock<IProvider>();
 
-            return new GetPhotosOfAccommodations(dispatcher.Object);
+            return new PhotosOfAccommodationsByAccommodationIdsQuery(dispatcher.Object);
         }
     }
 } 

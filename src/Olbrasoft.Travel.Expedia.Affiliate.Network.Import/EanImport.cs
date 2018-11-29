@@ -68,10 +68,10 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
                     .DependsOn(Dependency.OnValue("creatorId", user.Id), Dependency.OnValue("defaultLanguageId", defaultLanguage.Id))
             );
 
-            //using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
-            //{
-            //    regionsImporter.Import(@"D:\Ean\ParentRegionList.txt");
-            //}
+            using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
+            {
+                regionsImporter.Import(@"D:\Ean\ParentRegionList.txt");
+            }
 
             //using (var countriesImporter = container.Resolve<IImporter>(nameof(CountriesImporter)))
             //{
@@ -173,10 +173,10 @@ namespace Olbrasoft.Travel.Expedia.Affiliate.Network.Import
             //    attributesImporter.Import(@"D:\Ean\AttributeList.txt");
             //}
 
-            using (var accommodationsToAttributesDefaultLanguageImporter = container.Resolve<IImporter>(nameof(AccommodationsToAttributesDefaultLanguageImporter)))
-            {
-                accommodationsToAttributesDefaultLanguageImporter.Import(@"D:\Ean\PropertyAttributeLink.txt");
-            }
+            //using (var accommodationsToAttributesDefaultLanguageImporter = container.Resolve<IImporter>(nameof(AccommodationsToAttributesDefaultLanguageImporter)))
+            //{
+            //    accommodationsToAttributesDefaultLanguageImporter.Import(@"D:\Ean\PropertyAttributeLink.txt");
+            //}
 
             //var language = languagesRepository.Get(1031);
 
