@@ -10,8 +10,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
     [TestFixture]
     internal class RoomPhotosByAccommodationIdQueryTest
     {
-
-
+        
         [Test]
         public void Instance_Is_ByAccommodationIdQuery_Of_IEnumerable_Of_RoomPhoto()
         {
