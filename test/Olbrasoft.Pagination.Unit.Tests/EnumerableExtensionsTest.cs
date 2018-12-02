@@ -22,9 +22,7 @@ namespace Olbrasoft.Pagination.Unit.Tests
 
             //Assert
             Assert.IsInstanceOf(type, result);
-
-
-
+            
         }
 
 

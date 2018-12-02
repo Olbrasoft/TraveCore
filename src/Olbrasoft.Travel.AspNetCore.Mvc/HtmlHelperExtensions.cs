@@ -793,7 +793,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
 
             var ul = new StringBuilder();
 
-            ul.AppendLine($"<ul class=\"list-inline\">");
+            ul.AppendLine("<ul class=\"list-inline\">");
 
             for (var i = 0; i < (int)starRating; i++)
             {

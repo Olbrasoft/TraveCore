@@ -3,27 +3,18 @@
     ViewBag.Title = "TravelDatabaseContext";
 }
 
-<section class="mainContentSection singleHotel">
+<section class="mainContentSection ">
     <div class="container">
         <h2>Travel</h2>
         <div>
-
-            @Html.ActionLink("Accommodations", "Index", "Accommodations", new {area = ""})
-            <br/>
+            <a asp-controller="Accommodations" asp-action="Index">Accommodations</a>
+            <br />
             @foreach (var continent in Model)
             {
                 <div>
-                    <a asp-controller="Home" asp-action="Continent" asp-route-id="@continent.Id"></a>
-
-                    @*@Html.ActionLink(continent.Name, "Continent", // <-- ActionMethod
-                        "Home", // <-- Controller Name.
-                        new {continent.Id}, // <-- Route arguments.
-                        null // <-- htmlArguments .. which are none. You need this value
-                        //     otherwise you call the WRONG method ...
-                        //     (refer to comments, below).
-                        )*@
+                    <a asp-controller="Home" asp-action="Continent" asp-route-id="@continent.Id">@continent.Name</a>
                 </div>
             }
         </div>
     </div>
-    </section>
+</section>

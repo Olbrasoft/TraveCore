@@ -1,7 +1,6 @@
 ﻿@using X.PagedList.Mvc.Common
-@using X.PagedList.Mvc.Core
-
 @model Olbrasoft.Collections.Generic.IPagedList<Olbrasoft.Travel.Data.Transfer.Object.AccommodationItem>
+
 
 <!-- PAGE CONTENT -->
 <section class="mainContentSection HotelSection bg-ash">
@@ -33,9 +32,11 @@
                                 </a>
                                 <div class="media-body">
                                     <div class="bodyLeft">
-                                        <h4 class="media-heading">@Html.ActionLink(accommodation.Name, "Detail", "Accommodations", new { id = accommodation.Id }, new { @class = "list-group-item-heading" })</h4>
+                                        <h4 class="media-heading">
+                                            <a asp-controller="Accommodations" asp-action="Detail" asp-route-id="@accommodation.Id" class="list-group-item-heading">@accommodation.Name</a>
+                                        </h4>
+                                        <accommodation-star-rating>@accommodation.StarRating</accommodation-star-rating>
                                         <div class="countryRating">
-                                            @Html.Raw(Html.AccommodationStarRating(accommodation.StarRating))
                                             <span>(reviews 75)</span>
                                         </div>
                                         @accommodation.Address
@@ -63,7 +64,8 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="paginationCenter">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptionsBase.ClassicPlusFirstAndLast)
+                    <pager list="@Model" options="@PagedListRenderOptionsBase.ClassicPlusFirstAndLast" asp-action="Index" />
+                    @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptionsBase.ClassicPlusFirstAndLast)*@
                 </div>
             </div>
         </div>
