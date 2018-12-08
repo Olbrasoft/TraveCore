@@ -14,10 +14,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
         {
             _accommodations = accommodations;
         }
-
-
+        
         // GET: Accommodations
-        public async Task<IActionResult> Index(int page = 1)
+         public async Task<IActionResult> Index(int page = 1)
         {
             var pageInfo = new PageInfo(10, page);
             
@@ -35,6 +34,8 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 
             var accommodationDetail = await _accommodations.GetAsync((int)id, 1033);
 
+            ViewBag.H1 = accommodationDetail.Name;
+            
             return View(accommodationDetail);
         }
     }

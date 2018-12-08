@@ -21,4 +21,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
+
+   
 }

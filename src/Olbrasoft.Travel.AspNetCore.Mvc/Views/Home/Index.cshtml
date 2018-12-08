@@ -1,11 +1,19 @@
-﻿@model IEnumerable<Olbrasoft.Travel.Data.Transfer.Object.ContinentItem>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model IEnumerable<Olbrasoft.Travel.Data.Transfer.Object.ContinentItem>
 @{
     ViewBag.Title = "TravelDatabaseContext";
+}
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["H1"] = Localizer["Travel"];
 }
 
 <section class="mainContentSection ">
     <div class="container">
         <h2>Travel</h2>
+        Languages: @ViewData["Languages"]
         <div>
             <a asp-controller="Accommodations" asp-action="Index">Accommodations</a>
             <br />

@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Olbrasoft.Travel.AspNetCore.Mvc.Controllers;
 using Olbrasoft.Travel.Business;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
 {
@@ -26,8 +27,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
         private static HomeController Controller()
         {
             var regionsMock = new Mock<IRegions>();
+            var localizerMock =new Mock<IStringLocalizer<HomeController>>();
 
-            return new HomeController(regionsMock.Object);
+            return new HomeController(regionsMock.Object,localizerMock.Object);
         }
 
         [Test]

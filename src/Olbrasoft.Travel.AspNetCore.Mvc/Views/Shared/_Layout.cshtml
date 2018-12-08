@@ -75,16 +75,16 @@
 
         <!-- HEADER -->
         <header>
-            <nav style="background:rgba(0,0,0,.8); color: white; height:70px;" class="navbar navbar-default navbar-main navbar-fixed-top lightHeader" role="navigation">
+            <nav style="background:rgba(0,0,0,.8); color: white; height:50px;" class="navbar navbar-default navbar-main navbar-fixed-top lightHeader" role="navigation">
                 <div class="row" style="margin-top: 0px; padding-top: 0px;">
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <div style="margin-left: 5px;">
-                            <h1 style="margin-top: 1px;" class="h5">List of Accommodation</h1>
+                            <h1 style="margin-top: 1px;" class="h5">@ViewData["H1"]</h1>
                             @RenderSection("AccommodationStarRating", required: false)
                         </div>
                     </div>
 
-                    <div class="navbar-header col-sm-8">
+                    <div class="navbar-header col-sm-7">
 
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -104,44 +104,7 @@
                                         <li class="dropdown singleDrop  "><a href="index-v3.html">Home Destination</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown megaDropMenu ">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">Tours</a>
-                                    <ul class="row dropdown-menu">
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Tour Packages Grid View</li>
-                                                <li class=""><a href="packages-grid-left-sidebar.html">Packages Sidebar Left</a></li>
-                                                <li class=""><a href="packages-grid-right-sidebar.html">Packages Sidebar Right</a></li>
-                                                <li class=""><a href="packages-grid.html">Packages 3 Columns</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Tour Packages List View</li>
-                                                <li class=""><a href="packages-list-left-sidebar.html">Packages Sidebar Left</a></li>
-                                                <li class=""><a href="packages-list-right-sidebar.html">Packages Sidebar Right</a></li>
-                                                <li class=""><a href="packages-list.html">Packages List</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Single Package</li>
-                                                <li class=""><a href="single-package-left-sidebar.html">Packages Sidebar Left</a></li>
-                                                <li class=""><a href="single-package-right-sidebar.html">Packages Sidebar Right</a></li>
-                                                <li class=""><a href="single-package-fullwidth.html">Package Fullwidth</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Booking Steps</li>
-                                                <li class=""><a href="booking-1.html">Step 1 - Personal Info</a></li>
-                                                <li class=""><a href="booking-2.html">Step 2 - Payment Info</a></li>
-                                                <li class=""><a href="booking-3.html">Step 3 - Confirmation</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown megaDropMenu active">
+                               <li class="dropdown megaDropMenu active">
                                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">Hotels</a>
                                     <ul class="row dropdown-menu">
                                         <li class="col-sm-3 col-xs-12">
@@ -179,7 +142,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown singleDrop ">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PAGES</a>
+                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"  >PAGES</a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li class=""><a href="about-us.html">About Us</a></li>
                                         <li class=""><a href="contact.html">Contact Us</a></li>
@@ -240,25 +203,7 @@
                                         <li class=""><a href="" data-toggle="modal" data-target="#login">Login</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown singleDrop ">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shortcodes</a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class=""><a href="accordion-and-toggles.html">Accordions &amp; Toggles</a></li>
-                                        <li class=""><a href="tabs-and-dropdown.html">Tabs &amp; Dropdowns</a></li>
-                                        <li class=""><a href="pricing-table.html">Pricing Tables</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown searchBox">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span></a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <span class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search..." aria-describedby="basic-addon2">
-                                                <span class="input-group-addon" id="basic-addon2">Search</span>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>

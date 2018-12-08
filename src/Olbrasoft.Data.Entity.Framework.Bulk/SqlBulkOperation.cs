@@ -63,7 +63,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                         }
                         else // With OwnedTypes DataTable is used since library FastMember can not (https://github.com/mgravell/fast-member/issues/21)
                         {
-                            var dataTable = GetDataTable<T>(context, entities);
+                            var dataTable = GetDataTable(context, entities);
                             sqlBulkCopy.WriteToServer(dataTable);
                         }
                     }
@@ -71,6 +71,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                     {
                         if (!ex.Message.Contains(ColumnMappingExceptionMessage))
                             throw;
+                        
                         context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo)); // Exception specify missing db column: Invalid column name ''
                         if (!tableInfo.BulkConfig.UseTempDB)
                             context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName));
@@ -177,7 +178,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             tableInfo.InsertToTempTable = true;
             if(tableInfo.BulkConfig.UpdateByProperties == null || tableInfo.BulkConfig.UpdateByProperties.Count == 0)
                 tableInfo.CheckHasIdentity(context);
-
+            
             context.Database.SetCommandTimeout(960);
 
             context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo));
@@ -216,6 +217,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             tableInfo.InsertToTempTable = true;
             await tableInfo.CheckHasIdentityAsync(context).ConfigureAwait(false);
 
+           
             await context.Database.ExecuteSqlCommandAsync(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo)).ConfigureAwait(false);
             if (tableInfo.CreatedOutputTable)
             {
