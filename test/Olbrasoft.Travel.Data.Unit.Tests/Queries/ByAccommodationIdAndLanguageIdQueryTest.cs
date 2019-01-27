@@ -1,10 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Query;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Query
+namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     [TestFixture]
     internal class ByAccommodationIdAndLanguageIdQueryTest
@@ -66,13 +65,6 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
 
             //Assert
             Assert.IsTrue(query.AccommodationId == accommodationId);
-        }
-    }
-
-    internal class ExampleByAccommodationIdAndLanguageIdQuery : ByAccommodationIdAndLanguageIdQuery<object>
-    {
-        public ExampleByAccommodationIdAndLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
-        {
         }
     }
 }

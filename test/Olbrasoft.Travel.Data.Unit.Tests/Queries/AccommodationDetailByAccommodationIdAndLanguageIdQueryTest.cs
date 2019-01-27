@@ -4,7 +4,7 @@ using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Query;
 using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Query
+namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     [TestFixture]
     internal class AccommodationDetailByAccommodationIdAndLanguageIdQueryTest

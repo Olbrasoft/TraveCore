@@ -1,11 +1,11 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
-using Olbrasoft.Travel.Data.Transfer.Object;
-using System.Collections.Generic;
 using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Query;
+using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Query
+namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     [TestFixture]
     internal class CountriesByLanguageIdQueryTest

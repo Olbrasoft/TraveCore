@@ -1,9 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Queries;
-using Olbrasoft.Travel.Data.Query;
+using Olbrasoft.Travel.Data.Unit.Tests.Query;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Query
+namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     [TestFixture]
     internal class ByLanguageIdQueryTest
@@ -45,12 +45,5 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
         }
 
         
-    }
-
-    internal class SomeByLanguageIdQuery : ByLanguageIdQuery<object>
-    {
-        public SomeByLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
-        {
-        }
     }
 }

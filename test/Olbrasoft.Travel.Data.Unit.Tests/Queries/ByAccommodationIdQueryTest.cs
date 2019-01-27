@@ -1,9 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Queries;
-using Olbrasoft.Travel.Data.Query;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Query
+namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     [TestFixture]
     internal class ByAccommodationIdQueryTest
@@ -56,13 +55,6 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Query
             //Act
             var query = new ExampleByAccommodationIdQuery(providerMock.Object);
             return query;
-        }
-    }
-
-    internal class ExampleByAccommodationIdQuery : ByAccommodationIdQuery<object>
-    {
-        public ExampleByAccommodationIdQuery(IProvider queryProvider) : base(queryProvider)
-        {
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
-using Olbrasoft.Globalization;
-using System.Collections.Generic;
 using Olbrasoft.Data.Queries;
+using Olbrasoft.Globalization;
 using Olbrasoft.Travel.Data.Query;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Query
+namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     internal class AttributesByAccommodationIdAndLanguageIdQueryTest
     {

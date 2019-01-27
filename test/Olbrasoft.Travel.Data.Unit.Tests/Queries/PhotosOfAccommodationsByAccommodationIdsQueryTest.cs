@@ -1,12 +1,12 @@
-﻿using Moq;
-using NUnit.Framework;
-using Olbrasoft.Travel.Data.Transfer.Object;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Moq;
+using NUnit.Framework;
 using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Query;
+using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Query
+namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     [TestFixture]
     internal class PhotosOfAccommodationsByAccommodationIdsQueryTest
