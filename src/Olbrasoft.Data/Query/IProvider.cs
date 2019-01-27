@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Olbrasoft.Data.Queries
+namespace Olbrasoft.Data.Query
 {
     public interface IProvider
     {

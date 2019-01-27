@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Queries;
+using Olbrasoft.Data.Query;
 using Olbrasoft.Globalization;
 using Olbrasoft.Travel.Data.Queries;
 

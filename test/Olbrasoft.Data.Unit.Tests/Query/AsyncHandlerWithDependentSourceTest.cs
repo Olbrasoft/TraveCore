@@ -1,7 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Queries;
+using Olbrasoft.Data.Query;
 
 namespace Olbrasoft.Data.Unit.Tests.Query
 {

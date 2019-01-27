@@ -3,28 +3,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using Olbrasoft.Data.Mapping;
 
-namespace Olbrasoft.Data.Queries
+namespace Olbrasoft.Data.Query
 {
-    public abstract class QueryHandler<TQuery, TSource, TResult> : IHandler<TQuery, TResult> where TQuery : IQuery<TResult>
+    public abstract class AsyncHandlerWithDependentSource<TQuery, TSource, TResult> : IHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
-        private TSource _source;
-        private IProjection Projector { get; }
-
-        protected TSource Source
+        protected IQueryable<TSource> Source { get; }
+        protected IProjection Projector { get; }
+        
+        protected AsyncHandlerWithDependentSource(IHaveQueryable<TSource> ownerQueryable, IProjection projector)
         {
-            get
-            {
-                if (_source == null) _source = GetSource();
-                return _source;
-            }
-        }
-
-        protected QueryHandler(IProjection projector)
-        {
+            Source = ownerQueryable.Queryable;
             Projector = projector;
         }
-
-        protected abstract TSource GetSource();
 
         protected IQueryable<TDestination> ProjectTo<TDestination>(IQueryable source)
         {

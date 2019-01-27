@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Olbrasoft.Data.Queries;
+using Olbrasoft.Data.Query;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Transfer.Object;

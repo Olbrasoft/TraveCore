@@ -1,5 +1,5 @@
 ﻿using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Queries;
+using Olbrasoft.Data.Query;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 {

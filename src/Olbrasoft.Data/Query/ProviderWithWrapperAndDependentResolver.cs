@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Olbrasoft.Dependence;
 
-namespace Olbrasoft.Data.Queries
+namespace Olbrasoft.Data.Query
 {
     public class ProviderWithWrapperAndDependentResolver : IProvider
     {

@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Olbrasoft.Data.Mapping;
 
-namespace Olbrasoft.Data.Queries
+namespace Olbrasoft.Data.Query
 {
     public abstract class HandlerWithDependentSource<TQuery, TSource, TResult> : IHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {

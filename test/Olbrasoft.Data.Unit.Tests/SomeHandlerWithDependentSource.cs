@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Moq;
 using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Queries;
+using Olbrasoft.Data.Query;
 
 namespace Olbrasoft.Data.Unit.Tests
 {

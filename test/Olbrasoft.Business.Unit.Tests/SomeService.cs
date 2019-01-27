@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Data.Queries;
+﻿using Olbrasoft.Data.Query;
 
 namespace Olbrasoft.Business.Unit.Tests
 {

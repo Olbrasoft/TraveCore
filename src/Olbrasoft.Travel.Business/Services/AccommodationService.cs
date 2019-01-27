@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Data.Queries;
+using Olbrasoft.Data.Query;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Queries;
