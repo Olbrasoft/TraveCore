@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Queries;
 
 namespace Olbrasoft.Data.Unit.Tests
 {

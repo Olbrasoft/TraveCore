@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Olbrasoft.Data.Query
+namespace Olbrasoft.Data.Queries
 {
     public interface IHandleAsync<in TQuery, TResult> where TQuery : IQuery<TResult>
     {

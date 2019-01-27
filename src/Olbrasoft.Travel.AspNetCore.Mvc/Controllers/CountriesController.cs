@@ -19,7 +19,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
             return View(countries);
         }
 
-
-
+        
     }
 }

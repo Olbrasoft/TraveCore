@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Olbrasoft.Data.Query
+namespace Olbrasoft.Data.Queries
 {
     public abstract class QueryWithDependentProvider<TResult> : IQuery<TResult>
     {

@@ -5,7 +5,7 @@ using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Entity.Framework.Query.Handler;
 using Olbrasoft.Travel.Data.Entity.Property;
 using Olbrasoft.Travel.Data.Query;

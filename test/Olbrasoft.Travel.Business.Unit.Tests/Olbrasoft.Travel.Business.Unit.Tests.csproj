@@ -68,9 +68,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Facade\AccommodationsFacadeTest.cs" />
-    <Compile Include="Facade\RegionsFacadeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccommodationServiceTest.cs" />
+    <Compile Include="Services\RegionServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

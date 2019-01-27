@@ -1,5 +1,5 @@
-﻿using Olbrasoft.Data.Query;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Olbrasoft.Data.Queries;
 
 namespace Olbrasoft.Travel.Data.Query
 {

@@ -1,21 +1,21 @@
-﻿using Olbrasoft.Data.Query;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Data.Queries;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 using Olbrasoft.Travel.Data.Query;
+using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Business.Facade
+namespace Olbrasoft.Travel.Business.Services
 {
-    public class AccommodationsFacade : Olbrasoft.Business.Facade, IAccommodations
+    public class AccommodationService : Olbrasoft.Business.Service, IAccommodations
     {
         protected IAccommodationItemPhotoMerge Merger { get; }
 
-        public AccommodationsFacade(IProvider queryProvider, IAccommodationItemPhotoMerge merger):base(queryProvider)
+        public AccommodationService(IProvider queryProvider, IAccommodationItemPhotoMerge merger) : base(queryProvider)
         {
             Merger = merger;
         }

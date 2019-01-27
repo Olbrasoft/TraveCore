@@ -2,21 +2,21 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Query;
-using Olbrasoft.Travel.Business.Facade;
+using Olbrasoft.Data.Queries;
+using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.Query;
 using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
+namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {
     [TestFixture]
-    internal class RegionsFacadeTest
+    internal class RegionServiceTest
     {
         [Test]
         public void Instance_Is_Facade()
         {
             //Arrange
-            var type = typeof(Olbrasoft.Business.Facade);
+            var type = typeof(Olbrasoft.Business.Service);
 
             //Act
             var facade = Facade();
@@ -49,7 +49,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
             var result = facade.GetCountriesAsync(1033);
 
             //Assert
-            Assert.IsInstanceOf(type,result);
+            Assert.IsInstanceOf(type, result);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
             var facade = Facade();
 
             //Act
-            var result = facade.GetCountriesAsync(256,1033);
+            var result = facade.GetCountriesAsync(256, 1033);
 
 
             //Assert
@@ -79,16 +79,14 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
 
             //Act
             var result = facade.GetContinentsAsync(1033);
-            
+
             //Assert
             Assert.IsInstanceOf(type, result);
 
         }
+        
 
-
-
-
-        private static RegionsFacade Facade()
+        private static RegionService Facade()
         {
             var providerMock = new Mock<IProvider>();
 
@@ -102,7 +100,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
                 .Returns(new CountriesByContinentIdAndLanguageIdQuery(providerMock.Object));
 
 
-            return new RegionsFacade(providerMock.Object);
+            return new RegionService(providerMock.Object);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Olbrasoft.Data.Query
+namespace Olbrasoft.Data.Queries
 {
     public interface IQueryWithSorting<T, TResult> : IQuery<TResult>
     {

@@ -1,12 +1,12 @@
-﻿using Olbrasoft.Data.Query;
+﻿using Olbrasoft.Data.Queries;
 
 namespace Olbrasoft.Business
 {
-    public abstract class Facade
+    public abstract class Service
     {
         protected IProvider QueryProvider { get; }
 
-        protected Facade(IProvider queryProvider)
+        protected Service(IProvider queryProvider)
         {
             QueryProvider = queryProvider;
         }

@@ -1,15 +1,15 @@
-﻿using Olbrasoft.Data.Query;
-using Olbrasoft.Travel.Data.Transfer.Object;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Query;
+using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Business.Facade
+namespace Olbrasoft.Travel.Business.Services
 {
-    public class RegionsFacade : Olbrasoft.Business.Facade, IRegions
+    public class RegionService : Olbrasoft.Business.Service, IRegions
     {
-        public RegionsFacade(IProvider queryProvider) : base(queryProvider)
+        public RegionService(IProvider queryProvider) : base(queryProvider)
         {
         }
 
@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Business.Facade
         }
 
         public Task<IEnumerable<CountryItem>> GetCountriesAsync(int languageId, CancellationToken cancellationToken = default(CancellationToken))
-        {
+        { 
             var query = QueryProvider.Create<CountriesByLanguageIdQuery>();
             query.LanguageId = languageId;
 

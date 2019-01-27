@@ -1,23 +1,23 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Queries;
 
 namespace Olbrasoft.Business.Unit.Tests
 {
     [TestFixture]
-    internal class FacadeTest
+    internal class ServiceTest
     {
-        private static SomeFacade Facade()
+        private static SomeService Facade()
         {
             var providerMock = new Mock<IProvider>();
-            return new SomeFacade(providerMock.Object);
+            return new SomeService(providerMock.Object);
         }
 
         [Test]
         public void Instance_Is_Facade()
         {
             //Arrange
-            var type = typeof(Facade);
+            var type = typeof(Service);
 
             //Act
             var facade = Facade();

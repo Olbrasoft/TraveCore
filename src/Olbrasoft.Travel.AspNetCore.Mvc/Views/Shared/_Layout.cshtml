@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hotel Fullwidth List - Star Travel</title>
 
-
     <link rel="stylesheet" type="text/css" href="~/Content/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.travel.star.min.css">
     <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.min.css">
@@ -41,7 +40,6 @@
 
     <style type="text/css">
 
-
         i.glyphicon-star, i.glyphicon-star-empty {
             color: #ff891e;
         }
@@ -68,6 +66,9 @@
         }
     </style>
 
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
 </head>
 
 <body class="body-wrapper ">
@@ -104,45 +105,11 @@
                                         <li class="dropdown singleDrop  "><a href="index-v3.html">Home Destination</a></li>
                                     </ul>
                                 </li>
-                               <li class="dropdown megaDropMenu active">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">Hotels</a>
-                                    <ul class="row dropdown-menu">
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Hotels Grid View</li>
-                                                <li class=""><a href="hotels-grid-left-sidebar.html">Hotels Sidebar Left</a></li>
-                                                <li class=""><a href="hotels-grid-right-sidebar.html">Hotels Sidebar Right</a></li>
-                                                <li class=""><a href="hotels-grid.html">Hotels 3 Columns</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Hotels List View</li>
-                                                <li class=""><a href="hotels-list-left-sidebar.html">Hotels Sidebar Left</a></li>
-                                                <li class=""><a href="hotels-list-right-sidebar.html">Hotels Sidebar Right</a></li>
-                                                <li class=""><a href="hotels-list.html">Hotels List</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Single Hotel</li>
-                                                <li class=""><a href="single-hotel-left-sidebar.html">Hotels Sidebar Left</a></li>
-                                                <li class="active"><a href="single-hotel-right-sidebar.html">Hotels Sidebar Right</a></li>
-                                                <li class=""><a href="single-hotel-fullwidth.html">Hotels Fullwidth</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>Booking Steps</li>
-                                                <li class=""><a href="booking-1.html">Step 1 - Personal Info</a></li>
-                                                <li class=""><a href="booking-2.html">Step 2 - Payment Info</a></li>
-                                                <li class=""><a href="booking-3.html">Step 3 - Confirmation</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <li class="dropdown megaDropMenu active">
+                                    @await Component.InvokeAsync("UICultureSelector")
                                 </li>
                                 <li class="dropdown singleDrop ">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"  >PAGES</a>
+                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">PAGES</a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li class=""><a href="about-us.html">About Us</a></li>
                                         <li class=""><a href="contact.html">Contact Us</a></li>
@@ -203,15 +170,11 @@
                                         <li class=""><a href="" data-toggle="modal" data-target="#login">Login</a></li>
                                     </ul>
                                 </li>
-                               
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
             </nav>
-
         </header>
         @RenderBody()
         <!-- FOOTER -->
@@ -353,9 +316,7 @@
             </div>
         </div>
     </div>
-    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
-    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="~/Scripts/jquery-ui.min.js"></script>
+
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.themepunch.tools.min.js"></script>
     <script src="~/Scripts/jquery.themepunch.revolution.min.js"></script>

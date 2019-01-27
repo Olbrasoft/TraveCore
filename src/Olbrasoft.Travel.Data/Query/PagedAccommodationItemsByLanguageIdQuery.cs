@@ -1,8 +1,8 @@
-﻿using Olbrasoft.Data.Query;
-using Olbrasoft.Pagination;
+﻿using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Transfer.Object;
 using System;
 using System.Linq;
+using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Entity.Globalization;
 
 namespace Olbrasoft.Travel.Data.Query

@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Queries;
 using Olbrasoft.Travel.Data.Query;
 using Olbrasoft.Travel.Data.Transfer.Object;
 

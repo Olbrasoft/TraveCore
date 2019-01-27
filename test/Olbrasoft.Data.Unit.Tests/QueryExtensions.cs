@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Queries;
 
 namespace Olbrasoft.Data.Unit.Tests
 {

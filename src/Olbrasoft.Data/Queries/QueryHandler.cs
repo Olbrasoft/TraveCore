@@ -1,9 +1,9 @@
-﻿using Olbrasoft.Data.Mapping;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Data.Mapping;
 
-namespace Olbrasoft.Data.Query
+namespace Olbrasoft.Data.Queries
 {
     public abstract class QueryHandler<TQuery, TSource, TResult> : IHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {

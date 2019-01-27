@@ -1,6 +1,6 @@
-﻿using Olbrasoft.Data.Query;
-using Olbrasoft.Travel.Data.Transfer.Object;
+﻿using Olbrasoft.Travel.Data.Transfer.Object;
 using System.Collections.Generic;
+using Olbrasoft.Data.Queries;
 
 namespace Olbrasoft.Travel.Data.Query
 {

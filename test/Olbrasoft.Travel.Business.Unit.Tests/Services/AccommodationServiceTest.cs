@@ -2,23 +2,22 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Queries;
 using Olbrasoft.Pagination;
-using Olbrasoft.Travel.Business.Facade;
+using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.Query;
 using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
+namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {
     [TestFixture]
-    internal class AccommodationsFacadeTest
+    internal class AccommodationServiceTest
     {
-
         [Test]
         public void Instance_Is_Facade()
         {
             //Arrange
-            var type = typeof(Olbrasoft.Business.Facade);
+            var type = typeof(Olbrasoft.Business.Service);
 
             //Act
             var facade = CreateAccommodationsFacade();
@@ -137,7 +136,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
 
 
 
-        private static AccommodationsFacade CreateAccommodationsFacade()
+        private static AccommodationService CreateAccommodationsFacade()
         {
             var queryDispatcher = new Mock<IProvider>();
 
@@ -172,7 +171,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Facade
 
             var mockMerger = new AccommodationItemPhotoMerge();
 
-            return new AccommodationsFacade(providerMock.Object, mockMerger);
+            return new AccommodationService(providerMock.Object, mockMerger);
         }
     }
 }
