@@ -1,7 +1,7 @@
 ﻿using Olbrasoft.Data.Queries;
 using Olbrasoft.Globalization;
 
-namespace Olbrasoft.Travel.Data.Query
+namespace Olbrasoft.Travel.Data.Queries
 {
     public abstract class ByLanguageIdQuery<TResult> : QueryWithDependentProvider<TResult> ,IHaveLanguageId<int>
     {

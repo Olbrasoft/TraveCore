@@ -1,6 +1,6 @@
 ﻿using Olbrasoft.Data.Queries;
 
-namespace Olbrasoft.Travel.Data.Query
+namespace Olbrasoft.Travel.Data.Queries
 {
     public abstract class ByAccommodationIdQuery<TResult> : QueryWithDependentProvider<TResult>, IHaveAccommodationId
     {

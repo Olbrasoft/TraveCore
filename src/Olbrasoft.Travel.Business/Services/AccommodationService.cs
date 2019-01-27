@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Olbrasoft.Data.Queries;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Entity.Globalization;
-using Olbrasoft.Travel.Data.Query;
+using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Business.Services

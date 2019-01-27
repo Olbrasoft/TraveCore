@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Queries;
-using Olbrasoft.Travel.Data.Unit.Tests.Query;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
@@ -18,12 +17,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
             var query = Query();
 
             //Assert
-            Assert.IsInstanceOf(type,query);
+            Assert.IsInstanceOf(type, query);
         }
 
         private static SomeByLanguageIdQuery Query()
         {
-
             var providerMock = new Mock<IProvider>();
 
             return new SomeByLanguageIdQuery(providerMock.Object);
@@ -34,16 +32,12 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         {
             //Arrange
             var query = Query();
-            
 
             //Act
             query.LanguageId = 1033;
 
             //Assert
-            Assert.IsTrue(query.LanguageId==1033);
-
+            Assert.IsTrue(query.LanguageId == 1033);
         }
-
-        
     }
 }

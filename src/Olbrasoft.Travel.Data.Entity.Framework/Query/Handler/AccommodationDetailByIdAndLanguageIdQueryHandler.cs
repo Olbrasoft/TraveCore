@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Entity.Globalization;
-using Olbrasoft.Travel.Data.Query;
+using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Transfer.Object;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler

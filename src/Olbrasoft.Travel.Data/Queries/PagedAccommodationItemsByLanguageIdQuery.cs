@@ -1,11 +1,11 @@
-﻿using Olbrasoft.Pagination;
-using Olbrasoft.Travel.Data.Transfer.Object;
-using System;
+﻿using System;
 using System.Linq;
 using Olbrasoft.Data.Queries;
+using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Entity.Globalization;
+using Olbrasoft.Travel.Data.Transfer.Object;
 
-namespace Olbrasoft.Travel.Data.Query
+namespace Olbrasoft.Travel.Data.Queries
 {
     public class PagedAccommodationItemsByLanguageIdQuery : ByLanguageIdQuery<IResultWithTotalCount<AccommodationItem>>
     {

@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Entity.Geography;
-using Olbrasoft.Travel.Data.Query;
 using Olbrasoft.Travel.Data.Transfer.Object;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Queries;
 
 namespace Olbrasoft.Travel.Data.Entity.Framework.Query.Handler
 {

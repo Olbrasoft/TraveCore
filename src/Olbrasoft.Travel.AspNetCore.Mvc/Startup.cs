@@ -85,7 +85,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             var classes = Classes.FromAssemblyNamed("Olbrasoft.Travel.Data");
 
             container.Register(classes
-                .Where(type => type.Namespace != null && type.Namespace.EndsWith("Query"))
+                .Where(type => type.Namespace != null && type.Namespace.EndsWith("Queries"))
                 .WithServiceSelf());
 
             container.Register(Component.For<AutoMapper.IConfigurationProvider>().ImplementedBy<Data.Mapping.Configuration>().LifestyleSingleton());
