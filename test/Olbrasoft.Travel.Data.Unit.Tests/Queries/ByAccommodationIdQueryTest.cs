@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Querying;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {

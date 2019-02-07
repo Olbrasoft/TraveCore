@@ -24,7 +24,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Options;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Business.Services;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc

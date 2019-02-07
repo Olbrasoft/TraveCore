@@ -160,10 +160,10 @@
     <Compile Include="LocalizedQueryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExtensions.cs" />
+    <Compile Include="Querying\AsyncHandlerWithDependentSourceTest.cs" />
+    <Compile Include="Querying\HandlerWithDependentSourceTest.cs" />
     <Compile Include="QueryWithOutImplementationTest.cs" />
     <Compile Include="QueryWithSorting.cs" />
-    <Compile Include="Query\AsyncHandlerWithDependentSourceTest.cs" />
-    <Compile Include="Query\HandlerWithDependentSourceTest.cs" />
     <Compile Include="SomeAsyncHandlerWithDependentSource.cs" />
     <Compile Include="SomeHandlerWithDependentSource.cs" />
     <Compile Include="SomQuery.cs" />

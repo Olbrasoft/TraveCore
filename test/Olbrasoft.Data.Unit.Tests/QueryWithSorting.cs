@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Querying;
 using Olbrasoft.Pagination;
 
 namespace Olbrasoft.Data.Unit.Tests

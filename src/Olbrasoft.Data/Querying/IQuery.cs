@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Olbrasoft.Data.Query
+namespace Olbrasoft.Data.Querying
 {
-    public interface IQuery { }
+     public interface IQuery { }
 
     public interface IQuery<TResult> : IQuery
     {

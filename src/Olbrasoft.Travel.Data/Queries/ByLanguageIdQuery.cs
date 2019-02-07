@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Data.Query;
+﻿using Olbrasoft.Data.Querying;
 using Olbrasoft.Globalization;
 
 namespace Olbrasoft.Travel.Data.Queries

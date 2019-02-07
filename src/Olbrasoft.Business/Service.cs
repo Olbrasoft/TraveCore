@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Data.Query;
+﻿using Olbrasoft.Data.Querying;
 
 namespace Olbrasoft.Business
 {

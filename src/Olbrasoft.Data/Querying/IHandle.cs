@@ -1,4 +1,4 @@
-﻿namespace Olbrasoft.Data.Query
+﻿namespace Olbrasoft.Data.Querying
 {
     public interface IHandle<in TQuery, out TResult> where TQuery : IQuery<TResult>
     {

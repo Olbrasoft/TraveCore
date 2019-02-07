@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Transfer.Object;

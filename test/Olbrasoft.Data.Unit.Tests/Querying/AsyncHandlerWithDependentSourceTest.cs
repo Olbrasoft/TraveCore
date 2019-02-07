@@ -1,9 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Query;
+using Olbrasoft.Data.Querying;
 
-namespace Olbrasoft.Data.Unit.Tests.Query
+namespace Olbrasoft.Data.Unit.Tests.Querying
 {
     [TestFixture]
     internal class AsyncHandlerWithDependentSourceTest
