@@ -191,8 +191,8 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             queryFactoryMock.Setup(p => p.Get<PhotosOfAccommodationsByAccommodationIdsQuery>())
                 .Returns(new PhotosOfAccommodationsByAccommodationIdsQuery(queryDispatcher.Object));
 
-            queryFactoryMock.Setup(p => p.Get<AccommodationSuggestionsQuery>())
-                .Returns(new AccommodationSuggestionsQuery(queryDispatcher.Object));
+            queryFactoryMock.Setup(p => p.Get<RealEstatesSuggestionsQuery>())
+                .Returns(new RealEstatesSuggestionsQuery(queryDispatcher.Object));
 
             var mockMerger = new AccommodationItemPhotoMerge();
 

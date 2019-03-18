@@ -21,7 +21,6 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
             //Assert
             Assert.IsInstanceOf(type, query);
-
         }
 
         [Test]
@@ -38,10 +37,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
             Assert.AreSame(terms, query.Terms);
         }
 
-        private static AccommodationSuggestionsQuery Query()
+        private static RealEstatesSuggestionsQuery Query()
         {
             var dispatcherMock = new Mock<IQueryDispatcher>();
-            var query = new AccommodationSuggestionsQuery(dispatcherMock.Object);
+            var query = new RealEstatesSuggestionsQuery(dispatcherMock.Object);
             return query;
         }
     }

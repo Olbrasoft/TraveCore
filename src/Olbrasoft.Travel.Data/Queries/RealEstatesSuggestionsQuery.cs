@@ -4,11 +4,11 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries
 {
-    public class AccommodationSuggestionsQuery : ByLanguageIdQuery<IEnumerable<Suggestion>>
+    public class RealEstatesSuggestionsQuery : ByLanguageIdQuery<IEnumerable<Suggestion>>
     {
         public string[] Terms { get; set; }
 
-        public AccommodationSuggestionsQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public RealEstatesSuggestionsQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

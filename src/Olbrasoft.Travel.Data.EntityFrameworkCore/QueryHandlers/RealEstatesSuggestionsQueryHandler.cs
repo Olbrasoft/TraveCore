@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
-    public class AccommodationSuggestionsQueryHandler : TravelQueryHandler<AccommodationSuggestionsQuery, LocalizedRealEstate, IEnumerable<Suggestion>>
+    public class RealEstatesSuggestionsQueryHandler : TravelQueryHandler<RealEstatesSuggestionsQuery, LocalizedRealEstate, IEnumerable<Suggestion>>
     {
-        public override async Task<IEnumerable<Suggestion>> HandleAsync(AccommodationSuggestionsQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<Suggestion>> HandleAsync(RealEstatesSuggestionsQuery query, CancellationToken cancellationToken)
         {
             var q = Source.Where(p => p.LanguageId == query.LanguageId);
 
@@ -21,7 +21,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
             return await ProjectTo<Suggestion>(q.Take(3)).ToArrayAsync(cancellationToken);
         }
 
-        public AccommodationSuggestionsQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+        public RealEstatesSuggestionsQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
         {
         }
     }

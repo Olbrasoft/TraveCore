@@ -13,14 +13,14 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
     [TestFixture]
-    public class AccommodationSuggestionsQueryHandlerTest
+    public class RealEstatesSuggestionsQueryHandlerTest
     {
         [Test]
         public void MyTestMethod()
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<AccommodationSuggestionsQuery, LocalizedRealEstate,
+                typeof(TravelQueryHandler<RealEstatesSuggestionsQuery, LocalizedRealEstate,
                     IEnumerable<Suggestion>>);
 
             //Act
@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
             var type = typeof(Task<IEnumerable<Suggestion>>);
             var handler = Handler();
             var dispatcher = new Mock<IQueryDispatcher>();
-            var query = new AccommodationSuggestionsQuery(dispatcher.Object);
+            var query = new RealEstatesSuggestionsQuery(dispatcher.Object);
 
             //Act
             var result = handler.HandleAsync(query);
@@ -45,15 +45,14 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
             //Assert
 
             Assert.IsInstanceOf(type, result);
-
         }
 
-        private static AccommodationSuggestionsQueryHandler Handler()
+        private static RealEstatesSuggestionsQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new AccommodationSuggestionsQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new RealEstatesSuggestionsQueryHandler(contextMock.Object, projectorMock.Object);
             return handler;
         }
     }
