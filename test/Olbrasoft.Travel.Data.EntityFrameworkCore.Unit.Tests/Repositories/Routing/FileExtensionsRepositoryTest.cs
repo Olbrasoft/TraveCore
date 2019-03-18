@@ -4,7 +4,7 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Routing;
 using Olbrasoft.Travel.Data.IO;
 
-namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repository.Routing
+namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repositories.Routing
 {
     [TestFixture]
     internal class FileExtensionsRepositoryTest

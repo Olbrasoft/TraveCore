@@ -1,7 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Globalization;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization;
 using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 

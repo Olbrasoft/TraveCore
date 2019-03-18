@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Moq;
-using NUnit.Framework;
-using Olbrasoft.Travel.Data.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using NUnit.Framework;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories;
+using Olbrasoft.Travel.Data.Repositories;
 
-namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repository
+namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repositories
 {
     [TestFixture]
     public class BaseRepositoryTest

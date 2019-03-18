@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 
-namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Globalization
+namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization
 {
     public class LocalizedRepository<T> : TravelRepository<T, int, int>, ILocalizedRepository<T> where T : Localized
     {

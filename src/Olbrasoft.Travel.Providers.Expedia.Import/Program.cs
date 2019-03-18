@@ -5,7 +5,6 @@ using Castle.Windsor;
 using Olbrasoft.Travel.Data.EntityFrameworkCore;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Globalization;
 using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Providers.Expedia.Import.Importers;
@@ -13,6 +12,7 @@ using System;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization;
 using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
@@ -247,10 +247,9 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
         private static WindsorContainer BuildContainer()
         {
             var container = new WindsorContainer();
-            
+
             container.Register(Component.For<DbContext>().ImplementedBy<TravelDbContext>());
 
-        
             //  container.Register(Component.For<TravelDatabaseContext>().ImplementedBy<TravelDatabaseContext>());
             // container.Register(Component.For<DbContext>().ImplementedBy<TravelDatabaseContext>().Named(nameof(TravelDatabaseContext)));
 
@@ -258,8 +257,6 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
                 .Where(type => type.Name.EndsWith("Parser"))
                 .WithService.AllInterfaces()
             );
-
-          
 
             container.Register(Classes.FromAssemblyNamed("Olbrasoft.Travel.Data.EntityFrameworkCore")
                    .Where(type => type.Name.EndsWith("Repository"))

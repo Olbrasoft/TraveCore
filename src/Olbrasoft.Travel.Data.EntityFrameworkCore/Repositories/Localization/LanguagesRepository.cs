@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 
-namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Globalization
+namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization
 {
     public class LanguagesRepository : TravelRepository<Language>, ILanguagesRepository
     {

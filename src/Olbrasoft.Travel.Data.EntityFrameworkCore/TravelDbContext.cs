@@ -2,11 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Olbrasoft.Extensions;
 using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.EntityTypesConfigurations;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Property;
 using System;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using AttributeType = Olbrasoft.Travel.Data.Accommodation.AttributeType;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore
