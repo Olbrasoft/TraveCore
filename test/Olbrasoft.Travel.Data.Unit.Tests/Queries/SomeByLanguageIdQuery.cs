@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     internal class SomeByLanguageIdQuery : ByLanguageIdQuery<object>
     {
-        public SomeByLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
+        public SomeByLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

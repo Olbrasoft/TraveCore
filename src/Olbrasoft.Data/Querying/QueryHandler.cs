@@ -5,7 +5,7 @@ using Olbrasoft.Data.Mapping;
 
 namespace Olbrasoft.Data.Querying
 {
-    public abstract class QueryHandler<TQuery, TSource, TResult> : IHandler<TQuery, TResult> where TQuery : IQuery<TResult>
+    public abstract class QueryHandler<TQuery, TSource, TResult> : IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
         private TSource _source;
         private IProjection Projector { get; }

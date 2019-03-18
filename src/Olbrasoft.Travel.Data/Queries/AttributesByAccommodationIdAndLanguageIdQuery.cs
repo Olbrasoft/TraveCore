@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries
 {
     public class AttributesByAccommodationIdAndLanguageIdQuery : ByAccommodationIdAndLanguageIdQuery<IEnumerable<Attribute>>
     {
-        public AttributesByAccommodationIdAndLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
+        public AttributesByAccommodationIdAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

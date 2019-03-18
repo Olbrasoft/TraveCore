@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -11,13 +9,13 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRegions _regions;
         private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly ITravel _travel;
 
-        public HomeController(IRegions regions, IStringLocalizer<HomeController> localizer)
+        public HomeController(ITravel travel, IStringLocalizer<HomeController> localizer)
         {
-            _regions = regions;
             _localizer = localizer;
+            _travel = travel;
         }
 
         public async Task<IActionResult> Index()
@@ -34,34 +32,29 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 
             ViewData["languages"] = cultures.UICultures[0];
 
-            //           ViewData["H1"] = _localizer["Travel"];
+            // ViewData["H1"] = _localizer["Travel"];
 
-            var continents = await _regions.GetContinentsAsync(1033);
+            const int languageId = 1033;
+
+            var continents = await _travel.Regions.GetContinentsAsync(languageId);
+
             return View(continents);
         }
-
-
-        public IEnumerable<string> Search(string term)
-        {
-            var source = new List<string>
-            {
-                "Jirka",
-                "value1",
-                "value2"
-            };
-            
-            var result = source.Where(p => p.Contains(term));
-
-            return result;
-
-        }
-
 
         public async Task<IActionResult> Continent(int? id)
         {
             if (id == null) return StatusCode(StatusCodes.Status400BadRequest);
-            var countries = await _regions.GetCountriesAsync((int)id, 1033);
+
+            var countries = await _travel.Regions.GetCountriesAsync((int)id, 1033);
+
             return View(countries);
+        }
+
+        public async Task<JsonResult> Suggestions(string term)
+        {
+            var suggestions = await _travel.SuggestionsAsync(term, 1033);
+
+            return Json(suggestions);
         }
     }
 }

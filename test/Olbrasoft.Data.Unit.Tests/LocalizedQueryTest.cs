@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using Olbrasoft.Travel.Data.Entity;
+using Olbrasoft.Travel.Data.Localization;
 
 namespace Olbrasoft.Data.Unit.Tests
 {

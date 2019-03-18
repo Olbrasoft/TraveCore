@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\..\..\..\.nuget\packages\sharprepository.efcorerepository\2.0.2\contentFiles\any\netstandard2.0\repository.efCore.json" Link="repository.efCore.json">
+      <Private>False</Private>
+      <NuGetPackageVersion>2.0.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>SharpRepository.EfCoreRepository</NuGetPackageId>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+    <PackageReference Include="SharpRepository.EfCoreRepository" Version="2.0.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Olbrasoft.Data.Entity.Framework.Bulk\Olbrasoft.Data.Entity.Framework.Bulk.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Extensions\Olbrasoft.Extensions.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Travel\Olbrasoft.Travel.csproj" />
+  </ItemGroup>
+
+</Project>

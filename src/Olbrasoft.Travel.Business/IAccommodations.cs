@@ -1,10 +1,11 @@
 ﻿using Olbrasoft.Pagination;
-using Olbrasoft.Travel.Data.Entity.Globalization;
-using Olbrasoft.Travel.Data.Transfer.Object;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Business
 {
@@ -15,20 +16,17 @@ namespace Olbrasoft.Travel.Business
         Task<AccommodationDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken));
 
         IResultWithTotalCount<AccommodationItem> Get(
-            IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedAccommodation>, IOrderedQueryable<LocalizedAccommodation>> sorting
+            IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting
         );
 
         Task<IResultWithTotalCount<AccommodationItem>> GetAsync(
             IPageInfo pagingSettings,
             int languageId,
-            Func<IQueryable<LocalizedAccommodation>, IOrderedQueryable<LocalizedAccommodation>> sorting,
+            Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting,
             CancellationToken cancellationToken = default(CancellationToken)
         );
 
-        //Task<IPagedList<AccommodationItem>> GetAsync(
-        //    IPageInfo pagingSettings,
-        //    int languageId,
-        //    Func<IQueryable<LocalizedAccommodation>, IOrderedQueryable<LocalizedAccommodation>> sorting
-        //);
+        Task<IEnumerable<Suggestion>> SuggestionsAsync(string[] terms, int languageId,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -21,14 +21,14 @@ namespace Olbrasoft.Data.Unit.Tests.Querying
             Assert.IsInstanceOf(type, someQueryHandler);
         }
 
-        private static SomeAsyncHandlerWithDependentSource SomeAsyncHandler()
+        private static SomeAsyncQueryHandlerWithDependentSource SomeAsyncHandler()
         {
             var objectQueryableMock = new Mock<IHaveQueryable<object>>();
             var projectionMock = new Mock<IProjection>();
 
             var source = objectQueryableMock.Object;
 
-            return new SomeAsyncHandlerWithDependentSource(source,projectionMock.Object);
+            return new SomeAsyncQueryHandlerWithDependentSource(source,projectionMock.Object);
         }
 
  

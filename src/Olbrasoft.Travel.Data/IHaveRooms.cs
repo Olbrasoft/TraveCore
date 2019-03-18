@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data
 {

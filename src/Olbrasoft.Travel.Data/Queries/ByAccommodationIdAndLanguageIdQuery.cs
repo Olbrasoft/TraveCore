@@ -6,7 +6,7 @@ namespace Olbrasoft.Travel.Data.Queries
     {
         public int AccommodationId { get; set; }
 
-        protected ByAccommodationIdAndLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
+        protected ByAccommodationIdAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

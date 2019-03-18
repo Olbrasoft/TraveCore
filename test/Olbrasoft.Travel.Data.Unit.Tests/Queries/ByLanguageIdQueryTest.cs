@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_Is_QueryWithDependentProvider()
         {
             //Arrange
-            var type = typeof(QueryWithDependentProvider<object>);
+            var type = typeof(Query<object>);
 
             //Act
             var query = Query();
@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static SomeByLanguageIdQuery Query()
         {
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             return new SomeByLanguageIdQuery(providerMock.Object);
         }

@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_QueryWithDependentProvider_Of_object()
         {
             //Arrange
-            var type = typeof(QueryWithDependentProvider<object>);
+            var type = typeof(Query<object>);
 
             var query = Query();
 
@@ -50,7 +50,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static ExampleByAccommodationIdQuery Query()
         {
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new ExampleByAccommodationIdQuery(providerMock.Object);

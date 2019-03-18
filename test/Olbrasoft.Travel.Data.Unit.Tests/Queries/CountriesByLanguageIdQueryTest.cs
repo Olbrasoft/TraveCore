@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_Is_QueryWithDependentProvider_Of_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(QueryWithDependentProvider<IEnumerable<CountryItem>>);
+            var type = typeof(Query<IEnumerable<CountryItem>>);
 
             //Act
             var query = GetCountriesByLanguageId();
@@ -66,7 +66,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static CountriesByLanguageIdQuery GetCountriesByLanguageId()
         {
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new CountriesByLanguageIdQuery(providerMock.Object);

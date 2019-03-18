@@ -36,7 +36,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static ExampleByAccommodationIdAndLanguageIdQuery Query()
         {
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
             return new ExampleByAccommodationIdAndLanguageIdQuery(providerMock.Object);
         }
 

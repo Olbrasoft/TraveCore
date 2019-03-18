@@ -9,8 +9,9 @@ namespace Olbrasoft.Business.Unit.Tests
     {
         private static SomeService Facade()
         {
-            var providerMock = new Mock<IProvider>();
-            return new SomeService(providerMock.Object);
+            var factoryMock = new Mock<IQueryFactory>();
+
+            return new SomeService(factoryMock.Object);
         }
 
         [Test]
@@ -33,10 +34,10 @@ namespace Olbrasoft.Business.Unit.Tests
             var facade = Facade();
 
             //Act
-            var provider = facade.QueryProvider;
+            var provider = facade.QueryFactory;
 
             //Assert
-            Assert.IsInstanceOf<IProvider>(provider);
+            Assert.IsInstanceOf<IQueryFactory>(provider);
         }
     }
 }

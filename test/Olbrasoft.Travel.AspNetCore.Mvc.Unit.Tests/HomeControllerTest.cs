@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.Travel.AspNetCore.Mvc.Controllers;
 using Olbrasoft.Travel.Business;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Localization;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
 {
@@ -26,10 +26,10 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
 
         private static HomeController Controller()
         {
-            var regionsMock = new Mock<IRegions>();
-            var localizerMock =new Mock<IStringLocalizer<HomeController>>();
+            var travelMock = new Mock<ITravel>();
+            var localizerMock = new Mock<IStringLocalizer<HomeController>>();
 
-            return new HomeController(regionsMock.Object,localizerMock.Object);
+            return new HomeController(travelMock.Object, localizerMock.Object);
         }
 
         [Test]
@@ -55,6 +55,20 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
 
             //Act
             var result = controller.Continent(1);
+
+            //Assert
+            Assert.IsInstanceOf(type, result);
+        }
+
+        [Test]
+        public void Suggestions_Return_Task_Of_JsonResult()
+        {
+            //Arrange
+            var type = typeof(Task<JsonResult>);
+            var controller = Controller();
+            
+            //Act
+            var result = controller.Suggestions("Text");
 
             //Assert
             Assert.IsInstanceOf(type, result);

@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Globalization;
 using Olbrasoft.Travel.Data.Queries;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
@@ -14,7 +15,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_Is_ByAccommodationIdAndLanguageIdQuery_Of_IEnumerable_Of_Attribute()
         {
             //Arrange
-            var type = typeof(ByAccommodationIdAndLanguageIdQuery<IEnumerable<Data.Transfer.Object.Attribute>>);
+            var type = typeof(ByAccommodationIdAndLanguageIdQuery<IEnumerable<Attribute>>);
 
             //Act
             var query = Query();
@@ -28,7 +29,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_is_ByLanguageIdQuery_Of_IEnumerable_Of_Attribute()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<Data.Transfer.Object.Attribute>>);
+            var type = typeof(ByLanguageIdQuery<IEnumerable<Attribute>>);
             
             //Act
             var query = Query();
@@ -40,7 +41,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static AttributesByAccommodationIdAndLanguageIdQuery Query()
         {
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
@@ -52,8 +53,8 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_Implement_Interface_IQuery_Of_IEnumerable_Of_Attributes()
         {
             //Arrange
-            var type = typeof(IQuery<IEnumerable<Data.Transfer.Object.Attribute>>);
-            var providerMock = new Mock<IProvider>();
+            var type = typeof(IQuery<IEnumerable<Attribute>>);
+            var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
@@ -67,7 +68,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         {
             //Arrange
             var type = typeof(IHaveAccommodationId);
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
@@ -81,7 +82,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         {
             //Arrange
             const int accommodationId = int.MaxValue;
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object)
             {
@@ -102,7 +103,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         {
             //Arrange
             var type = typeof(IHaveLanguageId<int>);
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);

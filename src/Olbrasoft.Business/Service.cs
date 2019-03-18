@@ -4,11 +4,11 @@ namespace Olbrasoft.Business
 {
     public abstract class Service
     {
-        protected IProvider QueryProvider { get; }
+        protected IQueryFactory QueryFactory { get; }
 
-        protected Service(IProvider queryProvider)
+        protected Service( IQueryFactory queryFactory)
         {
-            QueryProvider = queryProvider;
+            QueryFactory = queryFactory;
         }
     }
 }

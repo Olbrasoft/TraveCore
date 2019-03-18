@@ -48,6 +48,12 @@
     <Reference Include="GeoAPI, Version=1.7.5.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
       <HintPath>..\..\packages\GeoAPI.Core.1.7.5\lib\net45\GeoAPI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNetCore.Cryptography.Internal.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNetCore.Cryptography.KeyDerivation.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.Caching.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
     </Reference>
@@ -68,6 +74,12 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.0.0-preview.18572.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Identity.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Identity.Core.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Identity.Stores, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Identity.Stores.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Identity.Stores.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
@@ -112,10 +124,7 @@
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlClient, Version=4.6.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Data.SqlClient.4.7.0-preview.18571.3\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
@@ -128,44 +137,46 @@
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnotherQueryWithSortingQuery.cs" />
-    <Compile Include="Entity\CreationInfoTest.cs" />
-    <Compile Include="Entity\CreatorInfoTest.cs" />
-    <Compile Include="Entity\UserTest.cs" />
+    <Compile Include="AsyncQueryHandlerWithDependentSource.cs" />
     <Compile Include="Geography\PointTest.cs" />
     <Compile Include="IAnotherQuery.cs" />
     <Compile Include="ILocalizedQuery.cs" />
     <Compile Include="IQueryBuilder.cs" />
     <Compile Include="IQueryWithOutImplementation.cs" />
+    <Compile Include="IQueryWithSorting.cs" />
     <Compile Include="ISomeQueryWithSorting.cs" />
     <Compile Include="LocalizedQuery.cs" />
     <Compile Include="LocalizedQueryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExtensions.cs" />
+    <Compile Include="QueryHandlerWithDependentSource.cs" />
     <Compile Include="Querying\AsyncHandlerWithDependentSourceTest.cs" />
+    <Compile Include="Querying\Factories\QueryExecutorFactoryTest.cs" />
+    <Compile Include="Querying\Factories\QueryFactoryTest.cs" />
+    <Compile Include="Querying\QueryDispatcherTest.cs" />
+    <Compile Include="Querying\QueryExecutorTest.cs" />
     <Compile Include="Querying\HandlerWithDependentSourceTest.cs" />
+    <Compile Include="Querying\SomeObject.cs" />
+    <Compile Include="Querying\SomeQuery.cs" />
     <Compile Include="QueryWithOutImplementationTest.cs" />
     <Compile Include="QueryWithSorting.cs" />
-    <Compile Include="SomeAsyncHandlerWithDependentSource.cs" />
-    <Compile Include="SomeHandlerWithDependentSource.cs" />
+    <Compile Include="SomeAsyncQueryHandlerWithDependentSource.cs" />
+    <Compile Include="SomeQueryHandlerWithDependentSource.cs" />
     <Compile Include="SomQuery.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,13 +188,17 @@
       <Project>{63b91b8f-a335-408a-b158-fa7501298914}</Project>
       <Name>Olbrasoft.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Olbrasoft.Dependence\Olbrasoft.Dependence.csproj">
+      <Project>{3ABA9EDA-DCAC-4AF2-A7CC-F095AF1D522D}</Project>
+      <Name>Olbrasoft.Dependence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj">
       <Project>{4944b51a-79a1-4aa3-9bcb-6b1fc0dc2fb9}</Project>
       <Name>Olbrasoft.Pagination</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Olbrasoft.Travel.Data.Entity\Olbrasoft.Travel.Data.Entity.csproj">
-      <Project>{02ce575d-c4d8-47b3-86c7-a3bd23be4933}</Project>
-      <Name>Olbrasoft.Travel.Data.Entity</Name>
+    <ProjectReference Include="..\..\src\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj">
+      <Project>{EC4ABACF-0F2D-45B7-A23E-0A91113F2662}</Project>
+      <Name>Olbrasoft.Travel.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

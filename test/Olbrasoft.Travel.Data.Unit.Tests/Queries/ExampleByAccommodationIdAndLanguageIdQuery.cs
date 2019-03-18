@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     internal class ExampleByAccommodationIdAndLanguageIdQuery : ByAccommodationIdAndLanguageIdQuery<object>
     {
-        public ExampleByAccommodationIdAndLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
+        public ExampleByAccommodationIdAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

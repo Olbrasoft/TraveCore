@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_Is_QueryWithDependentDispatcher_Of_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
-            var type = typeof(QueryWithDependentProvider<IEnumerable<AccommodationPhoto>>);
+            var type = typeof(Query<IEnumerable<AccommodationPhoto>>);
 
             //Act
             var query = Query();
@@ -54,7 +54,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static PhotosByAccommodationIdQuery Query()
         {
-            var dispatcher = new Mock<IProvider>();
+            var dispatcher = new Mock<IQueryDispatcher>();
 
             return new PhotosByAccommodationIdQuery(dispatcher.Object);
         }

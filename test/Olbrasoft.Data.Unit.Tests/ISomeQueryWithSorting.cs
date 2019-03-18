@@ -1,6 +1,4 @@
-﻿using Olbrasoft.Data.Querying;
-
-namespace Olbrasoft.Data.Unit.Tests
+﻿namespace Olbrasoft.Data.Unit.Tests
 {
     public interface ISomeQueryWithSorting : IQueryWithSorting<object, object>
     {

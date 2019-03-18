@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.Queries;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {
@@ -19,10 +19,10 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var type = typeof(Olbrasoft.Business.Service);
 
             //Act
-            var facade = Facade();
+            var service = Service();
 
             //Assert
-            Assert.IsInstanceOf(type, facade);
+            Assert.IsInstanceOf(type, service);
         }
 
         [Test]
@@ -32,10 +32,10 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var type = typeof(IRegions);
 
             //Act
-            var facade = Facade();
+            var service = Service();
 
             //Assert
-            Assert.IsInstanceOf(type, facade);
+            Assert.IsInstanceOf(type, service);
         }
 
         [Test]
@@ -43,10 +43,10 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         {
             //Arrange
             var type = typeof(Task<IEnumerable<CountryItem>>);
-            var facade = Facade();
+            var service = Service();
 
             //Act
-            var result = facade.GetCountriesAsync(1033);
+            var result = service.GetCountriesAsync(1033);
 
             //Assert
             Assert.IsInstanceOf(type, result);
@@ -58,10 +58,10 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             //Arrange
             //Arrange
             var type = typeof(Task<IEnumerable<CountryItem>>);
-            var facade = Facade();
+            var service = Service();
 
             //Act
-            var result = facade.GetCountriesAsync(256, 1033);
+            var result = service.GetCountriesAsync(256, 1033);
 
 
             //Assert
@@ -75,32 +75,50 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         {
             //Arrange
             var type = typeof(Task<IEnumerable<ContinentItem>>);
-            var facade = Facade();
+            var service = Service();
 
             //Act
-            var result = facade.GetContinentsAsync(1033);
+            var result = service.GetContinentsAsync(1033);
 
             //Assert
             Assert.IsInstanceOf(type, result);
 
         }
-        
 
-        private static RegionService Facade()
+        [Test]
+        public void SuggestionsAsync_Returns_Task_Of_IEnumerable_Of_Suggestion()
         {
-            var providerMock = new Mock<IProvider>();
+            //Arrange
+            var type = typeof(Task<IEnumerable<Suggestion>>);
+            var service = Service();
 
-            providerMock.Setup(p => p.Create<ContinentsByLanguageIdQuery>())
+            //Act
+            var result = service.SuggestionsAsync(new[]{""},1033);
+            
+            //Assert
+            Assert.IsInstanceOf(type, result);
+
+        }
+
+        private static RegionService Service()
+        {
+            var providerMock = new Mock<IQueryDispatcher>();
+            
+            var queryFactoryMock = new Mock<IQueryFactory>();
+
+            queryFactoryMock.Setup(p => p.Get<ContinentsByLanguageIdQuery>())
                 .Returns(new ContinentsByLanguageIdQuery(providerMock.Object));
 
-            providerMock.Setup(p => p.Create<CountriesByLanguageIdQuery>())
+            queryFactoryMock.Setup(p => p.Get<CountriesByLanguageIdQuery>())
                 .Returns(new CountriesByLanguageIdQuery(providerMock.Object));
 
-            providerMock.Setup(p => p.Create<CountriesByContinentIdAndLanguageIdQuery>())
+            queryFactoryMock.Setup(p => p.Get<CountriesByContinentIdAndLanguageIdQuery>())
                 .Returns(new CountriesByContinentIdAndLanguageIdQuery(providerMock.Object));
 
-
-            return new RegionService(providerMock.Object);
+            queryFactoryMock.Setup(p => p.Get<SuggestionsOfRegionByTermAndLanguageIdQuery>())
+                .Returns(new SuggestionsOfRegionByTermAndLanguageIdQuery(providerMock.Object));
+            
+            return new RegionService(queryFactoryMock.Object);
         }
     }
 }

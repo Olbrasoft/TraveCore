@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries
 {
-    public class PhotosOfAccommodationsByAccommodationIdsQuery : QueryWithDependentProvider<IEnumerable<AccommodationPhoto>>
+    public class PhotosOfAccommodationsByAccommodationIdsQuery : Query<IEnumerable<AccommodationPhoto>>
     {
         public IEnumerable<int> AccommodationIds { get; set; }
         public bool OnlyDefaultPhotos { get; set; }
 
-        public PhotosOfAccommodationsByAccommodationIdsQuery(IProvider queryProvider) : base(queryProvider)
+        public PhotosOfAccommodationsByAccommodationIdsQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

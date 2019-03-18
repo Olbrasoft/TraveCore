@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 
             var accommodationsItems = await _accommodations.GetAsync(pageInfo, 1033,
                 localizedAccommodations =>
-                    localizedAccommodations.OrderBy(p => p.Accommodation.SequenceNumber).ThenBy(p => p.Id));
+                    localizedAccommodations.OrderBy(p => p.RealEstate.SequenceNumber).ThenBy(p => p.Id));
 
             return View(accommodationsItems.AsPagedList(pageInfo));
         }

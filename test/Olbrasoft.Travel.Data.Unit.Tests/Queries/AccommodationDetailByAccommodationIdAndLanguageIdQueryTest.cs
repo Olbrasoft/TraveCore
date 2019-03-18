@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
@@ -38,7 +38,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static AccommodationDetailByAccommodationIdAndLanguageIdQuery Query()
         {
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new AccommodationDetailByAccommodationIdAndLanguageIdQuery(providerMock.Object);
@@ -49,7 +49,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Instance_Implement_Interface_IQueryOfAccommodationDetail()
         {
             //Arrange
-            var dispatcherMock = new Mock<IProvider>();
+            var dispatcherMock = new Mock<IQueryDispatcher>();
 
             //Act
             var query = new AccommodationDetailByAccommodationIdAndLanguageIdQuery(dispatcherMock.Object);
@@ -62,7 +62,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void LanguageId()
         {
             //Arrange
-            var dispatcherMock = new Mock<IProvider>();
+            var dispatcherMock = new Mock<IQueryDispatcher>();
             var query = new AccommodationDetailByAccommodationIdAndLanguageIdQuery(dispatcherMock.Object)
             {
                 LanguageId = 1033,
@@ -79,7 +79,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         public void Id()
         {
             //Arrange
-            var dispatcherMock = new Mock<IProvider>();
+            var dispatcherMock = new Mock<IQueryDispatcher>();
             var query = new AccommodationDetailByAccommodationIdAndLanguageIdQuery(dispatcherMock.Object)
             {
                 AccommodationId = 42,

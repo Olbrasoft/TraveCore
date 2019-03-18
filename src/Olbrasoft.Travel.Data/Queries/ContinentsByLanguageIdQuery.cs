@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries
 {
     public class ContinentsByLanguageIdQuery : ByLanguageIdQuery<IEnumerable<ContinentItem>>
     {
-        public ContinentsByLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
+        public ContinentsByLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

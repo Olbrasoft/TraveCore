@@ -43,8 +43,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         #region MainOps
         public static void Insert<T>(DbContext context, IList<T> entities, TableInfo tableInfo, Action<decimal> progress)
         {
-           
-                 var sqlConnection = OpenAndGetSqlConnection(context);
+            var sqlConnection = OpenAndGetSqlConnection(context);
             var transaction = context.Database.CurrentTransaction;
             try
             {
@@ -66,7 +65,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                             var dataTable = GetDataTable(context, entities);
                             sqlBulkCopy.WriteToServer(dataTable);
                         }
-                    }
+                    } 
                     catch (InvalidOperationException ex)
                     {
                         if (!ex.Message.Contains(ColumnMappingExceptionMessage))

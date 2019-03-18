@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries
 {
@@ -8,7 +8,7 @@ namespace Olbrasoft.Travel.Data.Queries
     {
         public int ContinentId { get; set; }
 
-        public CountriesByContinentIdAndLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
+        public CountriesByContinentIdAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

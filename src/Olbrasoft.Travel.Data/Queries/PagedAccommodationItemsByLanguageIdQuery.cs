@@ -2,21 +2,21 @@
 using System.Linq;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Pagination;
-using Olbrasoft.Travel.Data.Entity.Globalization;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries
 {
     public class PagedAccommodationItemsByLanguageIdQuery : ByLanguageIdQuery<IResultWithTotalCount<AccommodationItem>>
     {
-        public Func<IQueryable<LocalizedAccommodation>, IOrderedQueryable<LocalizedAccommodation>> Sorting
+        public Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> Sorting
         {
             get; set;
         }
 
         public IPageInfo Paging { get; set; }
 
-        public PagedAccommodationItemsByLanguageIdQuery(IProvider queryProvider) : base(queryProvider)
+        public PagedAccommodationItemsByLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

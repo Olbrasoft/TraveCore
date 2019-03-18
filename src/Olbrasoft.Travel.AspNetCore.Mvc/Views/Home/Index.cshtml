@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization
-@model IEnumerable<Olbrasoft.Travel.Data.Transfer.Object.ContinentItem>
+@model IEnumerable<Olbrasoft.Travel.Data.Transfer.Objects.ContinentItem>
 @{
     ViewBag.Title = "TravelDatabaseContext";
 }
@@ -8,7 +8,7 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["H1"] = Localizer["Travel"]; 
+    ViewData["H1"] = Localizer["Travel"];
 }
 
 <style>
@@ -21,102 +21,88 @@
 </style>
 
 <script>
-    $(
-        function ()
-        {
-            $.widget("custom.catcomplete", $.ui.autocomplete, {
-                _create: function() {
-                    this._super();
-                    this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
-                },
-                _renderMenu: function( ul, items ) {
-                    var that = this,
-                        currentCategory = "";
-                    $.each( items, function( index, item ) {
-                        var li;
-                        if ( item.category != currentCategory ) {
-                            ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-                            currentCategory = item.category;
-                        }
-                        li = that._renderItemData( ul, item );
-                        if ( item.category ) {
-                            li.attr( "aria-label", item.category + " : " + item.label );
-                        }
-                    });
-                }
-            });
+    $(document).ready(function() {
+
+            //$.widget("custom.catcomplete", $.ui.autocomplete, {
+            //    _create: function() {
+            //        this._super();
+            //        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+            //    },
+            //    _renderMenu: function( ul, items ) {
+            //        var that = this,
+            //            currentCategory = "";
+            //        $.each( items, function( index, item ) {
+            //            var li;
+            //            if ( item.category != currentCategory ) {
+            //                ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+            //                currentCategory = item.category;
+            //            }
+            //            li = that._renderItemData( ul, item );
+            //            if ( item.category ) {
+            //                li.attr( "aria-label", item.category + " : " + item.label );
+            //            }
+            //        });
+            //    }
+            //});
             
-            var data = [
-                { label: "anders", category: "" },
-                { label: "andreas", category: "" },
-                { label: "antal", category: "" },
-                //{ label: "annhhx10", category: "Products" },
-                //{ label: "annk K12", category: "Products" },
-                //{ label: "annttop C13", category: "Products" },
-                //{ label: "anders andersson", category: "People" },
-                //{ label: "andreas andersson", category: "People" },
-                //{ label: "andreas johnson", category: "People" }
-            ];
-     
-            $( "#search" ).catcomplete({
-                delay: 0,
-                source: data
+            
+            $("#search").autocomplete({
+                source: "@Url.Action("Suggestions", "Home")"
             });
         }
     );
-
-
 </script>
 
 <div class="container" style="padding-top: 100px;">
-        <div class="row gridResize">
-           
-            <div class="col-sm-7 col-xs-12">
-                <div class="row">
-                    <div class="col-sm-3 col-xs-12">
+    <div class="row gridResize">
+
+        <div class="col-sm-7 col-xs-12">
+            <div class="row">
+                <div class="col-sm-3 col-xs-12">
                     <input id="search">
-                        </div>
-                    <div class="col-sm-3 col-xs-12">
-                        <div class="input-group date ed-datepicker" data-provide="datepicker">
-                            <input type="text" class="form-control" placeholder="MM/DD/YYYY">
-                            <div class="input-group-addon">
-                                <span class="fa fa-calendar"></span>
-                            </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="input-group date ed-datepicker" data-provide="datepicker">
+                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                        <div class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-xs-12">
-                        <div class="input-group date ed-datepicker" data-provide="datepicker">
-                            <input type="text" class="form-control" placeholder="MM/DD/YYYY">
-                            <div class="input-group-addon">
-                                <span class="fa fa-calendar"></span>
-                            </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="input-group date ed-datepicker" data-provide="datepicker">
+                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                        <div class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 col-xs-12">
-                <a href="#" class="btn btn-block buttonCustomPrimary">Search</a>
-            </div>
+        </div>
+        <div class="col-sm-2 col-xs-12">
+            <a href="#" class="btn btn-block buttonCustomPrimary">Search</a>
         </div>
     </div>
-
+</div>
 
 <section class="mainContentSection">
     <div class="container">
-      
+
         Languages: @ViewData["Languages"]
-        
+
+        AutocompleteUrl: @Url.Action("Suggestions", "Home")
+
         <div>
-            <a asp-controller="Accommodations" asp-route-culture="@CultureInfo.CurrentUICulture" asp-action="Index">Accommodations</a>
+            <a asp-controller="Accommodations" asp-route-culture="@CultureInfo.CurrentUICulture" asp-action="Index">RealEstates</a>
             <br />
-            
+
             <h2>Continents</h2>
 
             @foreach (var continent in Model)
             {
-               <div>
+                <div>
                     <a asp-controller="Home" asp-action="Continent" asp-route-culture="@CultureInfo.CurrentUICulture" asp-route-id="@continent.Id">@continent.Name</a>
-               </div>
+                </div>
             }
         </div>
     </div>

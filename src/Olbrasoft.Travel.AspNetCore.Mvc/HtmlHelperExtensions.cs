@@ -3,7 +3,7 @@ using Olbrasoft.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Attribute = Olbrasoft.Travel.Data.Transfer.Object.Attribute;
+using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc
 {

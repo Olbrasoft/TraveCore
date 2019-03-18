@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries;
-using Olbrasoft.Travel.Data.Transfer.Object;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
@@ -40,7 +40,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 
         private static CountriesByContinentIdAndLanguageIdQuery Query()
         {
-            var providerMock = new Mock<IProvider>();
+            var providerMock = new Mock<IQueryDispatcher>();
 
             var query = new CountriesByContinentIdAndLanguageIdQuery(providerMock.Object);
             return query;

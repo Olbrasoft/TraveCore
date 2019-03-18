@@ -30,24 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.Windsor" Version="4.1.1" />
+    <PackageReference Include="Castle.Windsor" Version="5.0.0" />
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Travel.Business\Olbrasoft.Travel.Business.csproj" />
-    <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity.Framework\Olbrasoft.Travel.Data.Entity.Framework.csproj" />
-    <ProjectReference Include="..\Olbrasoft.Travel.Data.Entity\Olbrasoft.Travel.Data.Entity.csproj" />
-    <ProjectReference Include="..\Olbrasoft.Travel.Data.Mapping\Olbrasoft.Travel.Data.Mapping.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Web">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Web.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Olbrasoft.Travel.Data.EntityFrameworkCore\Olbrasoft.Travel.Data.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>
