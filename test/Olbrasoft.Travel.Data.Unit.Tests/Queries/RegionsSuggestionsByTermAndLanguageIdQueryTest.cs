@@ -8,7 +8,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     [TestFixture]
-    public class SuggestionsOfRegionByTermAndLanguageIdQueryTest
+    public class RegionsSuggestionsByTermAndLanguageIdQueryTest
     {
         [Test]
         public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_Suggestion()
@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
         {
             //Arrange
             var query = Query();
-            var terms = new[]{"Some Terms"};
+            var terms = new[] { "Some Terms" };
 
             //Act
             query.Terms = terms;
@@ -37,11 +37,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
             Assert.AreSame(terms, query.Terms);
         }
 
-        private static SuggestionsOfRegionByTermAndLanguageIdQuery Query()
+        private static RegionsSuggestionsByTermAndLanguageIdQuery Query()
         {
             var dispatcherMock = new Mock<IQueryDispatcher>();
 
-            var query = new SuggestionsOfRegionByTermAndLanguageIdQuery(dispatcherMock.Object);
+            var query = new RegionsSuggestionsByTermAndLanguageIdQuery(dispatcherMock.Object);
             return query;
         }
     }

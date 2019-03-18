@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
-    public class SuggestionsOfRegionByTermAndLanguageIdQueryHandler : TravelQueryHandler<SuggestionsOfRegionByTermAndLanguageIdQuery, Region, IEnumerable<Suggestion>>
+    public class RegionsSuggestionsByTermAndLanguageIdQueryHandler : TravelQueryHandler<RegionsSuggestionsByTermAndLanguageIdQuery, Region, IEnumerable<Suggestion>>
     {
-        public SuggestionsOfRegionByTermAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+        public RegionsSuggestionsByTermAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
         {
         }
 
-        public override async Task<IEnumerable<Suggestion>> HandleAsync(SuggestionsOfRegionByTermAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<Suggestion>> HandleAsync(RegionsSuggestionsByTermAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             return await ProjectionToSuggestions(Source, query).ToArrayAsync(cancellationToken);
         }
 
-        private IQueryable<Suggestion> ProjectionToSuggestions(IQueryable<Region> regions, SuggestionsOfRegionByTermAndLanguageIdQuery query)
+        private IQueryable<Suggestion> ProjectionToSuggestions(IQueryable<Region> regions, RegionsSuggestionsByTermAndLanguageIdQuery query)
         {
             //var regionsToTypes = Source.Where(p => p.ToId > 1 && p.ToId < 8);
 
