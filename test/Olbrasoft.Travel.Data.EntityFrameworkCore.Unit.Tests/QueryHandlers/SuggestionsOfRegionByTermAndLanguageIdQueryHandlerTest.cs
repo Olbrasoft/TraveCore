@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
@@ -25,12 +24,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         }
 
         [Test]
-        public void Instance_Is_TravelQueryHandler_Of_IGeographyContext_Comma_SuggestionsOfRegionByTermAndLanguageIdQuery_Comma_IQueryable_Of_TypeOfRegion_Comma_IEnumerable_Of_Suggestion()
+        public void Instance_Is_TravelQueryHandler_Of_SuggestionsOfRegionByTermAndLanguageIdQuery_Comma_Region_Comma_IEnumerable_Of_Suggestion()
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<SuggestionsOfRegionByTermAndLanguageIdQuery, LocalizedRegion,
-                    IEnumerable<Suggestion>>);
+                typeof(TravelQueryHandler<SuggestionsOfRegionByTermAndLanguageIdQuery, Region, IEnumerable<Suggestion>>);
+
             //Act
             var handler = Handler();
 
@@ -53,7 +52,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 
             //Assert
             Assert.IsInstanceOf(type, result);
-
         }
     }
 }

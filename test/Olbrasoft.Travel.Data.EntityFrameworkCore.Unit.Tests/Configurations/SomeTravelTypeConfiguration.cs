@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.SomeNamespace;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations
 {
