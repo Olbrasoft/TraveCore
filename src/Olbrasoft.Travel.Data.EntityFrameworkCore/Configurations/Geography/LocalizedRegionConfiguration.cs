@@ -8,13 +8,15 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
     {
         public override void Configuration(EntityTypeBuilder<LocalizedRegion> builder)
         {
+            builder.HasIndex(p => p.Name);
+
             builder.HasKey(p => new { p.Id, p.LanguageId });
 
             builder.HasOne(lr => lr.Region).WithMany(r => r.LocalizedRegions).HasForeignKey(p => p.Id).OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(lr => lr.Language).WithMany(l => l.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
-
             builder.HasOne(lr => lr.Creator).WithMany(user => user.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(lr => lr.Language).WithMany(l => l.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

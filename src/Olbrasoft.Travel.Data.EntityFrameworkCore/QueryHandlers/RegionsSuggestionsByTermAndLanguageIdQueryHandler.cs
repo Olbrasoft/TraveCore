@@ -46,7 +46,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 
             localizedRegions = localizedRegions.Where(p => p.LanguageId == query.LanguageId);
 
-            localizedRegions = query.Terms.Aggregate(localizedRegions, (current, term) => current.Where(p => p.Name.StartsWith(term) || p.Name.Contains(term)));
+            localizedRegions = query.Terms.Aggregate(localizedRegions, (current, term) => current.Where(p => p.Name.StartsWith(term)));
 
             return ProjectTo<Suggestion>(localizedRegions.Take(6));
         }
