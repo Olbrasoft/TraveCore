@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Olbrasoft.Travel.Data.Transfer.Objects;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Business
 {
@@ -22,9 +22,11 @@ namespace Olbrasoft.Travel.Business
             var terms = term.Split(' ');
 
             var results = await Task.WhenAll(Regions.SuggestionsAsync(terms, languageId, cancellationToken),
-                Accommodations.SuggestionsAsync(terms, languageId, cancellationToken));
+                Accommodations.SuggestionsAsync(terms, languageId, cancellationToken)).ConfigureAwait(false);
 
             return results.SelectMany(result => result);
+
+            //  return await Accommodations.SuggestionsAsync(terms, languageId, cancellationToken);
         }
     }
 }

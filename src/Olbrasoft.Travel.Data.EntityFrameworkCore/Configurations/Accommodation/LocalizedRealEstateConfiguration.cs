@@ -8,6 +8,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
     {
         public override void ConfigureLocalizedAccommodation(EntityTypeBuilder<LocalizedRealEstate> builder)
         {
+            builder.HasIndex(p => p.Name);
+
             builder.HasOne(localizedAccommodation => localizedAccommodation.Language)
                 .WithMany(l => l.LocalizedRealEstates).OnDelete(DeleteBehavior.Restrict);
 

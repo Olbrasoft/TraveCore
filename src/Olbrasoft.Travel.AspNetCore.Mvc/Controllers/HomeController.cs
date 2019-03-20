@@ -20,6 +20,17 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //var q = new TravelDbContext().Set<LocalizedRealEstate>().FromSql($"Select Top(3) * From Accommodation.LocalizedRealEstates WHERE (LanguageId = {1033}) And (Name Like 'Olb%') ");
+
+            //var q1 = from r in q
+            //         select new Suggestion
+            //         {
+            //             Id = r.Id,
+            //             Label = r.Name
+            //         };
+
+            //var result = q1.ToArray();
+
             //var userLanguages = Request.Headers["Accept-Language"].ToString();
 
             //if (userLanguages != null) await Response.WriteAsync(userLanguages);
@@ -31,8 +42,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
             var cultures = await provider.DetermineProviderCultureResult(HttpContext);
 
             ViewData["languages"] = cultures.UICultures[0];
-
-            // ViewData["H1"] = _localizer["Travel"];
 
             const int languageId = 1033;
 

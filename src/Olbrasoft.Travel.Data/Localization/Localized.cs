@@ -10,6 +10,6 @@ namespace Olbrasoft.Travel.Data.Localization
         [Column(Order = 2)]
         public int LanguageId { get; set; }
 
-        public virtual Language Language { get; set; }
+        public Language Language { get; set; }
     }
 }

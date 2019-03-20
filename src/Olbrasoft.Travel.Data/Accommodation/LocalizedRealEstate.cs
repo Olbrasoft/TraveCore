@@ -19,6 +19,6 @@ namespace Olbrasoft.Travel.Data.Accommodation
         [MaxLength(10)]
         public string CheckOutTime { get; set; }
 
-        public virtual RealEstate RealEstate { get; set; }
+        public RealEstate RealEstate { get; set; }
     }
 }

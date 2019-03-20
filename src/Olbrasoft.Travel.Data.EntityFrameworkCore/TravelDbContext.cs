@@ -7,12 +7,15 @@ using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Property;
 using System;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 using AttributeType = Olbrasoft.Travel.Data.Accommodation.AttributeType;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 {
     public class TravelDbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
+        public DbQuery<Suggestion> Suggestions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(TravelTypeConfiguration<>).Assembly);

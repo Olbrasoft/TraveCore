@@ -68,7 +68,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
             var controller = Controller();
             
             //Act
-            var result = controller.Suggestions("Text");
+            var result = controller.SuggestionsAsync("Text");
 
             //Assert
             Assert.IsInstanceOf(type, result);
