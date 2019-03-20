@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using LinqKit;
+using Olbrasoft.Travel.Data.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
@@ -46,9 +48,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 
             localizedRegions = localizedRegions.Where(p => p.LanguageId == query.LanguageId);
 
-            localizedRegions = query.Terms.Aggregate(localizedRegions, (current, term) => current.Where(p => p.Name.StartsWith(term)));
+            var predicate = query.Terms.Aggregate(PredicateBuilder.New<LocalizedRegion>(), (current, term) => current.Or(p => p.Name.Contains(term)));
 
-            return ProjectTo<Suggestion>(localizedRegions.Take(6));
+            //localizedRegions = query.Terms.Aggregate(localizedRegions, (current, term) => current.Where(p => p.Name.StartsWith(term)));
+
+            return ProjectTo<Suggestion>(localizedRegions.Where(predicate).Take(6));
         }
     }
 }

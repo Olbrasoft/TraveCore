@@ -19,7 +19,7 @@ namespace Olbrasoft.Travel.Business
 
         public async Task<IEnumerable<Suggestion>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var terms = term.Split(' ');
+            var terms = term.Trim().Split(' ');
 
             var results = await Task.WhenAll(Regions.SuggestionsAsync(terms, languageId, cancellationToken),
                 Accommodations.SuggestionsAsync(terms, languageId, cancellationToken)).ConfigureAwait(false);

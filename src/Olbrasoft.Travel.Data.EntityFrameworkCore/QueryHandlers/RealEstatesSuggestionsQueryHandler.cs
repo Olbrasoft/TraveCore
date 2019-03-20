@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LinqKit;
+using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Queries;
@@ -46,12 +47,16 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 
             //q = q.Where(p => p.Name.Contains( query.Terms));
             //return await result.ToArrayAsync(cancellationToken);
+            // define the optimizer you want to use
+            //            var optimizer = ExpressionOptimizer;
 
             var q = Source.Where(p => p.LanguageId == query.LanguageId);
 
-            q = query.Terms.Aggregate(q, (current, t) => current.Where(localizedRealEstate => localizedRealEstate.Name.IndexOf(t, System.StringComparison.OrdinalIgnoreCase) >= 0));
+            var predicate = query.Terms.Aggregate(PredicateBuilder.New<LocalizedRealEstate>(), (current, term) => current.Or(p => p.Name.Contains(term)));
 
-            return await ProjectTo<Suggestion>(q.Take(3)).ToArrayAsync(cancellationToken).ConfigureAwait(false);
+            // q = query.Terms.Aggregate(q, (current, t) => current.Where(localizedRealEstate => localizedRealEstate.Name.IndexOf(t, System.StringComparison.OrdinalIgnoreCase) >= 0));
+
+            return await ProjectTo<Suggestion>(q.Where(predicate).Take(3)).ToArrayAsync(cancellationToken).ConfigureAwait(false);
         }
 
         public RealEstatesSuggestionsQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)

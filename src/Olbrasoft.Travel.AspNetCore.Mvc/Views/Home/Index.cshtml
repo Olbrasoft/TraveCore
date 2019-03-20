@@ -1,6 +1,5 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@using System.Globalization
-@model IEnumerable<Olbrasoft.Travel.Data.Transfer.Objects.ContinentItem>
+﻿@model IEnumerable<ContinentItem>
+
 @{
     ViewBag.Title = "TravelDatabaseContext";
 }
@@ -44,10 +43,10 @@
             //        });
             //    }
             //});
-            
-            
+
             $("#search").autocomplete({
-                source: "@Url.Action("Suggestions", "Home")"
+                source: "@Url.Action("Suggestions", "Home")",
+                delay: 300
             });
         }
     );

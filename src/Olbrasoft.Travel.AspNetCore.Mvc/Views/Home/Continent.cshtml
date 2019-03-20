@@ -1,21 +1,21 @@
-﻿@model IEnumerable<Olbrasoft.Travel.Data.Transfer.Objects.CountryItem>
-@{
+﻿@model IEnumerable<CountryItem>
+    @{
     Layout = null;
-}
+    }
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Continent</title>
-</head>
-<body>
-@foreach (var country in Model)
-{
-    <div>
-        @country.Name - @country.Code  
-    </div>
-}
-</body>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Continent</title>
+    </head>
+    <body>
+        @foreach (var country in Model)
+        {
+        <div>
+            @country.Name - @country.Code
+        </div>
+        }
+    </body>
 </html>
