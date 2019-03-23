@@ -3,7 +3,6 @@ using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Localization.Routing;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +26,10 @@ using System.Globalization;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc
 {
+    // The input formatter reading request body and mapping it to given data object.
+
+    // The output object mapping returned object to Protobuf-serialized response body.
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -39,12 +42,12 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
 
             ConfigureLocalization(services);
 

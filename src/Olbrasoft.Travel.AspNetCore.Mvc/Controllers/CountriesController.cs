@@ -8,17 +8,12 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
     {
         private readonly IRegions _regions;
 
-        public CountriesController(IRegions regions)
-        {
-            _regions = regions;
-        }
+        public CountriesController(IRegions regions) => _regions = regions;
 
         public async Task<IActionResult> Index()
         {
             var countries = await _regions.GetCountriesAsync(1033);
             return View(countries);
         }
-
-        
     }
 }

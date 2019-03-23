@@ -66,9 +66,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
             //Arrange
             var type = typeof(Task<JsonResult>);
             var controller = Controller();
-            
+
             //Act
-            var result = controller.SuggestionsAsync("Text");
+            var result = controller.Suggestions("Text");
 
             //Assert
             Assert.IsInstanceOf(type, result);

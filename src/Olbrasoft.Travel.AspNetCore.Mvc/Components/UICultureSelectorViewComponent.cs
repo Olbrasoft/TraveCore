@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Components
 {
@@ -9,7 +9,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             return View();
-          
         }
     }
 }

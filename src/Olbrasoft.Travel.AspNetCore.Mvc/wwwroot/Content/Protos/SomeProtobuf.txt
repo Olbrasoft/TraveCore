@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+package Protos;
+
+message Awesome
+{
+	uint32 Id = 1;
+	string Title = 2 ;
+	string Description = 3;
+}
