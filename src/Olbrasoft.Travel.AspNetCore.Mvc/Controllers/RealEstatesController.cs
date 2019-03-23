@@ -7,11 +7,11 @@ using Olbrasoft.Travel.Business;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 {
-    public class AccommodationsController : Controller
+    public class RealEstatesController : Controller
     {
         private readonly IAccommodations _accommodations;
 
-        public AccommodationsController(IAccommodations accommodations)
+        public RealEstatesController(IAccommodations accommodations)
         {
             _accommodations = accommodations;
         }
@@ -33,7 +33,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 
             return View(accommodationsItems.AsPagedList(pageInfo));
         }
-
 
         public async Task<IActionResult> Detail(int? id)
         {
