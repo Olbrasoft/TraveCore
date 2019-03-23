@@ -9,6 +9,7 @@ using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Travel.Data.Queries;
+using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
@@ -21,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler< AttributesByAccommodationIdAndLanguageIdQuery,
+                typeof(TravelQueryHandler< AttributesByRealEstateIdAndLanguageIdQuery,
                     RealEstateToAttribute, IEnumerable<Attribute>>);
 
             //Act
@@ -39,7 +40,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
             var handler = Handler();
 
             var providerMock = new Mock<IQueryDispatcher>();
-            var query = new AttributesByAccommodationIdAndLanguageIdQuery(providerMock.Object);
+            var query = new AttributesByRealEstateIdAndLanguageIdQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query, default(CancellationToken));

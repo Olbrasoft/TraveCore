@@ -8,6 +8,7 @@ using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Travel.Data.Queries;
+using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
@@ -20,8 +21,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<PagedAccommodationItemsByLanguageIdQuery, RealEstate,
-                    IResultWithTotalCount<AccommodationItem>>);
+                typeof(TravelQueryHandler<PagedRealEstateItemsByLanguageIdQuery, RealEstate,
+                    IResultWithTotalCount<RealEstateItem>>);
 
             //Act
             var handler = Handler();
@@ -35,8 +36,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         {
             //Arrange
             var type =
-                typeof(QueryHandler<PagedAccommodationItemsByLanguageIdQuery, IQueryable<RealEstate>,
-                    IResultWithTotalCount<AccommodationItem>>);
+                typeof(QueryHandler<PagedRealEstateItemsByLanguageIdQuery, IQueryable<RealEstate>,
+                    IResultWithTotalCount<RealEstateItem>>);
 
             //Act
             var handler = Handler();
@@ -58,10 +59,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         public void HandleAsync_Return_Task_Of_IResultWithTotalCount_Of_AccommodationItem()
         {
             //Arrange
-            var type = typeof(Task<IResultWithTotalCount<AccommodationItem>>);
+            var type = typeof(Task<IResultWithTotalCount<RealEstateItem>>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
-            var query = new PagedAccommodationItemsByLanguageIdQuery(providerMock.Object);
+            var query = new PagedRealEstateItemsByLanguageIdQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);

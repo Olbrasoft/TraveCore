@@ -10,16 +10,16 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         public void Create_And_Fill_Properties([Values(10)] int i, [Values("path")] string p, [Values("name")] string n, [Values("Extension")] string e)
         {
             //Arrange
-            var photoOfAccommodation = new AccommodationPhoto
+            var photoOfAccommodation = new RealEstatePhoto
             {
-                AccommodationId = i,
+                RealEstateId = i,
                 Path = p,
                 Name = n,
                 Extension = e
             };
 
             //Act
-            var accommodationId = photoOfAccommodation.AccommodationId;
+            var accommodationId = photoOfAccommodation.RealEstateId;
             var path = photoOfAccommodation.Path;
             var name = photoOfAccommodation.Name;
             var extension = photoOfAccommodation.Extension;

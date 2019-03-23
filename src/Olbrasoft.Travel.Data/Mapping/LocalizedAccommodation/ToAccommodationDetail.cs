@@ -8,7 +8,7 @@ namespace Olbrasoft.Travel.Data.Mapping.LocalizedAccommodation
     {
         public ToAccommodationDetail()
         {
-            CreateMap<LocalizedRealEstate, AccommodationDetail>()
+            CreateMap<LocalizedRealEstate, RealEstateDetail>()
                 .ForMember(d => d.Address, opt => opt.MapFrom(src => src.RealEstate.Address))
                 .ForMember(d => d.StarRating, opt => opt.MapFrom(src => src.RealEstate.StarRating))
                 .ForMember(d => d.Latitude, opt => opt.MapFrom(src => src.RealEstate.CenterCoordinates.Y))

@@ -11,15 +11,15 @@ namespace Olbrasoft.Travel.Business
 {
     public interface IAccommodations
     {
-        AccommodationDetail Get(int id, int languageId);
+        RealEstateDetail Get(int id, int languageId);
 
-        Task<AccommodationDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken));
+        Task<RealEstateDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken));
 
-        IResultWithTotalCount<AccommodationItem> Get(
+        IResultWithTotalCount<RealEstateItem> Get(
             IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting
         );
 
-        Task<IResultWithTotalCount<AccommodationItem>> GetAsync(
+        Task<IResultWithTotalCount<RealEstateItem>> GetAsync(
             IPageInfo pagingSettings,
             int languageId,
             Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting,

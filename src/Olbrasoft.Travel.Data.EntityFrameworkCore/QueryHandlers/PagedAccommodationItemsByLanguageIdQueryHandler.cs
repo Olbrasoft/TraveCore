@@ -7,18 +7,19 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Queries.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
-    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedAccommodationItemsByLanguageIdQuery, RealEstate,
-        IResultWithTotalCount<AccommodationItem>>
+    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedRealEstateItemsByLanguageIdQuery, RealEstate,
+        IResultWithTotalCount<RealEstateItem>>
     {
-        public override async Task<IResultWithTotalCount<AccommodationItem>> HandleAsync(PagedAccommodationItemsByLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IResultWithTotalCount<RealEstateItem>> HandleAsync(PagedRealEstateItemsByLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var localizedAccommodations = PreHandle(Source, query);
-            var accommodationItems = ProjectTo<AccommodationItem>(localizedAccommodations);
+            var accommodationItems = ProjectTo<RealEstateItem>(localizedAccommodations);
 
-            var result = new ResultWithTotalCount<AccommodationItem>
+            var result = new ResultWithTotalCount<RealEstateItem>
             {
                 Result = await accommodationItems.Skip(query.Paging.CalculateSkip()).Take(query.Paging.PageSize).ToArrayAsync(cancellationToken),
 
@@ -28,7 +29,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
             return result;
         }
 
-        private static IQueryable<LocalizedRealEstate> PreHandle(IQueryable<RealEstate> source, PagedAccommodationItemsByLanguageIdQuery query)
+        private static IQueryable<LocalizedRealEstate> PreHandle(IQueryable<RealEstate> source, PagedRealEstateItemsByLanguageIdQuery query)
         {
             var localizedAccommodations = source.SelectMany(p => p.LocalizedAccommodations);
 

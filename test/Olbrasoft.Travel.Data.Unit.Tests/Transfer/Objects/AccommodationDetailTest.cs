@@ -10,10 +10,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         public void Instance_Is_Accommodation()
         {
             //Arrange
-            var type = typeof(BaseAccommodationDto);
+            var type = typeof(BaseRealEstateDto);
 
             //Act
-            var accommodationDetail = new AccommodationDetail();
+            var accommodationDetail = new RealEstateDetail();
 
             //Assert
             Assert.IsInstanceOf(type, accommodationDetail);
@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             var type = typeof(IHaveRooms);
 
             //Act
-            var accommodationDetail = new AccommodationDetail();
+            var accommodationDetail = new RealEstateDetail();
 
             //Assert
             Assert.IsInstanceOf(type, accommodationDetail);
@@ -39,7 +39,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             var type = typeof(IHaveAttributes);
 
             //Act
-            var accommodationDetail = new AccommodationDetail();
+            var accommodationDetail = new RealEstateDetail();
 
             //Assert
             Assert.IsInstanceOf(type, accommodationDetail);

@@ -8,7 +8,7 @@ namespace Olbrasoft.Travel.Data.Mapping.Profiles
     {
         public DescriptionToAccommodationDescription()
         {
-            CreateMap<LocalizedDescription, AccommodationDescription>();
+            CreateMap<LocalizedDescription, RealEstateDescription>();
         }
     }
 }

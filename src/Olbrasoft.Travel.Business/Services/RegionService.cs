@@ -3,6 +3,7 @@ using Olbrasoft.Travel.Data.Queries;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Business.Services

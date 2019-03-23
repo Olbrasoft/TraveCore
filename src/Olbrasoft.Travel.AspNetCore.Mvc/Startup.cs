@@ -26,10 +26,6 @@ using System.Globalization;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc
 {
-    // The input formatter reading request body and mapping it to given data object.
-
-    // The output object mapping returned object to Protobuf-serialized response body.
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -76,7 +72,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             #endregion Mapping --------------------------------------------------------------------------------------------
 
             container.Register(
-                Component.For<IAccommodationItemPhotoMerge>().ImplementedBy<AccommodationItemPhotoMerge>()
+                Component.For<IAccommodationItemPhotoMerge>().ImplementedBy<RealEstateItemPhotoMerge>()
                     .LifestyleCustom<MsScopedLifestyleManager>()
             );
 
@@ -104,7 +100,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             var classes = Classes.FromAssemblyNamed("Olbrasoft.Travel.Data");
 
             container.Register(classes
-                .Where(type => type.Namespace != null && type.Namespace.EndsWith("Queries"))
+                .Where(type => type.Namespace != null && type.Namespace.Contains("Queries"))
                 .WithServiceSelf());
         }
 

@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Olbrasoft.Data.Mapping;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Data.Mapping;
 
 namespace Olbrasoft.Data.Querying
 {

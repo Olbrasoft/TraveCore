@@ -6,18 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
-    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByAccommodationIdAndLanguageIdQuery, RealEstateToAttribute, IEnumerable<Attribute>>
+    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByRealEstateIdAndLanguageIdQuery, RealEstateToAttribute, IEnumerable<Attribute>>
     {
-        public override async Task<IEnumerable<Attribute>> HandleAsync(AttributesByAccommodationIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<Attribute>> HandleAsync(AttributesByRealEstateIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             return await ProjectionToAttribute(Source, query).ToArrayAsync(cancellationToken);
         }
 
-        protected IQueryable<Attribute> ProjectionToAttribute(IQueryable<RealEstateToAttribute> accommodationsToAttributes, AttributesByAccommodationIdAndLanguageIdQuery query)
+        protected IQueryable<Attribute> ProjectionToAttribute(IQueryable<RealEstateToAttribute> accommodationsToAttributes, AttributesByRealEstateIdAndLanguageIdQuery query)
         {
             accommodationsToAttributes = accommodationsToAttributes.Include(p => p.Attribute)
                     .Include(p => p.Attribute.LocalizedAttributes)

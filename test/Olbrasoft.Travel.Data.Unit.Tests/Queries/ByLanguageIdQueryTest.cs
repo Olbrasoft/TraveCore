@@ -20,11 +20,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
             Assert.IsInstanceOf(type, query);
         }
 
-        private static SomeByLanguageIdQuery Query()
+        private static AwesomeByLanguageIdQuery Query()
         {
             var providerMock = new Mock<IQueryDispatcher>();
 
-            return new SomeByLanguageIdQuery(providerMock.Object);
+            return new AwesomeByLanguageIdQuery(providerMock.Object);
         }
 
         [Test]

@@ -44,10 +44,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping.Profiles
         //    var mapper = new Projector(provider);
 
         //    //Act
-        //    var result = mapper.ProjectTo<IEnumerable<AccommodationPhoto>>(photos.AsQueryable());
+        //    var result = mapper.ProjectTo<IEnumerable<RealEstatePhoto>>(photos.AsQueryable());
 
         //    //Assert
-        //    Assert.IsInstanceOf<IEnumerable<AccommodationPhoto>>(result);
+        //    Assert.IsInstanceOf<IEnumerable<RealEstatePhoto>>(result);
         //}
     }
 }

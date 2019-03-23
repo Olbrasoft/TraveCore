@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using LinqKit;
 using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Queries.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
