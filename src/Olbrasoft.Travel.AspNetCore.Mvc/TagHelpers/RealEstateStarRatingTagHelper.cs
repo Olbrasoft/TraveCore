@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.TagHelpers
 {
-    public class AccommodationStarRatingTagHelper : TagHelper
+    public class RealEstateStarRatingTagHelper : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             var content = await output.GetChildContentAsync();
 
             var starRating = decimal.Parse(content.GetContent());
-            
+
             output.TagName = string.Empty;
 
             if (starRating == 0)
@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.TagHelpers
             }
 
             var ul = new StringBuilder("<ul class=\"list-inline\">");
-            
+
             for (var i = 0; i < (int)starRating; i++)
             {
                 ul.AppendLine("<li><i title=\"*\" class=\"glyphicon glyphicon-star\"></i></li>");

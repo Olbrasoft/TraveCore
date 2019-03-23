@@ -9,7 +9,7 @@ using Olbrasoft.Travel.AspNetCore.Mvc.TagHelpers;
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests.TagHelpers
 {
     [TestFixture]
-    internal class AccommodationStarRatingTagHelperTest
+    internal class RealEstateStarRatingTagHelperTest
     {
         [Test]
         public void Instance_Is_TagHelper()
@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests.TagHelpers
             var type = typeof(TagHelper);
 
             //Act
-            var helper = new AccommodationStarRatingTagHelper();
+            var helper = new RealEstateStarRatingTagHelper();
 
             //Assert
             Assert.IsInstanceOf(type, helper);
@@ -28,8 +28,8 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests.TagHelpers
         public async Task ProcessAsync_For_Zero_Stars()
         {
             //Arrange
-            var helper = new AccommodationStarRatingTagHelper();
-            
+            var helper = new RealEstateStarRatingTagHelper();
+
             var tagHelperContext = TagHelperContext();
 
             var tagHelperOutput = TagHelperOutput(new decimal(0).ToString());
@@ -39,15 +39,13 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests.TagHelpers
 
             //Assert
             Assert.AreEqual(string.Empty, tagHelperOutput.Content.GetContent());
-
         }
-
 
         [Test]
         public async Task ProcessAsync_For_Two_dot_Five_Zero_Stars()
         {
             //Arrange
-            var helper = new AccommodationStarRatingTagHelper();
+            var helper = new RealEstateStarRatingTagHelper();
 
             var ul = new StringBuilder("<ul class=\"list-inline\">");
             ul.AppendLine("<li><i title=\"*\" class=\"glyphicon glyphicon-star\"></i></li>");
@@ -66,14 +64,12 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests.TagHelpers
 
             //Assert
             Assert.AreEqual(html, tagHelperOutput.Content.GetContent());
-
         }
-        
 
         [Test]
         public async Task ProcessAsync_For_Three_Stars()
         {
-            var helper = new AccommodationStarRatingTagHelper();
+            var helper = new RealEstateStarRatingTagHelper();
 
             var ul = new StringBuilder("<ul class=\"list-inline\">");
             ul.AppendLine("<li><i title=\"*\" class=\"glyphicon glyphicon-star\"></i></li>");
@@ -105,7 +101,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests.TagHelpers
                     return Task.FromResult(tagHelperContent);
                 });
         }
-
 
         private static TagHelperContext TagHelperContext()
         {

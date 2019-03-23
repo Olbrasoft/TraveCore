@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Resources\Controllers\HomeController.cs-CZ.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\Content\bootstrap-grid.css.map" />
     <None Include="wwwroot\Content\bootstrap-grid.min.css.map" />
     <None Include="wwwroot\Content\bootstrap-reboot.css.map" />
@@ -51,10 +47,6 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
