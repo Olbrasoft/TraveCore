@@ -6,7 +6,7 @@ using Olbrasoft.Travel.Data.IO;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class Photo : OwnerCreatorIdAndCreator
+    public class Photo : OwnerCreatorInfoAndCreator
     //https://translate.google.cz/#view=home&op=translate&sl=en&tl=cs&text=Real%20Estate%20Photo
     {
         [Required]

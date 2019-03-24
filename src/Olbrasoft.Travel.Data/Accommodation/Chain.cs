@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class Chain : OwnerCreatorIdAndCreator, IHaveExpediaId<int>, IHaveName
+    public class Chain : OwnerCreatorInfoAndCreator, IHaveExpediaId<int>, IHaveName
     {
         public int ExpediaId { get; set; } = int.MinValue;
 

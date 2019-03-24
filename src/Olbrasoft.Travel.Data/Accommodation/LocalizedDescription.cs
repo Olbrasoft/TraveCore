@@ -3,10 +3,11 @@ using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Data.Localization;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Olbrasoft.Data;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class LocalizedDescription : ILocalized, IHaveDateAndTimeOfCreation
+    public class LocalizedDescription : IHaveLanguageId, IHaveDateAndTimeOfCreation
     {
         public int RealEstateId { get; set; }
 

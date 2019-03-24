@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Olbrasoft.Travel.Data.IO
 {
-    public class PathToPhoto : OwnerCreatorIdAndCreator
+    public class PathToPhoto : OwnerCreatorInfoAndCreator
     {
         [Required]
         [MaxLength(300)]

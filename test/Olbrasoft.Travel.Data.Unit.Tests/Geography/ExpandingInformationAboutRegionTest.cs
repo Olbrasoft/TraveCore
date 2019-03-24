@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
         public void Instance_Is_OwnerCreatorIdAndCreator()
         {
             //Arrange
-            var type = typeof(OwnerCreatorIdAndCreator);
+            var type = typeof(OwnerCreatorInfoAndCreator);
 
             //Act
             var someExpandingInformationAboutRegion = new SomeExpandingInformationAboutRegion();

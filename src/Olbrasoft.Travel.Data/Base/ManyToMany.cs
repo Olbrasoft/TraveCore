@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Olbrasoft.Travel.Data.Base
 {
-    public class ManyToMany : OwnerCreatorIdAndCreator
+    public class ManyToMany : OwnerCreatorInfoAndCreator
     {
         [Key]
         [Column(Order = 2)]

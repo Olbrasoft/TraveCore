@@ -11,7 +11,7 @@ namespace Olbrasoft.Data.Unit.Tests
         public void Instance_Implement_Interface_ILocalized()
         {
             //Arrange
-            var type = typeof(ILocalized);
+            var type = typeof(IHaveLanguageId);
 
             //Act
             var childLocalizeQuery = new ChildLocalizedQuery();

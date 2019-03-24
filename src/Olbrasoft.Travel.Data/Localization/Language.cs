@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Olbrasoft.Travel.Data.Localization
 {
-    public class Language : OwnerCreatorIdAndCreator
+    public class Language : OwnerCreatorInfoAndCreator
     {
         [Required]
         [MaxLength(5)]

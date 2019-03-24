@@ -2,7 +2,7 @@
 
 namespace Olbrasoft.Travel.Data.Base
 {
-    public class LogLevel : OwnerCreatorIdAndCreator, IHaveName, IHaveDescription
+    public class LogLevel : OwnerCreatorInfoAndCreator, IHaveName, IHaveDescription
     {
         public string Name { get; set; }
         public string Description { get; set; }

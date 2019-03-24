@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography
 {
     public class AdditionalRegionsInfoRepository<T> : TravelRepository<T>, IAdditionalRegionsInfoRepository<T>
-        where T : OwnerCreatorIdAndCreator, IAdditionalRegionInfo
+        where T : OwnerCreatorInfoAndCreator, IAdditionalRegionInfo
     {
         private IEnumerable<int> _ids;
 

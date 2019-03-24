@@ -5,7 +5,7 @@ using Olbrasoft.Travel.Data.Base;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class Attribute : OwnerCreatorIdAndCreator, IHaveExpediaId<int>
+    public class Attribute : OwnerCreatorInfoAndCreator, IHaveExpediaId<int>
     {
         [Required]
         [ForeignKey(nameof(Type))]

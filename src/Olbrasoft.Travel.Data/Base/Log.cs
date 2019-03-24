@@ -1,6 +1,6 @@
 ﻿namespace Olbrasoft.Travel.Data.Base
 {
-    public class Log : OwnerCreatorIdAndCreator
+    public class Log : OwnerCreatorInfoAndCreator
     {
         public string Text { get; set; }
 

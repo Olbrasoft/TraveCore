@@ -3,7 +3,7 @@ using Olbrasoft.Travel.Data.Base;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class Caption : OwnerCreatorIdAndCreator
+    public class Caption : OwnerCreatorInfoAndCreator
     {
         public virtual ICollection<LocalizedCaption> LocalizedCaptions { get; set; }
 

@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         IRegionsRepository Regions();
 
-        IAdditionalRegionsInfoRepository<T> AdditionalRegionsInfo<T>() where T : OwnerCreatorIdAndCreator, IAdditionalRegionInfo;
+        IAdditionalRegionsInfoRepository<T> AdditionalRegionsInfo<T>() where T : OwnerCreatorInfoAndCreator, IAdditionalRegionInfo;
 
         IMappingToProvidersRepository<T> MappedProperties<T>() where T : CreationInfo<int>, IHaveExpediaId<int>;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class Room : OwnerCreatorIdAndCreator, IHaveExpediaId<int>
+    public class Room : OwnerCreatorInfoAndCreator, IHaveExpediaId<int>
     {
         public int RealEstateId { get; set; }
 

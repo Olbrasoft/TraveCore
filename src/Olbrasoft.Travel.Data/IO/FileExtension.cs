@@ -5,7 +5,7 @@ using Olbrasoft.Travel.Data.Base;
 
 namespace Olbrasoft.Travel.Data.IO
 {
-    public class FileExtension : OwnerCreatorIdAndCreator
+    public class FileExtension : OwnerCreatorInfoAndCreator
     {
         [Required]
         [MaxLength(50)]

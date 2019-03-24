@@ -1,6 +1,7 @@
 ﻿namespace Olbrasoft.Travel.Data.Base
 {
-    public class HaveCreatorId<TKey, TUserKey> : CreationInfo<TKey>, IHaveCreatorId<TUserKey>
+    public class
+        CreatorInfo<TKey, TUserKey> : CreationInfo<TKey>, IHaveCreatorId<TUserKey>
     {
         public TUserKey CreatorId { get; set; }
 

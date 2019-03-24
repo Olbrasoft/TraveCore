@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class RealEstate : OwnerCreatorIdAndCreator, IHaveExpediaId<int>
+    public class RealEstate : OwnerCreatorInfoAndCreator, IHaveExpediaId<int>
     //https://en.wikipedia.org/wiki/Real_estate
     //https://translate.google.cz/#view=home&op=translate&sl=en&tl=cs&text=Real%20estate
     {

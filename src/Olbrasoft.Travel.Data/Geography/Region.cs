@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Olbrasoft.Travel.Data.Geography
 {
     [Table(nameof(Region) + "s", Schema = nameof(Geography))]
-    public class Region : OwnerCreatorIdAndCreator
+    public class Region : OwnerCreatorInfoAndCreator
     {
         public Region()
         {

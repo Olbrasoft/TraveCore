@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Olbrasoft.Travel.Data.Geography
 {
-    public abstract class ExpandingInformationAboutRegion : OwnerCreatorIdAndCreator, IAdditionalRegionInfo
+    public abstract class ExpandingInformationAboutRegion : OwnerCreatorInfoAndCreator, IAdditionalRegionInfo
     {
         [Required]
         [MaxLength(3)]
