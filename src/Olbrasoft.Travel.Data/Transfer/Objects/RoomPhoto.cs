@@ -14,6 +14,6 @@ namespace Olbrasoft.Travel.Data.Transfer.Objects
             get { return PhotosToRooms.Select(p => p.RoomId); }
         }
 
-        public IEnumerable<PhotoToRoom> PhotosToRooms { get; set; }
+        public IEnumerable<PhotoToRoomDto> PhotosToRooms { get; set; }
     }
 }

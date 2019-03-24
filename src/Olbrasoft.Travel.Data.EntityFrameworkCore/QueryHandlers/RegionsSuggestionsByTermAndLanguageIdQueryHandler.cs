@@ -1,15 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LinqKit;
+using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Geography;
-using Olbrasoft.Travel.Data.Queries;
+using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using LinqKit;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.Queries.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
@@ -43,7 +41,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 
             //var localizedAreas = localizedRegionsInOneLanguage.Where(p => ids.Contains(p.Id));
 
-            regions = regions.Where(p => p.SubtypeId > 1 && p.SubtypeId < 8);
+            //regions = regions.Where(p => p.SubtypeId > 1 && p.SubtypeId < 8);
+
+            //except the world type
+            regions = regions.Where(p => p.SubtypeId > 1);
 
             var localizedRegions = regions.SelectMany(p => p.LocalizedRegions);
 

@@ -4,8 +4,8 @@ using Olbrasoft.Extensions;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Identity;
-using Olbrasoft.Travel.Property;
 using System;
+using Olbrasoft.Travel.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using AttributeType = Olbrasoft.Travel.Data.Accommodation.AttributeType;
@@ -14,8 +14,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 {
     public class TravelDbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
-        public DbQuery<Suggestion> Suggestions { get; set; }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(TravelTypeConfiguration<>).Assembly);
@@ -47,12 +45,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
                 });
             }
 
-            foreach (var attributeType in (Property.AttributeType[])Enum.GetValues(typeof(Property.AttributeType)))
+            foreach (var attributeType in (Travel.Accommodation.AttributeType[])Enum.GetValues(typeof(Travel.Accommodation.AttributeType)))
             {
                 builder.Entity<AttributeType>().HasData(new AttributeType
                 {
                     Id = (int)attributeType,
-                    Name = Enum.GetName(typeof(Property.AttributeType), attributeType),
+                    Name = Enum.GetName(typeof(Travel.Accommodation.AttributeType), attributeType),
                     CreatorId = 1
                 });
             }

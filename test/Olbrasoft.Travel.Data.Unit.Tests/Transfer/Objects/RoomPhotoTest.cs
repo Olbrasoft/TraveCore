@@ -13,7 +13,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             //Arrange
             var photosToRooms = new[]
             {
-                new PhotoToRoom()
+                new PhotoToRoomDto()
             }.AsEnumerable();
 
             var roomPhoto = new RoomPhoto

@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.Travel.AspNetCore.Mvc.Controllers;
 using Olbrasoft.Travel.Business;
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
 {
@@ -17,11 +17,10 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
             var type = typeof(Controller);
 
             //Act
-            var controller= GetController();
+            var controller = GetController();
 
             //Assert
-            Assert.IsInstanceOf(type,controller);
-
+            Assert.IsInstanceOf(type, controller);
         }
 
         private static CountriesController GetController()
@@ -29,7 +28,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
             var regionsMock = new Mock<IRegions>();
             return new CountriesController(regionsMock.Object);
         }
-        
+
         [Test]
         public void Index_Return_Task_Of_IActionResult()
         {
@@ -41,10 +40,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests
             var result = controller.Index();
 
             //Assert
-            Assert.IsInstanceOf(type,result);
-
+            Assert.IsInstanceOf(type, result);
         }
-
-
     }
 }

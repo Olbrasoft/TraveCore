@@ -13,7 +13,7 @@ using Olbrasoft.Travel.Data.Queries.Accommodation;
 namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {
     [TestFixture]
-    internal class AccommodationServiceTest
+    internal class RealEstateServiceTest
     {
         [Test]
         public void Instance_Is_Facade()
@@ -151,7 +151,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             Assert.IsInstanceOf(type, result);
         }
 
-        private static AccommodationService AccommodationsService()
+        private static RealEstateService AccommodationsService()
         {
             var queryDispatcher = new Mock<IQueryDispatcher>();
 
@@ -189,7 +189,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 
             var mockMerger = new RealEstateItemPhotoMerge();
 
-            return new AccommodationService(queryFactoryMock.Object, mockMerger);
+            return new RealEstateService(queryFactoryMock.Object, mockMerger);
         }
     }
 }

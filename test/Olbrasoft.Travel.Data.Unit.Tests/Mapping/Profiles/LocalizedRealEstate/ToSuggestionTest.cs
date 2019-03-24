@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Olbrasoft.Travel.Data.Mapping.LocalizedAccommodation;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping.Profiles.LocalizedAccommodation
+namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping.Profiles.LocalizedRealEstate
 {
     [TestFixture]
     public class ToSuggestionTest
@@ -19,6 +19,5 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping.Profiles.LocalizedAccommodati
             //Assert
             Assert.IsInstanceOf(type, map);
         }
-
     }
 }

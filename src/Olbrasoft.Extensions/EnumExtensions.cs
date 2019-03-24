@@ -9,13 +9,14 @@ namespace Olbrasoft.Extensions
     {
         public static string GetDescription(this Enum value)
         {
-            return
-                value
-                    .GetType()
-                    .GetMember(value.ToString())
-                    .FirstOrDefault()
-                    ?.GetCustomAttribute<DescriptionAttribute>()
-                    ?.Description;
+            var result = value
+                             .GetType()
+                             .GetMember(value.ToString())
+                             .FirstOrDefault()
+                             ?.GetCustomAttribute<DescriptionAttribute>()
+                             ?.Description ?? value.ToString();
+
+            return result;
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
-using PhotoToRoom = Olbrasoft.Travel.Data.Accommodation.PhotoToRoom;
+using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Mapping.Profiles
 {
-    public class PhotoOfAccommodationToTypeOfRoomToPhotoToRoom : Profile
+    public class PhotoToRoomToPhotoToRoomDto : Profile
     {
-        public PhotoOfAccommodationToTypeOfRoomToPhotoToRoom()
+        public PhotoToRoomToPhotoToRoomDto()
         {
-            CreateMap<PhotoToRoom, Transfer.Objects.PhotoToRoom>()
+            CreateMap<PhotoToRoom, PhotoToRoomDto>()
                 .ForMember(d => d.PhotoId, opt => opt.MapFrom(src => src.Photo.Id))
                 .ForMember(d => d.RoomId, opt => opt.MapFrom(src => src.Room.Id))
                 ;

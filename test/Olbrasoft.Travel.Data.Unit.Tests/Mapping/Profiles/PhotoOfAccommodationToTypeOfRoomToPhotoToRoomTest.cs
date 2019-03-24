@@ -5,7 +5,7 @@ using Olbrasoft.Travel.Data.Mapping.Profiles;
 namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping.Profiles
 {
     [TestFixture]
-    internal class PhotoOfAccommodationToTypeOfRoomToPhotoToRoomTest
+    internal class PhotoToRoomToPhotoToRoomDtoTest
     {
         [Test]
         public void Instance_Is_Profile()
@@ -14,7 +14,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping.Profiles
             var type = typeof(Profile);
 
             //Act
-            var profile = new PhotoOfAccommodationToTypeOfRoomToPhotoToRoom();
+            var profile = new PhotoToRoomToPhotoToRoomDto();
 
             //Assert
             Assert.IsInstanceOf(type, profile);

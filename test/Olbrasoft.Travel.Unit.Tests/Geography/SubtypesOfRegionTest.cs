@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Olbrasoft.Extensions;
+using Olbrasoft.Travel.Geography;
+using System;
 using System.Linq;
 using NUnit.Framework;
-using Olbrasoft.Extensions;
-using Olbrasoft.Travel.Geography;
 
 namespace Olbrasoft.Travel.Unit.Tests.Geography
 {
-    [TestFixture]
     internal class SubtypesOfRegionTest
     {
         [Test]

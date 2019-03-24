@@ -1,24 +1,23 @@
 ﻿using Olbrasoft.Data.Querying;
 using Olbrasoft.Pagination;
-using Olbrasoft.Travel.Data.Queries;
+using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Queries.Accommodation;
+using Olbrasoft.Travel.Data.Transfer;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Olbrasoft.Travel.Data.Transfer;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 using Room = Olbrasoft.Travel.Data.Transfer.Objects.Room;
 
 namespace Olbrasoft.Travel.Business.Services
 {
-    public class AccommodationService : Olbrasoft.Business.Service, IAccommodations
+    public class RealEstateService : Olbrasoft.Business.Service, IAccommodations
     {
         protected IAccommodationItemPhotoMerge Merger { get; }
 
-        public AccommodationService(IQueryFactory queryFactory, IAccommodationItemPhotoMerge merger) : base(queryFactory)
+        public RealEstateService(IQueryFactory queryFactory, IAccommodationItemPhotoMerge merger) : base(queryFactory)
         {
             Merger = merger;
         }
@@ -26,7 +25,7 @@ namespace Olbrasoft.Travel.Business.Services
         public RealEstateDetail Get(int id, int languageId)
         {
             var query = AccommodationDetailQuery(id, languageId);
-            
+
             return query.Execute();
         }
 

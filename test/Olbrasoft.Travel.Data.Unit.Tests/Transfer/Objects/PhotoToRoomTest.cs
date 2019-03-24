@@ -10,7 +10,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         public void Create_And_Fill_Properties()
         {
             //Arrange
-            var photoToRoom = new PhotoToRoom
+            var photoToRoom = new PhotoToRoomDto
             {
                 PhotoId = 1,
                 RoomId = 1

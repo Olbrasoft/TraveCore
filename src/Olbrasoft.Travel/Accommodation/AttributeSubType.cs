@@ -1,4 +1,4 @@
-﻿namespace Olbrasoft.Travel.Property
+﻿namespace Olbrasoft.Travel.Accommodation
 {
     public enum AttributeSubType
     {

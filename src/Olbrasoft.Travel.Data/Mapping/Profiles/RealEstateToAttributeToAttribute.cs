@@ -5,9 +5,9 @@ using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
 
 namespace Olbrasoft.Travel.Data.Mapping.Profiles
 {
-    public class AccommodationToAttributeToAttribute : Profile
+    public class RealEstateToAttributeToAttribute : Profile
     {
-        public AccommodationToAttributeToAttribute()
+        public RealEstateToAttributeToAttribute()
         {
             CreateMap<RealEstateToAttribute, Attribute>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(src => src.AttributeId))

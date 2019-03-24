@@ -4,9 +4,9 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Mapping.Profiles
 {
-    public class PhotoOfAccommodationToRoomPhoto : Profile
+    public class PhotoToRoomPhoto : Profile
     {
-        public PhotoOfAccommodationToRoomPhoto()
+        public PhotoToRoomPhoto()
         {
             CreateMap<Photo, RoomPhoto>()
                 .ForMember(d => d.PhotosToRooms, opt => opt.MapFrom(src => src.ToTypesOfRooms))

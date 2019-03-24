@@ -23,6 +23,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using AutoMapper;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc
 {
@@ -65,7 +66,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
 
             #region Mapping --------------------------------------------------------------------------------------------
 
-            container.Register(Component.For<AutoMapper.IConfigurationProvider>().ImplementedBy<Data.Mapping.MapperConfigurationProvider>().LifestyleSingleton());
+            services.AddAutoMapper(typeof(Data.Mapping.MapperConfigurationProvider).Assembly);
+
+            //container.Register(Component.For<AutoMapper.IConfigurationProvider>().ImplementedBy<Data.Mapping.MapperConfigurationProvider>().LifestyleSingleton());
 
             container.Register(Component.For<IProjection>().ImplementedBy<Projector>().LifestyleSingleton());
 
@@ -117,7 +120,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
         private static void ConfigureBusiness(IWindsorContainer container)
         {
             container.Register(
-                Component.For<IAccommodations>().ImplementedBy<AccommodationService>()
+                Component.For<IAccommodations>().ImplementedBy<RealEstateService>()
                     .LifestyleCustom<MsScopedLifestyleManager>()
             );
 
