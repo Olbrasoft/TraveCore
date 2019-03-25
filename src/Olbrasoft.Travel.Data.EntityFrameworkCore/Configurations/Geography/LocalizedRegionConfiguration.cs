@@ -1,18 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 using Olbrasoft.Travel.Data.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {
-    public class LocalizedRegionConfiguration : TravelTypeConfiguration<LocalizedRegion>
+    public class LocalizedRegionConfiguration : LocalizedConfiguration<LocalizedRegion>
     {
-        public override void Configuration(EntityTypeBuilder<LocalizedRegion> builder)
+        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedRegion> builder)
         {
             builder.HasIndex(p => p.Name);
-
-            builder.HasKey(p => new { p.Id, p.LanguageId });
-
-            builder.HasOne(lr => lr.Region).WithMany(r => r.LocalizedRegions).HasForeignKey(p => p.Id).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(lr => lr.Creator).WithMany(user => user.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
 

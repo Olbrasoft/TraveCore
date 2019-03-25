@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class LocalizedCaptionConfiguration : LocalizedAccommodationTypeConfiguration<LocalizedCaption>
+    public class LocalizedCaptionConfiguration : LocalizedConfiguration<LocalizedCaption>
     {
-        public override void ConfigureLocalizedAccommodation(EntityTypeBuilder<LocalizedCaption> builder)
+        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedCaption> builder)
         {
             builder.HasOne(localizedCaption => localizedCaption.Creator).WithMany(user => user.LocalizedCaptions)
                 .OnDelete(DeleteBehavior.Restrict);

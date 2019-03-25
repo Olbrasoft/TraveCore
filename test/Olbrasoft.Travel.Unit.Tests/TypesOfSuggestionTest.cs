@@ -47,13 +47,13 @@ namespace Olbrasoft.Travel.Unit.Tests
         }
 
         [Test]
-        public void Enum_GetName_Type_Of_TypesOfSuggestion_One_Return_RealEstates()
+        public void Enum_GetName_Type_Of_TypesOfSuggestion_Two_Return_RealEstates()
         {
             //Arrange
             const string name = "RealEstates";
 
             //Act
-            var result = Enum.GetName(typeof(TypesOfSuggestion), 1);
+            var result = Enum.GetName(typeof(TypesOfSuggestion), 2);
 
             //Assert
             Assert.IsTrue(name == result);
@@ -73,13 +73,13 @@ namespace Olbrasoft.Travel.Unit.Tests
         }
 
         [Test]
-        public void Enum_GetName_Type_Of_TypesOfSuggestion_Two_Return_Landmarks()
+        public void Enum_GetName_Type_Of_TypesOfSuggestion_Three_Return_Landmarks()
         {
             //Arrange
             const string name = "Landmarks";
 
             //Act
-            var result = Enum.GetName(typeof(TypesOfSuggestion), 2);
+            var result = Enum.GetName(typeof(TypesOfSuggestion), 3);
 
             //Assert
             Assert.IsTrue(name == result);
@@ -99,13 +99,13 @@ namespace Olbrasoft.Travel.Unit.Tests
         }
 
         [Test]
-        public void Enum_GetName_Type_Of_TypesOfSuggestion_Three_Return_AirportsStations()
+        public void Enum_GetName_Type_Of_TypesOfSuggestion_Four_Return_AirportsStations()
         {
             //Arrange
             const string name = "AirportsStations";
 
             //Act
-            var result = Enum.GetName(typeof(TypesOfSuggestion), 3);
+            var result = Enum.GetName(typeof(TypesOfSuggestion), 4);
 
             //Assert
             Assert.IsTrue(name == result);

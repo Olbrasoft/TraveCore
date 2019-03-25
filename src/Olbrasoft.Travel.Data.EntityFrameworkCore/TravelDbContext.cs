@@ -1,19 +1,56 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Olbrasoft.Extensions;
+using Olbrasoft.Travel.Accommodation;
 using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Identity;
+using Olbrasoft.Travel.Geography;
 using System;
-using Olbrasoft.Travel.Accommodation;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
-using Olbrasoft.Travel.Data.Transfer.Objects;
-using AttributeType = Olbrasoft.Travel.Data.Accommodation.AttributeType;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 {
     public class TravelDbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
+        private static User User => new User { Id = 1, UserName = nameof(TravelDbContext) };
+
+        private static IEnumerable<SuggestionType> SuggestionTypes =>
+            from typesOfSuggestion in (TypesOfSuggestion[])Enum.GetValues(typeof(TypesOfSuggestion))
+            select new SuggestionType
+            { Id = (int)typesOfSuggestion, Ascending = (int)typesOfSuggestion, CreatorId = 1 };
+
+        private static IEnumerable<Subtype> Subtypes =>
+            from regionType in (SubtypesOfRegion[])Enum.GetValues(typeof(SubtypesOfRegion))
+            select new Subtype
+            {
+                Id = (int)regionType,
+                Name = Enum.GetName(typeof(SubtypesOfRegion), regionType),
+                Description = regionType.GetDescription(),
+                CreatorId = 1
+            };
+
+        private static IEnumerable<AttributeType> AttributeTypes =>
+            from attributeType in
+                (TypesOfAttribute[])Enum.GetValues(typeof(TypesOfAttribute))
+            select new AttributeType
+            {
+                Id = (int)attributeType,
+                Name = Enum.GetName(typeof(TypesOfAttribute), attributeType),
+                CreatorId = 1
+            };
+
+        private static IEnumerable<AttributeSubtype> AttributeSubtypes =>
+            from attributeSubType in (SubtypesOfAttribute[])Enum.GetValues(typeof(SubtypesOfAttribute))
+            select new AttributeSubtype
+            {
+                Id = (int)attributeSubType,
+                Name = Enum.GetName(typeof(SubtypesOfAttribute), attributeSubType),
+                CreatorId = 1
+            };
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(TravelTypeConfiguration<>).Assembly);
@@ -28,48 +65,15 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
                 }
             }
 
-            builder.Entity<User>().HasData(new User
-            {
-                Id = 1,
-                UserName = nameof(TravelDbContext)
-            });
+            builder.Entity<User>().HasData(User);
 
-            foreach (var regionType in (Travel.Geography.SubtypesOfRegion[])Enum.GetValues(typeof(Travel.Geography.SubtypesOfRegion)))
-            {
-                builder.Entity<Subtype>().HasData(new Subtype
-                {
-                    Id = (int)regionType,
-                    Name = Enum.GetName(typeof(Travel.Geography.SubtypesOfRegion), regionType),
-                    Description = regionType.GetDescription(),
-                    CreatorId = 1
-                });
-            }
+            builder.Entity<SuggestionType>().HasData(SuggestionTypes);
 
-            foreach (var attributeType in (Travel.Accommodation.AttributeType[])Enum.GetValues(typeof(Travel.Accommodation.AttributeType)))
-            {
-                builder.Entity<AttributeType>().HasData(new AttributeType
-                {
-                    Id = (int)attributeType,
-                    Name = Enum.GetName(typeof(Travel.Accommodation.AttributeType), attributeType),
-                    CreatorId = 1
-                });
-            }
+            builder.Entity<Subtype>().HasData(Subtypes);
 
-            foreach (var attributeSubType in (AttributeSubType[])Enum.GetValues(typeof(AttributeSubType)))
-            {
-                builder.Entity<AttributeSubtype>().HasData(new AttributeSubtype
-                {
-                    Id = (int)attributeSubType,
-                    Name = Enum.GetName(typeof(AttributeSubType), attributeSubType),
-                    CreatorId = 1
-                });
-            }
+            builder.Entity<AttributeType>().HasData(AttributeTypes);
 
-            //builder.Entity<User>().HasData(new User
-            //{
-            //    Id = 3,
-            //    UserName = nameof(PropertyDatabaseContext)
-            //});
+            builder.Entity<AttributeSubtype>().HasData(AttributeSubtypes);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

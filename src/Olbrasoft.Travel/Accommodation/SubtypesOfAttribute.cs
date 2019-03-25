@@ -1,6 +1,6 @@
 ﻿namespace Olbrasoft.Travel.Accommodation
 {
-    public enum AttributeSubType
+    public enum SubtypesOfAttribute
     {
         AmenityOfAccommodation = 1,
         AmenityOfRoom = 2,

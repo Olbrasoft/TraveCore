@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using Attribute = Olbrasoft.Travel.Data.Accommodation.Attribute;
 
-
 namespace Olbrasoft.Travel.Data.Identity
 {
     public class User : Microsoft.AspNetCore.Identity.IdentityUser<int>, IHaveDateAndTimeOfCreation
@@ -167,6 +166,8 @@ namespace Olbrasoft.Travel.Data.Identity
         /// </summary>
         public virtual ICollection<RealEstateToAttribute> AccommodationsToAttributes { get; set; }
 
-       
+        public ICollection<SuggestionType> SuggestionTypes { get; set; }
+
+        public ICollection<LocalizedSuggestionType> LocalizedSuggestionTypes { get; set; }
     }
 }

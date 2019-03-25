@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel
     public enum TypesOfSuggestion
     {
         [Description("Cities/Areas")]
-        AreasCities,
+        AreasCities = 1,
 
         [Description("Properties")]
         RealEstates,

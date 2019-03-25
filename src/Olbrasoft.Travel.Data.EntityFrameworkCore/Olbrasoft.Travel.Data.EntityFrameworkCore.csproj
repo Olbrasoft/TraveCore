@@ -5,6 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190325011107_suggestions.cs" />
+    <Compile Remove="Migrations\20190325011107_suggestions.Designer.cs" />
+    <Compile Remove="Migrations\20190325011333_suggestions.cs" />
+    <Compile Remove="Migrations\20190325011333_suggestions.Designer.cs" />
+    <Compile Remove="Migrations\20190325012023_suggestions.cs" />
+    <Compile Remove="Migrations\20190325012023_suggestions.Designer.cs" />
+    <Compile Remove="Migrations\20190325014611_controll.cs" />
+    <Compile Remove="Migrations\20190325014611_controll.Designer.cs" />
+    <Compile Remove="Migrations\20190325014755_controll.cs" />
+    <Compile Remove="Migrations\20190325014755_controll.Designer.cs" />
+    <Compile Remove="Migrations\20190325020434_controll.cs" />
+    <Compile Remove="Migrations\20190325020434_controll.Designer.cs" />
+    <Compile Remove="Migrations\20190325020908_controll.cs" />
+    <Compile Remove="Migrations\20190325020908_controll.Designer.cs" />
+    <Compile Remove="Migrations\20190325023836_controll.cs" />
+    <Compile Remove="Migrations\20190325023836_controll.Designer.cs" />
+    <Compile Remove="Migrations\20190325030850_Controll.cs" />
+    <Compile Remove="Migrations\20190325030850_Controll.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="..\..\..\..\..\..\.nuget\packages\sharprepository.efcorerepository\2.0.2\contentFiles\any\netstandard2.0\repository.efCore.json" Link="repository.efCore.json">
       <Private>False</Private>
       <NuGetPackageVersion>2.0.2</NuGetPackageVersion>

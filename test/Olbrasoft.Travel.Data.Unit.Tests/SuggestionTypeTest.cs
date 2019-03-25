@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests
         public void Instance_Is_HaveName()
         {
             //Arrange
-            var type = typeof(HaveName);
+            var type = typeof(OwnerCreatorInfoAndCreator);
 
             //Act
             var suggestionType = Create();

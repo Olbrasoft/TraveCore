@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class LocalizedRealEstateTypeConfiguration : LocalizedAccommodationTypeConfiguration<LocalizedRealEstateType>
+    public class LocalizedRealEstateTypeConfiguration : LocalizedConfiguration<LocalizedRealEstateType>
     {
-        public override void ConfigureLocalizedAccommodation(EntityTypeBuilder<LocalizedRealEstateType> builder)
+        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedRealEstateType> builder)
         {
             builder.Property(p => p.Name).HasMaxLength(256).IsRequired();
 

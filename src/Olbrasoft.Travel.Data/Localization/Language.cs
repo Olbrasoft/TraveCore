@@ -32,5 +32,7 @@ namespace Olbrasoft.Travel.Data.Localization
 
         //https://translate.google.cz/#view=home&op=translate&sl=en&tl=cs&text=Real%20estates%20To%20Attributes
         public virtual ICollection<RealEstateToAttribute> RealEstatesToAttributes { get; set; }
+
+        public ICollection<LocalizedSuggestionType> LocalizedSuggestionTypes { get; set; }
     }
 }
