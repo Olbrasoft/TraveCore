@@ -9,8 +9,11 @@ using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Providers.Expedia.Import.Importers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
+using Olbrasoft.Extensions;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization;
 using Olbrasoft.Travel.Data.Identity;
@@ -70,6 +73,22 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
                     .ImplementedBy<SharedProperties>()
                     .DependsOn(Dependency.OnValue("creatorId", user.Id), Dependency.OnValue("defaultLanguageId", defaultLanguage.Id))
             );
+
+            //Import localizedSuggestionTypes
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+            //var localizedSuggestionTypes =
+            //    from typeOfSuggestion in (TypesOfSuggestion[])Enum.GetValues(typeof(TypesOfSuggestion))
+            //    select new LocalizedSuggestionType
+            //    {
+            //        Id = (int)typeOfSuggestion,
+            //        LanguageId = defaultLanguage.Id,
+            //        Label = typeOfSuggestion.GetDescription(),
+            //        CreatorId = user.Id
+            //    };
+            //
+            //var repository = container.Resolve<IRepositoryFactory>().Localized<LocalizedSuggestionType>();
+            //repository.BulkSave(localizedSuggestionTypes);
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
 
             //using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
             //{
