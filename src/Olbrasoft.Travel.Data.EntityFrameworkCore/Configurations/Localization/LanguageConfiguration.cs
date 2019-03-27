@@ -10,6 +10,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization
             builder.HasIndex(p => p.ExpediaCode).IsUnique();
 
             builder.Property(e => e.Id).ValueGeneratedNever();
+
+            builder.HasMany(p => p.LocalizedSuggestionCategories).WithOne(p => p.Language)
+                .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Restrict);
         }
     }
 }

@@ -10,6 +10,8 @@ using Olbrasoft.Travel.Geography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Olbrasoft.Travel.Data.Suggestion;
+using Olbrasoft.Travel.Suggestion;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 {
@@ -17,17 +19,17 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
     {
         private static User User => new User { Id = 1, UserName = nameof(TravelDbContext) };
 
-        private static IEnumerable<SuggestionType> SuggestionTypes =>
-            from typesOfSuggestion in (TypesOfSuggestion[])Enum.GetValues(typeof(TypesOfSuggestion))
-            select new SuggestionType
+        private static IEnumerable<SuggestionCategory> SuggestionTypes =>
+            from typesOfSuggestion in (SuggestionCategories[])Enum.GetValues(typeof(SuggestionCategories))
+            select new SuggestionCategory
             { Id = (int)typesOfSuggestion, Ascending = (int)typesOfSuggestion, CreatorId = 1 };
 
-        private static IEnumerable<Subtype> Subtypes =>
-            from regionType in (SubtypesOfRegion[])Enum.GetValues(typeof(SubtypesOfRegion))
-            select new Subtype
+        private static IEnumerable<RegionSubtype> Subtypes =>
+            from regionType in (RegionSubtypes[])Enum.GetValues(typeof(RegionSubtypes))
+            select new RegionSubtype
             {
                 Id = (int)regionType,
-                Name = Enum.GetName(typeof(SubtypesOfRegion), regionType),
+                Name = Enum.GetName(typeof(RegionSubtypes), regionType),
                 Description = regionType.GetDescription(),
                 CreatorId = 1
             };
@@ -51,6 +53,26 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
                 CreatorId = 1
             };
 
+        private static IEnumerable<RegionSubtype> AddSuggestionTypeToSubtypes(RegionSubtype[] regionSubtypes)
+        {
+            foreach (var areaCity in regionSubtypes.Where(p => p.Id > 1 && p.Id < 9))
+            {
+                areaCity.SuggestionCategoryId = (int)SuggestionCategories.AreasCities;
+            }
+
+            foreach (var landMark in regionSubtypes.Where(p => p.Id == 9 || p.Id == 10))
+            {
+                landMark.SuggestionCategoryId = (int)SuggestionCategories.Landmarks;
+            }
+
+            foreach (var airportStation in regionSubtypes.Where(p => p.Id > 10))
+            {
+                airportStation.SuggestionCategoryId = (int)SuggestionCategories.AirportsStations;
+            }
+
+            return regionSubtypes;
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(TravelTypeConfiguration<>).Assembly);
@@ -67,9 +89,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 
             builder.Entity<User>().HasData(User);
 
-            builder.Entity<SuggestionType>().HasData(SuggestionTypes);
+            builder.Entity<SuggestionCategory>().HasData(SuggestionTypes);
 
-            builder.Entity<Subtype>().HasData(Subtypes);
+            builder.Entity<RegionSubtype>().HasData(AddSuggestionTypeToSubtypes(Subtypes.ToArray()));
 
             builder.Entity<AttributeType>().HasData(AttributeTypes);
 

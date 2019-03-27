@@ -20,6 +20,8 @@ using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.Repositories.Localization;
+using Olbrasoft.Travel.Data.Suggestion;
+using Olbrasoft.Travel.Suggestion;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import
 {
@@ -76,129 +78,23 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
             //Import localizedSuggestionTypes
             /////////////////////////////////////////////////////////////////////////////////////////////////
-            //var localizedSuggestionTypes =
-            //    from typeOfSuggestion in (TypesOfSuggestion[])Enum.GetValues(typeof(TypesOfSuggestion))
-            //    select new LocalizedSuggestionType
-            //    {
-            //        Id = (int)typeOfSuggestion,
-            //        LanguageId = defaultLanguage.Id,
-            //        Label = typeOfSuggestion.GetDescription(),
-            //        CreatorId = user.Id
-            //    };
-            //
-            //var repository = container.Resolve<IRepositoryFactory>().Localized<LocalizedSuggestionType>();
-            //repository.BulkSave(localizedSuggestionTypes);
+            var localizedSuggestionTypes =
+                from typeOfSuggestion in (SuggestionCategories[])Enum.GetValues(typeof(SuggestionCategories))
+                select new LocalizedSuggestionCategory
+                {
+                    Id = (int)typeOfSuggestion,
+                    LanguageId = defaultLanguage.Id,
+                    Name = typeOfSuggestion.GetDescription(),
+                    CreatorId = user.Id
+                };
+
+            var repository = container.Resolve<IRepositoryFactory>().Localized<LocalizedSuggestionCategory>();
+            repository.BulkSave(localizedSuggestionTypes);
             ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
-            //{
-            //    regionsImporter.Import(@"D:\Ean\ParentRegionList.txt");
-            //}
+            ImportGeography(container);
 
-            //using (var countriesImporter = container.Resolve<IImporter>(nameof(CountriesImporter)))
-            //{
-            //    countriesImporter.Import(@"D:\Ean\CountryList.txt");
-            //}
-
-            ////todo Set null CenterCoordinates and Coordinates in Countries ProbablyMissingCountries
-
-            //using (var neighborhoodsImporter = container.Resolve<IImporter>(nameof(NeighborhoodsImporter)))
-            //{
-            //    neighborhoodsImporter.Import(@"D:\Ean\NeighborhoodCoordinatesList.txt");
-            //}
-
-            //using (var citiesImporter = container.Resolve<IImporter>(nameof(RegionsTypesOfCitiesImporter)))
-            //{
-            //    citiesImporter.Import(@"D:\Ean\CityCoordinatesList.txt");
-            //}
-
-            //using (var pointsOfInterestImporter = container.Resolve<IImporter>(nameof(PointsOfInterestImporter)))
-            //{
-            //    pointsOfInterestImporter.Import(@"D:\Ean\PointsOfInterestCoordinatesList.txt");
-            //}
-
-            //using (var airportsImporter = container.Resolve<IImporter>(nameof(AirportsImporter)))
-            //{
-            //    airportsImporter.Import(@"D:\Ean\AirportCoordinatesList.txt");
-            //}
-
-            //using (var trainMetroStationsImporter = container.Resolve<IImporter>(nameof(TrainMetroStationsImporter)))
-            //{
-            //    trainMetroStationsImporter.Import(@"D:\Ean\TrainMetroStationCoordinatesList.txt");
-            //}
-
-            //using (var regionsCenterImporter = container.Resolve<IImporter>(nameof(RegionsCenterImporter)))
-            //{
-            //    regionsCenterImporter.Import(@"D:\Ean\RegionCenterCoordinatesList.txt");
-            //}
-
-            //using (var typesOfAccommodationsImporter = container.Resolve<IImporter>(nameof(RealEstateTypesImporter)))
-            //{
-            //    typesOfAccommodationsImporter.Import(@"D:\Ean\PropertyTypeList.txt");
-            //}
-
-            //using (var accommodationsImporter = container.Resolve<IImporter>(nameof(ChainsImporter)))
-            //{
-            //    accommodationsImporter.Import(@"D:\Ean\ChainList.txt");
-            //}
-
-            //using (var accommodationsImporter = container.Resolve<IImporter>(nameof(RealEstatesImporter)))
-            //{
-            //    accommodationsImporter.Import(@"D:\Ean\ActivePropertyList.txt");
-            //}
-
-            //using (var descriptionsImporter = container.Resolve<IImporter>(nameof(DescriptionsImporter)))
-            //{
-            //    descriptionsImporter.Import(@"D:\Ean\PropertyDescriptionList.txt");
-            //}
-
-            //using (var pathsExtensionsCaptionsImporter =
-            //    container.Resolve<IImporter>(nameof(PathsExtensionsCaptionsImporter)))
-            //{
-            //    pathsExtensionsCaptionsImporter.Import(@"D:\Ean\HotelImageList.txt");
-            //}
-
-            //using (var photosOfAccommodationsImporter =
-            //    container.Resolve<IImporter>(nameof(PhotosOfAccommodationsImporter)))
-            //{
-            //    photosOfAccommodationsImporter.Import(@"D:\Ean\HotelImageList.txt");
-            //}
-
-            //using (var typesOfRoomsImporter = container.Resolve<IImporter>(nameof(TypesOfRoomsImporter)))
-            //{
-            //    typesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
-            //}
-
-            //using (var localizedTypesOfRoomsImporter =
-            //    container.Resolve<IImporter>(nameof(LocalizedTypesOfRoomsImporter)))
-            //{
-            //    localizedTypesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
-            //}
-
-            //using (var roomsTypesImagesImporter = container.Resolve<IImporter>(nameof(RoomsTypesImagesImporter)))
-            //{
-            //    roomsTypesImagesImporter.Import(@"D:\Ean\RoomTypeList.txt");
-            //}
-
-            //using (var photosOfAccommodationsToTypesOfRoomsImporter = container.Resolve<IImporter>(nameof(PhotosOfAccommodationsToTypesOfRoomsImporter)))
-            //{
-            //    photosOfAccommodationsToTypesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
-            //}
-
-            //using (var attributesImporter = container.Resolve<IImporter>(nameof(AttributesImporter)))
-            //{
-            //    attributesImporter.Import(@"D:\Ean\AttributeList.txt");
-            //}
-
-            //using (var attributesImporter = container.Resolve<IImporter>(nameof(LocalizedAttributesDefaultLanguageImporter)))
-            //{
-            //    attributesImporter.Import(@"D:\Ean\AttributeList.txt");
-            //}
-
-            //using (var accommodationsToAttributesDefaultLanguageImporter = container.Resolve<IImporter>(nameof(AccommodationsToAttributesDefaultLanguageImporter)))
-            //{
-            //    accommodationsToAttributesDefaultLanguageImporter.Import(@"D:\Ean\PropertyAttributeLink.txt");
-            //}
+            ImportAccommodation(container);
 
             //var language = languagesRepository.Get(1031);
 
@@ -240,6 +136,124 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 #if DEBUG
             Console.ReadLine();
 #endif
+        }
+
+        private static void ImportAccommodation(IWindsorContainer container)
+        {
+            using (var typesOfAccommodationsImporter = container.Resolve<IImporter>(nameof(RealEstateTypesImporter)))
+            {
+                typesOfAccommodationsImporter.Import(@"D:\Ean\PropertyTypeList.txt");
+            }
+
+            using (var accommodationsImporter = container.Resolve<IImporter>(nameof(ChainsImporter)))
+            {
+                accommodationsImporter.Import(@"D:\Ean\ChainList.txt");
+            }
+
+            using (var accommodationsImporter = container.Resolve<IImporter>(nameof(RealEstatesImporter)))
+            {
+                accommodationsImporter.Import(@"D:\Ean\ActivePropertyList.txt");
+            }
+
+            using (var descriptionsImporter = container.Resolve<IImporter>(nameof(DescriptionsImporter)))
+            {
+                descriptionsImporter.Import(@"D:\Ean\PropertyDescriptionList.txt");
+            }
+
+            using (var pathsExtensionsCaptionsImporter =
+                container.Resolve<IImporter>(nameof(PathsExtensionsCaptionsImporter)))
+            {
+                pathsExtensionsCaptionsImporter.Import(@"D:\Ean\HotelImageList.txt");
+            }
+
+            using (var photosOfAccommodationsImporter =
+                container.Resolve<IImporter>(nameof(PhotosOfAccommodationsImporter)))
+            {
+                photosOfAccommodationsImporter.Import(@"D:\Ean\HotelImageList.txt");
+            }
+
+            using (var typesOfRoomsImporter = container.Resolve<IImporter>(nameof(TypesOfRoomsImporter)))
+            {
+                typesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
+            }
+
+            using (var localizedTypesOfRoomsImporter =
+                container.Resolve<IImporter>(nameof(LocalizedTypesOfRoomsImporter)))
+            {
+                localizedTypesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
+            }
+
+            using (var roomsTypesImagesImporter = container.Resolve<IImporter>(nameof(RoomsTypesImagesImporter)))
+            {
+                roomsTypesImagesImporter.Import(@"D:\Ean\RoomTypeList.txt");
+            }
+
+            using (var photosOfAccommodationsToTypesOfRoomsImporter =
+                container.Resolve<IImporter>(nameof(PhotosOfAccommodationsToTypesOfRoomsImporter)))
+            {
+                photosOfAccommodationsToTypesOfRoomsImporter.Import(@"D:\Ean\RoomTypeList.txt");
+            }
+
+            using (var attributesImporter = container.Resolve<IImporter>(nameof(AttributesImporter)))
+            {
+                attributesImporter.Import(@"D:\Ean\AttributeList.txt");
+            }
+
+            using (var attributesImporter = container.Resolve<IImporter>(nameof(LocalizedAttributesDefaultLanguageImporter)))
+            {
+                attributesImporter.Import(@"D:\Ean\AttributeList.txt");
+            }
+
+            using (var accommodationsToAttributesDefaultLanguageImporter =
+                container.Resolve<IImporter>(nameof(AccommodationsToAttributesDefaultLanguageImporter)))
+            {
+                accommodationsToAttributesDefaultLanguageImporter.Import(@"D:\Ean\PropertyAttributeLink.txt");
+            }
+        }
+
+        private static void ImportGeography(IWindsorContainer container)
+        {
+            using (var regionsImporter = container.Resolve<IImporter>(nameof(RegionsImporter)))
+            {
+                regionsImporter.Import(@"D:\Ean\ParentRegionList.txt");
+            }
+
+            using (var countriesImporter = container.Resolve<IImporter>(nameof(CountriesImporter)))
+            {
+                countriesImporter.Import(@"D:\Ean\CountryList.txt");
+            }
+
+            //todo Set null CenterCoordinates and Coordinates in Countries ProbablyMissingCountries
+
+            using (var neighborhoodsImporter = container.Resolve<IImporter>(nameof(NeighborhoodsImporter)))
+            {
+                neighborhoodsImporter.Import(@"D:\Ean\NeighborhoodCoordinatesList.txt");
+            }
+
+            using (var citiesImporter = container.Resolve<IImporter>(nameof(RegionsTypesOfCitiesImporter)))
+            {
+                citiesImporter.Import(@"D:\Ean\CityCoordinatesList.txt");
+            }
+
+            using (var pointsOfInterestImporter = container.Resolve<IImporter>(nameof(PointsOfInterestImporter)))
+            {
+                pointsOfInterestImporter.Import(@"D:\Ean\PointsOfInterestCoordinatesList.txt");
+            }
+
+            using (var airportsImporter = container.Resolve<IImporter>(nameof(AirportsImporter)))
+            {
+                airportsImporter.Import(@"D:\Ean\AirportCoordinatesList.txt");
+            }
+
+            using (var trainMetroStationsImporter = container.Resolve<IImporter>(nameof(TrainMetroStationsImporter)))
+            {
+                trainMetroStationsImporter.Import(@"D:\Ean\TrainMetroStationCoordinatesList.txt");
+            }
+
+            using (var regionsCenterImporter = container.Resolve<IImporter>(nameof(RegionsCenterImporter)))
+            {
+                regionsCenterImporter.Import(@"D:\Ean\RegionCenterCoordinatesList.txt");
+            }
         }
 
         private static async void DownloadFile(string url)

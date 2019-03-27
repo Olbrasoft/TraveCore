@@ -3,7 +3,7 @@ using Olbrasoft.Travel.Data.Geography;
 
 namespace Olbrasoft.Travel.Data.Repositories.Geography
 {
-    public interface IRegionSubtypesRepository : INamesRepository<Subtype>
+    public interface IRegionSubtypesRepository : INamesRepository<RegionSubtype>
     {
         IReadOnlyDictionary<string, int> DescriptionsToIds { get; }
     }

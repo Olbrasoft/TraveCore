@@ -13,11 +13,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repositories.Acco
         public void Instance_Is_PropertyRepository_Of_TypeOfAccommodation()
         {
             //Arrange
-            var type = typeof(TravelRepository<RealEstateType>);
+            var type = typeof(TravelRepository<RealEstateCategory>);
             var contextMock = new Mock<TravelDbContext>();
 
             //Act
-            var repository = new MappingToProvidersRepository<RealEstateType>(contextMock.Object);
+            var repository = new MappingToProvidersRepository<RealEstateCategory>(contextMock.Object);
 
             //Assert
             Assert.IsInstanceOf(type, repository);

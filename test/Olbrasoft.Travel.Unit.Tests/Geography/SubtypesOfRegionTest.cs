@@ -15,7 +15,7 @@ namespace Olbrasoft.Travel.Unit.Tests.Geography
             const int minNumber = 11;
 
             //Act
-            var number = Enum.GetNames(typeof(SubtypesOfRegion)).Length;
+            var number = Enum.GetNames(typeof(RegionSubtypes)).Length;
 
             //Assert
             Assert.IsTrue(number > minNumber);
@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Unit.Tests.Geography
             const string world = "World";
 
             //Act
-            var result = Enum.GetNames(typeof(SubtypesOfRegion)).First();
+            var result = Enum.GetNames(typeof(RegionSubtypes)).First();
 
             //Assert
             Assert.IsTrue(world == result);
@@ -41,7 +41,7 @@ namespace Olbrasoft.Travel.Unit.Tests.Geography
             const string name = "MultiCity";
 
             //Act
-            var result = Enum.GetName(typeof(SubtypesOfRegion), 6);
+            var result = Enum.GetName(typeof(RegionSubtypes), 6);
 
             //Assert
             Assert.IsTrue(name == result);
@@ -54,7 +54,7 @@ namespace Olbrasoft.Travel.Unit.Tests.Geography
             const string description = "Multi-Region (within a country)";
 
             //Act
-            var result = SubtypesOfRegion.MultiRegion.GetDescription();
+            var result = RegionSubtypes.MultiRegion.GetDescription();
 
             //Assert
             Assert.IsTrue(description == result);
@@ -64,11 +64,11 @@ namespace Olbrasoft.Travel.Unit.Tests.Geography
         public void GetValue()
         {
             //Arrange
-            const SubtypesOfRegion pointOfInterest = SubtypesOfRegion.PointOfInterest;
+            const RegionSubtypes pointOfInterest = RegionSubtypes.PointOfInterest;
             const string description = "Point of Interest";
 
             //Act
-            var result = Enum.Parse<SubtypesOfRegion>("PointOfInterest");
+            var result = Enum.Parse<RegionSubtypes>("PointOfInterest");
 
             //Assert
 

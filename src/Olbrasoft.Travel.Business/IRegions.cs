@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Business
         Task<IEnumerable<CountryItem>> GetCountriesAsync(int continentId, int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<IEnumerable<Suggestion>> SuggestionsAsync(string[] term, int languageId,
+        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] term, int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 };

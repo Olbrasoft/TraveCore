@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
         public void Type()
         {
             //Arrange
-            var type = new Subtype();
+            var type = new RegionSubtype();
             var region = new Region { Subtype = type };
 
             //Act

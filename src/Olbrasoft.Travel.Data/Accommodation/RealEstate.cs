@@ -38,8 +38,8 @@ namespace Olbrasoft.Travel.Data.Accommodation
         [Required]
         public IPoint CenterCoordinates { get; set; }
 
-        [ForeignKey(nameof(RealEstateType))]
-        public int TypeId { get; set; }
+        [ForeignKey(nameof(Category))]
+        public int CategoryId { get; set; }
 
         public int CountryId { get; set; }
 
@@ -52,7 +52,7 @@ namespace Olbrasoft.Travel.Data.Accommodation
 
         public Country Country { get; set; }
 
-        public RealEstateType RealEstateType { get; set; }
+        public RealEstateCategory Category { get; set; }
 
         public Chain Chain { get; set; }
 

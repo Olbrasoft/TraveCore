@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             LoadData(path);
 
             var expediaIdsToIds = ImportRegions(ExpediaDataTransferObjects, RepositoryFactory.Regions(),
-                RepositoryFactory.Names<Subtype>().GetId("TrainStation"), CreatorId);
+                RepositoryFactory.Names<RegionSubtype>().GetId("TrainStation"), CreatorId);
 
             ImportLocalizedRegions(ExpediaDataTransferObjects, RepositoryFactory.Localized<LocalizedRegion>(), expediaIdsToIds,
                 DefaultLanguageId, CreatorId);

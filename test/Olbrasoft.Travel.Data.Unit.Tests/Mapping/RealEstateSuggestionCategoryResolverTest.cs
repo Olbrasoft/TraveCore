@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping
         public void Instance_Implement_Interface_Of_PhotoToRoom_Comma_PhotoToRoomDto_Comma_String_Comma_String()
         {
             //Arrange
-            var type = typeof(IMemberValueResolver<LocalizedRealEstate, Suggestion, string, string>);
+            var type = typeof(IMemberValueResolver<LocalizedRealEstate, Data.Transfer.Objects.SuggestionDto, string, string>);
 
             //Act
             var resolver = Resolver();

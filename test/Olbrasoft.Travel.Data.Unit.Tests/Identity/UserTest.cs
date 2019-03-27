@@ -61,7 +61,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Identity
         public void RegionSubtypes()
         {
             //Arrange
-            var regionSubtypes = new[] { new Subtype() };
+            var regionSubtypes = new[] { new RegionSubtype() };
             var user = new User
             {
                 RegionSubtypes = regionSubtypes

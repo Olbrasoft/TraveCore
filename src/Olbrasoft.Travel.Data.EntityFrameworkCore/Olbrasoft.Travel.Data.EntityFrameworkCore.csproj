@@ -5,24 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190325011107_suggestions.cs" />
-    <Compile Remove="Migrations\20190325011107_suggestions.Designer.cs" />
-    <Compile Remove="Migrations\20190325011333_suggestions.cs" />
-    <Compile Remove="Migrations\20190325011333_suggestions.Designer.cs" />
-    <Compile Remove="Migrations\20190325012023_suggestions.cs" />
-    <Compile Remove="Migrations\20190325012023_suggestions.Designer.cs" />
-    <Compile Remove="Migrations\20190325014611_controll.cs" />
-    <Compile Remove="Migrations\20190325014611_controll.Designer.cs" />
-    <Compile Remove="Migrations\20190325014755_controll.cs" />
-    <Compile Remove="Migrations\20190325014755_controll.Designer.cs" />
-    <Compile Remove="Migrations\20190325020434_controll.cs" />
-    <Compile Remove="Migrations\20190325020434_controll.Designer.cs" />
-    <Compile Remove="Migrations\20190325020908_controll.cs" />
-    <Compile Remove="Migrations\20190325020908_controll.Designer.cs" />
-    <Compile Remove="Migrations\20190325023836_controll.cs" />
-    <Compile Remove="Migrations\20190325023836_controll.Designer.cs" />
-    <Compile Remove="Migrations\20190325030850_Controll.cs" />
-    <Compile Remove="Migrations\20190325030850_Controll.Designer.cs" />
+    <Compile Remove="Migrations\20190326193550_Init.cs" />
+    <Compile Remove="Migrations\20190326193550_Init.Designer.cs" />
+    <Compile Remove="Migrations\20190326210201_Init.cs" />
+    <Compile Remove="Migrations\20190326210201_Init.Designer.cs" />
+    <Compile Remove="Migrations\20190327054818_Init.cs" />
+    <Compile Remove="Migrations\20190327054818_Init.Designer.cs" />
+    <Compile Remove="Migrations\20190327055230_Init.cs" />
+    <Compile Remove="Migrations\20190327055230_Init.Designer.cs" />
+    <Compile Remove="Migrations\20190327061554_Init.cs" />
+    <Compile Remove="Migrations\20190327061554_Init.Designer.cs" />
+    <Compile Remove="Migrations\20190327063309_Init.cs" />
+    <Compile Remove="Migrations\20190327063309_Init.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,5 +42,4 @@
     <ProjectReference Include="..\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel\Olbrasoft.Travel.csproj" />
   </ItemGroup>
-
 </Project>

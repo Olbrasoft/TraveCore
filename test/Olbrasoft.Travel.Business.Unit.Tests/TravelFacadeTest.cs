@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests
         {
             var suggestions = new[]
             {
-                new Suggestion()
+                new SuggestionDto()
             };
 
             var task = Task.FromResult(suggestions.AsEnumerable());
@@ -50,7 +50,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests
         public void SuggestionsAsync_Return_Task_Of_IEnumerable_Of_Suggestion()
         {
             //Arrange
-            var type = typeof(Task<IEnumerable<Suggestion>>);
+            var type = typeof(Task<IEnumerable<SuggestionDto>>);
             const string term = "Some term";
             const int languageId = 1033;
 

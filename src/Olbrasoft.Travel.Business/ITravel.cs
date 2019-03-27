@@ -11,6 +11,6 @@ namespace Olbrasoft.Travel.Business
 
         IAccommodations Accommodations { get; }
 
-        Task<IEnumerable<Suggestion>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IHaveLabel<out T>
     {
-        T Label { get; }
+        T Name { get; }
     }
 
     public interface IHaveLabel : IHaveLabel<string>

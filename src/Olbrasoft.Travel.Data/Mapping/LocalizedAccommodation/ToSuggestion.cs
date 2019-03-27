@@ -8,7 +8,7 @@ namespace Olbrasoft.Travel.Data.Mapping.LocalizedAccommodation
     {
         public ToSuggestion()
         {
-            CreateMap<LocalizedRealEstate, Suggestion>()
+            CreateMap<LocalizedRealEstate, Transfer.Objects.SuggestionDto>()
                 .ForMember(d => d.Label, opt => opt.MapFrom(src => src.Name))
                 .ForMember(d => d.Category, opt => opt.MapFrom(src => "Properties"))
                 ;

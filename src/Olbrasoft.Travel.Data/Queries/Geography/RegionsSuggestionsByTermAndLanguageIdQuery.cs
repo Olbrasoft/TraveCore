@@ -4,7 +4,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries.Geography
 {
-    public class RegionsSuggestionsByTermAndLanguageIdQuery : ByLanguageIdQuery<IEnumerable<Suggestion>>
+    public class RegionsSuggestionsByTermAndLanguageIdQuery : ByLanguageIdQuery<IEnumerable<Transfer.Objects.SuggestionDto>>
     {
         public RegionsSuggestionsByTermAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {

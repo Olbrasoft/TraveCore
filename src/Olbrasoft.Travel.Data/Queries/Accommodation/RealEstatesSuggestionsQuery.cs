@@ -4,7 +4,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
-    public class RealEstatesSuggestionsQuery : ByLanguageIdQuery<IEnumerable<Suggestion>>
+    public class RealEstatesSuggestionsQuery : ByLanguageIdQuery<IEnumerable<Transfer.Objects.SuggestionDto>>
     {
         public string[] Terms { get; set; }
 

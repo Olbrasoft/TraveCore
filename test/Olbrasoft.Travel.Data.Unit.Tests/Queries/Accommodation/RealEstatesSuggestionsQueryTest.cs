@@ -15,7 +15,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_Suggestion()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<Suggestion>>);
+            var type = typeof(ByLanguageIdQuery<IEnumerable<Data.Transfer.Objects.SuggestionDto>>);
 
             //Act
             var query = Query();

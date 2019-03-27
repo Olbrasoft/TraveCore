@@ -338,7 +338,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.ToTable("LocalizedRealEstates","Accommodation");
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.LocalizedRealEstateType", b =>
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.LocalizedRealEstateCategory", b =>
                 {
                     b.Property<int>("Id");
 
@@ -360,7 +360,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("LocalizedRealEstateTypes","Accommodation");
+                    b.ToTable("LocalizedCategories","Accommodation");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.LocalizedRoom", b =>
@@ -468,6 +468,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.Property<int?>("AirportId");
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<IPoint>("CenterCoordinates")
                         .IsRequired();
 
@@ -489,11 +491,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.Property<decimal>("StarRating");
 
-                    b.Property<int>("TypeId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AirportId");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ChainId");
 
@@ -504,9 +506,35 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.HasIndex("ExpediaId")
                         .IsUnique();
 
-                    b.HasIndex("TypeId");
-
                     b.ToTable("RealEstates","Accommodation");
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.RealEstateCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<int>("ExpediaId");
+
+                    b.Property<int>("SuggestionCategoryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("ExpediaId")
+                        .IsUnique();
+
+                    b.HasIndex("SuggestionCategoryId");
+
+                    b.ToTable("Categories","Accommodation");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.RealEstateToAttribute", b =>
@@ -535,30 +563,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("RealEstatesToAttributes","Accommodation");
-                });
-
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.RealEstateType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("GetUtcDate()");
-
-                    b.Property<int>("CreatorId");
-
-                    b.Property<int>("ExpediaId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("ExpediaId")
-                        .IsUnique();
-
-                    b.ToTable("RealEstateTypes","Accommodation");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.Room", b =>
@@ -728,6 +732,152 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.ToTable("Regions","Geography");
                 });
 
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Geography.RegionSubtype", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<int>("CreatorId");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int?>("SuggestionCategoryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("Description")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("SuggestionCategoryId");
+
+                    b.ToTable("RegionSubtypes","Geography");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "World",
+                            Name = "World"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Continent",
+                            Name = "Continent",
+                            SuggestionCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Country",
+                            Name = "Country",
+                            SuggestionCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Province (State)",
+                            Name = "Province",
+                            SuggestionCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Multi-Region (within a country)",
+                            Name = "MultiRegion",
+                            SuggestionCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Multi-City (Vicinity)",
+                            Name = "MultiCity",
+                            SuggestionCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "City",
+                            Name = "City",
+                            SuggestionCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Neighborhood",
+                            Name = "Neighborhood",
+                            SuggestionCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Point of Interest",
+                            Name = "PointOfInterest",
+                            SuggestionCategoryId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Point of Interest Shadow",
+                            Name = "PointOfInterestShadow",
+                            SuggestionCategoryId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Airport",
+                            Name = "Airport",
+                            SuggestionCategoryId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatorId = 1,
+                            Description = "Train Station",
+                            Name = "TrainStation",
+                            SuggestionCategoryId = 4
+                        });
+                });
+
             modelBuilder.Entity("Olbrasoft.Travel.Data.Geography.RegionToRegion", b =>
                 {
                     b.Property<int>("Id");
@@ -767,7 +917,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.HasIndex("ToId");
 
-                    b.ToTable("RegionToSubclasss","Geography");
+                    b.ToTable("RegionToSubclasses","Geography");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Geography.Subclass", b =>
@@ -794,137 +944,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         .IsUnique();
 
                     b.ToTable("SubClasses","Geography");
-                });
-
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Geography.Subtype", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("GetUtcDate()");
-
-                    b.Property<int>("CreatorId");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("Description")
-                        .IsUnique();
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Subtypes","Geography");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "World",
-                            Name = "World"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Continent",
-                            Name = "Continent"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Country",
-                            Name = "Country"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Province (State)",
-                            Name = "Province"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Multi-Region (within a country)",
-                            Name = "MultiRegion"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Multi-City (Vicinity)",
-                            Name = "MultiCity"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "City",
-                            Name = "City"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Neighborhood",
-                            Name = "Neighborhood"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Point of Interest",
-                            Name = "PointOfInterest"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Point of Interest Shadow",
-                            Name = "PointOfInterestShadow"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Airport",
-                            Name = "Airport"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = 1,
-                            Description = "Train Station",
-                            Name = "TrainStation"
-                        });
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.IO.FileExtension", b =>
@@ -1075,7 +1094,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54941ec9-60fe-42e8-b578-00aa1aa89de2",
+                            ConcurrencyStamp = "18869711-3cd5-4d53-8d74-4908b8c39113",
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -1183,7 +1202,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.ToTable("Languages","Localization");
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Localization.LocalizedSuggestionType", b =>
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Suggestion.LocalizedSuggestionCategory", b =>
                 {
                     b.Property<int>("Id");
 
@@ -1195,7 +1214,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.Property<int>("CreatorId");
 
-                    b.Property<string>("Label")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255);
 
@@ -1205,10 +1224,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("LocalizedSuggestionTypes","Localization");
+                    b.ToTable("LocalizedCategories","Suggestion");
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.SuggestionType", b =>
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Suggestion.SuggestionCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1226,7 +1245,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.HasIndex("CreatorId");
 
-                    b.ToTable("SuggestionTypes");
+                    b.ToTable("Categories","Suggestion");
 
                     b.HasData(
                         new
@@ -1394,15 +1413,15 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.LocalizedRealEstateType", b =>
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.LocalizedRealEstateCategory", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
-                        .WithMany("LocalizedTypesOfAccommodations")
+                        .WithMany("LocalizedRealEstateCategories")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Olbrasoft.Travel.Data.Accommodation.RealEstateType", "Type")
-                        .WithMany("LocalizedPropertyTypes")
+                    b.HasOne("Olbrasoft.Travel.Data.Accommodation.RealEstateCategory", "Category")
+                        .WithMany("LocalizedRealEstateTypes")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -1481,6 +1500,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         .WithMany("Accommodations")
                         .HasForeignKey("AirportId");
 
+                    b.HasOne("Olbrasoft.Travel.Data.Accommodation.RealEstateCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Olbrasoft.Travel.Data.Accommodation.Chain", "Chain")
                         .WithMany("Accommodations")
                         .HasForeignKey("ChainId")
@@ -1495,11 +1519,19 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         .WithMany("Accommodations")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
 
-                    b.HasOne("Olbrasoft.Travel.Data.Accommodation.RealEstateType", "RealEstateType")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.RealEstateCategory", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
+                        .WithMany("RealEstateCategories")
+                        .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Suggestion.SuggestionCategory", "SuggestionCategory")
+                        .WithMany("RealEstateTypes")
+                        .HasForeignKey("SuggestionCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.RealEstateToAttribute", b =>
@@ -1522,14 +1554,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.HasOne("Olbrasoft.Travel.Data.Accommodation.RealEstate", "RealEstate")
                         .WithMany("AccommodationsToAttributes")
                         .HasForeignKey("RealEstateId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Accommodation.RealEstateType", b =>
-                {
-                    b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
-                        .WithMany("TypesOfAccommodations")
-                        .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1610,10 +1634,22 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Olbrasoft.Travel.Data.Geography.Subtype", "Subtype")
+                    b.HasOne("Olbrasoft.Travel.Data.Geography.RegionSubtype", "Subtype")
                         .WithMany("Regions")
                         .HasForeignKey("SubtypeId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Geography.RegionSubtype", b =>
+                {
+                    b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
+                        .WithMany("RegionSubtypes")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Olbrasoft.Travel.Data.Suggestion.SuggestionCategory", "SuggestionCategory")
+                        .WithMany("RegionSubtypes")
+                        .HasForeignKey("SuggestionCategoryId");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.Geography.RegionToRegion", b =>
@@ -1660,14 +1696,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Geography.Subtype", b =>
-                {
-                    b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
-                        .WithMany("RegionSubtypes")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Olbrasoft.Travel.Data.IO.FileExtension", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
@@ -1692,25 +1720,25 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.Localization.LocalizedSuggestionType", b =>
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Suggestion.LocalizedSuggestionCategory", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
-                        .WithMany("LocalizedSuggestionTypes")
+                        .WithMany("LocalizedSuggestionCategories")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Olbrasoft.Travel.Data.SuggestionType", "Type")
+                    b.HasOne("Olbrasoft.Travel.Data.Suggestion.SuggestionCategory", "Category")
                         .WithMany("LocalizedTypes")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Olbrasoft.Travel.Data.Localization.Language", "Language")
-                        .WithMany("LocalizedSuggestionTypes")
+                        .WithMany("LocalizedSuggestionCategories")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("Olbrasoft.Travel.Data.SuggestionType", b =>
+            modelBuilder.Entity("Olbrasoft.Travel.Data.Suggestion.SuggestionCategory", b =>
                 {
                     b.HasOne("Olbrasoft.Travel.Data.Identity.User", "Creator")
                         .WithMany("SuggestionTypes")

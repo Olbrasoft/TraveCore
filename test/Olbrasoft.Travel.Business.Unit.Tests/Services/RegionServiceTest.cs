@@ -90,7 +90,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void SuggestionsAsync_Returns_Task_Of_IEnumerable_Of_Suggestion()
         {
             //Arrange
-            var type = typeof(Task<IEnumerable<Suggestion>>);
+            var type = typeof(Task<IEnumerable<SuggestionDto>>);
             var service = Service();
 
             //Act

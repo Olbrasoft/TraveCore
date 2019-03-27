@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Business
             CancellationToken cancellationToken = default(CancellationToken)
         );
 
-        Task<IEnumerable<Suggestion>> SuggestionsAsync(string[] terms, int languageId,
+        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -58,7 +58,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Localization
         public void LocalizedRealEstateTypes()
         {
             //Arrange
-            var localizations = new List<LocalizedRealEstateType>();
+            var localizations = new List<LocalizedRealEstateCategory>();
 
             //Act
            

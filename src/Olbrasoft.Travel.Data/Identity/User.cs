@@ -5,6 +5,7 @@ using Olbrasoft.Travel.Data.IO;
 using Olbrasoft.Travel.Data.Localization;
 using System;
 using System.Collections.Generic;
+using Olbrasoft.Travel.Data.Suggestion;
 using Attribute = Olbrasoft.Travel.Data.Accommodation.Attribute;
 
 namespace Olbrasoft.Travel.Data.Identity
@@ -18,7 +19,7 @@ namespace Olbrasoft.Travel.Data.Identity
         /// <summary>
         /// Types of Regions created by the User.
         /// </summary>
-        public virtual ICollection<Subtype> RegionSubtypes { get; set; }
+        public virtual ICollection<RegionSubtype> RegionSubtypes { get; set; }
 
         /// <summary>
         /// SubClasses created by the User.
@@ -67,14 +68,14 @@ namespace Olbrasoft.Travel.Data.Identity
         public virtual ICollection<LocalizedRegion> LocalizedRegions { get; set; }
 
         /// <summary>
-        /// TypesOfAccommodations created by the User.
+        /// RealEstateCategories created by the User.
         /// </summary>
-        public virtual ICollection<RealEstateType> TypesOfAccommodations { get; set; }
+        public virtual ICollection<RealEstateCategory> RealEstateCategories { get; set; }
 
         /// <summary>
-        /// LocalizedPropertyTypes created by the User.
+        /// LocalizedRealEstateTypes created by the User.
         /// </summary>
-        public virtual ICollection<LocalizedRealEstateType> LocalizedTypesOfAccommodations { get; set; }
+        public virtual ICollection<LocalizedRealEstateCategory> LocalizedRealEstateCategories { get; set; }
 
         /// <summary>
         /// Chains created by the User.
@@ -166,8 +167,8 @@ namespace Olbrasoft.Travel.Data.Identity
         /// </summary>
         public virtual ICollection<RealEstateToAttribute> AccommodationsToAttributes { get; set; }
 
-        public ICollection<SuggestionType> SuggestionTypes { get; set; }
+        public ICollection<SuggestionCategory> SuggestionTypes { get; set; }
 
-        public ICollection<LocalizedSuggestionType> LocalizedSuggestionTypes { get; set; }
+        public ICollection<LocalizedSuggestionCategory> LocalizedSuggestionCategories { get; set; }
     }
 }

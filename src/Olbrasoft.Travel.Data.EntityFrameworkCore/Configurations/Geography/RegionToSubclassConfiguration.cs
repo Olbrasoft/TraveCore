@@ -6,6 +6,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {
     public class RegionToSubclassConfiguration : TravelTypeConfiguration<RegionToSubclass>
     {
+        public RegionToSubclassConfiguration() : base("RegionToSubclasses")
+        {
+        }
+
         public override void Configuration(EntityTypeBuilder<RegionToSubclass> builder)
         {
             builder.HasKey(p => new { p.Id, p.ToId });

@@ -17,7 +17,7 @@ namespace Olbrasoft.Travel.Business
             Accommodations = accommodations;
         }
 
-        public async Task<IEnumerable<Suggestion>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken))
         {
             var terms = term.Trim().Split(' ');
 

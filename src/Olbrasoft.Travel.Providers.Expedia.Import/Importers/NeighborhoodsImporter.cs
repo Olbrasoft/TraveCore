@@ -8,7 +8,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         public NeighborhoodsImporter(IProvider provider, IRepositoryFactory repositoryFactory, SharedProperties sharedProperties, ILoggingImports logger)
             : base(provider, repositoryFactory, sharedProperties, logger)
         {
-            SubtypeId = RepositoryFactory.Names<Subtype>().GetId("Neighborhood");
+            SubtypeId = RepositoryFactory.Names<RegionSubtype>().GetId("Neighborhood");
             SubclassId = RepositoryFactory.Names<Subclass>().GetId("neighbor");
         }
     }

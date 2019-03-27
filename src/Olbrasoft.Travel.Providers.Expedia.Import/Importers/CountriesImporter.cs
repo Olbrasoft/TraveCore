@@ -66,7 +66,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             var regionsRepository = RepositoryFactory.Regions();
             var regionsExpediaIdsToIds = regionsRepository.ExpediaIdsToIds;
 
-            var subtypeCountryId = RepositoryFactory.Names<Subtype>().GetId("Country");
+            var subtypeCountryId = RepositoryFactory.Names<RegionSubtype>().GetId("Country");
 
             regionsExpediaIdsToIds = ImportRegions(expediaCountries, regionsRepository, regionsExpediaIdsToIds, subtypeCountryId);
 

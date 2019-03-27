@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         protected IReadOnlyDictionary<int, int> TypesOfAccommodationsExpediaIdsToIds
         {
             get => _typesOfAccommodationsExpediaIdsToIds ?? (_typesOfAccommodationsExpediaIdsToIds =
-                       RepositoryFactory.MappedProperties<RealEstateType>().ExpediaIdsToIds);
+                       RepositoryFactory.MappedProperties<RealEstateCategory>().ExpediaIdsToIds);
 
             set => _typesOfAccommodationsExpediaIdsToIds = value;
         }
@@ -133,7 +133,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
                         Address = activeProperty.Address1,
                         AdditionalAddress = activeProperty.Address2,
                         CountryId = countryId,
-                        TypeId = typeOfAccommodationId,
+                        CategoryId = typeOfAccommodationId,
                         CenterCoordinates = CreatePoint(activeProperty.Latitude, activeProperty.Longitude),
                         CreatorId = creatorId
                     };

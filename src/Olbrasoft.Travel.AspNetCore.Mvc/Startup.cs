@@ -1,4 +1,5 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using AutoMapper;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +24,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using AutoMapper;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc
 {
@@ -109,10 +110,10 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
 
         private static void ConfigureQueryHandlers(IWindsorContainer container)
         {
-            var classes = Classes.FromAssemblyNamed("Olbrasoft.Travel.Data.EntityFrameworkCore");
+            var classes = Classes.FromAssemblyNamed(typeof(TravelQueryHandler<,,>).Assembly.GetName().Name);
 
             container.Register(classes
-                .Where(ns => ns.Namespace != null && ns.Namespace.EndsWith("QueryHandlers"))
+                .Where(ns => ns.Namespace != null && ns.Namespace.Contains(nameof(Data.EntityFrameworkCore.QueryHandlers)))
                 .WithServiceFirstInterface()
                 .LifestyleCustom<MsScopedLifestyleManager>());
         }

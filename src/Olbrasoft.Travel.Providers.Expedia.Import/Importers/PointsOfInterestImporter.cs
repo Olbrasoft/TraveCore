@@ -17,7 +17,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             {
                 if (_subtypeId == 0)
                 {
-                    _subtypeId = RepositoryFactory.Names<Subtype>().GetId("PointOfInterest");
+                    _subtypeId = RepositoryFactory.Names<RegionSubtype>().GetId("PointOfInterest");
                 }
 
                 return _subtypeId;

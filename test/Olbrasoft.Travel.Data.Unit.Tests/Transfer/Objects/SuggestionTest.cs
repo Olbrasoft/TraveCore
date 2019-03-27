@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         {
             //Arrange
             const int id = 100;
-            var suggestion = new Suggestion
+            var suggestion = new Data.Transfer.Objects.SuggestionDto
             {
                 Id = id
             };
@@ -27,8 +27,8 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         public void Text_Set_Get()
         {
             //Arrange
-            const string label = "Some Label";
-            var item = new Suggestion
+            const string label = "Some Name";
+            var item = new Data.Transfer.Objects.SuggestionDto
             {
                 Label = label
             };
@@ -46,7 +46,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             //Arrange
             const string category = "Some Category";
 
-            var item = new Suggestion { Category = category };
+            var item = new Data.Transfer.Objects.SuggestionDto { Category = category };
 
             //Act
             var result = item.Category;

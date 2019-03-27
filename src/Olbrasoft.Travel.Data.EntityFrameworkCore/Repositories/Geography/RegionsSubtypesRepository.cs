@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography
 {
-    public class RegionsSubtypesRepository : NamesRepository<Subtype>, IRegionSubtypesRepository
+    public class RegionsSubtypesRepository : NamesRepository<RegionSubtype>, IRegionSubtypesRepository
     {
         private IReadOnlyDictionary<string, int> _descriptionsToIds;
 

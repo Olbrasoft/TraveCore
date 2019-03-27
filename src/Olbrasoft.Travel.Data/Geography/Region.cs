@@ -22,11 +22,11 @@ namespace Olbrasoft.Travel.Data.Geography
 
         public long ExpediaId { get; set; } = long.MinValue;
 
-        //[ForeignKey(nameof(Subtype))]
+        [ForeignKey(nameof(Subtype))]
         public int SubtypeId { get; set; }
 
         [Required]
-        public Subtype Subtype { get; set; }
+        public RegionSubtype Subtype { get; set; }
 
         public ICollection<RegionToRegion> ToParentRegions { get; set; }
 
