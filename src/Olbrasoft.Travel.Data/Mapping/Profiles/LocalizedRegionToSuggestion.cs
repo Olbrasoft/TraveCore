@@ -10,7 +10,7 @@ namespace Olbrasoft.Travel.Data.Mapping.Profiles
         {
             CreateMap<LocalizedRegion, Transfer.Objects.SuggestionDto>()
                 .ForMember(d => d.Label, opt => opt.MapFrom(src => src.Name))
-                .ForMember(d => d.Category, opt => opt.MapFrom(src => src.Region.Subtype.Name))
+                .ForMember(d => d.Category, opt => opt.MapFrom(src => src.Region.Subtype.SuggestionCategoryId))
                 ;
         }
     }

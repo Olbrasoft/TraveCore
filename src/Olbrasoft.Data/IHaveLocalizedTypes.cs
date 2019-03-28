@@ -4,6 +4,6 @@ namespace Olbrasoft.Data
 {
     public interface IHaveLocalizedTypes<T>
     {
-        ICollection<T> LocalizedTypes { get; }
+        ICollection<T> LocalizedSuggestionCategories { get; }
     }
 }

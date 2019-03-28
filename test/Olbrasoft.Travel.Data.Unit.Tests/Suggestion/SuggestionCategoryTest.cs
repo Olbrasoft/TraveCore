@@ -79,10 +79,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Suggestion
             var suggestionType = Create();
 
             //Act
-            suggestionType.LocalizedTypes = suggestionTypeLocalizedTypes;
+            suggestionType.LocalizedSuggestionCategories = suggestionTypeLocalizedTypes;
 
             //Assert
-            Assert.AreSame(suggestionTypeLocalizedTypes, suggestionType.LocalizedTypes);
+            Assert.AreSame(suggestionTypeLocalizedTypes, suggestionType.LocalizedSuggestionCategories);
         }
 
         [Test]

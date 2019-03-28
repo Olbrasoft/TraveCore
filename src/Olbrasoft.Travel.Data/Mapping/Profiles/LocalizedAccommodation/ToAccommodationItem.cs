@@ -2,7 +2,7 @@
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 
-namespace Olbrasoft.Travel.Data.Mapping.LocalizedAccommodation
+namespace Olbrasoft.Travel.Data.Mapping.Profiles.LocalizedAccommodation
 {
     public class ToAccommodationItem : Profile
     {
