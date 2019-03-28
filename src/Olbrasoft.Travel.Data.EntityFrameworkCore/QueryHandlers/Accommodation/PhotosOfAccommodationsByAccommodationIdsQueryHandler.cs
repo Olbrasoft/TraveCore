@@ -7,19 +7,20 @@ using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PhotosOfAccommodationsByAccommodationIdsQueryHandler : TravelQueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery, Photo, IEnumerable<RealEstatePhoto>>
+    public class PhotosOfAccommodationsByAccommodationIdsQueryHandler : TravelQueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery, Photo, IEnumerable<PropertyPhotoDto>>
     {
-        public override async Task<IEnumerable<RealEstatePhoto>> HandleAsync(PhotosOfAccommodationsByAccommodationIdsQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<PropertyPhotoDto>> HandleAsync(PhotosOfAccommodationsByAccommodationIdsQuery query, CancellationToken cancellationToken)
         {
             var projection = ProjectToQueryableOfAccommodationPhoto(Source, query);
 
             return await projection.ToArrayAsync(cancellationToken);
         }
 
-        private IQueryable<RealEstatePhoto> ProjectToQueryableOfAccommodationPhoto(IQueryable<Photo> source, PhotosOfAccommodationsByAccommodationIdsQuery query)
+        private IQueryable<PropertyPhotoDto> ProjectToQueryableOfAccommodationPhoto(IQueryable<Photo> source, PhotosOfAccommodationsByAccommodationIdsQuery query)
         {
             var photoOfAccommodations = from p in source
                                         where query.AccommodationIds.Contains(p.RealEstateId)
@@ -27,7 +28,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 
             if (query.OnlyDefaultPhotos) photoOfAccommodations = photoOfAccommodations.Where(p => p.IsDefault);
 
-            return ProjectTo<RealEstatePhoto>(photoOfAccommodations);
+            return ProjectTo<PropertyPhotoDto>(photoOfAccommodations);
         }
 
         public PhotosOfAccommodationsByAccommodationIdsQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)

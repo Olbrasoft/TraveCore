@@ -6,20 +6,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Business
 {
     public interface IAccommodations
     {
-        RealEstateDetail Get(int id, int languageId);
+        PropertyDetail Get(int id, int languageId);
 
-        Task<RealEstateDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken));
+        Task<PropertyDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken));
 
-        IResultWithTotalCount<RealEstateItem> Get(
+        IResultWithTotalCount<PropertyItem> Get(
             IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting
         );
 
-        Task<IResultWithTotalCount<RealEstateItem>> GetAsync(
+        Task<IResultWithTotalCount<PropertyItem>> GetAsync(
             IPageInfo pagingSettings,
             int languageId,
             Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting,

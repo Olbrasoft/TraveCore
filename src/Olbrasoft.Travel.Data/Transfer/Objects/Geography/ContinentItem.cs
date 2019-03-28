@@ -1,4 +1,4 @@
-﻿namespace Olbrasoft.Travel.Data.Transfer.Objects
+﻿namespace Olbrasoft.Travel.Data.Transfer.Objects.Geography
 {
     public class ContinentItem
     {

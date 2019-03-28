@@ -7,20 +7,21 @@ using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 {
     public class CountriesByContinentIdAndLanguageIdQueryHandler : TravelQueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
-        IEnumerable<CountryItem>>
+        IEnumerable<CountryItemDto>>
     {
      
 
-        public override async Task<IEnumerable<CountryItem>> HandleAsync(CountriesByContinentIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<CountryItemDto>> HandleAsync(CountriesByContinentIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             return await ProjectionToCountryItems(Source, query).ToArrayAsync(cancellationToken);
         }
 
-        protected IQueryable<CountryItem> ProjectionToCountryItems(IQueryable<Country> source, CountriesByContinentIdAndLanguageIdQuery query)
+        protected IQueryable<CountryItemDto> ProjectionToCountryItems(IQueryable<Country> source, CountriesByContinentIdAndLanguageIdQuery query)
         {
             var regions = source.Select(p => p.Region);
 
@@ -30,7 +31,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
             var localizedRegions =
                 regions.Where(p => countriesOfContinent.Contains(p.Id)).SelectMany(p => p.LocalizedRegions).Where(p => p.LanguageId == query.LanguageId);
 
-            return ProjectTo<CountryItem>(localizedRegions);
+            return ProjectTo<CountryItemDto>(localizedRegions);
         }
 
         public CountriesByContinentIdAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)

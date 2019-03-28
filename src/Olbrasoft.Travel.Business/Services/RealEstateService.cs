@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Room = Olbrasoft.Travel.Data.Transfer.Objects.Room;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Business.Services
 {
@@ -22,14 +22,14 @@ namespace Olbrasoft.Travel.Business.Services
             Merger = merger;
         }
 
-        public RealEstateDetail Get(int id, int languageId)
+        public PropertyDetail Get(int id, int languageId)
         {
             var query = AccommodationDetailQuery(id, languageId);
 
             return query.Execute();
         }
 
-        public async Task<RealEstateDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<PropertyDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken))
         {
             var accommodationDetail = await AccommodationDetailQuery(id, languageId).ExecuteAsync(cancellationToken);
 
@@ -58,11 +58,11 @@ namespace Olbrasoft.Travel.Business.Services
             return query;
         }
 
-        private static IEnumerable<Room> FillPhotosOfRooms(IEnumerable<Room> rooms, IEnumerable<RoomPhoto> photosOfRooms)
+        private static IEnumerable<RoomDto> FillPhotosOfRooms(IEnumerable<RoomDto> rooms, IEnumerable<RoomPhotoDto> photosOfRooms)
         {
             var photosOfRoomsArray = photosOfRooms.ToArray();
 
-            var ofRooms = rooms as Room[] ?? rooms.ToArray();
+            var ofRooms = rooms as RoomDto[] ?? rooms.ToArray();
             foreach (var room in ofRooms)
             {
                 var photos = photosOfRoomsArray.Where(p => p.RoomIds.Contains(room.Id));
@@ -96,7 +96,7 @@ namespace Olbrasoft.Travel.Business.Services
             return query;
         }
 
-        public IResultWithTotalCount<RealEstateItem> Get(IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting)
+        public IResultWithTotalCount<PropertyItem> Get(IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting)
         {
             var query = GetPagedAccommodationItems(pagingSettings, languageId, sorting);
             var accommodationItems = query.Execute();
@@ -110,7 +110,7 @@ namespace Olbrasoft.Travel.Business.Services
             return accommodationItems;
         }
 
-        public async Task<IResultWithTotalCount<RealEstateItem>> GetAsync(
+        public async Task<IResultWithTotalCount<PropertyItem>> GetAsync(
             IPageInfo pagingSettings,
             int languageId,
             Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting,
@@ -139,7 +139,7 @@ namespace Olbrasoft.Travel.Business.Services
             return query.ExecuteAsync(cancellationToken);
         }
 
-        private IResultWithTotalCount<RealEstateItem> MergePhotos(IResultWithTotalCount<RealEstateItem> master, IEnumerable<RealEstatePhoto> slave)
+        private IResultWithTotalCount<PropertyItem> MergePhotos(IResultWithTotalCount<PropertyItem> master, IEnumerable<PropertyPhotoDto> slave)
         {
             return Merger.Merge(master, slave);
         }

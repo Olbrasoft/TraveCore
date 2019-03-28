@@ -5,6 +5,7 @@ using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {
@@ -15,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByLanguageIdQuery_Of_IResultWithTotalCount_Of_AccommodationItem()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IResultWithTotalCount<RealEstateItem>>);
+            var type = typeof(ByLanguageIdQuery<IResultWithTotalCount<PropertyItem>>);
             var providerMock = new Mock<IQueryDispatcher>();
 
             //Act

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
 using Olbrasoft.Travel.Data.Accommodation;
-using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Mapping.Profiles
 {
@@ -9,7 +9,7 @@ namespace Olbrasoft.Travel.Data.Mapping.Profiles
     {
         public RealEstateToAttributeToAttribute()
         {
-            CreateMap<RealEstateToAttribute, Attribute>()
+            CreateMap<RealEstateToAttribute, AttributeDto>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(src => src.AttributeId))
                 .ForMember(d => d.TypId, opt => opt.MapFrom(src => src.Attribute.TypeId))
                 .ForMember(d => d.SubTypeId, opt => opt.MapFrom(src => src.Attribute.SubtypeId))

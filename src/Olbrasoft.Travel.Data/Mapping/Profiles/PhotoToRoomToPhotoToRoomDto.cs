@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Mapping.Profiles
 {

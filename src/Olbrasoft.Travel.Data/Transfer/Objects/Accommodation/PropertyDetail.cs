@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Olbrasoft.Travel.Data.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Transfer.Objects.Accommodation
 {
-    public class RealEstateDetail : BaseRealEstateDto, IHaveRooms, IHaveAttributes
+    public class PropertyDetail : BasePropertyDto, IHaveRooms, IHaveAttributes
     {
         public string Description { get; set; }
 
@@ -15,8 +15,8 @@ namespace Olbrasoft.Travel.Data.Transfer.Objects
         [Range(typeof(double), "-180", "180")]
         public double Longitude { get; set; }
 
-        public IEnumerable<Room> Rooms { get; set; }
+        public IEnumerable<RoomDto> Rooms { get; set; }
 
-        public IEnumerable<Attribute> Attributes { get; set; }
+        public IEnumerable<AttributeDto> Attributes { get; set; }
     }
 }

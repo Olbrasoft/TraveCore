@@ -1,17 +1,17 @@
 ﻿using NUnit.Framework;
 using Olbrasoft.Travel.Data.Base;
-using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Accommodation
 {
     [TestFixture]
-    internal class AttributeTest
+    internal class AttributeDtoTest
     {
         [Test]
         public void Create_And_Fill_Properties()
         {
             //Arrange
-            var attribute = new Attribute
+            var attribute = new AttributeDto
             {
                 TypId = int.MinValue,
                 SubTypeId = int.MaxValue,
@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             var type = typeof(IHaveId<int>);
 
             //Act
-            var attribute = new Attribute();
+            var attribute = new AttributeDto();
 
             //Assert
             Assert.IsInstanceOf(type,attribute);

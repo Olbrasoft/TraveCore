@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Olbrasoft.Travel.Data.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Transfer.Objects.Accommodation
 {
-    public class RoomPhoto
+    public class RoomPhotoDto
     {
         public string Name { get; set; }
         public string Path { get; set; }

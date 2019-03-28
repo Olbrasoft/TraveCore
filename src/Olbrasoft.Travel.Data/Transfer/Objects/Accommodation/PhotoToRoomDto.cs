@@ -1,4 +1,4 @@
-﻿namespace Olbrasoft.Travel.Data.Transfer.Objects
+﻿namespace Olbrasoft.Travel.Data.Transfer.Objects.Accommodation
 {
     public class PhotoToRoomDto
     {

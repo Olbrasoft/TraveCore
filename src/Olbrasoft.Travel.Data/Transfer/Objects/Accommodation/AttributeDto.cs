@@ -1,8 +1,8 @@
 ﻿using Olbrasoft.Travel.Data.Base;
 
-namespace Olbrasoft.Travel.Data.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Transfer.Objects.Accommodation
 {
-    public class Attribute : IHaveId<int>
+    public class AttributeDto : IHaveId<int>
     {
         public int TypId { get; set; }
         public int SubTypeId { get; set; }

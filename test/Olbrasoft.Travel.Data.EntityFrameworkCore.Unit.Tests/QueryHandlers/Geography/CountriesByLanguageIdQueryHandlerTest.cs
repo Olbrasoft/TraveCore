@@ -10,6 +10,7 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geography
 {
@@ -22,7 +23,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
             //Arrange
             var type =
                 typeof(TravelQueryHandler<CountriesByLanguageIdQuery, Country,
-                    IEnumerable<CountryItem>>);
+                    IEnumerable<CountryItemDto>>);
 
             //Act
             var handler = Handler();
@@ -36,7 +37,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         public void Instance_Is_QueryHandler_Of_GetCountriesByLanguageId_Comma_Country_Comma_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(QueryHandler<CountriesByLanguageIdQuery, IQueryable<Country>, IEnumerable<CountryItem>>);
+            var type = typeof(QueryHandler<CountriesByLanguageIdQuery, IQueryable<Country>, IEnumerable<CountryItemDto>>);
 
 
             //Act
@@ -58,7 +59,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
             var result = handler.HandleAsync(query);
 
             //Assert
-            Assert.IsInstanceOf<Task<IEnumerable<CountryItem>>>(result);
+            Assert.IsInstanceOf<Task<IEnumerable<CountryItemDto>>>(result);
 
         }
         

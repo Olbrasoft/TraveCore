@@ -9,6 +9,7 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
@@ -21,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             //Arrange
             var type =
                 typeof(TravelQueryHandler<RealEstateDetailByRealEstateIdAndLanguageIdQuery, RealEstate,
-                    RealEstateDetail>);
+                    PropertyDetail>);
 
             //Act
             var handler = Handler();
@@ -36,7 +37,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             //Arrange
             var type =
                 typeof(QueryHandler<RealEstateDetailByRealEstateIdAndLanguageIdQuery, IQueryable<RealEstate>,
-                    RealEstateDetail>);
+                    PropertyDetail>);
 
             //Act
             var handler = Handler();
@@ -58,7 +59,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void HandleAsync_Return_Task_Of_AccommodationDetail()
         {
             //Arrange
-            var type = typeof(Task<RealEstateDetail>);
+            var type = typeof(Task<PropertyDetail>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
             var query = new RealEstateDetailByRealEstateIdAndLanguageIdQuery(providerMock.Object);

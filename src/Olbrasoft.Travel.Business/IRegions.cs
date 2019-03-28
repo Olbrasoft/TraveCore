@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Business
 {
@@ -10,10 +11,10 @@ namespace Olbrasoft.Travel.Business
         Task<IEnumerable<ContinentItem>> GetContinentsAsync(int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<IEnumerable<CountryItem>> GetCountriesAsync(int languageId,
+        Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<IEnumerable<CountryItem>> GetCountriesAsync(int continentId, int languageId,
+        Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int continentId, int languageId,
             CancellationToken cancellationToken = default(CancellationToken));
 
         Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] term, int languageId,

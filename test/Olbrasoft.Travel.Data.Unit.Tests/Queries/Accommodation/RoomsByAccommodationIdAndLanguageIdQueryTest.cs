@@ -6,6 +6,7 @@ using Olbrasoft.Globalization;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {
@@ -16,7 +17,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByAccommodationIdAndLanguageIdQuery_Of_IEnumerable_OfRoom()
         {
             //Arrange
-            var type = typeof(ByRealEstateIdAndLanguageIdQuery<IEnumerable<Room>>);
+            var type = typeof(ByRealEstateIdAndLanguageIdQuery<IEnumerable<RoomDto>>);
 
             //Act
             var query = Query();
@@ -29,7 +30,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_Room()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<Room>>);
+            var type = typeof(ByLanguageIdQuery<IEnumerable<RoomDto>>);
 
             //Act
             var query = Query();
@@ -42,7 +43,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Implement_Interface_IQueryOfRoom()
         {
             //Arrange
-            var type = typeof(IQuery<IEnumerable<Room>>);
+            var type = typeof(IQuery<IEnumerable<RoomDto>>);
 
             //Act
             var query = Query();

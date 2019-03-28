@@ -5,6 +5,7 @@ using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
 {
@@ -15,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
         public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<CountryItem>>);
+            var type = typeof(ByLanguageIdQuery<IEnumerable<CountryItemDto>>);
 
             //Act
             var query = GetCountriesByLanguageId();
@@ -29,7 +30,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
         public void Instance_Is_QueryWithDependentProvider_Of_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(Query<IEnumerable<CountryItem>>);
+            var type = typeof(Query<IEnumerable<CountryItemDto>>);
 
             //Act
             var query = GetCountriesByLanguageId();
@@ -42,7 +43,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
         public void Instance_Is_Implement_Interface_IQuery_Of_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(IQuery<IEnumerable<CountryItem>>);
+            var type = typeof(IQuery<IEnumerable<CountryItemDto>>);
 
             //Act
             var query = GetCountriesByLanguageId();

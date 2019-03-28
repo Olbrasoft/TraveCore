@@ -9,6 +9,7 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
@@ -19,7 +20,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void MyTestMethod()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<PhotosByRealEstateIdQuery, Photo, IEnumerable<RealEstatePhoto>>);
+            var type = typeof(TravelQueryHandler<PhotosByRealEstateIdQuery, Photo, IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var handler = Handler();
@@ -32,7 +33,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void HandleAsync_Return_Task_Of_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
-            var type = typeof(Task<IEnumerable<RealEstatePhoto>>);
+            var type = typeof(Task<IEnumerable<PropertyPhotoDto>>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
 

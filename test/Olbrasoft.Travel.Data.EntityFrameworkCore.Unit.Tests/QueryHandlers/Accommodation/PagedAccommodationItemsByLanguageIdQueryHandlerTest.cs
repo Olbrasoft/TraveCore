@@ -10,6 +10,7 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
@@ -22,7 +23,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             //Arrange
             var type =
                 typeof(TravelQueryHandler<PagedRealEstateItemsByLanguageIdQuery, RealEstate,
-                    IResultWithTotalCount<RealEstateItem>>);
+                    IResultWithTotalCount<PropertyItem>>);
 
             //Act
             var handler = Handler();
@@ -37,7 +38,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             //Arrange
             var type =
                 typeof(QueryHandler<PagedRealEstateItemsByLanguageIdQuery, IQueryable<RealEstate>,
-                    IResultWithTotalCount<RealEstateItem>>);
+                    IResultWithTotalCount<PropertyItem>>);
 
             //Act
             var handler = Handler();
@@ -59,7 +60,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void HandleAsync_Return_Task_Of_IResultWithTotalCount_Of_AccommodationItem()
         {
             //Arrange
-            var type = typeof(Task<IResultWithTotalCount<RealEstateItem>>);
+            var type = typeof(Task<IResultWithTotalCount<PropertyItem>>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
             var query = new PagedRealEstateItemsByLanguageIdQuery(providerMock.Object);

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Olbrasoft.Travel.Data.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Transfer.Objects.Accommodation
 {
-    public abstract class BaseRealEstateDto : IAccommodation
+    public abstract class BasePropertyDto : IAccommodation
     {
         public int Id { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.Mapping.Profiles
 {
@@ -8,7 +9,7 @@ namespace Olbrasoft.Travel.Data.Mapping.Profiles
     {
         public LocalizedRegionToCountryItem()
         {
-            CreateMap<LocalizedRegion,CountryItem>()
+            CreateMap<LocalizedRegion,CountryItemDto>()
                 .ForMember(d => d.Code, opt => opt.MapFrom(src => src.Region.ExpandingInformationAboutCountry.Code))
                ;
 

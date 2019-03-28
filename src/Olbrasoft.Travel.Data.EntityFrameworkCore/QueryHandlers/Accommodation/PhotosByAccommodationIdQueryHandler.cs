@@ -7,12 +7,13 @@ using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PhotosByAccommodationIdQueryHandler : TravelQueryHandler<PhotosByRealEstateIdQuery, Photo, IEnumerable<RealEstatePhoto>>
+    public class PhotosByAccommodationIdQueryHandler : TravelQueryHandler<PhotosByRealEstateIdQuery, Photo, IEnumerable<PropertyPhotoDto>>
     {
-        public override async Task<IEnumerable<RealEstatePhoto>> HandleAsync(PhotosByRealEstateIdQuery query,
+        public override async Task<IEnumerable<PropertyPhotoDto>> HandleAsync(PhotosByRealEstateIdQuery query,
             CancellationToken cancellationToken)
         {
             var projection = ProjectToQueryableOfAccommodationPhoto(Source, query);
@@ -20,7 +21,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return await projection.ToArrayAsync(cancellationToken);
         }
 
-        private IQueryable<RealEstatePhoto> ProjectToQueryableOfAccommodationPhoto(
+        private IQueryable<PropertyPhotoDto> ProjectToQueryableOfAccommodationPhoto(
             IQueryable<Photo> source, PhotosByRealEstateIdQuery query)
         {
             var photosOfRooms = Source.SelectMany(p => p.ToTypesOfRooms).Select(p => p.Id);
@@ -30,7 +31,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
                 .Where(p => !photosOfRooms.Contains(p.Id))
                 .OrderBy(p => p.IsDefault);
 
-            return ProjectTo<RealEstatePhoto>(photoOfAccommodations);
+            return ProjectTo<PropertyPhotoDto>(photoOfAccommodations);
         }
 
         public PhotosByAccommodationIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)

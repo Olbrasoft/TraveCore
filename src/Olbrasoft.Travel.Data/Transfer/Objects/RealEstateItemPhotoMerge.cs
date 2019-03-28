@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Olbrasoft.Pagination;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Transfer.Objects
 {
     public class RealEstateItemPhotoMerge : IAccommodationItemPhotoMerge
     {
-        public IResultWithTotalCount<RealEstateItem> Merge(IResultWithTotalCount<RealEstateItem> master, IEnumerable<RealEstatePhoto> slave)
+        public IResultWithTotalCount<PropertyItem> Merge(IResultWithTotalCount<PropertyItem> master, IEnumerable<PropertyPhotoDto> slave)
         {
             foreach (var photo in slave)
             {

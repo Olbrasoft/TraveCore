@@ -1,6 +1,6 @@
-﻿namespace Olbrasoft.Travel.Data.Transfer.Objects
+﻿namespace Olbrasoft.Travel.Data.Transfer.Objects.Accommodation
 {
-    public class Room
+    public class RoomDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

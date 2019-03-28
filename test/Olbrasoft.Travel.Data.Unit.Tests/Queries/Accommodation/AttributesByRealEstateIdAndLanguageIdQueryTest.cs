@@ -6,6 +6,7 @@ using Olbrasoft.Globalization;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {
@@ -15,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByAccommodationIdAndLanguageIdQuery_Of_IEnumerable_Of_Attribute()
         {
             //Arrange
-            var type = typeof(ByRealEstateIdAndLanguageIdQuery<IEnumerable<Attribute>>);
+            var type = typeof(ByRealEstateIdAndLanguageIdQuery<IEnumerable<AttributeDto>>);
 
             //Act
             var query = Query();
@@ -28,7 +29,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_is_ByLanguageIdQuery_Of_IEnumerable_Of_Attribute()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<Attribute>>);
+            var type = typeof(ByLanguageIdQuery<IEnumerable<AttributeDto>>);
 
             //Act
             var query = Query();
@@ -50,7 +51,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Implement_Interface_IQuery_Of_IEnumerable_Of_Attributes()
         {
             //Arrange
-            var type = typeof(IQuery<IEnumerable<Attribute>>);
+            var type = typeof(IQuery<IEnumerable<AttributeDto>>);
             var providerMock = new Mock<IQueryDispatcher>();
 
             //Act

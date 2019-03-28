@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {
@@ -56,7 +57,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var accommodationDetail = facade.Get(id, languageId);
 
             //Assert
-            Assert.IsInstanceOf<RealEstateDetail>(accommodationDetail);
+            Assert.IsInstanceOf<PropertyDetail>(accommodationDetail);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var accommodationDetailTask = facade.GetAsync(id, languageId, CancellationToken.None);
 
             //Assert
-            Assert.IsInstanceOf<Task<RealEstateDetail>>(accommodationDetailTask);
+            Assert.IsInstanceOf<Task<PropertyDetail>>(accommodationDetailTask);
         }
 
         [Test]
@@ -86,7 +87,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var accommodationDetailTask = facade.GetAsync(id, languageId);
 
             //Assert
-            Assert.IsInstanceOf<Task<RealEstateDetail>>(accommodationDetailTask);
+            Assert.IsInstanceOf<Task<PropertyDetail>>(accommodationDetailTask);
         }
 
         [Test]
@@ -101,7 +102,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var accommodationItems = facade.Get(pagingMock.Object, languageId, null);
 
             //Assert
-            Assert.IsInstanceOf<IResultWithTotalCount<RealEstateItem>>(accommodationItems);
+            Assert.IsInstanceOf<IResultWithTotalCount<PropertyItem>>(accommodationItems);
         }
 
         [Test]
@@ -117,7 +118,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var accommodationItemsTask = facade.GetAsync(pagingMock.Object, languageId, null, cancellationToken);
 
             //Assert
-            Assert.IsInstanceOf<Task<IResultWithTotalCount<RealEstateItem>>>(accommodationItemsTask);
+            Assert.IsInstanceOf<Task<IResultWithTotalCount<PropertyItem>>>(accommodationItemsTask);
         }
 
         [Test]
@@ -132,7 +133,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var accommodationItemsTask = facade.GetAsync(pagingMock.Object, languageId, null);
 
             //Assert
-            Assert.IsInstanceOf<Task<IResultWithTotalCount<RealEstateItem>>>(accommodationItemsTask);
+            Assert.IsInstanceOf<Task<IResultWithTotalCount<PropertyItem>>>(accommodationItemsTask);
         }
 
         [Test]
@@ -156,17 +157,17 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             var queryDispatcher = new Mock<IQueryDispatcher>();
 
             queryDispatcher.Setup(p => p.Dispatch(It.IsAny<RealEstateDetailByRealEstateIdAndLanguageIdQuery>()))
-                .Returns(new RealEstateDetail());
+                .Returns(new PropertyDetail());
 
             var items = new[]
             {
-               new RealEstateItem
+               new PropertyItem
                {
                    Id = 1
                }
             };
 
-            var result = new ResultWithTotalCount<RealEstateItem>
+            var result = new ResultWithTotalCount<PropertyItem>
             {
                 Result = items
             };

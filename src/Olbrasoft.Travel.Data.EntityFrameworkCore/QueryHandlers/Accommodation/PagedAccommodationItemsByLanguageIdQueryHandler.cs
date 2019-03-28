@@ -7,18 +7,19 @@ using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
     public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedRealEstateItemsByLanguageIdQuery, RealEstate,
-        IResultWithTotalCount<RealEstateItem>>
+        IResultWithTotalCount<PropertyItem>>
     {
-        public override async Task<IResultWithTotalCount<RealEstateItem>> HandleAsync(PagedRealEstateItemsByLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedRealEstateItemsByLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var localizedAccommodations = PreHandle(Source, query);
-            var accommodationItems = ProjectTo<RealEstateItem>(localizedAccommodations);
+            var accommodationItems = ProjectTo<PropertyItem>(localizedAccommodations);
 
-            var result = new ResultWithTotalCount<RealEstateItem>
+            var result = new ResultWithTotalCount<PropertyItem>
             {
                 Result = await accommodationItems.Skip(query.Paging.CalculateSkip()).Take(query.Paging.PageSize).ToArrayAsync(cancellationToken),
 

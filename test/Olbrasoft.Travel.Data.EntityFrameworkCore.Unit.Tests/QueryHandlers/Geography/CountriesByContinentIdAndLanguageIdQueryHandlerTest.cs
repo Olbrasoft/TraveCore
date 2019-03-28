@@ -9,6 +9,7 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geography
 {
@@ -21,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
             //Arrange
             var type =
                 typeof(TravelQueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
-                    IEnumerable<CountryItem>>);
+                    IEnumerable<CountryItemDto>>);
 
             var handler = Handler();
 
@@ -52,7 +53,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
             var result = handler.HandleAsync(query);
 
             //Assert
-            Assert.IsInstanceOf<Task<IEnumerable<CountryItem>>>(result);
+            Assert.IsInstanceOf<Task<IEnumerable<CountryItemDto>>>(result);
 
         }
 

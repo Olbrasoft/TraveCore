@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Accommodation
 {
     [TestFixture]
     internal class RoomPhotoTest
@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
                 new PhotoToRoomDto()
             }.AsEnumerable();
 
-            var roomPhoto = new RoomPhoto
+            var roomPhoto = new RoomPhotoDto
             {
                 Path = "Path",
                 Name = "Name",

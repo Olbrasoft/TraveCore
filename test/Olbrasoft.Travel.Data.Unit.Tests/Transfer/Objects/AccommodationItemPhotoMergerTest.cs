@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Transfer;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
 {
@@ -27,11 +28,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         {
             //Arrange
             var merger = Merger();
-            var accommodationItems = new ResultWithTotalCount<RealEstateItem>()
+            var accommodationItems = new ResultWithTotalCount<PropertyItem>()
             {
                 Result = new[]
                 {
-                    new RealEstateItem
+                    new PropertyItem
                     {
                         Id = 1
                     },
@@ -42,7 +43,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         var accommodationPhotos = new[]
             {
 
-                new RealEstatePhoto
+                new PropertyPhotoDto
                 {
                     RealEstateId = 1,
                     Path = "Path",

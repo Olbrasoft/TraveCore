@@ -1,6 +1,6 @@
-﻿namespace Olbrasoft.Travel.Data.Transfer.Objects
+﻿namespace Olbrasoft.Travel.Data.Transfer.Objects.Accommodation
 {
-    public class RealEstatePhoto
+    public class PropertyPhotoDto
     {
         public int RealEstateId { get; set; }
         public string Path { get; set; }

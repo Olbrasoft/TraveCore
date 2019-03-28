@@ -9,7 +9,7 @@ using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             //Arrange
             var type =
                 typeof(TravelQueryHandler< AttributesByRealEstateIdAndLanguageIdQuery,
-                    RealEstateToAttribute, IEnumerable<Attribute>>);
+                    RealEstateToAttribute, IEnumerable<AttributeDto>>);
 
             //Act
             var handler = Handler();
@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var result = handler.HandleAsync(query, default(CancellationToken));
 
             //Assert
-            Assert.IsInstanceOf<Task<IEnumerable<Attribute>>>(result);
+            Assert.IsInstanceOf<Task<IEnumerable<AttributeDto>>>(result);
         }
 
         private static AttributesByAccommodationIdAndLanguageIdQueryHandler Handler()

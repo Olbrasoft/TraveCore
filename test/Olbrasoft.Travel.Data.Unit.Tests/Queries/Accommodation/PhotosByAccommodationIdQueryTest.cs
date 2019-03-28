@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {
@@ -14,7 +15,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_AccommodationIdQuery_Of_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
-            var type = typeof(ByRealEstateIdQuery<IEnumerable<RealEstatePhoto>>);
+            var type = typeof(ByRealEstateIdQuery<IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var query = Query();
@@ -27,7 +28,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_QueryWithDependentDispatcher_Of_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
-            var type = typeof(Query<IEnumerable<RealEstatePhoto>>);
+            var type = typeof(Query<IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var query = Query();

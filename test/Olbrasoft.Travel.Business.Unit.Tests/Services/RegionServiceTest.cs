@@ -7,6 +7,7 @@ using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {
@@ -43,7 +44,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void GetCountriesAsync_Returns_Task_Of_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(Task<IEnumerable<CountryItem>>);
+            var type = typeof(Task<IEnumerable<CountryItemDto>>);
             var service = Service();
 
             //Act
@@ -58,7 +59,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         {
             //Arrange
             //Arrange
-            var type = typeof(Task<IEnumerable<CountryItem>>);
+            var type = typeof(Task<IEnumerable<CountryItemDto>>);
             var service = Service();
 
             //Act

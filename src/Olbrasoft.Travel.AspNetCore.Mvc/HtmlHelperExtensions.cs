@@ -3,7 +3,7 @@ using Olbrasoft.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc
 {
@@ -807,9 +807,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             return ul.ToString();
         }
 
-        public static string GetPaymentClassContent(this IHtmlHelper helper, Attribute attribute)
+        public static string GetPaymentClassContent(this IHtmlHelper helper, AttributeDto attributeDto)
         {
-            if (!AttributesToClasses.TryGetValue(attribute.Id, out var cssClass))
+            if (!AttributesToClasses.TryGetValue(attributeDto.Id, out var cssClass))
             {
                 cssClass = "fab fa-credit-card";
             }
@@ -817,9 +817,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             return cssClass;
         }
 
-        public static string GetClassContent(this IHtmlHelper helper, Attribute attribute)
+        public static string GetClassContent(this IHtmlHelper helper, AttributeDto attributeDto)
         {
-            if (!AttributesToClasses.TryGetValue(attribute.Id, out var cssClass))
+            if (!AttributesToClasses.TryGetValue(attributeDto.Id, out var cssClass))
             {
                 cssClass = "far fa-dot-circle";
             }
@@ -827,9 +827,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             return cssClass;
         }
 
-        public static string GetAmenityOfAccommodationClassContent(this IHtmlHelper helper, Attribute attribute)
+        public static string GetAmenityOfAccommodationClassContent(this IHtmlHelper helper, AttributeDto attributeDto)
         {
-            if (!AttributesToClasses.TryGetValue(attribute.Id, out var cssClass))
+            if (!AttributesToClasses.TryGetValue(attributeDto.Id, out var cssClass))
             {
                 cssClass = "fas fa-info-circle";
             }
@@ -837,9 +837,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             return cssClass;
         }
 
-        public static string GetAmenityOfRoomClassContent(this IHtmlHelper helper, Attribute attribute)
+        public static string GetAmenityOfRoomClassContent(this IHtmlHelper helper, AttributeDto attributeDto)
         {
-            if (!AttributesToClasses.TryGetValue(attribute.Id, out var cssClass))
+            if (!AttributesToClasses.TryGetValue(attributeDto.Id, out var cssClass))
             {
                 cssClass = "fas fa-check-circle";
             }
@@ -848,9 +848,9 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
         }
 
         public static string AccommodationPaymentTypes(this IHtmlHelper helper,
-            IEnumerable<Attribute> creditCards)
+            IEnumerable<AttributeDto> creditCards)
         {
-            var attributes = creditCards as Attribute[] ?? creditCards.ToArray();
+            var attributes = creditCards as AttributeDto[] ?? creditCards.ToArray();
             if (!attributes.Any()) return string.Empty;
 
             var ul = new StringBuilder();

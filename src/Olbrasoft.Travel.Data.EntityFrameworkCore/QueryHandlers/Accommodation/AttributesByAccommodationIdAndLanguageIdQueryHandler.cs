@@ -6,18 +6,18 @@ using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Mapping;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Attribute = Olbrasoft.Travel.Data.Transfer.Objects.Attribute;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByRealEstateIdAndLanguageIdQuery, RealEstateToAttribute, IEnumerable<Attribute>>
+    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByRealEstateIdAndLanguageIdQuery, RealEstateToAttribute, IEnumerable<AttributeDto>>
     {
-        public override async Task<IEnumerable<Attribute>> HandleAsync(AttributesByRealEstateIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<AttributeDto>> HandleAsync(AttributesByRealEstateIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             return await ProjectionToAttribute(Source, query).ToArrayAsync(cancellationToken);
         }
 
-        protected IQueryable<Attribute> ProjectionToAttribute(IQueryable<RealEstateToAttribute> accommodationsToAttributes, AttributesByRealEstateIdAndLanguageIdQuery query)
+        protected IQueryable<AttributeDto> ProjectionToAttribute(IQueryable<RealEstateToAttribute> accommodationsToAttributes, AttributesByRealEstateIdAndLanguageIdQuery query)
         {
             accommodationsToAttributes = accommodationsToAttributes.Include(p => p.Attribute)
                     .Include(p => p.Attribute.LocalizedAttributes)
@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
                     .OrderBy(p => p.Attribute.Ban)
                 ;
 
-            return ProjectTo<Attribute>(accommodationsToAttributes);
+            return ProjectTo<AttributeDto>(accommodationsToAttributes);
         }
 
         public AttributesByAccommodationIdAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)

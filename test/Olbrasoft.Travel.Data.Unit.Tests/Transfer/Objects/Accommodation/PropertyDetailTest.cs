@@ -1,19 +1,19 @@
 ﻿using NUnit.Framework;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Accommodation
 {
     [TestFixture]
-    internal class AccommodationDetailTest
+    internal class PropertyDetailTest
     {
         [Test]
         public void Instance_Is_Accommodation()
         {
             //Arrange
-            var type = typeof(BaseRealEstateDto);
+            var type = typeof(BasePropertyDto);
 
             //Act
-            var accommodationDetail = new RealEstateDetail();
+            var accommodationDetail = new PropertyDetail();
 
             //Assert
             Assert.IsInstanceOf(type, accommodationDetail);
@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             var type = typeof(IHaveRooms);
 
             //Act
-            var accommodationDetail = new RealEstateDetail();
+            var accommodationDetail = new PropertyDetail();
 
             //Assert
             Assert.IsInstanceOf(type, accommodationDetail);
@@ -39,7 +39,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             var type = typeof(IHaveAttributes);
 
             //Act
-            var accommodationDetail = new RealEstateDetail();
+            var accommodationDetail = new PropertyDetail();
 
             //Assert
             Assert.IsInstanceOf(type, accommodationDetail);

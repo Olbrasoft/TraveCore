@@ -4,10 +4,11 @@ using Olbrasoft.Data.Querying;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
-    public class PagedRealEstateItemsByLanguageIdQuery : ByLanguageIdQuery<IResultWithTotalCount<RealEstateItem>>
+    public class PagedRealEstateItemsByLanguageIdQuery : ByLanguageIdQuery<IResultWithTotalCount<PropertyItem>>
     {
         public Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> Sorting
         {

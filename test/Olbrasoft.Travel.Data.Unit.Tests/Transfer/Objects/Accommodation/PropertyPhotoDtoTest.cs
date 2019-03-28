@@ -1,16 +1,16 @@
 ﻿using NUnit.Framework;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Accommodation
 {
     [TestFixture]
-    internal class AccommodationPhotoTest
+    internal class PropertyPhotoDtoTest
     {
         [Test]
         public void Create_And_Fill_Properties([Values(10)] int i, [Values("path")] string p, [Values("name")] string n, [Values("Extension")] string e)
         {
             //Arrange
-            var photoOfAccommodation = new RealEstatePhoto
+            var photoOfAccommodation = new PropertyPhotoDto
             {
                 RealEstateId = i,
                 Path = p,

@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using Olbrasoft.Travel.Data.Transfer;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
-namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
+namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Geography
 {
     [TestFixture]
-    internal class CountryItemTest
+    internal class CountryItemDtoTest
     {
         [Test]
         public void Instance_Is_ICountry()
@@ -14,7 +14,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             var type = typeof(ICountry);
 
             //Act
-            var region = new CountryItem();
+            var region = new CountryItemDto();
 
             //Assert
             Assert.IsInstanceOf(type, region);
@@ -25,7 +25,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         {
             //Arrange
             const string name = "Czech Republic";
-            var country = new CountryItem
+            var country = new CountryItemDto
             {
                 Name = name
             };
@@ -42,7 +42,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         {
             //Arrange
             const string code = "CZ";
-            var country = new CountryItem()
+            var country = new CountryItemDto()
             {
                 Code = code
             };
