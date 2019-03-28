@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
 {
     [TestFixture]
-    public class SuggestionTest
+    public class SuggestionDtoTest
     {
         [Test]
         public void Id_Set_Get()

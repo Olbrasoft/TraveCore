@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Accommodation
@@ -6,6 +7,19 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Accommodation
     [TestFixture]
     internal class PropertyPhotoDtoTest
     {
+        [Test]
+        public void Instance_Is_PhotoDto()
+        {
+            //Arrange
+            var type = typeof(PhotoDto);
+
+            //Act
+            var photo = new PropertyPhotoDto();
+
+            //Assert
+            Assert.IsInstanceOf(type, photo);
+        }
+
         [Test]
         public void Create_And_Fill_Properties([Values(10)] int i, [Values("path")] string p, [Values("name")] string n, [Values("Extension")] string e)
         {
