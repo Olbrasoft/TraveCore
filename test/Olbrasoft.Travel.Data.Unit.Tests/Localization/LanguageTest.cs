@@ -44,109 +44,79 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Localization
             //Act
             var lang = new Language
             {
-                 ExpediaCode = code
+                ExpediaCode = code
             };
 
             //Assert
             Assert.AreEqual(code, lang.ExpediaCode);
-
-
         }
-        
 
         [Test]
         public void LocalizedRealEstateTypes()
         {
             //Arrange
-            var localizations = new List<LocalizedRealEstateCategory>();
+            var localizations = new List<PropertyTypeTranslation>();
 
             //Act
-           
+
             var lang = new Language
             {
-               LocalizedRealEstateTypes = localizations
+                PropertyTypesTranslations = localizations
             };
 
             //Assert
-            Assert.AreSame(localizations, lang.LocalizedRealEstateTypes);
-
+            Assert.AreSame(localizations, lang.PropertyTypesTranslations);
         }
-
 
         [Test]
         public void LocalizedRealEstates()
         {
             //Arrange
-            var localizations = new List<LocalizedRealEstate>();
+            var localizations = new List<PropertyTranslation>();
 
             //Act
 
             var lang = new Language
             {
-                LocalizedRealEstates = localizations
+                PropertiesTranslations = localizations
             };
 
             //Assert
-            Assert.AreSame(localizations, lang.LocalizedRealEstates);
-
-        }
-
-
-        [Test]
-        public void LocalizedDescriptions()
-        {
-            //Arrange
-            var localizations = new List<LocalizedDescription>();
-
-            //Act
-
-            var lang = new Language
-            {
-                LocalizedDescriptions = localizations
-            };
-
-            //Assert
-            Assert.AreSame(localizations, lang.LocalizedDescriptions);
-
+            Assert.AreSame(localizations, lang.PropertiesTranslations);
         }
 
         [Test]
         public void LocalizedRoomTypes()
         {
             //Arrange
-            var localizations = new List<LocalizedRoom>();
+            var localizations = new List<RoomTranslation>();
 
             //Act
 
             var lang = new Language
             {
-                LocalizedRoomTypes = localizations
+                RoomsTranslations = localizations
             };
 
             //Assert
-            Assert.AreSame(localizations, lang.LocalizedRoomTypes);
-
+            Assert.AreSame(localizations, lang.RoomsTranslations);
         }
-
 
         [Test]
         public void RealEstatesToAttributes()
         {
             //Arrange
-            var localizations = new List<RealEstateToAttribute>();
+            var localizations = new List<PropertyToAttribute>();
 
             //Act
 
             var lang = new Language
             {
-               RealEstatesToAttributes = localizations
+                PropertiesToAttributes = localizations
             };
 
             //Assert
-            Assert.AreSame(localizations, lang.RealEstatesToAttributes);
-
+            Assert.AreSame(localizations, lang.PropertiesToAttributes);
         }
-
-
     }
 }

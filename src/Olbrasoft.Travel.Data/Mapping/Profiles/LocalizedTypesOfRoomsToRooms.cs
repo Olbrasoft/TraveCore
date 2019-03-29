@@ -9,7 +9,7 @@ namespace Olbrasoft.Travel.Data.Mapping.Profiles
 
         public LocalizedTypesOfRoomsToRooms()
         {
-            CreateMap<LocalizedRoom, RoomDto>();
+            CreateMap<RoomTranslation, RoomDto>();
         }
     }
 }

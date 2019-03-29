@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class LocalizedRealEstate : Localized
-    //https://translate.google.cz/#view=home&op=translate&sl=en&tl=cs&text=Localized%20Real%20estate
+    public class PropertyTranslation : Translation
+    //https://translate.google.cz/#view=home&op=translate&sl=en&tl=cs&text=Translation%20Real%20estate
     {
         [Required]
         [MaxLength(70)]
@@ -19,6 +19,6 @@ namespace Olbrasoft.Travel.Data.Accommodation
         [MaxLength(10)]
         public string CheckOutTime { get; set; }
 
-        public RealEstate RealEstate { get; set; }
+        public Property Property { get; set; }
     }
 }

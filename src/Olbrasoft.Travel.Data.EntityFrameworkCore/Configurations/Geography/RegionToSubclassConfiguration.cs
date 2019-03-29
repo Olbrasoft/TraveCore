@@ -6,7 +6,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {
     public class RegionToSubclassConfiguration : TravelTypeConfiguration<RegionToSubclass>
     {
-        public RegionToSubclassConfiguration() : base("RegionToSubclasses")
+        public RegionToSubclassConfiguration() : base("RegionsToSubclasses")
         {
         }
 

@@ -5,7 +5,7 @@ using Olbrasoft.Travel.Data.Base;
 
 namespace Olbrasoft.Travel.Data.Localization
 {
-    public abstract class Localized : OwnerCreatorInfoAndCreator, IHaveLanguageId
+    public abstract class Translation : OwnerCreatorInfoAndCreator, IHaveLanguageId
     {
         [Key]
         [Column(Order = 2)]

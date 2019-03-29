@@ -16,7 +16,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Identity
 
             builder.HasMany(p => p.Countries).WithOne(p => p.Creator).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(p => p.LocalizedSuggestionCategories).WithOne(p => p.Creator).OnDelete(DeleteBehavior.Restrict);
             //builder.HasMany<Membership>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
 
             //builder.HasMany(user => user.Claims).WithRequired().HasForeignKey(uc => uc.UserId);

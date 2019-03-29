@@ -1,11 +1,10 @@
 ﻿using Olbrasoft.Travel.Data.Base;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Olbrasoft.Travel.Data.Suggestion;
 
 namespace Olbrasoft.Travel.Data.Geography
 {
-    public class RegionSubtype : HaveName, IHaveSuggestionCategory
+    public class RegionSubtype : HaveName
     {
         [Required]
         [MaxLength(50)]
@@ -14,7 +13,5 @@ namespace Olbrasoft.Travel.Data.Geography
         public ICollection<Region> Regions { get; set; }
 
         public int? SuggestionCategoryId { get; set; }
-
-        public SuggestionCategory SuggestionCategory { get; set; }
     }
 }

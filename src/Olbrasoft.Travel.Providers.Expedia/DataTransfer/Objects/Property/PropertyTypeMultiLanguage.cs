@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property
     /// </summary>
     public class PropertyTypeMultiLanguage
     {
-        public int PropertyCategory { get; set; }
+        public int Category { get; set; }
 
         [Required]
         [StringLength(5)]
@@ -19,6 +19,6 @@ namespace Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property
 
         [Required]
         [StringLength(256)]
-        public string PropertyCategoryDesc { get; set; }
+        public string CategoryDesc { get; set; }
     }
 }

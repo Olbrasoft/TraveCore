@@ -24,9 +24,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
             migrationBuilder.EnsureSchema(
                 name: "Localization");
 
-            migrationBuilder.EnsureSchema(
-                name: "Suggestion");
-
             migrationBuilder.CreateTable(
                 name: "Roles",
                 schema: "Identity",
@@ -267,6 +264,55 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PropertyTypes",
+                schema: "Accommodation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false),
+                    ExpediaId = table.Column<int>(nullable: false),
+                    SuggestionCategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PropertyTypes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PropertyTypes_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RegionSubtypes",
+                schema: "Geography",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 50, nullable: false),
+                    SuggestionCategoryId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RegionSubtypes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RegionSubtypes_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubClasses",
                 schema: "Geography",
                 columns: table => new
@@ -358,29 +404,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                schema: "Suggestion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Ascending = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Categories_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Attributes",
                 schema: "Accommodation",
                 columns: table => new
@@ -421,217 +444,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocalizedCaptions",
-                schema: "Accommodation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Text = table.Column<string>(maxLength: 255, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocalizedCaptions", x => new { x.Id, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_LocalizedCaptions_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LocalizedCaptions_Captions_Id",
-                        column: x => x.Id,
-                        principalSchema: "Accommodation",
-                        principalTable: "Captions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LocalizedCaptions_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalSchema: "Localization",
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Categories",
-                schema: "Accommodation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    ExpediaId = table.Column<int>(nullable: false),
-                    SuggestionCategoryId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Categories_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Categories_Categories_SuggestionCategoryId",
-                        column: x => x.SuggestionCategoryId,
-                        principalSchema: "Suggestion",
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RegionSubtypes",
-                schema: "Geography",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Description = table.Column<string>(maxLength: 50, nullable: false),
-                    SuggestionCategoryId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RegionSubtypes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RegionSubtypes_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RegionSubtypes_Categories_SuggestionCategoryId",
-                        column: x => x.SuggestionCategoryId,
-                        principalSchema: "Suggestion",
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LocalizedCategories",
-                schema: "Suggestion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 255, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocalizedCategories", x => new { x.Id, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_LocalizedCategories_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LocalizedCategories_Categories_Id",
-                        column: x => x.Id,
-                        principalSchema: "Suggestion",
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LocalizedCategories_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalSchema: "Localization",
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LocalizedAttributes",
-                schema: "Accommodation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(maxLength: 255, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocalizedAttributes", x => new { x.Id, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_LocalizedAttributes_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LocalizedAttributes_Attributes_Id",
-                        column: x => x.Id,
-                        principalSchema: "Accommodation",
-                        principalTable: "Attributes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LocalizedAttributes_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalSchema: "Localization",
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LocalizedCategories",
-                schema: "Accommodation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 256, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocalizedCategories", x => new { x.Id, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_LocalizedCategories_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LocalizedCategories_Categories_Id",
-                        column: x => x.Id,
-                        principalSchema: "Accommodation",
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LocalizedCategories_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalSchema: "Localization",
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Regions",
                 schema: "Geography",
                 columns: table => new
@@ -660,6 +472,117 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         column: x => x.SubtypeId,
                         principalSchema: "Geography",
                         principalTable: "RegionSubtypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CaptionsTranslations",
+                schema: "Accommodation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false),
+                    Text = table.Column<string>(maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CaptionsTranslations", x => new { x.Id, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_CaptionsTranslations_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CaptionsTranslations_Captions_Id",
+                        column: x => x.Id,
+                        principalSchema: "Accommodation",
+                        principalTable: "Captions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CaptionsTranslations_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalSchema: "Localization",
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PropertyTypesTranslations",
+                schema: "Accommodation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PropertyTypesTranslations", x => new { x.Id, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_PropertyTypesTranslations_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PropertyTypesTranslations_PropertyTypes_Id",
+                        column: x => x.Id,
+                        principalSchema: "Accommodation",
+                        principalTable: "PropertyTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PropertyTypesTranslations_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalSchema: "Localization",
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AttributesTranslations",
+                schema: "Accommodation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttributesTranslations", x => new { x.Id, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_AttributesTranslations_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AttributesTranslations_Attributes_Id",
+                        column: x => x.Id,
+                        principalSchema: "Accommodation",
+                        principalTable: "Attributes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AttributesTranslations_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalSchema: "Localization",
+                        principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -752,7 +675,79 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocalizedRegions",
+                name: "RegionsToRegions",
+                schema: "Geography",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    ToId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RegionsToRegions", x => new { x.Id, x.ToId });
+                    table.ForeignKey(
+                        name: "FK_RegionsToRegions_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RegionsToRegions_Regions_Id",
+                        column: x => x.Id,
+                        principalSchema: "Geography",
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RegionsToRegions_Regions_ToId",
+                        column: x => x.ToId,
+                        principalSchema: "Geography",
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RegionsToSubclasses",
+                schema: "Geography",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    ToId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RegionsToSubclasses", x => new { x.Id, x.ToId });
+                    table.ForeignKey(
+                        name: "FK_RegionsToSubclasses_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RegionsToSubclasses_Regions_Id",
+                        column: x => x.Id,
+                        principalSchema: "Geography",
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RegionsToSubclasses_SubClasses_ToId",
+                        column: x => x.ToId,
+                        principalSchema: "Geography",
+                        principalTable: "SubClasses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RegionsTranslations",
                 schema: "Geography",
                 columns: table => new
                 {
@@ -765,23 +760,23 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocalizedRegions", x => new { x.Id, x.LanguageId });
+                    table.PrimaryKey("PK_RegionsTranslations", x => new { x.Id, x.LanguageId });
                     table.ForeignKey(
-                        name: "FK_LocalizedRegions_Users_CreatorId",
+                        name: "FK_RegionsTranslations_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalSchema: "Identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_LocalizedRegions_Regions_Id",
+                        name: "FK_RegionsTranslations_Regions_Id",
                         column: x => x.Id,
                         principalSchema: "Geography",
                         principalTable: "Regions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LocalizedRegions_Languages_LanguageId",
+                        name: "FK_RegionsTranslations_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalSchema: "Localization",
                         principalTable: "Languages",
@@ -790,79 +785,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RegionToRegions",
-                schema: "Geography",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    ToId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RegionToRegions", x => new { x.Id, x.ToId });
-                    table.ForeignKey(
-                        name: "FK_RegionToRegions_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_RegionToRegions_Regions_Id",
-                        column: x => x.Id,
-                        principalSchema: "Geography",
-                        principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_RegionToRegions_Regions_ToId",
-                        column: x => x.ToId,
-                        principalSchema: "Geography",
-                        principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RegionToSubclasses",
-                schema: "Geography",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    ToId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RegionToSubclasses", x => new { x.Id, x.ToId });
-                    table.ForeignKey(
-                        name: "FK_RegionToSubclasses_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_RegionToSubclasses_Regions_Id",
-                        column: x => x.Id,
-                        principalSchema: "Geography",
-                        principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RegionToSubclasses_SubClasses_ToId",
-                        column: x => x.ToId,
-                        principalSchema: "Geography",
-                        principalTable: "SubClasses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RealEstates",
+                name: "Properties",
                 schema: "Accommodation",
                 columns: table => new
                 {
@@ -883,37 +806,37 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RealEstates", x => x.Id);
+                    table.PrimaryKey("PK_Properties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RealEstates_Airports_AirportId",
+                        name: "FK_Properties_Airports_AirportId",
                         column: x => x.AirportId,
                         principalSchema: "Geography",
                         principalTable: "Airports",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RealEstates_Categories_CategoryId",
+                        name: "FK_Properties_PropertyTypes_CategoryId",
                         column: x => x.CategoryId,
                         principalSchema: "Accommodation",
-                        principalTable: "Categories",
+                        principalTable: "PropertyTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RealEstates_Chains_ChainId",
+                        name: "FK_Properties_Chains_ChainId",
                         column: x => x.ChainId,
                         principalSchema: "Accommodation",
                         principalTable: "Chains",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RealEstates_Countries_CountryId",
+                        name: "FK_Properties_Countries_CountryId",
                         column: x => x.CountryId,
                         principalSchema: "Geography",
                         principalTable: "Countries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RealEstates_Users_CreatorId",
+                        name: "FK_Properties_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalSchema: "Identity",
                         principalTable: "Users",
@@ -922,12 +845,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocalizedDescriptions",
+                name: "DescriptionsTranslations",
                 schema: "Accommodation",
                 columns: table => new
                 {
-                    RealEstateId = table.Column<int>(nullable: false),
                     DescriptionId = table.Column<int>(nullable: false),
+                    PropertyId = table.Column<int>(nullable: false),
                     LanguageId = table.Column<int>(nullable: false),
                     Text = table.Column<string>(nullable: false),
                     CreatorId = table.Column<int>(nullable: false),
@@ -935,75 +858,35 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocalizedDescriptions", x => new { x.RealEstateId, x.DescriptionId, x.LanguageId });
+                    table.PrimaryKey("PK_DescriptionsTranslations", x => new { x.PropertyId, x.DescriptionId, x.LanguageId });
                     table.ForeignKey(
-                        name: "FK_LocalizedDescriptions_Users_CreatorId",
+                        name: "FK_DescriptionsTranslations_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalSchema: "Identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_LocalizedDescriptions_Descriptions_DescriptionId",
+                        name: "FK_DescriptionsTranslations_Descriptions_DescriptionId",
                         column: x => x.DescriptionId,
                         principalSchema: "Accommodation",
                         principalTable: "Descriptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_LocalizedDescriptions_Languages_LanguageId",
+                        name: "FK_DescriptionsTranslations_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalSchema: "Localization",
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_LocalizedDescriptions_RealEstates_RealEstateId",
-                        column: x => x.RealEstateId,
+                        name: "FK_DescriptionsTranslations_Properties_PropertyId",
+                        column: x => x.PropertyId,
                         principalSchema: "Accommodation",
-                        principalTable: "RealEstates",
+                        principalTable: "Properties",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LocalizedRealEstates",
-                schema: "Accommodation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 70, nullable: false),
-                    Location = table.Column<string>(maxLength: 80, nullable: true),
-                    CheckInTime = table.Column<string>(maxLength: 10, nullable: true),
-                    CheckOutTime = table.Column<string>(maxLength: 10, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocalizedRealEstates", x => new { x.Id, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_LocalizedRealEstates_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LocalizedRealEstates_RealEstates_Id",
-                        column: x => x.Id,
-                        principalSchema: "Accommodation",
-                        principalTable: "RealEstates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LocalizedRealEstates_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalSchema: "Localization",
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1054,16 +937,16 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Photos_RealEstates_RealEstateId",
+                        name: "FK_Photos_Properties_RealEstateId",
                         column: x => x.RealEstateId,
                         principalSchema: "Accommodation",
-                        principalTable: "RealEstates",
+                        principalTable: "Properties",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RealEstatesToAttributes",
+                name: "PropertiesToAttributes",
                 schema: "Accommodation",
                 columns: table => new
                 {
@@ -1072,40 +955,81 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     LanguageId = table.Column<int>(nullable: false),
                     CreatorId = table.Column<int>(nullable: false),
                     Text = table.Column<string>(maxLength: 800, nullable: true),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()")
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    PropertyId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RealEstatesToAttributes", x => new { x.RealEstateId, x.AttributeId, x.LanguageId });
-                    table.UniqueConstraint("AK_RealEstatesToAttributes_AttributeId_LanguageId_RealEstateId", x => new { x.AttributeId, x.LanguageId, x.RealEstateId });
+                    table.PrimaryKey("PK_PropertiesToAttributes", x => new { x.RealEstateId, x.AttributeId, x.LanguageId });
+                    table.UniqueConstraint("AK_PropertiesToAttributes_AttributeId_LanguageId_RealEstateId", x => new { x.AttributeId, x.LanguageId, x.RealEstateId });
                     table.ForeignKey(
-                        name: "FK_RealEstatesToAttributes_Attributes_AttributeId",
+                        name: "FK_PropertiesToAttributes_Attributes_AttributeId",
                         column: x => x.AttributeId,
                         principalSchema: "Accommodation",
                         principalTable: "Attributes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RealEstatesToAttributes_Users_CreatorId",
+                        name: "FK_PropertiesToAttributes_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalSchema: "Identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RealEstatesToAttributes_Languages_LanguageId",
+                        name: "FK_PropertiesToAttributes_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalSchema: "Localization",
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RealEstatesToAttributes_RealEstates_RealEstateId",
-                        column: x => x.RealEstateId,
+                        name: "FK_PropertiesToAttributes_Properties_PropertyId",
+                        column: x => x.PropertyId,
                         principalSchema: "Accommodation",
-                        principalTable: "RealEstates",
+                        principalTable: "Properties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PropertiesTranslations",
+                schema: "Accommodation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 70, nullable: false),
+                    Location = table.Column<string>(maxLength: 80, nullable: true),
+                    CheckInTime = table.Column<string>(maxLength: 10, nullable: true),
+                    CheckOutTime = table.Column<string>(maxLength: 10, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PropertiesTranslations", x => new { x.Id, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_PropertiesTranslations_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PropertiesTranslations_Properties_Id",
+                        column: x => x.Id,
+                        principalSchema: "Accommodation",
+                        principalTable: "Properties",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PropertiesTranslations_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalSchema: "Localization",
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1118,7 +1042,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
                     CreatorId = table.Column<int>(nullable: false),
                     RealEstateId = table.Column<int>(nullable: false),
-                    ExpediaId = table.Column<int>(nullable: false)
+                    ExpediaId = table.Column<int>(nullable: false),
+                    PropertyId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1131,48 +1056,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Rooms_RealEstates_RealEstateId",
-                        column: x => x.RealEstateId,
+                        name: "FK_Rooms_Properties_PropertyId",
+                        column: x => x.PropertyId,
                         principalSchema: "Accommodation",
-                        principalTable: "RealEstates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LocalizedRooms",
-                schema: "Accommodation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
-                    CreatorId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 200, nullable: false),
-                    Description = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocalizedRooms", x => new { x.Id, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_LocalizedRooms_Users_CreatorId",
-                        column: x => x.CreatorId,
-                        principalSchema: "Identity",
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LocalizedRooms_Rooms_Id",
-                        column: x => x.Id,
-                        principalSchema: "Accommodation",
-                        principalTable: "Rooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LocalizedRooms_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalSchema: "Localization",
-                        principalTable: "Languages",
+                        principalTable: "Properties",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -1213,11 +1100,49 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RoomsTranslations",
+                schema: "Accommodation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false, defaultValueSql: "GetUtcDate()"),
+                    CreatorId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 200, nullable: false),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoomsTranslations", x => new { x.Id, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_RoomsTranslations_Users_CreatorId",
+                        column: x => x.CreatorId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RoomsTranslations_Rooms_Id",
+                        column: x => x.Id,
+                        principalSchema: "Accommodation",
+                        principalTable: "Rooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoomsTranslations_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalSchema: "Localization",
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 schema: "Identity",
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "18869711-3cd5-4d53-8d74-4908b8c39113", null, false, false, null, null, null, null, null, false, null, false, "TravelDbContext" });
+                values: new object[] { 1, 0, "e26d3b4c-5383-41b7-92b2-6dfbdd70815f", null, false, false, null, null, null, null, null, false, null, false, "TravelDbContext" });
 
             migrationBuilder.InsertData(
                 schema: "Accommodation",
@@ -1271,97 +1196,73 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "Geography",
                 table: "RegionSubtypes",
                 columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 10, 1, "Point of Interest Shadow", "PointOfInterestShadow", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 9, 1, "Point of Interest", "PointOfInterest", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 8, 1, "Neighborhood", "Neighborhood", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 7, 1, "City", "City", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 6, 1, "Multi-City (Vicinity)", "MultiCity", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 2, 1, "Continent", "Continent", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 4, 1, "Province (State)", "Province", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 3, 1, "Country", "Country", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 11, 1, "Airport", "Airport", null });
+
+            migrationBuilder.InsertData(
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
                 values: new object[] { 1, 1, "World", "World", null });
 
             migrationBuilder.InsertData(
-                schema: "Suggestion",
-                table: "Categories",
-                columns: new[] { "Id", "Ascending", "CreatorId" },
-                values: new object[] { 1, 1, 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Suggestion",
-                table: "Categories",
-                columns: new[] { "Id", "Ascending", "CreatorId" },
-                values: new object[] { 2, 2, 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Suggestion",
-                table: "Categories",
-                columns: new[] { "Id", "Ascending", "CreatorId" },
-                values: new object[] { 3, 3, 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Suggestion",
-                table: "Categories",
-                columns: new[] { "Id", "Ascending", "CreatorId" },
-                values: new object[] { 4, 4, 1 });
+                schema: "Geography",
+                table: "RegionSubtypes",
+                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
+                values: new object[] { 5, 1, "Multi-Region (within a country)", "MultiRegion", null });
 
             migrationBuilder.InsertData(
                 schema: "Geography",
                 table: "RegionSubtypes",
                 columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 2, 1, "Continent", "Continent", 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 3, 1, "Country", "Country", 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 4, 1, "Province (State)", "Province", 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 5, 1, "Multi-Region (within a country)", "MultiRegion", 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 6, 1, "Multi-City (Vicinity)", "MultiCity", 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 7, 1, "City", "City", 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 8, 1, "Neighborhood", "Neighborhood", 1 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 9, 1, "Point of Interest", "PointOfInterest", 3 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 10, 1, "Point of Interest Shadow", "PointOfInterestShadow", 3 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 11, 1, "Airport", "Airport", 4 });
-
-            migrationBuilder.InsertData(
-                schema: "Geography",
-                table: "RegionSubtypes",
-                columns: new[] { "Id", "CreatorId", "Description", "Name", "SuggestionCategoryId" },
-                values: new object[] { 12, 1, "Train Station", "TrainStation", 4 });
+                values: new object[] { 12, 1, "Train Station", "TrainStation", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attributes_CreatorId",
@@ -1382,6 +1283,18 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 column: "TypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AttributesTranslations_CreatorId",
+                schema: "Accommodation",
+                table: "AttributesTranslations",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AttributesTranslations_LanguageId",
+                schema: "Accommodation",
+                table: "AttributesTranslations",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AttributeSubtypes_CreatorId",
                 schema: "Accommodation",
                 table: "AttributeSubtypes",
@@ -1400,23 +1313,16 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_CreatorId",
+                name: "IX_CaptionsTranslations_CreatorId",
                 schema: "Accommodation",
-                table: "Categories",
+                table: "CaptionsTranslations",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_ExpediaId",
+                name: "IX_CaptionsTranslations_LanguageId",
                 schema: "Accommodation",
-                table: "Categories",
-                column: "ExpediaId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_SuggestionCategoryId",
-                schema: "Accommodation",
-                table: "Categories",
-                column: "SuggestionCategoryId");
+                table: "CaptionsTranslations",
+                column: "LanguageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Descriptions_CreatorId",
@@ -1432,6 +1338,24 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_DescriptionsTranslations_CreatorId",
+                schema: "Accommodation",
+                table: "DescriptionsTranslations",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DescriptionsTranslations_DescriptionId",
+                schema: "Accommodation",
+                table: "DescriptionsTranslations",
+                column: "DescriptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DescriptionsTranslations_LanguageId",
+                schema: "Accommodation",
+                table: "DescriptionsTranslations",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Chains_CreatorId",
                 schema: "Accommodation",
                 table: "Chains",
@@ -1443,90 +1367,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 table: "Chains",
                 column: "ExpediaId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedAttributes_CreatorId",
-                schema: "Accommodation",
-                table: "LocalizedAttributes",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedAttributes_LanguageId",
-                schema: "Accommodation",
-                table: "LocalizedAttributes",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedCaptions_CreatorId",
-                schema: "Accommodation",
-                table: "LocalizedCaptions",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedCaptions_LanguageId",
-                schema: "Accommodation",
-                table: "LocalizedCaptions",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedCategories_CreatorId",
-                schema: "Accommodation",
-                table: "LocalizedCategories",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedCategories_LanguageId",
-                schema: "Accommodation",
-                table: "LocalizedCategories",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedDescriptions_CreatorId",
-                schema: "Accommodation",
-                table: "LocalizedDescriptions",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedDescriptions_DescriptionId",
-                schema: "Accommodation",
-                table: "LocalizedDescriptions",
-                column: "DescriptionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedDescriptions_LanguageId",
-                schema: "Accommodation",
-                table: "LocalizedDescriptions",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRealEstates_CreatorId",
-                schema: "Accommodation",
-                table: "LocalizedRealEstates",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRealEstates_LanguageId",
-                schema: "Accommodation",
-                table: "LocalizedRealEstates",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRealEstates_Name",
-                schema: "Accommodation",
-                table: "LocalizedRealEstates",
-                column: "Name");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRooms_CreatorId",
-                schema: "Accommodation",
-                table: "LocalizedRooms",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRooms_LanguageId",
-                schema: "Accommodation",
-                table: "LocalizedRooms",
-                column: "LanguageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Photos_CaptionId",
@@ -1572,52 +1412,101 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 column: "ToId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstates_AirportId",
+                name: "IX_Properties_AirportId",
                 schema: "Accommodation",
-                table: "RealEstates",
+                table: "Properties",
                 column: "AirportId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstates_CategoryId",
+                name: "IX_Properties_CategoryId",
                 schema: "Accommodation",
-                table: "RealEstates",
+                table: "Properties",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstates_ChainId",
+                name: "IX_Properties_ChainId",
                 schema: "Accommodation",
-                table: "RealEstates",
+                table: "Properties",
                 column: "ChainId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstates_CountryId",
+                name: "IX_Properties_CountryId",
                 schema: "Accommodation",
-                table: "RealEstates",
+                table: "Properties",
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstates_CreatorId",
+                name: "IX_Properties_CreatorId",
                 schema: "Accommodation",
-                table: "RealEstates",
+                table: "Properties",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstates_ExpediaId",
+                name: "IX_Properties_ExpediaId",
                 schema: "Accommodation",
-                table: "RealEstates",
+                table: "Properties",
                 column: "ExpediaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstatesToAttributes_CreatorId",
+                name: "IX_PropertiesToAttributes_CreatorId",
                 schema: "Accommodation",
-                table: "RealEstatesToAttributes",
+                table: "PropertiesToAttributes",
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RealEstatesToAttributes_LanguageId",
+                name: "IX_PropertiesToAttributes_LanguageId",
                 schema: "Accommodation",
-                table: "RealEstatesToAttributes",
+                table: "PropertiesToAttributes",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertiesToAttributes_PropertyId",
+                schema: "Accommodation",
+                table: "PropertiesToAttributes",
+                column: "PropertyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertiesTranslations_CreatorId",
+                schema: "Accommodation",
+                table: "PropertiesTranslations",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertiesTranslations_LanguageId",
+                schema: "Accommodation",
+                table: "PropertiesTranslations",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertiesTranslations_Name",
+                schema: "Accommodation",
+                table: "PropertiesTranslations",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertyTypes_CreatorId",
+                schema: "Accommodation",
+                table: "PropertyTypes",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertyTypes_ExpediaId",
+                schema: "Accommodation",
+                table: "PropertyTypes",
+                column: "ExpediaId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertyTypesTranslations_CreatorId",
+                schema: "Accommodation",
+                table: "PropertyTypesTranslations",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PropertyTypesTranslations_LanguageId",
+                schema: "Accommodation",
+                table: "PropertyTypesTranslations",
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
@@ -1627,10 +1516,22 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rooms_RealEstateId",
+                name: "IX_Rooms_PropertyId",
                 schema: "Accommodation",
                 table: "Rooms",
-                column: "RealEstateId");
+                column: "PropertyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomsTranslations_CreatorId",
+                schema: "Accommodation",
+                table: "RoomsTranslations",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomsTranslations_LanguageId",
+                schema: "Accommodation",
+                table: "RoomsTranslations",
+                column: "LanguageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Airports_Code",
@@ -1693,24 +1594,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRegions_CreatorId",
-                schema: "Geography",
-                table: "LocalizedRegions",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRegions_LanguageId",
-                schema: "Geography",
-                table: "LocalizedRegions",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedRegions_Name",
-                schema: "Geography",
-                table: "LocalizedRegions",
-                column: "Name");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Regions_CreatorId",
                 schema: "Geography",
                 table: "Regions",
@@ -1721,6 +1604,48 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "Geography",
                 table: "Regions",
                 column: "SubtypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegionsToRegions_CreatorId",
+                schema: "Geography",
+                table: "RegionsToRegions",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegionsToRegions_ToId",
+                schema: "Geography",
+                table: "RegionsToRegions",
+                column: "ToId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegionsToSubclasses_CreatorId",
+                schema: "Geography",
+                table: "RegionsToSubclasses",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegionsToSubclasses_ToId",
+                schema: "Geography",
+                table: "RegionsToSubclasses",
+                column: "ToId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegionsTranslations_CreatorId",
+                schema: "Geography",
+                table: "RegionsTranslations",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegionsTranslations_LanguageId",
+                schema: "Geography",
+                table: "RegionsTranslations",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegionsTranslations_Name",
+                schema: "Geography",
+                table: "RegionsTranslations",
+                column: "Name");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RegionSubtypes_CreatorId",
@@ -1741,36 +1666,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 table: "RegionSubtypes",
                 column: "Name",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegionSubtypes_SuggestionCategoryId",
-                schema: "Geography",
-                table: "RegionSubtypes",
-                column: "SuggestionCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegionToRegions_CreatorId",
-                schema: "Geography",
-                table: "RegionToRegions",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegionToRegions_ToId",
-                schema: "Geography",
-                table: "RegionToRegions",
-                column: "ToId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegionToSubclasses_CreatorId",
-                schema: "Geography",
-                table: "RegionToSubclasses",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegionToSubclasses_ToId",
-                schema: "Geography",
-                table: "RegionToSubclasses",
-                column: "ToId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubClasses_CreatorId",
@@ -1830,50 +1725,20 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 table: "Languages",
                 column: "ExpediaCode",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_CreatorId",
-                schema: "Suggestion",
-                table: "Categories",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedCategories_CreatorId",
-                schema: "Suggestion",
-                table: "LocalizedCategories",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocalizedCategories_LanguageId",
-                schema: "Suggestion",
-                table: "LocalizedCategories",
-                column: "LanguageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "LocalizedAttributes",
+                name: "AttributesTranslations",
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
-                name: "LocalizedCaptions",
+                name: "CaptionsTranslations",
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
-                name: "LocalizedCategories",
-                schema: "Accommodation");
-
-            migrationBuilder.DropTable(
-                name: "LocalizedDescriptions",
-                schema: "Accommodation");
-
-            migrationBuilder.DropTable(
-                name: "LocalizedRealEstates",
-                schema: "Accommodation");
-
-            migrationBuilder.DropTable(
-                name: "LocalizedRooms",
+                name: "DescriptionsTranslations",
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
@@ -1881,7 +1746,19 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
-                name: "RealEstatesToAttributes",
+                name: "PropertiesToAttributes",
+                schema: "Accommodation");
+
+            migrationBuilder.DropTable(
+                name: "PropertiesTranslations",
+                schema: "Accommodation");
+
+            migrationBuilder.DropTable(
+                name: "PropertyTypesTranslations",
+                schema: "Accommodation");
+
+            migrationBuilder.DropTable(
+                name: "RoomsTranslations",
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
@@ -1889,15 +1766,15 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "Geography");
 
             migrationBuilder.DropTable(
-                name: "LocalizedRegions",
+                name: "RegionsToRegions",
                 schema: "Geography");
 
             migrationBuilder.DropTable(
-                name: "RegionToRegions",
+                name: "RegionsToSubclasses",
                 schema: "Geography");
 
             migrationBuilder.DropTable(
-                name: "RegionToSubclasses",
+                name: "RegionsTranslations",
                 schema: "Geography");
 
             migrationBuilder.DropTable(
@@ -1925,10 +1802,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "Identity");
 
             migrationBuilder.DropTable(
-                name: "LocalizedCategories",
-                schema: "Suggestion");
-
-            migrationBuilder.DropTable(
                 name: "Descriptions",
                 schema: "Accommodation");
 
@@ -1937,11 +1810,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
-                name: "Rooms",
+                name: "Attributes",
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
-                name: "Attributes",
+                name: "Rooms",
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
@@ -1965,10 +1838,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "IO");
 
             migrationBuilder.DropTable(
-                name: "RealEstates",
-                schema: "Accommodation");
-
-            migrationBuilder.DropTable(
                 name: "AttributeSubtypes",
                 schema: "Accommodation");
 
@@ -1977,11 +1846,15 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
+                name: "Properties",
+                schema: "Accommodation");
+
+            migrationBuilder.DropTable(
                 name: "Airports",
                 schema: "Geography");
 
             migrationBuilder.DropTable(
-                name: "Categories",
+                name: "PropertyTypes",
                 schema: "Accommodation");
 
             migrationBuilder.DropTable(
@@ -1999,10 +1872,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
             migrationBuilder.DropTable(
                 name: "RegionSubtypes",
                 schema: "Geography");
-
-            migrationBuilder.DropTable(
-                name: "Categories",
-                schema: "Suggestion");
 
             migrationBuilder.DropTable(
                 name: "Users",

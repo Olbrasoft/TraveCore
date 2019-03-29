@@ -4,21 +4,20 @@ using Olbrasoft.Travel.Data.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class RealEstateToAttributeConfiguration : TravelTypeConfiguration<RealEstateToAttribute>
+    public class PropertyToAttributeConfiguration : TravelTypeConfiguration<PropertyToAttribute>
     {
-        public RealEstateToAttributeConfiguration() : base("RealEstatesToAttributes")
+        public PropertyToAttributeConfiguration() : base("PropertiesToAttributes")
         {
         }
 
-        public override void Configuration(EntityTypeBuilder<RealEstateToAttribute> builder)
+        public override void Configuration(EntityTypeBuilder<PropertyToAttribute> builder)
         {
             builder.HasKey(p => new { AccommodationId = p.RealEstateId, p.AttributeId, p.LanguageId });
-            // builder.Property(p => p.Text).HasMaxLength(800);
 
-            builder.HasOne(ata => ata.Creator).WithMany(u => u.AccommodationsToAttributes)
+            builder.HasOne(ata => ata.Creator).WithMany(u => u.PropertiesToAttributes)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(ata => ata.Language).WithMany(l => l.RealEstatesToAttributes)
+            builder.HasOne(ata => ata.Language).WithMany(l => l.PropertiesToAttributes)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(ata => ata.Attribute).WithMany(a => a.AccommodationsToAttributes)

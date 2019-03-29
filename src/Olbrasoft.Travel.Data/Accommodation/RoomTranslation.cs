@@ -2,7 +2,7 @@
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class LocalizedRoom : Localized
+    public class RoomTranslation : Translation
     {
         public string Name { get; set; }
 

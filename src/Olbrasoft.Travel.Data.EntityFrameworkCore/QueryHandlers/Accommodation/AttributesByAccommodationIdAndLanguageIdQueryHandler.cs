@@ -10,14 +10,14 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByRealEstateIdAndLanguageIdQuery, RealEstateToAttribute, IEnumerable<AttributeDto>>
+    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByRealEstateIdAndLanguageIdQuery, PropertyToAttribute, IEnumerable<AttributeDto>>
     {
         public override async Task<IEnumerable<AttributeDto>> HandleAsync(AttributesByRealEstateIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             return await ProjectionToAttribute(Source, query).ToArrayAsync(cancellationToken);
         }
 
-        protected IQueryable<AttributeDto> ProjectionToAttribute(IQueryable<RealEstateToAttribute> accommodationsToAttributes, AttributesByRealEstateIdAndLanguageIdQuery query)
+        protected IQueryable<AttributeDto> ProjectionToAttribute(IQueryable<PropertyToAttribute> accommodationsToAttributes, AttributesByRealEstateIdAndLanguageIdQuery query)
         {
             accommodationsToAttributes = accommodationsToAttributes.Include(p => p.Attribute)
                     .Include(p => p.Attribute.LocalizedAttributes)

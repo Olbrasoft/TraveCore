@@ -13,11 +13,11 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Business.Services
 {
-    public class RealEstateService : Olbrasoft.Business.Service, IAccommodations
+    public class PropertyService : Olbrasoft.Business.Service, IAccommodations
     {
         protected IAccommodationItemPhotoMerge Merger { get; }
 
-        public RealEstateService(IQueryFactory queryFactory, IAccommodationItemPhotoMerge merger) : base(queryFactory)
+        public PropertyService(IQueryFactory queryFactory, IAccommodationItemPhotoMerge merger) : base(queryFactory)
         {
             Merger = merger;
         }
@@ -96,7 +96,7 @@ namespace Olbrasoft.Travel.Business.Services
             return query;
         }
 
-        public IResultWithTotalCount<PropertyItem> Get(IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting)
+        public IResultWithTotalCount<PropertyItem> Get(IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting)
         {
             var query = GetPagedAccommodationItems(pagingSettings, languageId, sorting);
             var accommodationItems = query.Execute();
@@ -113,7 +113,7 @@ namespace Olbrasoft.Travel.Business.Services
         public async Task<IResultWithTotalCount<PropertyItem>> GetAsync(
             IPageInfo pagingSettings,
             int languageId,
-            Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting,
+            Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting,
             CancellationToken cancellationToken = default(CancellationToken)
         )
         {
@@ -153,7 +153,7 @@ namespace Olbrasoft.Travel.Business.Services
         }
 
         private PagedRealEstateItemsByLanguageIdQuery GetPagedAccommodationItems(
-            IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting
+            IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting
         )
         {
             var query = QueryFactory.Get<PagedRealEstateItemsByLanguageIdQuery>();

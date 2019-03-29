@@ -33,7 +33,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Mapping.Profiles
         //    {
         //        new Photo
         //        {
-        //            RealEstateId = i,
+        //            PropertyId = i,
         //            PathToPhoto = new PathToPhoto { Path = p},
         //            FileName = n,
         //            FileExtension = new FileExtension {Extension = e}

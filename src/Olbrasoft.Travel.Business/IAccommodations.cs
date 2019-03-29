@@ -17,13 +17,13 @@ namespace Olbrasoft.Travel.Business
         Task<PropertyDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken));
 
         IResultWithTotalCount<PropertyItem> Get(
-            IPageInfo pagingSettings, int languageId, Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting
+            IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting
         );
 
         Task<IResultWithTotalCount<PropertyItem>> GetAsync(
             IPageInfo pagingSettings,
             int languageId,
-            Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> sorting,
+            Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting,
             CancellationToken cancellationToken = default(CancellationToken)
         );
 

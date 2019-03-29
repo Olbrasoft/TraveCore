@@ -15,13 +15,13 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const int id = 1976;
 
             //Act
-            var localization = new LocalizedDescription
+            var localization = new DescriptionTranslation
             {
-                RealEstateId = id
+                PropertyId = id
             };
 
             //Assert
-            Assert.AreEqual(id, localization.RealEstateId);
+            Assert.AreEqual(id, localization.PropertyId);
         }
     }
 }

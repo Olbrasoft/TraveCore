@@ -10,7 +10,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
         {
             //builder.HasIndex(p => p.Name).IsUnique();
 
-            builder.HasOne(tod => tod.Creator).WithMany(user => user.AccommodationDescriptions)
+            builder.HasOne(tod => tod.Creator).WithMany(user => user.Descriptions)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

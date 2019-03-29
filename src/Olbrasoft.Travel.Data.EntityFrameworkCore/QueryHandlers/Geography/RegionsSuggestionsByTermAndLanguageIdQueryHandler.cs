@@ -24,7 +24,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 
         private static IQueryable<SuggestionDto> ProjectionToSuggestions(IQueryable<Region> regions, RegionsSuggestionsByTermAndLanguageIdQuery query)
         {
-            var predicate = query.Terms.Aggregate(PredicateBuilder.New<LocalizedRegion>(), (current, term) => current.Or(p => p.Name.Contains(term)));
+            var predicate = query.Terms.Aggregate(PredicateBuilder.New<RegionTranslation>(), (current, term) => current.Or(p => p.Name.Contains(term)));
 
             var areasCitiesQueryable = regions.Where(p => p.SubtypeId > 1 && p.SubtypeId < 9)
                 .SelectMany(p => p.LocalizedRegions).Where(p => p.LanguageId == query.LanguageId).Where(predicate)

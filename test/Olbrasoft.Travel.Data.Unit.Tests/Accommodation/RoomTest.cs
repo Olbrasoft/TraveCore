@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
         public void LocalizedRooms()
         {
             //Arrange
-            var localizations = new List<LocalizedRoom>();
+            var localizations = new List<RoomTranslation>();
 
 
             //Act

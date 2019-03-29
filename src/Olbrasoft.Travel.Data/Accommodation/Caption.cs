@@ -5,8 +5,8 @@ namespace Olbrasoft.Travel.Data.Accommodation
 {
     public class Caption : OwnerCreatorInfoAndCreator
     {
-        public virtual ICollection<LocalizedCaption> LocalizedCaptions { get; set; }
+        public virtual ICollection<CaptionTranslation> LocalizedCaptions { get; set; }
 
-       // public virtual ICollection<Photo> AccommodationPhotos { get; set; }
+       // public virtual ICollection<Photo> Photos { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class RealEstateToAttribute : IHaveDateAndTimeOfCreation
+    public class PropertyToAttribute : IHaveDateAndTimeOfCreation
     //https://translate.google.cz/#view=home&op=translate&sl=en&tl=cs&text=Real%20estate%20to%20Attribute
     {
         [Key]
@@ -32,7 +32,7 @@ namespace Olbrasoft.Travel.Data.Accommodation
 
         public User Creator { get; set; }
 
-        public RealEstate RealEstate { get; set; }
+        public Property Property { get; set; }
 
         public Attribute Attribute { get; set; }
 

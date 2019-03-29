@@ -84,7 +84,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             Regions = null;
 
-            ImportLocalizedRegions(AdeptsToLocalizedRegions, RepositoryFactory.Localized<LocalizedRegion>(), regionExpediaIdsToRegionIds, DefaultLanguageId, CreatorId);
+            ImportLocalizedRegions(AdeptsToLocalizedRegions, RepositoryFactory.Localized<RegionTranslation>(), regionExpediaIdsToRegionIds, DefaultLanguageId, CreatorId);
 
             // var regionsExpediaIds = AdeptsToLocalizedRegions.Keys;
             //AdeptsToLocalizedRegions = null;

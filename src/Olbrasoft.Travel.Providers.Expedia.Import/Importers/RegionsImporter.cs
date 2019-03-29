@@ -44,7 +44,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             ImportRegionsToSubclasses(parentRegions, RepositoryFactory.ManyToMany<RegionToSubclass>(), batchSize,
                 expediaRegionIdsToIds, subClasses, CreatorId);
 
-            ImportLocalized(parentRegions, RepositoryFactory.Localized<LocalizedRegion>(), batchSize, expediaRegionIdsToIds, DefaultLanguageId, CreatorId);
+            ImportLocalized(parentRegions, RepositoryFactory.Localized<RegionTranslation>(), batchSize, expediaRegionIdsToIds, DefaultLanguageId, CreatorId);
 
             ImportRegionsToRegions(parentRegions, RepositoryFactory.ManyToMany<RegionToRegion>(), batchSize, expediaRegionIdsToIds, CreatorId);
 
@@ -114,7 +114,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             int languageId,
             int creatorId
 
-        ) where T : LocalizedRegion, new()
+        ) where T : RegionTranslation, new()
         {
             LogBuild<T>();
             var localizedEntities = BuildLocalizedRegions<T>(parentRegions, expediaIdsToIds, languageId, creatorId);
@@ -134,7 +134,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             int languageId,
             int creatorId
             )
-            where T : LocalizedRegion, new()
+            where T : RegionTranslation, new()
         {
             var localizedRegions = new Dictionary<int, T>();
             foreach (var parentRegion in parentRegions)

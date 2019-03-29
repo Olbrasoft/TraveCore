@@ -14,7 +14,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             get =>
 
                 _accommodationsExpediaIdsToIds ?? (_accommodationsExpediaIdsToIds =
-                    RepositoryFactory.MappedProperties<RealEstate>().ExpediaIdsToIds);
+                    RepositoryFactory.MappedProperties<Property>().ExpediaIdsToIds);
 
             set => _accommodationsExpediaIdsToIds = value;
         }
@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             set => _eanRoomTypeIdsToIds = value;
         }
 
-        protected Queue<LocalizedRoom> LocalizedTypesOfRooms = new Queue<LocalizedRoom>();
+        protected Queue<RoomTranslation> LocalizedTypesOfRooms = new Queue<RoomTranslation>();
 
         public LocalizedTypesOfRoomsImporter(IProvider provider, IRepositoryFactory repositoryFactory, SharedProperties sharedProperties, ILoggingImports logger)
             : base(provider, repositoryFactory, sharedProperties, logger)
@@ -42,7 +42,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             if (!int.TryParse(items[1], out var eanRoomTypeId) || !EanRoomTypeIdsToIds.TryGetValue(eanRoomTypeId, out var id)) return;
 
-            var localizedTypeOfRoom = new LocalizedRoom
+            var localizedTypeOfRoom = new RoomTranslation
             {
                 Id = id,
                 LanguageId = DefaultLanguageId,
@@ -58,9 +58,9 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         {
             LoadData(path);
 
-            LogSave<LocalizedRoom>();
-            RepositoryFactory.Localized<LocalizedRoom>().BulkSave(LocalizedTypesOfRooms, 270000);
-            LogSaved<LocalizedRoom>();
+            LogSave<RoomTranslation>();
+            RepositoryFactory.Localized<RoomTranslation>().BulkSave(LocalizedTypesOfRooms, 270000);
+            LogSaved<RoomTranslation>();
         }
 
         public override void Dispose()

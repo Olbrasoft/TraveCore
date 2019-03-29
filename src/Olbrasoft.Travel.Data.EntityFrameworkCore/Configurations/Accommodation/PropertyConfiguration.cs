@@ -4,15 +4,19 @@ using Olbrasoft.Travel.Data.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class RealEstateConfiguration : TravelTypeConfiguration<RealEstate>
+    public class PropertyConfiguration : TravelTypeConfiguration<Property>
     {
-        public override void Configuration(EntityTypeBuilder<RealEstate> builder)
+        public PropertyConfiguration() : base("Properties")
+        {
+        }
+
+        public override void Configuration(EntityTypeBuilder<Property> builder)
         {
             builder.Property(accommodation => accommodation.ChainId).HasDefaultValue(0);
 
             builder.HasIndex(accommodation => accommodation.ExpediaId).IsUnique();
 
-            builder.HasOne(accommodation => accommodation.Creator).WithMany(user => user.Accommodations)
+            builder.HasOne(accommodation => accommodation.Creator).WithMany(user => user.Properties)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(accommodation => accommodation.Chain).WithMany(chain => chain.Accommodations)

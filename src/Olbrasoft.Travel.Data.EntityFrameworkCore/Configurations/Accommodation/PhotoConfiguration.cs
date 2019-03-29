@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
             }).IsUnique();
 
             builder.HasOne(photoOfAccommodation => photoOfAccommodation.Creator)
-                .WithMany(user => user.AccommodationPhotos).OnDelete(DeleteBehavior.Restrict);
+                .WithMany(user => user.Photos).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(photoOfAccommodation => photoOfAccommodation.PathToPhoto)
                 .WithMany(pathToPhoto => pathToPhoto.AccommodationPhotos).OnDelete(DeleteBehavior.Restrict);
@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
             builder.HasOne(photoOfAccommodation => photoOfAccommodation.FileExtension)
                 .WithMany(fileExtension => fileExtension.PhotosOfAccommodations).OnDelete(DeleteBehavior.Restrict);
 
-            // HasRequired(p => p.RealEstate).WithMany(p => p.AccommodationPhotos).HasForeignKey(p => p.RealEstateId).WillCascadeOnDelete(true);
+            // HasRequired(p => p.Property).WithMany(p => p.Photos).HasForeignKey(p => p.PropertyId).WillCascadeOnDelete(true);
         }
     }
 }

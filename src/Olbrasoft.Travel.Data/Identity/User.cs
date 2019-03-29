@@ -5,7 +5,6 @@ using Olbrasoft.Travel.Data.IO;
 using Olbrasoft.Travel.Data.Localization;
 using System;
 using System.Collections.Generic;
-using Olbrasoft.Travel.Data.Suggestion;
 using Attribute = Olbrasoft.Travel.Data.Accommodation.Attribute;
 
 namespace Olbrasoft.Travel.Data.Identity
@@ -63,19 +62,19 @@ namespace Olbrasoft.Travel.Data.Identity
         public virtual ICollection<Language> Languages { get; set; }
 
         /// <summary>
-        /// LocalizedRegions created by the User.
+        /// RegionsTranslations created by the User.
         /// </summary>
-        public virtual ICollection<LocalizedRegion> LocalizedRegions { get; set; }
+        public virtual ICollection<RegionTranslation> LocalizedRegions { get; set; }
 
         /// <summary>
-        /// RealEstateCategories created by the User.
+        /// PropertyTypes created by the User.
         /// </summary>
-        public virtual ICollection<RealEstateCategory> RealEstateCategories { get; set; }
+        public virtual ICollection<PropertyType> PropertyTypes { get; set; }
 
         /// <summary>
-        /// LocalizedRealEstateTypes created by the User.
+        /// PropertyTypesTranslations created by the User.
         /// </summary>
-        public virtual ICollection<LocalizedRealEstateCategory> LocalizedRealEstateCategories { get; set; }
+        public virtual ICollection<PropertyTypeTranslation> PropertyTypesTranslations { get; set; }
 
         /// <summary>
         /// Chains created by the User.
@@ -83,24 +82,15 @@ namespace Olbrasoft.Travel.Data.Identity
         public virtual ICollection<Chain> Chains { get; set; }
 
         /// <summary>
-        /// Accommodations created by the User.
+        /// Properties created by the User.
         /// </summary>
-        public virtual ICollection<RealEstate> Accommodations { get; set; }
+        public virtual ICollection<Property> Properties { get; set; }
 
-        /// <summary>
-        /// LocalizedRealEstates created by the User.
-        /// </summary>
-        public virtual ICollection<LocalizedRealEstate> LocalizedAccommodations { get; set; }
+        public virtual ICollection<PropertyTranslation> PropertiesTranslations { get; set; }
 
-        /// <summary>
-        /// Types of LocalizedDescriptions created by the User.
-        /// </summary>
-        public virtual ICollection<Description> AccommodationDescriptions { get; set; }
+        public virtual ICollection<Description> Descriptions { get; set; }
 
-        /// <summary>
-        /// LocalizedDescriptions created by the User.
-        /// </summary>
-        public virtual ICollection<LocalizedDescription> LocalizedDescriptionsOfAccommodations { get; set; }
+        public virtual ICollection<DescriptionTranslation> DescriptionsTranslations { get; set; }
 
         /// <summary>
         /// Paths of Photos created by the User
@@ -110,7 +100,7 @@ namespace Olbrasoft.Travel.Data.Identity
         /// <summary>
         /// Files Extensions created by the User.
         /// </summary>
-        public virtual ICollection<FileExtension> FilesExtensions { get; set; }
+        public virtual ICollection<FileExtension> FileExtensions { get; set; }
 
         /// <summary>
         /// Captions created by the User.
@@ -118,39 +108,39 @@ namespace Olbrasoft.Travel.Data.Identity
         public virtual ICollection<Caption> Captions { get; set; }
 
         /// <summary>
-        /// Localized Captions created by the User.
+        /// Translation Captions created by the User.
         /// </summary>
-        public virtual ICollection<LocalizedCaption> LocalizedCaptions { get; set; }
+        public virtual ICollection<CaptionTranslation> CaptionsTranslations { get; set; }
 
         /// <summary>
-        /// Photos of Accommodations created by the User.
+        /// Photos of Properties created by the User.
         /// </summary>
-        public virtual ICollection<Photo> AccommodationPhotos { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
 
         /// <summary>
         /// Rooms created by the User.
         /// </summary>
-        public virtual ICollection<Room> TypesOfRooms { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
 
         /// <summary>
-        /// Localized Types of Rooms created by the User.
+        /// Translation Types of Rooms created by the User.
         /// </summary>
-        public virtual ICollection<LocalizedRoom> LocalizedRooms { get; set; }
+        public virtual ICollection<RoomTranslation> RoomsTranslations { get; set; }
 
         /// <summary>
-        /// Photos of Accommodations to Types of Rooms created by the User.
+        /// Photos of Properties to Types of Rooms created by the User.
         /// </summary>
-        public virtual ICollection<PhotoToRoom> PhotosOfAccommodationsToTypesOfRooms { get; set; }
+        public virtual ICollection<PhotoToRoom> PhotosToRooms { get; set; }
 
         /// <summary>
         /// Types of Attributes created by the User.
         /// </summary>
-        public virtual ICollection<AttributeType> TypesOfAttributes { get; set; }
+        public virtual ICollection<AttributeType> AttributeTypes { get; set; }
 
         /// <summary>
         /// Sub Types Of Attributes created by the User.
         /// </summary>
-        public virtual ICollection<AttributeSubtype> SubTypesOfAttributes { get; set; }
+        public virtual ICollection<AttributeSubtype> AttributeSubtypes { get; set; }
 
         /// <summary>
         /// Attributes created by the User.
@@ -158,17 +148,13 @@ namespace Olbrasoft.Travel.Data.Identity
         public virtual ICollection<Attribute> Attributes { get; set; }
 
         /// <summary>
-        /// Localized Attributes created by the User.
+        /// Translation Attributes created by the User.
         /// </summary>
-        public virtual ICollection<LocalizedAttribute> LocalizedAttributes { get; set; }
+        public virtual ICollection<AttributeTranslation> AttributesTranslations { get; set; }
 
         /// <summary>
-        /// Accommodations to Attributes created by the User.
+        /// Properties to Attributes created by the User.
         /// </summary>
-        public virtual ICollection<RealEstateToAttribute> AccommodationsToAttributes { get; set; }
-
-        public ICollection<SuggestionCategory> SuggestionTypes { get; set; }
-
-        public ICollection<LocalizedSuggestionCategory> LocalizedSuggestionCategories { get; set; }
+        public virtual ICollection<PropertyToAttribute> PropertiesToAttributes { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         {
             get =>
             _accommodationsExpediaIdsToIds ?? (_accommodationsExpediaIdsToIds =
-            RepositoryFactory.MappedProperties<RealEstate>().ExpediaIdsToIds);
+            RepositoryFactory.MappedProperties<Property>().ExpediaIdsToIds);
             set => _accommodationsExpediaIdsToIds = value;
         }
 
@@ -74,17 +74,17 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         private void ImportLocalizedCaptions(IEnumerable<string> captions, ILocalizedCaptionsRepository repository,
             int languageId, int creatorId)
         {
-            LogBuild<LocalizedCaption>();
+            LogBuild<CaptionTranslation>();
             var localizedCaptions = captions
-                .Select(p => new LocalizedCaption { Text = p, LanguageId = languageId, CreatorId = creatorId })
+                .Select(p => new CaptionTranslation { Text = p, LanguageId = languageId, CreatorId = creatorId })
                 .ToArray();
             var count = localizedCaptions.Length;
             LogAssembled(count);
 
             if (count <= 0) return;
-            LogSave<LocalizedCaption>();
+            LogSave<CaptionTranslation>();
             repository.BulkSave(localizedCaptions);
-            LogSaved<LocalizedCaption>();
+            LogSaved<CaptionTranslation>();
         }
 
         protected override void RowLoaded(string[] items)

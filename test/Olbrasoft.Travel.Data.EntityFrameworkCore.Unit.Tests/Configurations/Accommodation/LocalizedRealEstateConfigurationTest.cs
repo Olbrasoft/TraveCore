@@ -12,10 +12,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Ac
         public void Instance_Is_LocalizedConfiguration_Of_LocalizedAccommodation()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<LocalizedRealEstate>);
+            var type = typeof(TravelTypeConfiguration<PropertyTranslation>);
 
             //Act
-            var configuration = new LocalizedRealEstateConfiguration();
+            var configuration = new PropertyTranslationConfiguration();
 
             //Assert
             Assert.IsInstanceOf(type, configuration);

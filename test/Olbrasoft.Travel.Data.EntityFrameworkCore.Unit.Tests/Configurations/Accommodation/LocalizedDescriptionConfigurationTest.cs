@@ -12,10 +12,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Ac
         public void Instance_Is_PropertyConfiguration_Of_Description()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<LocalizedDescription>);
+            var type = typeof(TravelTypeConfiguration<DescriptionTranslation>);
 
             //Act
-            var configuration = new LocalizedDescriptionConfiguration();
+            var configuration = new DescriptionTranslationConfiguration();
 
             //Assert
             Assert.IsInstanceOf(type, configuration);

@@ -70,7 +70,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             regionsExpediaIdsToIds = ImportRegions(expediaCountries, regionsRepository, regionsExpediaIdsToIds, subtypeCountryId);
 
-            ImportLocalizedRegions(expediaCountries, RepositoryFactory.Localized<LocalizedRegion>(), regionsExpediaIdsToIds);
+            ImportLocalizedRegions(expediaCountries, RepositoryFactory.Localized<RegionTranslation>(), regionsExpediaIdsToIds);
 
             //ImportRegionsToTypes(eanCountries, RepositoryFactory.ManyToMany<RegionToSubclass>(), regionsExpediaIdsToIds, subtypeCountryId);
 
@@ -105,7 +105,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
                 region.Coordinates.SRID = 4326;
                 region.CenterCoordinates.SRID = 4326;
 
-                region.LocalizedRegions.Add(new LocalizedRegion
+                region.LocalizedRegions.Add(new RegionTranslation
                 {
                     LanguageId = DefaultLanguageId,
                     Name = probablyMissingCountry.Name,
@@ -177,7 +177,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         //    LogSaved<RegionToSubclass>();
         //}
 
-        private void ImportLocalizedRegions(Country[] eanCountries, ILocalizedRepository<LocalizedRegion> repository, IReadOnlyDictionary<long, int> regionsExpediaIdsToIds)
+        private void ImportLocalizedRegions(Country[] eanCountries, ILocalizedRepository<RegionTranslation> repository, IReadOnlyDictionary<long, int> regionsExpediaIdsToIds)
         {
             Logger.Log("Build localizedRegions from CountryList");
             var localizedRegions = BuildLocalizedRegions(eanCountries, regionsExpediaIdsToIds, DefaultLanguageId, CreatorId);
@@ -185,9 +185,9 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             LogAssembled(count);
 
             if (count <= 0) return;
-            LogSave<LocalizedRegion>();
+            LogSave<RegionTranslation>();
             repository.BulkSave(localizedRegions, count);
-            LogSaved<LocalizedRegion>();
+            LogSaved<RegionTranslation>();
         }
 
         private IReadOnlyDictionary<long, int> ImportRegions(IEnumerable<Country> eanCountries,
@@ -281,18 +281,18 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         //    return regionsToTypes.ToArray();
         //}
 
-        private static LocalizedRegion[] BuildLocalizedRegions(
+        private static RegionTranslation[] BuildLocalizedRegions(
             IEnumerable<Country> eanCountries,
             IReadOnlyDictionary<long, int> expediaIdsToIds,
             int languageId,
             int creatorId)
         {
-            var localizedRegions = new Queue<LocalizedRegion>();
+            var localizedRegions = new Queue<RegionTranslation>();
             foreach (var eanCountry in eanCountries)
             {
                 if (!expediaIdsToIds.TryGetValue(eanCountry.CountryID, out var id)) continue;
 
-                var localizedRegion = new LocalizedRegion
+                var localizedRegion = new RegionTranslation
                 {
                     Id = id,
                     LanguageId = languageId,

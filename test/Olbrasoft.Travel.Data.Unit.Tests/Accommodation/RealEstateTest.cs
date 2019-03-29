@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const string address = "Some Address";
 
             //Act
-            var estate = new RealEstate
+            var estate = new Property
             {
                 Address = address
             };

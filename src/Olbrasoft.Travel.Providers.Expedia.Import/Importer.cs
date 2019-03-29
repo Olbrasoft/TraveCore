@@ -42,33 +42,33 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         protected void ImportLocalizedRegions(
             IEnumerable<IHaveRegionIdRegionName> eanDataTransferObjects,
-            ILocalizedRepository<LocalizedRegion> repository,
+            ILocalizedRepository<RegionTranslation> repository,
             IReadOnlyDictionary<long, int> ExpediaIdsToIds,
             int languageId,
             int creatorId
 
         )
         {
-            LogBuild<LocalizedRegion>();
+            LogBuild<RegionTranslation>();
             var localizedRegions = BuildLocalizedRegions(eanDataTransferObjects, ExpediaIdsToIds, languageId, creatorId);
             var count = localizedRegions.Length;
             LogAssembled(count);
 
             if (count <= 0) return;
-            LogSave<LocalizedRegion>();
+            LogSave<RegionTranslation>();
             repository.BulkSave(localizedRegions, count);
-            LogSaved<LocalizedRegion>();
+            LogSaved<RegionTranslation>();
         }
 
         protected void ImportLocalizedAccommodations(
             IEnumerable<IToLocalizedAccommodation> eanDataTransferObjects,
-            ILocalizedRepository<LocalizedRealEstate> repository,
+            ILocalizedRepository<PropertyTranslation> repository,
             IReadOnlyDictionary<int, int> accommodationsExpediaIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            LogBuild<LocalizedRealEstate>();
+            LogBuild<PropertyTranslation>();
             var localizedAccommodations = BuildLocalizedAccommodations(eanDataTransferObjects,
                 accommodationsExpediaIdsToIds, languageId, creatorId);
 
@@ -78,25 +78,25 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
             if (count <= 0) return;
 
-            LogSave<LocalizedRealEstate>();
+            LogSave<PropertyTranslation>();
             repository.BulkSave(localizedAccommodations);
-            LogSaved<LocalizedRealEstate>();
+            LogSaved<PropertyTranslation>();
         }
 
-        protected static LocalizedRealEstate[] BuildLocalizedAccommodations(
+        protected static PropertyTranslation[] BuildLocalizedAccommodations(
             IEnumerable<IToLocalizedAccommodation> eanEntities,
             IReadOnlyDictionary<int, int> ExpediaIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            var localizedAccommodations = new Queue<LocalizedRealEstate>();
+            var localizedAccommodations = new Queue<PropertyTranslation>();
 
             foreach (var activeProperty in eanEntities)
             {
                 if (!ExpediaIdsToIds.TryGetValue(activeProperty.EANHotelID, out var id)) continue;
 
-                var localizedAccommodation = new LocalizedRealEstate()
+                var localizedAccommodation = new PropertyTranslation()
                 {
                     Id = id,
                     LanguageId = languageId,
@@ -125,18 +125,18 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
             return fileNameWithoutExtension?.Substring(fileNameWithoutExtension.Length - 5);
         }
 
-        protected LocalizedRegion[] BuildLocalizedRegions(IEnumerable<IHaveRegionIdRegionName> eanEntities,
+        protected RegionTranslation[] BuildLocalizedRegions(IEnumerable<IHaveRegionIdRegionName> eanEntities,
             IReadOnlyDictionary<long, int> ExpediaIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            var localizedRegions = new Queue<LocalizedRegion>();
+            var localizedRegions = new Queue<RegionTranslation>();
             Parallel.ForEach(eanEntities, eanEntity =>
             {
                 if (!ExpediaIdsToIds.TryGetValue(eanEntity.RegionID, out var id)) return;
 
-                var localizedRegion = new LocalizedRegion()
+                var localizedRegion = new RegionTranslation()
                 {
                     Id = id,
                     LanguageId = languageId,
@@ -277,22 +277,22 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
         }
 
         protected void ImportLocalizedRegions(IDictionary<long, Tuple<string, string>> adeptsToLocalizedRegions,
-            ILocalizedRepository<LocalizedRegion> repository,
+            ILocalizedRepository<RegionTranslation> repository,
             IReadOnlyDictionary<long, int> ExpediaIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            LogBuild<LocalizedRegion>();
+            LogBuild<RegionTranslation>();
             var localizedRegions = BuildLocalizedRegions(adeptsToLocalizedRegions, ExpediaIdsToIds, languageId, creatorId);
             var count = localizedRegions.Length;
             LogAssembled(count);
 
             if (count <= 0) return;
 
-            LogSave<LocalizedRegion>();
+            LogSave<RegionTranslation>();
             repository.BulkSave(localizedRegions, count, lr => lr.LongName);
-            LogSaved<LocalizedRegion>();
+            LogSaved<RegionTranslation>();
         }
 
         public string RemoveDots(string source)
@@ -300,20 +300,20 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
             return source.Replace(".", string.Empty);
         }
 
-        protected LocalizedRegion[] BuildLocalizedRegions(
+        protected RegionTranslation[] BuildLocalizedRegions(
             IDictionary<long, Tuple<string, string>> adeptsToLocalizedRegions,
             IReadOnlyDictionary<long, int> ExpediaIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            var localizedRegions = new Queue<LocalizedRegion>();
+            var localizedRegions = new Queue<RegionTranslation>();
 
             foreach (var adeptToLocalizedRegion in adeptsToLocalizedRegions)
             {
                 if (!ExpediaIdsToIds.TryGetValue(adeptToLocalizedRegion.Key, out var id)) continue;
 
-                var localizedRegion = new LocalizedRegion()
+                var localizedRegion = new RegionTranslation()
                 {
                     Id = id,
                     LanguageId = languageId,

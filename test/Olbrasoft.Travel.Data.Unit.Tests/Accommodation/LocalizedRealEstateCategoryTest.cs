@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const string name = "Some Name";
 
             //Act
-            var localization = new LocalizedRealEstateCategory
+            var localization = new PropertyTypeTranslation
             {
                 Name = name
             };
@@ -25,16 +25,16 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
         public void Type()
         {
             //Arrange
-            var type = new RealEstateCategory();
+            var type = new PropertyType();
 
             //Act
-            var localization = new LocalizedRealEstateCategory
+            var localization = new PropertyTypeTranslation
             {
-                Category = type
+                PropertyType = type
             };
 
             //Assert
-            Assert.AreSame(type, localization.Category);
+            Assert.AreSame(type, localization.PropertyType);
         }
     }
 }

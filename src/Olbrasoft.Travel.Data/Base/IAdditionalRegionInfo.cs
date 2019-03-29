@@ -6,6 +6,5 @@ namespace Olbrasoft.Travel.Data.Base
     {
         string Code { get; set; }
         Region Region { get; set; }
-       // ICollection<Property.RealEstate> Accommodations { get; set; }
     }
 }

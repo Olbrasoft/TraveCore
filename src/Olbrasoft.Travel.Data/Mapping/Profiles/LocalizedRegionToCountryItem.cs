@@ -9,7 +9,7 @@ namespace Olbrasoft.Travel.Data.Mapping.Profiles
     {
         public LocalizedRegionToCountryItem()
         {
-            CreateMap<LocalizedRegion,CountryItemDto>()
+            CreateMap<RegionTranslation,CountryItemDto>()
                 .ForMember(d => d.Code, opt => opt.MapFrom(src => src.Region.ExpandingInformationAboutCountry.Code))
                ;
 

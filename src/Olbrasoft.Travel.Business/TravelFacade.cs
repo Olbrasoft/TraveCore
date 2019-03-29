@@ -26,7 +26,7 @@ namespace Olbrasoft.Travel.Business
 
             return results.SelectMany(result => result).OrderBy(p => p.Ascending);
 
-            //  return await Accommodations.SuggestionsAsync(terms, languageId, cancellationToken);
+            //  return await Properties.SuggestionsAsync(terms, languageId, cancellationToken);
         }
     }
 }

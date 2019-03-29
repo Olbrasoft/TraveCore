@@ -10,7 +10,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
     public class PagedRealEstateItemsByLanguageIdQuery : ByLanguageIdQuery<IResultWithTotalCount<PropertyItem>>
     {
-        public Func<IQueryable<LocalizedRealEstate>, IOrderedQueryable<LocalizedRealEstate>> Sorting
+        public Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> Sorting
         {
             get; set;
         }

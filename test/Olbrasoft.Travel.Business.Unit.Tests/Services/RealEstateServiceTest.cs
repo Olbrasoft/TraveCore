@@ -152,7 +152,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             Assert.IsInstanceOf(type, result);
         }
 
-        private static RealEstateService AccommodationsService()
+        private static PropertyService AccommodationsService()
         {
             var queryDispatcher = new Mock<IQueryDispatcher>();
 
@@ -190,7 +190,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 
             var mockMerger = new RealEstateItemPhotoMerge();
 
-            return new RealEstateService(queryFactoryMock.Object, mockMerger);
+            return new PropertyService(queryFactoryMock.Object, mockMerger);
         }
     }
 }

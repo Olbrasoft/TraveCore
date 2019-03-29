@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         protected IReadOnlyDictionary<int, int> AccommodationsExpediaIdsToIds
         {
             get => _accommodationsExpediaIdsToIds ?? (_accommodationsExpediaIdsToIds =
-                       RepositoryFactory.MappedProperties<RealEstate>().ExpediaIdsToIds);
+                       RepositoryFactory.MappedProperties<Property>().ExpediaIdsToIds);
 
             set => _accommodationsExpediaIdsToIds = value;
         }
@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
         protected int TypeOfDescriptionId { get; set; }
 
-        protected Queue<LocalizedDescription> Descriptions = new Queue<LocalizedDescription>();
+        protected Queue<DescriptionTranslation> Descriptions = new Queue<DescriptionTranslation>();
 
         public DescriptionsImporter(IProvider provider, IRepositoryFactory repositoryFactory, SharedProperties sharedProperties, ILoggingImports logger)
             : base(provider, repositoryFactory, sharedProperties, logger)
@@ -44,9 +44,9 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
                 !LanguagesEanLanguageCodesToIds.TryGetValue(items[1], out var languageId)
             ) return;
 
-            var description = new LocalizedDescription
+            var description = new DescriptionTranslation
             {
-                RealEstateId = accommodationId,
+                PropertyId = accommodationId,
                 DescriptionId = TypeOfDescriptionId,
                 LanguageId = languageId,
                 Text = items[2],

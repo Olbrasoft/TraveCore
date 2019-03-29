@@ -6,6 +6,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {
     public class RegionToRegionConfiguration : TravelTypeConfiguration<RegionToRegion>
     {
+        public RegionToRegionConfiguration() : base("RegionsToRegions")
+        {
+        }
+
         public override void Configuration(EntityTypeBuilder<RegionToRegion> builder)
         {
             builder.HasKey(p => new { p.Id, p.ToId });

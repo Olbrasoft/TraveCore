@@ -9,19 +9,14 @@ using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Providers.Expedia.Import.Importers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Extensions;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization;
 using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.Repositories.Localization;
-using Olbrasoft.Travel.Data.Suggestion;
-using Olbrasoft.Travel.Suggestion;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import
 {
@@ -75,22 +70,6 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
                     .ImplementedBy<SharedProperties>()
                     .DependsOn(Dependency.OnValue("creatorId", user.Id), Dependency.OnValue("defaultLanguageId", defaultLanguage.Id))
             );
-
-            //Import localizedSuggestionTypes
-            /////////////////////////////////////////////////////////////////////////////////////////////////
-            var localizedSuggestionTypes =
-                from typeOfSuggestion in (SuggestionCategories[])Enum.GetValues(typeof(SuggestionCategories))
-                select new LocalizedSuggestionCategory
-                {
-                    Id = (int)typeOfSuggestion,
-                    LanguageId = defaultLanguage.Id,
-                    Name = typeOfSuggestion.GetDescription(),
-                    CreatorId = user.Id
-                };
-
-            var repository = container.Resolve<IRepositoryFactory>().Localized<LocalizedSuggestionCategory>();
-            repository.BulkSave(localizedSuggestionTypes);
-            ////////////////////////////////////////////////////////////////////////////////////////////////////
 
             ImportGeography(container);
 

@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         IRegionSubtypesRepository TypesOfRegions();
 
-        ILocalizedRepository<T> Localized<T>() where T : Localized;
+        ILocalizedRepository<T> Localized<T>() where T : Translation;
 
         IRegionsRepository Regions();
 

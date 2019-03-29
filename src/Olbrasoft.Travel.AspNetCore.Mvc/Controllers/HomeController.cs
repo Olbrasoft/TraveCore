@@ -22,8 +22,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
         {
             var suggestions = await _travel.SuggestionsAsync("Bene", 1033);
 
-            //var q = new TravelDbContext().Set<LocalizedRealEstate>().FromSql($"Select Top(3) * From Accommodation.LocalizedRealEstates WHERE (LanguageId = {1033}) And (Name Like 'Olb%') ");
-
             //var q1 = from r in q
             //         select new SuggestionDto
             //         {

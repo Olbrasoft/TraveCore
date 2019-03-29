@@ -10,17 +10,17 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
         public void LocalizedPropertyDescriptions()
         {
             //Arrange
-            ICollection<LocalizedDescription> localizedDescriptionsOfAccommodations =
-                new List<LocalizedDescription>();
+            ICollection<DescriptionTranslation> localizedDescriptionsOfAccommodations =
+                new List<DescriptionTranslation>();
 
             //Act
             var type = new Description
             {
-                LocalizedDescriptions = localizedDescriptionsOfAccommodations
+                DescriptionTranslations = localizedDescriptionsOfAccommodations
             };
 
             //Assert
-            Assert.AreSame(localizedDescriptionsOfAccommodations, type.LocalizedDescriptions);
+            Assert.AreSame(localizedDescriptionsOfAccommodations, type.DescriptionTranslations);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             var expediaIdsToIds = ImportRegions(ExpediaDataTransferObjects, RepositoryFactory.Regions(),
                 RepositoryFactory.Names<RegionSubtype>().GetId("TrainStation"), CreatorId);
 
-            ImportLocalizedRegions(ExpediaDataTransferObjects, RepositoryFactory.Localized<LocalizedRegion>(), expediaIdsToIds,
+            ImportLocalizedRegions(ExpediaDataTransferObjects, RepositoryFactory.Localized<RegionTranslation>(), expediaIdsToIds,
                 DefaultLanguageId, CreatorId);
 
             ImportRegionsToSubclasses(ExpediaDataTransferObjects, RepositoryFactory.ManyToMany<RegionToSubclass>(), expediaIdsToIds,

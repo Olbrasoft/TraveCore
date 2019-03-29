@@ -12,10 +12,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Ac
         public void Instance_Is_GlobalizationConfiguration_Of_AccommodationToAttribute()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<RealEstateToAttribute>);
+            var type = typeof(TravelTypeConfiguration<PropertyToAttribute>);
 
             //Act
-            var configuration = new RealEstateToAttributeConfiguration();
+            var configuration = new PropertyToAttributeConfiguration();
 
             //Assert
             Assert.IsInstanceOf(type, configuration);

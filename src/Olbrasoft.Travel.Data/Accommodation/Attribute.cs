@@ -25,8 +25,8 @@ namespace Olbrasoft.Travel.Data.Accommodation
         [Required]
         public AttributeSubtype Subtype { get; set; }
 
-        public ICollection<LocalizedAttribute> LocalizedAttributes { get; set; }
+        public ICollection<AttributeTranslation> LocalizedAttributes { get; set; }
 
-        public virtual ICollection<RealEstateToAttribute> AccommodationsToAttributes { get; set; }
+        public virtual ICollection<PropertyToAttribute> AccommodationsToAttributes { get; set; }
     }
 }

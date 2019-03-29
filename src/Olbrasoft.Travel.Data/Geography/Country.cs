@@ -7,7 +7,7 @@ namespace Olbrasoft.Travel.Data.Geography
     {
         //todo change https://en.wikipedia.org/wiki/ISO_3166-1
 
-        public virtual ICollection<RealEstate> Accommodations { get; set; }
+        public virtual ICollection<Property> Accommodations { get; set; }
     }
     
 }

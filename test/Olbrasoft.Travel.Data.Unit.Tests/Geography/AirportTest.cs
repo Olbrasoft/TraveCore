@@ -25,7 +25,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
         public void Accommodations()
         {
             //Arrange
-            var estates = new List<RealEstate>();
+            var estates = new List<Property>();
 
             //Act
             var air = new Airport

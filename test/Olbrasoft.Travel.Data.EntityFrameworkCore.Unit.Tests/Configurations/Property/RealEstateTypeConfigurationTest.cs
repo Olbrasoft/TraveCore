@@ -12,10 +12,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Pr
         public void Instance_Is_TravelTypeConfiguration_Of_RealEstateType()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<RealEstateCategory>);
+            var type = typeof(TravelTypeConfiguration<PropertyType>);
 
             //Act
-            var configuration = new RealEstateCategoryConfiguration();
+            var configuration = new PropertyTypeConfiguration();
 
             //Assert
             Assert.IsInstanceOf(type, configuration);

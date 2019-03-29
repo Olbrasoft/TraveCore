@@ -5,15 +5,19 @@ using Olbrasoft.Travel.Data.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {
-    public class LocalizedRegionConfiguration : LocalizedConfiguration<LocalizedRegion>
+    public class RegionTranslationConfiguration : TranslationConfiguration<RegionTranslation>
     {
-        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedRegion> builder)
+        public RegionTranslationConfiguration() : base("RegionsTranslations")
+        {
+        }
+
+        public override void ConfigureLocalized(EntityTypeBuilder<RegionTranslation> builder)
         {
             builder.HasIndex(p => p.Name);
 
             builder.HasOne(lr => lr.Creator).WithMany(user => user.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(lr => lr.Language).WithMany(l => l.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(lr => lr.Language).WithMany(l => l.RegionsTranslations).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

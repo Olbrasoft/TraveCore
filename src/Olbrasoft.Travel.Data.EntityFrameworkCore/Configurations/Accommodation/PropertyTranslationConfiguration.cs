@@ -5,20 +5,24 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class LocalizedRealEstateConfiguration : LocalizedConfiguration<LocalizedRealEstate>
+    public class PropertyTranslationConfiguration : TranslationConfiguration<PropertyTranslation>
     {
-        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedRealEstate> builder)
+        public PropertyTranslationConfiguration() : base("PropertiesTranslations")
+        {
+        }
+
+        public override void ConfigureLocalized(EntityTypeBuilder<PropertyTranslation> builder)
         {
             builder.HasIndex(p => p.Name);
 
             builder.HasOne(localizedAccommodation => localizedAccommodation.Language)
-                .WithMany(l => l.LocalizedRealEstates).OnDelete(DeleteBehavior.Restrict);
+                .WithMany(l => l.PropertiesTranslations).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(la => la.RealEstate).WithMany(a => a.LocalizedAccommodations).HasForeignKey(p => p.Id)
+            builder.HasOne(la => la.Property).WithMany(a => a.PropertiesTranslations).HasForeignKey(p => p.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(localizedAccommodation => localizedAccommodation.Creator)
-                .WithMany(user => user.LocalizedAccommodations).OnDelete(DeleteBehavior.Restrict);
+                .WithMany(user => user.PropertiesTranslations).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

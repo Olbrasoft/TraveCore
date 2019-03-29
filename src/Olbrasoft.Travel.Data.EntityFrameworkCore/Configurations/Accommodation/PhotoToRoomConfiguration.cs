@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
             builder.HasOne(p => p.Room).WithMany(p => p.PhotosToRooms)
                 .HasForeignKey(p => p.ToId).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(p => p.Creator).WithMany(u => u.PhotosOfAccommodationsToTypesOfRooms)
+            builder.HasOne(p => p.Creator).WithMany(u => u.PhotosToRooms)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

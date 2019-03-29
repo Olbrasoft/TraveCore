@@ -9,7 +9,7 @@ using Olbrasoft.Travel.Data.Repositories.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
 {
-    public class LocalizedCaptionsRepository : LocalizedRepository<LocalizedCaption>, ILocalizedCaptionsRepository
+    public class LocalizedCaptionsRepository : LocalizedRepository<CaptionTranslation>, ILocalizedCaptionsRepository
     {
         private int _maxCaptionId;
 
@@ -28,8 +28,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
             private set => _maxCaptionId = value;
         }
 
-        public override void BulkSave(IEnumerable<LocalizedCaption> localizedCaptions,
-            params Expression<Func<LocalizedCaption, object>>[] ignorePropertiesWhenUpdating)
+        public override void BulkSave(IEnumerable<CaptionTranslation> localizedCaptions,
+            params Expression<Func<CaptionTranslation, object>>[] ignorePropertiesWhenUpdating)
         {
             var localizedCaptionsForInsert = BuildLocalizedCaptionsForInsert(localizedCaptions);
 
@@ -39,11 +39,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
             Context.BulkInsert(localizedCaptionsForInsert, OnSaved);
         }
 
-        private LocalizedCaption[] BuildLocalizedCaptionsForInsert(
-            IEnumerable<LocalizedCaption> localizedCaptions)
+        private CaptionTranslation[] BuildLocalizedCaptionsForInsert(
+            IEnumerable<CaptionTranslation> localizedCaptions)
         {
-            var localizedCaptionsForInsert = new Queue<LocalizedCaption>();
-            var localizedCaptionsArray = localizedCaptions as LocalizedCaption[] ?? localizedCaptions.ToArray();
+            var localizedCaptionsForInsert = new Queue<CaptionTranslation>();
+            var localizedCaptionsArray = localizedCaptions as CaptionTranslation[] ?? localizedCaptions.ToArray();
 
             foreach (var languageId in localizedCaptionsArray.GroupBy(entity => entity.LanguageId).Select(grp => grp.First())
                 .Select(p => p.LanguageId))
@@ -61,18 +61,18 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
             return localizedCaptionsForInsert.ToArray();
         }
 
-        private static LocalizedCaption RebuildLocalizedCaption(LocalizedCaption localizedCaption, int id)
+        private static CaptionTranslation RebuildLocalizedCaption(CaptionTranslation captionTranslation, int id)
         {
             var caption = new Caption
             {
                 Id = id,
-                CreatorId = localizedCaption.CreatorId
+                CreatorId = captionTranslation.CreatorId
             };
 
-            localizedCaption.Caption = caption;
-            localizedCaption.Id = id;
+            captionTranslation.Caption = caption;
+            captionTranslation.Id = id;
 
-            return localizedCaption;
+            return captionTranslation;
         }
 
         protected HashSet<string> GetLocalizedCaptionsTexts(int languageId)

@@ -9,6 +9,6 @@ namespace Olbrasoft.Travel.Data.Accommodation
 
         public string Name { get; set; }
 
-        public virtual ICollection<RealEstate> Accommodations { get; set; }
+        public virtual ICollection<Property> Accommodations { get; set; }
     }
 }

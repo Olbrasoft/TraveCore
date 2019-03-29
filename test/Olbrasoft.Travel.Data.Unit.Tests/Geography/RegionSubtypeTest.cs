@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using Olbrasoft.Travel.Data.Geography;
 using System.Collections.Generic;
-using Olbrasoft.Travel.Data.Suggestion;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
 {
@@ -43,19 +42,6 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
         }
 
         [Test]
-        public void Instance_Implement_Interface_ICanHaveSuggestionType()
-        {
-            //Arrange
-            var type = typeof(IHaveSuggestionCategory);
-
-            //Act
-            var subtype = new RegionSubtype();
-
-            //Assert
-            Assert.IsInstanceOf(type, subtype);
-        }
-
-        [Test]
         public void SuggestionTypeId()
         {
             //Arrange
@@ -66,19 +52,6 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
 
             //Assert
             Assert.AreEqual(suggestionTypeId, subtype.SuggestionCategoryId);
-        }
-
-        [Test]
-        public void SuggestionType()
-        {
-            //Arrange
-            var suggestionType = new SuggestionCategory();
-
-            //Act
-            var subtype = new RegionSubtype { SuggestionCategory = suggestionType };
-
-            //Assert
-            Assert.AreSame(suggestionType, subtype.SuggestionCategory);
         }
     }
 }

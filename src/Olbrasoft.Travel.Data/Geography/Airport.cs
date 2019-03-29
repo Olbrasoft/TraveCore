@@ -5,6 +5,6 @@ namespace Olbrasoft.Travel.Data.Geography
 {
     public class Airport : ExpandingInformationAboutRegion
     {
-        public ICollection<RealEstate> Accommodations { get; set; }
+        public ICollection<Property> Accommodations { get; set; }
     }
 }

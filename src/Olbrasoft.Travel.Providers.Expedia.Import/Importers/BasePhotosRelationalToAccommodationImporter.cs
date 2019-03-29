@@ -15,7 +15,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             get =>
 
                 _accommodationsExpediaIdsToIds ?? (_accommodationsExpediaIdsToIds =
-                    RepositoryFactory.MappedProperties<RealEstate>().ExpediaIdsToIds);
+                    RepositoryFactory.MappedProperties<Property>().ExpediaIdsToIds);
 
             set => _accommodationsExpediaIdsToIds = value;
         }

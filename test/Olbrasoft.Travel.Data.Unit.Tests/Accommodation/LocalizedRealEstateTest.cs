@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const string name = "Some Name";
 
             //Act
-            var realEstate = new LocalizedRealEstate
+            var realEstate = new PropertyTranslation
             {
                 Name = name
             };

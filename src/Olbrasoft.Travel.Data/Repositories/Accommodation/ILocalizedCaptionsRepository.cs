@@ -4,7 +4,7 @@ using Olbrasoft.Travel.Data.Repositories.Localization;
 
 namespace Olbrasoft.Travel.Data.Repositories.Accommodation
 {
-    public interface ILocalizedCaptionsRepository : ILocalizedRepository<LocalizedCaption>
+    public interface ILocalizedCaptionsRepository : ILocalizedRepository<CaptionTranslation>
     {
         IReadOnlyDictionary<string, int> GetLocalizedCaptionsTextsToIds(int languageId);
     }

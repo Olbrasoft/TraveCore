@@ -5,6 +5,7 @@ using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property;
 using Chain = Olbrasoft.Travel.Data.Accommodation.Chain;
+using PropertyType = Olbrasoft.Travel.Data.Accommodation.PropertyType;
 
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
@@ -22,7 +23,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         protected IReadOnlyDictionary<int, int> TypesOfAccommodationsExpediaIdsToIds
         {
             get => _typesOfAccommodationsExpediaIdsToIds ?? (_typesOfAccommodationsExpediaIdsToIds =
-                       RepositoryFactory.MappedProperties<RealEstateCategory>().ExpediaIdsToIds);
+                       RepositoryFactory.MappedProperties<PropertyType>().ExpediaIdsToIds);
 
             set => _typesOfAccommodationsExpediaIdsToIds = value;
         }
@@ -62,7 +63,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             LoadData(path);
 
             var accommodationsExpediaIdsToIds = ImportAccommodations(ExpediaDataTransferObjects,
-                RepositoryFactory.MappedProperties<RealEstate>(), TypesOfAccommodationsExpediaIdsToIds,
+                RepositoryFactory.MappedProperties<Property>(), TypesOfAccommodationsExpediaIdsToIds,
                 CountriesCodesToIds, AirportsCodesToIds, ChainsExpediaIdsToIds, CreatorId);
 
             TypesOfAccommodationsExpediaIdsToIds = null;
@@ -70,7 +71,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             AirportsCodesToIds = null;
             ChainsExpediaIdsToIds = null;
 
-            ImportLocalizedAccommodations(ExpediaDataTransferObjects, RepositoryFactory.Localized<LocalizedRealEstate>(),
+            ImportLocalizedAccommodations(ExpediaDataTransferObjects, RepositoryFactory.Localized<PropertyTranslation>(),
                 accommodationsExpediaIdsToIds, DefaultLanguageId, CreatorId);
 
             ExpediaDataTransferObjects = null;
@@ -78,7 +79,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
         private IReadOnlyDictionary<int, int> ImportAccommodations(
             IEnumerable<ActiveProperty> activeProperties,
-            IMappingToProvidersRepository<RealEstate> repository,
+            IMappingToProvidersRepository<Property> repository,
             IReadOnlyDictionary<int, int> typesOfAccommodationsExpediaIdsToIds,
             IReadOnlyDictionary<string, int> countriesCodesToIds,
             IReadOnlyDictionary<string, int> airportsCodesToIds,
@@ -87,7 +88,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         )
         {
             //todo Jedno ubytovani pravdepodobne neni validni vraci to builded 79 999 misto 80 000
-            LogBuild<RealEstate>();
+            LogBuild<Property>();
             var accommodations = BuildAccommodations(
                 activeProperties,
                 typesOfAccommodationsExpediaIdsToIds,
@@ -101,14 +102,14 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             if (count <= 0) return repository.ExpediaIdsToIds;
 
-            LogSave<RealEstate>();
+            LogSave<Property>();
             repository.BulkSave(accommodations);
-            LogSaved<RealEstate>();
+            LogSaved<Property>();
 
             return repository.ExpediaIdsToIds;
         }
 
-        private RealEstate[] BuildAccommodations(
+        private Property[] BuildAccommodations(
             IEnumerable<ActiveProperty> activeProperties,
             IReadOnlyDictionary<int, int> typesOfAccommodationsExpediaIdsToIds,
             IReadOnlyDictionary<string, int> countriesCodesToIds,
@@ -117,15 +118,15 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             int creatorId
         )
         {
-            var accommodations = new Queue<RealEstate>();
+            var accommodations = new Queue<Property>();
 
             foreach (var activeProperty in activeProperties)
             {
-                if (typesOfAccommodationsExpediaIdsToIds.TryGetValue(activeProperty.PropertyCategory,
+                if (typesOfAccommodationsExpediaIdsToIds.TryGetValue(activeProperty.Category,
                         out var typeOfAccommodationId) &&
                     countriesCodesToIds.TryGetValue(activeProperty.Country, out var countryId))
                 {
-                    var accommodation = new RealEstate
+                    var accommodation = new Property
                     {
                         StarRating = activeProperty.StarRating,
                         SequenceNumber = activeProperty.SequenceNumber,
@@ -169,7 +170,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
                 else
                 {
                     Logger.Log(activeProperty.EANHotelID + "Neprošlo type" +
-                               activeProperty.PropertyCategory + " country " + activeProperty.Country);
+                               activeProperty.Category + " country " + activeProperty.Country);
                 }
             }
 

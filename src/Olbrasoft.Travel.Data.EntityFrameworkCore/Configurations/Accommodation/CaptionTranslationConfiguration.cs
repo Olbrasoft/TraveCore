@@ -5,15 +5,19 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class LocalizedCaptionConfiguration : LocalizedConfiguration<LocalizedCaption>
+    public class CaptionTranslationConfiguration : TranslationConfiguration<CaptionTranslation>
     {
-        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedCaption> builder)
+        public CaptionTranslationConfiguration() : base("CaptionsTranslations")
         {
-            builder.HasOne(localizedCaption => localizedCaption.Creator).WithMany(user => user.LocalizedCaptions)
+        }
+
+        public override void ConfigureLocalized(EntityTypeBuilder<CaptionTranslation> builder)
+        {
+            builder.HasOne(localizedCaption => localizedCaption.Creator).WithMany(user => user.CaptionsTranslations)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(localizedCaption => localizedCaption.Language)
-                .WithMany(language => language.LocalizedCaptions).OnDelete(DeleteBehavior.Restrict);
+                .WithMany(language => language.CaptionsTranslations).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(localizedCaption => localizedCaption.Caption).WithMany(caption => caption.LocalizedCaptions)
                 .HasForeignKey(localizedCaption => localizedCaption.Id).OnDelete(DeleteBehavior.Cascade);

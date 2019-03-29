@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class LocalizedCaption : Localized
+    public class CaptionTranslation : Translation
     {
         [Required]
         [MaxLength(255)]

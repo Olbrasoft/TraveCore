@@ -8,7 +8,7 @@ using Olbrasoft.Travel.Data.Repositories.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
 {
-    public class DescriptionsRepository : SharpRepository.EfCoreRepository.EfCoreRepository<LocalizedDescription, int, int, int>, IDescriptionsRepository
+    public class DescriptionsRepository : SharpRepository.EfCoreRepository.EfCoreRepository<DescriptionTranslation, int, int, int>, IDescriptionsRepository
     {
         public event EventHandler Saved;
 
@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
         {
             get
             {
-                return _keys ?? (_keys = new HashSet<Tuple<int, int, int>>(AsQueryable().Select(d => new { AccommodationId = d.RealEstateId, TypeOfDescriptionId = d.DescriptionId, d.LanguageId }).ToArray().Select(k =>
+                return _keys ?? (_keys = new HashSet<Tuple<int, int, int>>(AsQueryable().Select(d => new { AccommodationId = d.PropertyId, TypeOfDescriptionId = d.DescriptionId, d.LanguageId }).ToArray().Select(k =>
                                new Tuple<int, int, int>(k.AccommodationId, k.TypeOfDescriptionId, k.LanguageId))));
             }
 
@@ -29,14 +29,14 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
         {
         }
 
-        public void BulkSave(IEnumerable<LocalizedDescription> descriptions, int batchSize, params Expression<Func<LocalizedDescription, object>>[] ignorePropertiesWhenUpdating)
+        public void BulkSave(IEnumerable<DescriptionTranslation> descriptions, int batchSize, params Expression<Func<DescriptionTranslation, object>>[] ignorePropertiesWhenUpdating)
         {
-            var forInsert = new Queue<LocalizedDescription>();
-            var forUpdate = new Queue<LocalizedDescription>();
+            var forInsert = new Queue<DescriptionTranslation>();
+            var forUpdate = new Queue<DescriptionTranslation>();
 
             foreach (var description in descriptions)
             {
-                if (Keys.Contains(new Tuple<int, int, int>(description.RealEstateId, description.DescriptionId,
+                if (Keys.Contains(new Tuple<int, int, int>(description.PropertyId, description.DescriptionId,
                     description.LanguageId)))
                 {
                     forUpdate.Enqueue(description);
@@ -58,7 +58,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
             }
         }
 
-        public void BulkSave(IEnumerable<LocalizedDescription> descriptions, params Expression<Func<LocalizedDescription, object>>[] ignorePropertiesWhenUpdating)
+        public void BulkSave(IEnumerable<DescriptionTranslation> descriptions, params Expression<Func<DescriptionTranslation, object>>[] ignorePropertiesWhenUpdating)
         {
             BulkSave(descriptions, 90000, ignorePropertiesWhenUpdating);
         }

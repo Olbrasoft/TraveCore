@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const int id = 1976;
 
             //Act
-            var to = new RealEstateToAttribute
+            var to = new PropertyToAttribute
             {
                 RealEstateId = id
             };

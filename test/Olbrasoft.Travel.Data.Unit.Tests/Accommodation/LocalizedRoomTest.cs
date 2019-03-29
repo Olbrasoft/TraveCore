@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const string name = "Some Name";
 
             //Act
-            var localization = new LocalizedRoom
+            var localization = new RoomTranslation
             {
                 Name = name
             };
@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             var type = new Room();
 
             //Act
-            var localization = new LocalizedRoom
+            var localization = new RoomTranslation
             {
                 Type = type
             };
@@ -44,7 +44,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const string description = "Some Description";
 
             //Act
-            var localization = new LocalizedRoom
+            var localization = new RoomTranslation
             {
                 Description = description
             };

@@ -11,7 +11,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedRealEstateItemsByLanguageIdQuery, RealEstate,
+    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedRealEstateItemsByLanguageIdQuery, Property,
         IResultWithTotalCount<PropertyItem>>
     {
         public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedRealEstateItemsByLanguageIdQuery query, CancellationToken cancellationToken)
@@ -29,11 +29,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return result;
         }
 
-        private static IQueryable<LocalizedRealEstate> PreHandle(IQueryable<RealEstate> source, PagedRealEstateItemsByLanguageIdQuery query)
+        private static IQueryable<PropertyTranslation> PreHandle(IQueryable<Property> source, PagedRealEstateItemsByLanguageIdQuery query)
         {
-            var localizedAccommodations = source.SelectMany(p => p.LocalizedAccommodations);
+            var localizedAccommodations = source.SelectMany(p => p.PropertiesTranslations);
 
-            var localizedAccommodationQueryable = localizedAccommodations.Include(p => p.RealEstate).Where(p => p.LanguageId == query.LanguageId);
+            var localizedAccommodationQueryable = localizedAccommodations.Include(p => p.Property).Where(p => p.LanguageId == query.LanguageId);
 
             var localizedAccommodationOrderedQueryable = query.Sorting(localizedAccommodationQueryable);
 

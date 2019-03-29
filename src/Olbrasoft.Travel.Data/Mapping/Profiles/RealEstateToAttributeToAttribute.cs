@@ -9,7 +9,7 @@ namespace Olbrasoft.Travel.Data.Mapping.Profiles
     {
         public RealEstateToAttributeToAttribute()
         {
-            CreateMap<RealEstateToAttribute, AttributeDto>()
+            CreateMap<PropertyToAttribute, AttributeDto>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(src => src.AttributeId))
                 .ForMember(d => d.TypId, opt => opt.MapFrom(src => src.Attribute.TypeId))
                 .ForMember(d => d.SubTypeId, opt => opt.MapFrom(src => src.Attribute.SubtypeId))

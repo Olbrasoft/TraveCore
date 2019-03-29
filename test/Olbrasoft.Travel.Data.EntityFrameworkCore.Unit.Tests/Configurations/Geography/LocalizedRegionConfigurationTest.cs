@@ -12,10 +12,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Ge
         public void Instance_Is_TravelTypeConfiguration_Of_LocalizedRegion()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<LocalizedRegion>);
+            var type = typeof(TravelTypeConfiguration<RegionTranslation>);
 
             //Act
-            var configuration = new LocalizedRegionConfiguration();
+            var configuration = new RegionTranslationConfiguration();
 
             //Assert
             Assert.IsInstanceOf(type, configuration);

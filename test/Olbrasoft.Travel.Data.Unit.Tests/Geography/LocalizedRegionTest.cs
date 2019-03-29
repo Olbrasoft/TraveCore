@@ -11,10 +11,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
         public void Instance_Is_Localized()
         {
             //Arrange
-            var type = typeof(Localized);
+            var type = typeof(Translation);
 
             //Act
-            var localizedRegion = new LocalizedRegion();
+            var localizedRegion = new RegionTranslation();
 
             //Assert
             Assert.IsInstanceOf(type, localizedRegion);

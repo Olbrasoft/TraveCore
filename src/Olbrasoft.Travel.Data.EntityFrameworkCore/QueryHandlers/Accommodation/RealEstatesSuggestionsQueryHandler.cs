@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class RealEstatesSuggestionsQueryHandler : TravelQueryHandler<RealEstatesSuggestionsQuery, LocalizedRealEstate, IEnumerable<SuggestionDto>>
+    public class RealEstatesSuggestionsQueryHandler : TravelQueryHandler<RealEstatesSuggestionsQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
     {
         public override async Task<IEnumerable<Transfer.Objects.SuggestionDto>> HandleAsync(RealEstatesSuggestionsQuery query, CancellationToken cancellationToken)
         {
-            var predicate = query.Terms.Aggregate(PredicateBuilder.New<LocalizedRealEstate>(), (current, term) => current.Or(p => p.Name.Contains(term)));
+            var predicate = query.Terms.Aggregate(PredicateBuilder.New<PropertyTranslation>(), (current, term) => current.Or(p => p.Name.Contains(term)));
 
             return await Source.Where(p => p.LanguageId == query.LanguageId).Where(predicate).Take(3)
                 .Select(p => new SuggestionDto

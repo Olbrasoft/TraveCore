@@ -22,12 +22,12 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         protected IReadOnlyDictionary<int, int> AccommodationsExpediaIdsToIds
         {
             get => _accommodationsExpediaIdsToIds ?? (_accommodationsExpediaIdsToIds =
-                       RepositoryFactory.MappedProperties<RealEstate>().ExpediaIdsToIds);
+                       RepositoryFactory.MappedProperties<Property>().ExpediaIdsToIds);
 
             set => _accommodationsExpediaIdsToIds = value;
         }
 
-        protected Queue<RealEstateToAttribute> AccommodationsToAttributes = new Queue<RealEstateToAttribute>();
+        protected Queue<PropertyToAttribute> AccommodationsToAttributes = new Queue<PropertyToAttribute>();
 
         public AccommodationsToAttributesDefaultLanguageImporter(IProvider provider, IRepositoryFactory repositoryFactory, SharedProperties sharedProperties, ILoggingImports logger)
             : base(provider, repositoryFactory, sharedProperties, logger)
@@ -42,7 +42,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
                 !AttributesExpediaIdsToIds.TryGetValue(eanAttributeId, out var attributeId)
             ) return;
 
-            var accommodationToAttribute = new RealEstateToAttribute
+            var accommodationToAttribute = new PropertyToAttribute
             {
                 RealEstateId = accommodationId,
                 AttributeId = attributeId,
@@ -62,10 +62,10 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             if (AccommodationsToAttributes.Count <= 0) return;
 
-            LogSave<RealEstateToAttribute>();
+            LogSave<PropertyToAttribute>();
             RepositoryFactory.AccommodationsToAttributes().BulkSave(AccommodationsToAttributes);
             AccommodationsToAttributes = null;
-            LogSaved<RealEstateToAttribute>();
+            LogSaved<PropertyToAttribute>();
         }
 
         public override void Dispose()

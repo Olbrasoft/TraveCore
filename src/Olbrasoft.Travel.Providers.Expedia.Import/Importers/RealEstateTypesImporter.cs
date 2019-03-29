@@ -4,7 +4,6 @@ using Olbrasoft.Travel.Data.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 using System.Collections.Generic;
 using System.Linq;
-using Olbrasoft.Travel.Data.Suggestion;
 using Olbrasoft.Travel.Suggestion;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
@@ -30,47 +29,47 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             LoadData(path);
 
             var typesOfAccommodationsExpediaIdsToIds = ImportRealEstateTypes(ExpediaIdsToNames.Keys,
-                RepositoryFactory.MappedProperties<RealEstateCategory>(), CreatorId);
+                RepositoryFactory.MappedProperties<PropertyType>(), CreatorId);
 
             ImportLocalizedTypesOfAccommodations(ExpediaIdsToNames,
-                RepositoryFactory.Localized<LocalizedRealEstateCategory>(), typesOfAccommodationsExpediaIdsToIds, DefaultLanguageId,
+                RepositoryFactory.Localized<PropertyTypeTranslation>(), typesOfAccommodationsExpediaIdsToIds, DefaultLanguageId,
                 CreatorId);
 
             ExpediaIdsToNames = null;
         }
 
         private void ImportLocalizedTypesOfAccommodations(IDictionary<int, string> expediaIdsToNames,
-            ILocalizedRepository<LocalizedRealEstateCategory> repository,
+            ILocalizedRepository<PropertyTypeTranslation> repository,
             IReadOnlyDictionary<int, int> typesOfAccommodationsExpediaIdsToIds,
             int languageId,
             int creatorId)
         {
-            LogBuild<LocalizedRealEstateCategory>();
+            LogBuild<PropertyTypeTranslation>();
             var localizedRealEstateTypes = BuildLocalizedTypesOfAccommodations(expediaIdsToNames,
                 typesOfAccommodationsExpediaIdsToIds, languageId, creatorId);
             var count = localizedRealEstateTypes.Length;
 
             if (count <= 0) return;
 
-            LogSave<LocalizedRealEstateCategory>();
+            LogSave<PropertyTypeTranslation>();
             repository.BulkSave(localizedRealEstateTypes, count);
-            LogSaved<LocalizedRealEstateCategory>();
+            LogSaved<PropertyTypeTranslation>();
         }
 
-        private static LocalizedRealEstateCategory[] BuildLocalizedTypesOfAccommodations(
+        private static PropertyTypeTranslation[] BuildLocalizedTypesOfAccommodations(
             IDictionary<int, string> expediaIdsToNames,
             IReadOnlyDictionary<int, int> typesOfAccommodationsExpediaIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            var localizedTypesOfAccommodations = new Queue<LocalizedRealEstateCategory>();
+            var localizedTypesOfAccommodations = new Queue<PropertyTypeTranslation>();
 
             foreach (var propertyType in expediaIdsToNames)
             {
                 if (!typesOfAccommodationsExpediaIdsToIds.TryGetValue(propertyType.Key, out var id)) continue;
 
-                var localizedTypeOfAccommodation = new LocalizedRealEstateCategory
+                var localizedTypeOfAccommodation = new PropertyTypeTranslation
                 {
                     Id = id,
                     LanguageId = languageId,
@@ -85,29 +84,29 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
         private IReadOnlyDictionary<int, int> ImportRealEstateTypes(
             IEnumerable<int> expediaIds,
-            IMappingToProvidersRepository<RealEstateCategory> repository,
+            IMappingToProvidersRepository<PropertyType> repository,
             int creatorId
         )
         {
-            LogBuild<RealEstateCategory>();
+            LogBuild<PropertyType>();
             var typesOfAccommodations = BuildRealEstateTypes(expediaIds, creatorId);
             var count = typesOfAccommodations.Length;
             LogAssembled(count);
 
             if (count <= 0) return repository.ExpediaIdsToIds;
 
-            LogSave<RealEstateCategory>();
+            LogSave<PropertyType>();
             repository.BulkSave(typesOfAccommodations);
-            LogSaved<RealEstateCategory>();
+            LogSaved<PropertyType>();
 
             return repository.ExpediaIdsToIds;
         }
 
-        private static RealEstateCategory[] BuildRealEstateTypes(IEnumerable<int> expediaIds,
+        private static PropertyType[] BuildRealEstateTypes(IEnumerable<int> expediaIds,
             int creatorId
         )
         {
-            return expediaIds.Select(ei => new RealEstateCategory
+            return expediaIds.Select(ei => new PropertyType
             {
                 ExpediaId = ei,
                 CreatorId = creatorId,

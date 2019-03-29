@@ -10,7 +10,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
         public void MyTestMethod()
         {
             //Arrange
-            ICollection<LocalizedCaption> localizedCaptions = new[] { new LocalizedCaption() };
+            ICollection<CaptionTranslation> localizedCaptions = new[] { new CaptionTranslation() };
 
             //Act
             var caption = new Caption

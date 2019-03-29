@@ -5,9 +5,13 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class LocalizedRoomConfiguration : LocalizedConfiguration<LocalizedRoom>
+    public class RoomTranslationConfiguration : TranslationConfiguration<RoomTranslation>
     {
-        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedRoom> builder)
+        public RoomTranslationConfiguration() : base("RoomsTranslations")
+        {
+        }
+
+        public override void ConfigureLocalized(EntityTypeBuilder<RoomTranslation> builder)
         {
             builder.Property(p => p.Name).HasMaxLength(200).IsRequired();
 
@@ -15,10 +19,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
                 .WithMany(typeOfRoom => typeOfRoom.LocalizedRooms)
                 .HasForeignKey(localizedTypeOfRoom => localizedTypeOfRoom.Id).OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(localizedTypeOfRoom => localizedTypeOfRoom.Creator).WithMany(u => u.LocalizedRooms)
+            builder.HasOne(localizedTypeOfRoom => localizedTypeOfRoom.Creator).WithMany(u => u.RoomsTranslations)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(localizedTypeOfRoom => localizedTypeOfRoom.Language).WithMany(l => l.LocalizedRoomTypes)
+            builder.HasOne(localizedTypeOfRoom => localizedTypeOfRoom.Language).WithMany(l => l.RoomsTranslations)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

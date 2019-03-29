@@ -43,7 +43,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         public void Category_Set_Get()
         {
             //Arrange
-            const string category = "Some Category";
+            const string category = "Some PropertyType";
 
             var item = new Data.Transfer.Objects.SuggestionDto { Category = category };
 

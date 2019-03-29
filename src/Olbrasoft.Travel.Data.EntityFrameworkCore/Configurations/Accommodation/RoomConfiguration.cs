@@ -8,7 +8,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
     {
         public override void Configuration(EntityTypeBuilder<Room> builder)
         {
-            builder.HasOne(tor => tor.Creator).WithMany(u => u.TypesOfRooms).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(tor => tor.Creator).WithMany(u => u.Rooms).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

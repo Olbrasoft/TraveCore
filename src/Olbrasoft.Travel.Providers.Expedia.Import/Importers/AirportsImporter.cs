@@ -25,7 +25,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             var regionsExpediaIdsToIds =
                 ImportRegions(airportsCoordinates, RepositoryFactory.Regions(), CreatorId);
 
-            ImportLocalizedRegions(airportsCoordinates, RepositoryFactory.Localized<LocalizedRegion>(), regionsExpediaIdsToIds, DefaultLanguageId, CreatorId);
+            ImportLocalizedRegions(airportsCoordinates, RepositoryFactory.Localized<RegionTranslation>(), regionsExpediaIdsToIds, DefaultLanguageId, CreatorId);
 
             ImportAirports(airportsCoordinates, RepositoryFactory.AdditionalRegionsInfo<Airport>(), regionsExpediaIdsToIds, CreatorId);
 
@@ -199,13 +199,13 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
         private void ImportLocalizedRegions(
             IEnumerable<AirportCoordinates> airportsCoordinates,
-            ILocalizedRepository<LocalizedRegion> repository,
+            ILocalizedRepository<RegionTranslation> repository,
             IReadOnlyDictionary<long, int> expediaIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            LogBuild<LocalizedRegion>();
+            LogBuild<RegionTranslation>();
             var localizedRegions = BuildLocalizedRegions(airportsCoordinates, expediaIdsToIds,
                 languageId, creatorId);
             var count = localizedRegions.Length;
@@ -213,25 +213,25 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             if (count <= 0) return;
 
-            LogSave<LocalizedRegion>();
+            LogSave<RegionTranslation>();
             repository.BulkSave(localizedRegions, count);
-            LogSaved<LocalizedRegion>();
+            LogSaved<RegionTranslation>();
         }
 
-        private static LocalizedRegion[] BuildLocalizedRegions(
+        private static RegionTranslation[] BuildLocalizedRegions(
             IEnumerable<AirportCoordinates> airportsCoordinates,
             IReadOnlyDictionary<long, int> eanAirportIdsToIds,
             int languageId,
             int creatorId
         )
         {
-            var localizedRegions = new Queue<LocalizedRegion>();
+            var localizedRegions = new Queue<RegionTranslation>();
 
             foreach (var eanAirport in airportsCoordinates)
             {
                 if (!eanAirportIdsToIds.TryGetValue(eanAirport.AirportID, out var id)) continue;
 
-                var localizedRegion = new LocalizedRegion()
+                var localizedRegion = new RegionTranslation()
                 {
                     Id = id,
                     LanguageId = languageId,

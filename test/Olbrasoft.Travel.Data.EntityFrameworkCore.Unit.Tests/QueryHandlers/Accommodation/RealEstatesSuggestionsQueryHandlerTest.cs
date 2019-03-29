@@ -19,7 +19,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<RealEstatesSuggestionsQuery, LocalizedRealEstate,
+                typeof(TravelQueryHandler<RealEstatesSuggestionsQuery, PropertyTranslation,
                     IEnumerable<Transfer.Objects.SuggestionDto>>);
 
             //Act

@@ -121,7 +121,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
         private static void ConfigureBusiness(IWindsorContainer container)
         {
             container.Register(
-                Component.For<IAccommodations>().ImplementedBy<RealEstateService>()
+                Component.For<IAccommodations>().ImplementedBy<PropertyService>()
                     .LifestyleCustom<MsScopedLifestyleManager>()
             );
 

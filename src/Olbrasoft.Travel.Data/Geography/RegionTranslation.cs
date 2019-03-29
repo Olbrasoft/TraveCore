@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Olbrasoft.Travel.Data.Geography
 {
-    public class LocalizedRegion : Localized
+    public class RegionTranslation : Translation
     {
         [Required]
         [MaxLength(255)]

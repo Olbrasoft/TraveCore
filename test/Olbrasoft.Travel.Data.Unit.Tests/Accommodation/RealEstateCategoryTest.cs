@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.Suggestion;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
 {
@@ -10,10 +9,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
         public void LocalizedPropertyTypes()
         {
             //Arrange
-            var localizedRealEstateTypes = new[] { new LocalizedRealEstateCategory() };
+            var localizedRealEstateTypes = new[] { new PropertyTypeTranslation() };
 
             //Act
-            var realEstateType = new RealEstateCategory
+            var realEstateType = new PropertyType
             {
                 LocalizedRealEstateTypes = localizedRealEstateTypes
             };
@@ -29,42 +28,13 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             const int suggestionTypeId = 1976;
 
             //Act
-            var realEstateType = new RealEstateCategory
+            var realEstateType = new PropertyType
             {
                 SuggestionCategoryId = suggestionTypeId
             };
 
             //Assert
             Assert.AreEqual(suggestionTypeId, realEstateType.SuggestionCategoryId);
-        }
-
-        [Test]
-        public void Instance_Implement_Interface_IHaveSuggestionType()
-        {
-            //Arrange
-            var type = typeof(IHaveSuggestionCategory);
-
-            //Act
-            var realEstateType = new RealEstateCategory();
-
-            //Assert
-            Assert.IsInstanceOf(type, realEstateType);
-        }
-
-        [Test]
-        public void RealEstateType()
-        {
-            //Arrange
-            var suggestionType = new SuggestionCategory();
-
-            //Act
-            var realEstateType = new RealEstateCategory()
-            {
-                SuggestionCategory = suggestionType
-            };
-
-            //Assert
-            Assert.AreSame(suggestionType, realEstateType.SuggestionCategory);
         }
     }
 }

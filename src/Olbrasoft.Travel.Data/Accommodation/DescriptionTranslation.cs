@@ -1,17 +1,22 @@
-﻿using Olbrasoft.Travel.Data.Base;
+﻿using Olbrasoft.Data;
+using Olbrasoft.Travel.Data.Base;
 using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Data.Localization;
 using System;
 using System.ComponentModel.DataAnnotations;
-using Olbrasoft.Data;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
-    public class LocalizedDescription : IHaveLanguageId, IHaveDateAndTimeOfCreation
+    /// <summary>
+    /// Represents a description in a particular language
+    /// </summary>
+    public class DescriptionTranslation : IHaveLanguageId, IHaveDateAndTimeOfCreation
     {
-        public int RealEstateId { get; set; }
-
         public int DescriptionId { get; set; }
+
+        [ForeignKey(nameof(Property))]
+        public int PropertyId { get; set; }
 
         public int LanguageId { get; set; }
 
@@ -22,7 +27,7 @@ namespace Olbrasoft.Travel.Data.Accommodation
 
         public DateTime Created { get; set; }
 
-        public virtual RealEstate RealEstate { get; set; }
+        public virtual Property Property { get; set; }
 
         public virtual Description Description { get; set; }
 

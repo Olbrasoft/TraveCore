@@ -57,7 +57,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property
         [StringLength(3)]
         public string AirportCode { get; set; }
 
-        public int PropertyCategory { get; set; }
+        public int Category { get; set; }
 
         [StringLength(3)]
         public string PropertyCurrency { get; set; }

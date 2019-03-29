@@ -5,9 +5,13 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class LocalizedAttributeConfiguration : LocalizedConfiguration<LocalizedAttribute>
+    public class AttributeTranslationConfiguration : TranslationConfiguration<AttributeTranslation>
     {
-        public override void ConfigureLocalized(EntityTypeBuilder<LocalizedAttribute> builder)
+        public AttributeTranslationConfiguration() : base("AttributesTranslations")
+        {
+        }
+
+        public override void ConfigureLocalized(EntityTypeBuilder<AttributeTranslation> builder)
         {
             builder.Property(p => p.Description).HasMaxLength(255).IsRequired();
 
@@ -16,9 +20,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
                 .HasForeignKey(localizedAttribute => localizedAttribute.Id).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(localizedAttribute => localizedAttribute.Language)
-                .WithMany(language => language.LocalizedAttributes).OnDelete(DeleteBehavior.Restrict);
+                .WithMany(language => language.AttributesTranslations).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(localizedAttribute => localizedAttribute.Creator).WithMany(user => user.LocalizedAttributes)
+            builder.HasOne(localizedAttribute => localizedAttribute.Creator).WithMany(user => user.AttributesTranslations)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

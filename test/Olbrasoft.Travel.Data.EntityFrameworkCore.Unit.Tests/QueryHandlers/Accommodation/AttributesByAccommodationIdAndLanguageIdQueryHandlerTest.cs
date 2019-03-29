@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             //Arrange
             var type =
                 typeof(TravelQueryHandler< AttributesByRealEstateIdAndLanguageIdQuery,
-                    RealEstateToAttribute, IEnumerable<AttributeDto>>);
+                    PropertyToAttribute, IEnumerable<AttributeDto>>);
 
             //Act
             var handler = Handler();

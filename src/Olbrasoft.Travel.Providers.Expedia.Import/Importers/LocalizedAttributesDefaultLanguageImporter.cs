@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             set => _attributesExpediaIdsToIds = value;
         }
 
-        protected HashSet<LocalizedAttribute> LocalizedAttributes = new HashSet<LocalizedAttribute>();
+        protected HashSet<AttributeTranslation> LocalizedAttributes = new HashSet<AttributeTranslation>();
 
         public LocalizedAttributesDefaultLanguageImporter(IProvider provider, IRepositoryFactory repositoryFactory, SharedProperties sharedProperties, ILoggingImports logger)
             : base(provider, repositoryFactory, sharedProperties, logger)
@@ -30,7 +30,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             if (!int.TryParse(items[0], out var attributeExpediaId) ||
                 !AttributesExpediaIdsToIds.TryGetValue(attributeExpediaId, out var id)) return;
 
-            var localizedAttribute = new LocalizedAttribute
+            var localizedAttribute = new AttributeTranslation
             {
                 Id = id,
                 LanguageId = DefaultLanguageId,
@@ -48,10 +48,10 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             if (LocalizedAttributes.Count <= 0) return;
 
-            LogSave<LocalizedAttribute>();
-            RepositoryFactory.Localized<LocalizedAttribute>().BulkSave(LocalizedAttributes);
+            LogSave<AttributeTranslation>();
+            RepositoryFactory.Localized<AttributeTranslation>().BulkSave(LocalizedAttributes);
             LocalizedAttributes = null;
-            LogSaved<LocalizedAttribute>();
+            LogSaved<AttributeTranslation>();
         }
 
         public override void Dispose()

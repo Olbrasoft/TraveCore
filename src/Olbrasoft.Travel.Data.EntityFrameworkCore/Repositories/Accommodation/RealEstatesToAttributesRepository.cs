@@ -7,7 +7,7 @@ using Olbrasoft.Travel.Data.Repositories.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
 {
-    public class RealEstatesToAttributesRepository : SharpRepository.EfCoreRepository.EfCoreRepository<RealEstateToAttribute, int, int, int>, IRealEstatesToAttributesRepository
+    public class RealEstatesToAttributesRepository : SharpRepository.EfCoreRepository.EfCoreRepository<PropertyToAttribute, int, int, int>, IRealEstatesToAttributesRepository
     {
         public event EventHandler Saved;
 
@@ -15,9 +15,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
         {
         }
 
-        public void BulkSave(IEnumerable<RealEstateToAttribute> accommodationsToAttributes)
+        public void BulkSave(IEnumerable<PropertyToAttribute> accommodationsToAttributes)
         {
-            var accommodationsToAttributesArray = accommodationsToAttributes as RealEstateToAttribute[] ?? accommodationsToAttributes.ToArray();
+            var accommodationsToAttributesArray = accommodationsToAttributes as PropertyToAttribute[] ?? accommodationsToAttributes.ToArray();
 
             foreach (var languageId in accommodationsToAttributesArray.GroupBy(entity => entity.LanguageId).Select(grp => grp.First())
                 .Select(p => p.LanguageId))
@@ -33,8 +33,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
                 {
                     var storedAccommodationsIdsAttributesIds = FindAccommodationsIdsAttributesIds(languageId);
 
-                    var forInsert = new List<RealEstateToAttribute>();
-                    var forUpdate = new List<RealEstateToAttribute>();
+                    var forInsert = new List<PropertyToAttribute>();
+                    var forUpdate = new List<PropertyToAttribute>();
 
                     foreach (var accommodationToAttribute in accommodationsToAttributesArray)
                     {
