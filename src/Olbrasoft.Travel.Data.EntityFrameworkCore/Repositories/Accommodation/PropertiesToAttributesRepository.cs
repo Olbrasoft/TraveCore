@@ -7,11 +7,11 @@ using Olbrasoft.Travel.Data.Repositories.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
 {
-    public class RealEstatesToAttributesRepository : SharpRepository.EfCoreRepository.EfCoreRepository<PropertyToAttribute, int, int, int>, IRealEstatesToAttributesRepository
+    public class PropertiesToAttributesRepository : SharpRepository.EfCoreRepository.EfCoreRepository<PropertyToAttribute, int, int, int>, IPropertiesToAttributesRepository
     {
         public event EventHandler Saved;
 
-        public RealEstatesToAttributesRepository(DbContext context) : base(context)
+        public PropertiesToAttributesRepository(DbContext context) : base(context)
         {
         }
 

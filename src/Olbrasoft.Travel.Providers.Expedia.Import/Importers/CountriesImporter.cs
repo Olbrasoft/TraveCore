@@ -177,7 +177,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         //    LogSaved<RegionToSubclass>();
         //}
 
-        private void ImportLocalizedRegions(Country[] eanCountries, ILocalizedRepository<RegionTranslation> repository, IReadOnlyDictionary<long, int> regionsExpediaIdsToIds)
+        private void ImportLocalizedRegions(Country[] eanCountries, ITranslationsRepository<RegionTranslation> repository, IReadOnlyDictionary<long, int> regionsExpediaIdsToIds)
         {
             Logger.Log("Build localizedRegions from CountryList");
             var localizedRegions = BuildLocalizedRegions(eanCountries, regionsExpediaIdsToIds, DefaultLanguageId, CreatorId);

@@ -71,7 +71,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             LogSaved<FileExtension>();
         }
 
-        private void ImportLocalizedCaptions(IEnumerable<string> captions, ILocalizedCaptionsRepository repository,
+        private void ImportLocalizedCaptions(IEnumerable<string> captions, ICaptionsTranslationsRepository repository,
             int languageId, int creatorId)
         {
             LogBuild<CaptionTranslation>();

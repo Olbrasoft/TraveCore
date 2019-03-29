@@ -39,7 +39,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         }
 
         private void ImportLocalizedTypesOfAccommodations(IDictionary<int, string> expediaIdsToNames,
-            ILocalizedRepository<PropertyTypeTranslation> repository,
+            ITranslationsRepository<PropertyTypeTranslation> repository,
             IReadOnlyDictionary<int, int> typesOfAccommodationsExpediaIdsToIds,
             int languageId,
             int creatorId)

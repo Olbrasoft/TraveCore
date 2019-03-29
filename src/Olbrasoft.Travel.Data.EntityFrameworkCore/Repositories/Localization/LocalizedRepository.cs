@@ -8,7 +8,7 @@ using Olbrasoft.Travel.Data.Repositories.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization
 {
-    public class LocalizedRepository<T> : TravelRepository<T, int, int>, ILocalizedRepository<T> where T : Translation
+    public class LocalizedRepository<T> : TravelRepository<T, int, int>, ITranslationsRepository<T> where T : Translation
     {
         public LocalizedRepository(DbContext context) : base(context)
         {

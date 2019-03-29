@@ -292,7 +292,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
             container.Register(Component.For(typeof(IManyToManyRepository<>))
                 .ImplementedBy(typeof(ManyToManyRepository<>)));
 
-            container.Register(Component.For(typeof(ILocalizedRepository<>))
+            container.Register(Component.For(typeof(ITranslationsRepository<>))
                 .ImplementedBy(typeof(LocalizedRepository<>)));
 
             container.Register(Component.For(typeof(IMappingToProvidersRepository<>)).ImplementedBy(typeof(MappingToProvidersRepository<>)));

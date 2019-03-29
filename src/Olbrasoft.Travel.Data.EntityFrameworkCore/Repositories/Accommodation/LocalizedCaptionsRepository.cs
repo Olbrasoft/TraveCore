@@ -9,7 +9,7 @@ using Olbrasoft.Travel.Data.Repositories.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
 {
-    public class LocalizedCaptionsRepository : LocalizedRepository<CaptionTranslation>, ILocalizedCaptionsRepository
+    public class LocalizedCaptionsRepository : LocalizedRepository<CaptionTranslation>, ICaptionsTranslationsRepository
     {
         private int _maxCaptionId;
 

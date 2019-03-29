@@ -108,7 +108,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
         private void ImportLocalized<T>(
             IEnumerable<ParentRegion> parentRegions,
-            ILocalizedRepository<T> repository,
+            ITranslationsRepository<T> repository,
             int batchSize,
             IReadOnlyDictionary<long, int> expediaIdsToIds,
             int languageId,

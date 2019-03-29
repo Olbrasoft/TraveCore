@@ -199,7 +199,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
         private void ImportLocalizedRegions(
             IEnumerable<AirportCoordinates> airportsCoordinates,
-            ILocalizedRepository<RegionTranslation> repository,
+            ITranslationsRepository<RegionTranslation> repository,
             IReadOnlyDictionary<long, int> expediaIdsToIds,
             int languageId,
             int creatorId

@@ -42,7 +42,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         protected void ImportLocalizedRegions(
             IEnumerable<IHaveRegionIdRegionName> eanDataTransferObjects,
-            ILocalizedRepository<RegionTranslation> repository,
+            ITranslationsRepository<RegionTranslation> repository,
             IReadOnlyDictionary<long, int> ExpediaIdsToIds,
             int languageId,
             int creatorId
@@ -62,7 +62,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         protected void ImportLocalizedAccommodations(
             IEnumerable<IToLocalizedAccommodation> eanDataTransferObjects,
-            ILocalizedRepository<PropertyTranslation> repository,
+            ITranslationsRepository<PropertyTranslation> repository,
             IReadOnlyDictionary<int, int> accommodationsExpediaIdsToIds,
             int languageId,
             int creatorId
@@ -277,7 +277,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
         }
 
         protected void ImportLocalizedRegions(IDictionary<long, Tuple<string, string>> adeptsToLocalizedRegions,
-            ILocalizedRepository<RegionTranslation> repository,
+            ITranslationsRepository<RegionTranslation> repository,
             IReadOnlyDictionary<long, int> ExpediaIdsToIds,
             int languageId,
             int creatorId

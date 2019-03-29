@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         IRegionSubtypesRepository TypesOfRegions();
 
-        ILocalizedRepository<T> Localized<T>() where T : Translation;
+        ITranslationsRepository<T> Localized<T>() where T : Translation;
 
         IRegionsRepository Regions();
 
@@ -30,11 +30,11 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         IPathsToPhotosRepository PathsToPhotos();
 
-        ILocalizedCaptionsRepository LocalizedCaptions();
+        ICaptionsTranslationsRepository LocalizedCaptions();
 
         IPhotosRepository PhotosOfAccommodations();
 
-        IRealEstatesToAttributesRepository AccommodationsToAttributes();
+        IPropertiesToAttributesRepository AccommodationsToAttributes();
 
         IUsersRepository Users();
 
