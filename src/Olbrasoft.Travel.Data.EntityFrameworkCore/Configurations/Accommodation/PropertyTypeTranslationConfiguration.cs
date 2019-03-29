@@ -5,9 +5,9 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class PropertyTypeTranslationConfiguration : TranslationConfiguration<PropertyTypeTranslation>
+    public class PropertyTypeTranslationConfiguration : Localization.TranslationConfiguration<PropertyTypeTranslation>
     {
-        public override void ConfigureLocalized(EntityTypeBuilder<PropertyTypeTranslation> builder)
+        public override void ConfigureTranslation(EntityTypeBuilder<PropertyTypeTranslation> builder)
         {
             builder.ToTable("PropertyTypesTranslations", nameof(Accommodation));
 

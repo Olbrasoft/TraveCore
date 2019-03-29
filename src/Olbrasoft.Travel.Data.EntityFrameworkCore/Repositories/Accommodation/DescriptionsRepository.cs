@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
         {
             get
             {
-                return _keys ?? (_keys = new HashSet<Tuple<int, int, int>>(AsQueryable().Select(d => new { AccommodationId = d.PropertyId, TypeOfDescriptionId = d.DescriptionId, d.LanguageId }).ToArray().Select(k =>
+                return _keys ?? (_keys = new HashSet<Tuple<int, int, int>>(AsQueryable().Select(d => new { AccommodationId = d.PropertyId, TypeOfDescriptionId = d.Id, d.LanguageId }).ToArray().Select(k =>
                                new Tuple<int, int, int>(k.AccommodationId, k.TypeOfDescriptionId, k.LanguageId))));
             }
 
@@ -36,7 +36,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
 
             foreach (var description in descriptions)
             {
-                if (Keys.Contains(new Tuple<int, int, int>(description.PropertyId, description.DescriptionId,
+                if (Keys.Contains(new Tuple<int, int, int>(description.PropertyId, description.Id,
                     description.LanguageId)))
                 {
                     forUpdate.Enqueue(description);

@@ -3,7 +3,7 @@ using Olbrasoft.Travel.Data.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization
 {
-    public class LanguageConfiguration : TravelTypeConfiguration<Language>
+    public class LanguageConfiguration : Configurations.TravelTypeConfiguration<Language>
     {
         public override void Configuration(EntityTypeBuilder<Language> builder)
         {

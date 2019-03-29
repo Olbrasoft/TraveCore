@@ -2,12 +2,26 @@
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Accommodation
 {
     [TestFixture]
-    internal class LocalizedDescriptionConfigurationTest
+    internal class DescriptionTranslationConfigurationTest
     {
+        [Test]
+        public void Instance_Is_TranslationConfiguration_Of_DescriptionTranslation()
+        {
+            //Arrange
+            var type = typeof(TranslationConfiguration<DescriptionTranslation>);
+
+            //Act
+            var configuration = new DescriptionTranslationConfiguration();
+
+            //Assert
+            Assert.IsInstanceOf(type, configuration);
+        }
+
         [Test]
         public void Instance_Is_PropertyConfiguration_Of_Description()
         {

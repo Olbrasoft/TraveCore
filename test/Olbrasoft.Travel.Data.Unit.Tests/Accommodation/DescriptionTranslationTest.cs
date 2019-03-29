@@ -1,15 +1,26 @@
 ﻿using NUnit.Framework;
 using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Localization;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
 {
-    public class LocalizedDescriptionTest
+    public class DescriptionTranslationTest
     {
+        [Test]
+        public void Instance_Is_Translation()
+        {
+            //Arrange
+            var type = typeof(Translation);
 
+            //Act
+            var translation = new DescriptionTranslation();
 
+            //Assert
+            Assert.IsInstanceOf(type, translation);
+        }
 
         [Test]
-        public void RealEstateId()
+        public void PropertyId()
         {
             //Arrange
             const int id = 1976;

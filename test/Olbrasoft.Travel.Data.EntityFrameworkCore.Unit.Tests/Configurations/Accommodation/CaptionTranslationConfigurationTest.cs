@@ -6,16 +6,16 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation;
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Accommodation
 {
     [TestFixture]
-    internal class RealEstateToAttributeConfigurationTest
+    internal class CaptionTranslationConfigurationTest
     {
         [Test]
-        public void Instance_Is_GlobalizationConfiguration_Of_AccommodationToAttribute()
+        public void Instance_Is_LocalizedConfiguration_Of_LocalizedCaption()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<PropertyToAttribute>);
+            var type = typeof(TravelTypeConfiguration<CaptionTranslation>);
 
             //Act
-            var configuration = new PropertyToAttributeConfiguration();
+            var configuration = new CaptionTranslationConfiguration();
 
             //Assert
             Assert.IsInstanceOf(type, configuration);

@@ -5,13 +5,13 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class CaptionTranslationConfiguration : TranslationConfiguration<CaptionTranslation>
+    public class CaptionTranslationConfiguration : Localization.TranslationConfiguration<CaptionTranslation>
     {
         public CaptionTranslationConfiguration() : base("CaptionsTranslations")
         {
         }
 
-        public override void ConfigureLocalized(EntityTypeBuilder<CaptionTranslation> builder)
+        public override void ConfigureTranslation(EntityTypeBuilder<CaptionTranslation> builder)
         {
             builder.HasOne(localizedCaption => localizedCaption.Creator).WithMany(user => user.CaptionsTranslations)
                 .OnDelete(DeleteBehavior.Restrict);

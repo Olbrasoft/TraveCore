@@ -47,7 +47,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             var description = new DescriptionTranslation
             {
                 PropertyId = accommodationId,
-                DescriptionId = TypeOfDescriptionId,
+                Id = TypeOfDescriptionId,
                 LanguageId = languageId,
                 Text = items[2],
                 CreatorId = CreatorId

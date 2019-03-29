@@ -3,7 +3,7 @@ using Olbrasoft.Travel.Data.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization
 {
-    public abstract class TranslationConfiguration<TLocalized> : TravelTypeConfiguration<TLocalized> where TLocalized : Translation
+    public abstract class TranslationConfiguration<TLocalized> : Configurations.TravelTypeConfiguration<TLocalized> where TLocalized : Translation
     {
         protected TranslationConfiguration()
         {
@@ -16,9 +16,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization
         public override void Configuration(EntityTypeBuilder<TLocalized> builder)
         {
             builder.HasKey(p => new { p.Id, p.LanguageId });
-            ConfigureLocalized(builder);
+            ConfigureTranslation(builder);
         }
 
-        public abstract void ConfigureLocalized(EntityTypeBuilder<TLocalized> builder);
+        public abstract void ConfigureTranslation(EntityTypeBuilder<TLocalized> builder);
     }
 }

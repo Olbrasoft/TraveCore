@@ -5,13 +5,13 @@ using Olbrasoft.Travel.Data.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {
-    public class RegionTranslationConfiguration : TranslationConfiguration<RegionTranslation>
+    public class RegionTranslationConfiguration : Localization.TranslationConfiguration<RegionTranslation>
     {
         public RegionTranslationConfiguration() : base("RegionsTranslations")
         {
         }
 
-        public override void ConfigureLocalized(EntityTypeBuilder<RegionTranslation> builder)
+        public override void ConfigureTranslation(EntityTypeBuilder<RegionTranslation> builder)
         {
             builder.HasIndex(p => p.Name);
 

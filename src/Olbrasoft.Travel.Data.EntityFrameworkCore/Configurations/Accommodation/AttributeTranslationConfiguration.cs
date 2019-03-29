@@ -5,13 +5,13 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class AttributeTranslationConfiguration : TranslationConfiguration<AttributeTranslation>
+    public class AttributeTranslationConfiguration : Localization.TranslationConfiguration<AttributeTranslation>
     {
         public AttributeTranslationConfiguration() : base("AttributesTranslations")
         {
         }
 
-        public override void ConfigureLocalized(EntityTypeBuilder<AttributeTranslation> builder)
+        public override void ConfigureTranslation(EntityTypeBuilder<AttributeTranslation> builder)
         {
             builder.Property(p => p.Description).HasMaxLength(255).IsRequired();
 

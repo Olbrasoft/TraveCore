@@ -1,21 +1,21 @@
 ﻿using NUnit.Framework;
 using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Accommodation
 {
     [TestFixture]
-    internal class LocalizedAttributeConfigurationTest
+    internal class PropertyTranslationConfigurationTest
     {
         [Test]
-        public void Instance_Is_LocalizedConfiguration_Of_LocalizedAttribute()
+        public void Instance_Is_TranslationConfiguration_Of_PropertyTranslation()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<AttributeTranslation>);
+            var type = typeof(TranslationConfiguration<PropertyTranslation>);
 
             //Act
-            var configuration = new AttributeTranslationConfiguration();
+            var configuration = new PropertyTranslationConfiguration();
 
             //Assert
             Assert.IsInstanceOf(type, configuration);

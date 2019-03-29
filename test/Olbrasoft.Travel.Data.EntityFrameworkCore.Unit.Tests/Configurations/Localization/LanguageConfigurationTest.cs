@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Lo
         public void Instance_Is_GlobalizationConfiguration_Of_Language()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<Language>);
+            var type = typeof(EntityFrameworkCore.Configurations.TravelTypeConfiguration<Language>);
 
             //Act
             var configuration = new LanguageConfiguration();
