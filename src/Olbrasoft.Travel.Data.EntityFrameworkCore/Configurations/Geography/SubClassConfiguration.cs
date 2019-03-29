@@ -3,9 +3,9 @@ using Olbrasoft.Travel.Data.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {
-    public class SubClassConfiguration : NameConfiguration<Subclass>
+    public class SubclassConfiguration : NameConfiguration<Subclass>
     {
-        public SubClassConfiguration() : base("SubClasses")
+        public SubclassConfiguration() : base("Subclasses")
         {
         }
 

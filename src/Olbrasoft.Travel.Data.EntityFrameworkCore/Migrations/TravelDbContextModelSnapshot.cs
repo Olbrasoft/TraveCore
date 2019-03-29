@@ -278,7 +278,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                 {
                     b.Property<int>("PropertyId");
 
-                    b.Property<int>("DescriptionId");
+                    b.Property<int>("Id");
 
                     b.Property<int>("LanguageId");
 
@@ -291,11 +291,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.Property<string>("Text")
                         .IsRequired();
 
-                    b.HasKey("PropertyId", "DescriptionId", "LanguageId");
+                    b.HasKey("PropertyId", "Id", "LanguageId");
+
+                    b.HasAlternateKey("Id", "LanguageId");
 
                     b.HasIndex("CreatorId");
-
-                    b.HasIndex("DescriptionId");
 
                     b.HasIndex("LanguageId");
 
@@ -934,7 +934,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("SubClasses","Geography");
+                    b.ToTable("Subclasses","Geography");
                 });
 
             modelBuilder.Entity("Olbrasoft.Travel.Data.IO.FileExtension", b =>
@@ -1085,7 +1085,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e26d3b4c-5383-41b7-92b2-6dfbdd70815f",
+                            ConcurrencyStamp = "776238a5-3214-4792-a914-67a46526cb33",
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailConfirmed = false,
                             LockoutEnabled = false,
@@ -1296,7 +1296,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Migrations
 
                     b.HasOne("Olbrasoft.Travel.Data.Accommodation.Description", "Description")
                         .WithMany("DescriptionTranslations")
-                        .HasForeignKey("DescriptionId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Olbrasoft.Travel.Data.Localization.Language", "Language")
