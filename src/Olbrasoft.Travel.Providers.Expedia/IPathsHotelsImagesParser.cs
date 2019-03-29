@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property;
+﻿using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Providers.Expedia
 {

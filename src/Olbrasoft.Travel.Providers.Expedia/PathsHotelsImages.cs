@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property;
+using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Providers.Expedia
 {
@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Providers.Expedia
 
         public override bool TryParse(string line, out PathToHotelImage entity)
         {
-            var properties= line.Split('|');
+            var properties = line.Split('|');
 
             if (!int.TryParse(properties[0], out var eanHotelId))
             {
@@ -20,13 +20,12 @@ namespace Olbrasoft.Travel.Providers.Expedia
                 return false;
             }
 
-            entity= new PathToHotelImage
+            entity = new PathToHotelImage
             {
-                EANHotelID =eanHotelId,
+                EANHotelID = eanHotelId,
                 URL = properties[2]
             };
             return Validator.TryValidateObject(entity, new ValidationContext(entity), null, true);
         }
-        
     }
 }

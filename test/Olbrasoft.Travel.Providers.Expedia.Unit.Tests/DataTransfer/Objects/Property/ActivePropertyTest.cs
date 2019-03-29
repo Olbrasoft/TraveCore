@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer;
-using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property;
+using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Unit.Tests.DataTransfer.Objects.Property
 {
@@ -15,11 +15,9 @@ namespace Olbrasoft.Travel.Providers.Expedia.Unit.Tests.DataTransfer.Objects.Pro
 
             //Act
             var activeProperty = new ActiveProperty();
-            
+
             //Assert
             Assert.IsInstanceOf(type, activeProperty);
-
         }
-
     }
 }

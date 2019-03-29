@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Repositories;
-using Description = Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property.Description;
+using Description = Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation.Description;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {

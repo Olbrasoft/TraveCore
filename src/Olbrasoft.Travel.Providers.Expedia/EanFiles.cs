@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Geography;
-using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property;
 
 namespace Olbrasoft.Travel.Providers.Expedia
 {
@@ -9,11 +9,11 @@ namespace Olbrasoft.Travel.Providers.Expedia
     {
         private static IEnumerable<EanFile> _eanFiles;
 
-        public static IEnumerable<EanFile>  GetEanFiles()
+        public static IEnumerable<EanFile> GetEanFiles()
         {
             return _eanFiles ?? (_eanFiles = BuildEanFiles());
         }
-        
+
         private static IEnumerable<EanFile> BuildEanFiles()
         {
             var files = new List<EanFile>
@@ -254,7 +254,6 @@ namespace Olbrasoft.Travel.Providers.Expedia
                     TypeOfEanFile.Property,
                     typeof(WhatToExpectMultiLanguage)
                 ),
-
             };
 
             return files;

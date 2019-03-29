@@ -3,10 +3,9 @@ using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
-using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Property;
+using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation;
 using Chain = Olbrasoft.Travel.Data.Accommodation.Chain;
 using PropertyType = Olbrasoft.Travel.Data.Accommodation.PropertyType;
-
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {
