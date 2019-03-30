@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Olbrasoft.Data.Entity.Framework.Bulk
 {
@@ -39,8 +39,8 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         //    }
         //}
 
-
         #region MainOps
+
         public static void Insert<T>(DbContext context, IList<T> entities, TableInfo tableInfo, Action<decimal> progress)
         {
             var sqlConnection = OpenAndGetSqlConnection(context);
@@ -49,7 +49,7 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             {
                 using (var sqlBulkCopy = GetSqlBulkCopy(sqlConnection, transaction, tableInfo.BulkConfig.SqlBulkCopyOptions))
                 {
-                    var setColumnMapping = !tableInfo.HasOwnedTypes; 
+                    var setColumnMapping = !tableInfo.HasOwnedTypes;
                     tableInfo.SetSqlBulkCopyConfig(sqlBulkCopy, entities, setColumnMapping, progress);
                     try
                     {
@@ -65,12 +65,12 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                             var dataTable = GetDataTable(context, entities);
                             sqlBulkCopy.WriteToServer(dataTable);
                         }
-                    } 
+                    }
                     catch (InvalidOperationException ex)
                     {
                         if (!ex.Message.Contains(ColumnMappingExceptionMessage))
                             throw;
-                        
+
                         context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo)); // Exception specify missing db column: Invalid column name ''
                         if (!tableInfo.BulkConfig.UseTempDB)
                             context.Database.ExecuteSqlCommand(SqlQueryBuilder.DropTable(tableInfo.FullTempOutputTableName));
@@ -130,9 +130,6 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             }
         }
 
-
-
-
         //public static void Merge<T>(DbContext context, IList<T> entities, TableInfo tableInfo, OperationType operationType, Action<decimal> progress) where T : class
         //{
         //    tableInfo.InsertToTempTable = true;
@@ -175,9 +172,9 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         public static void Merge<T>(DbContext context, IList<T> entities, TableInfo tableInfo, OperationType operationType, Action<decimal> progress) where T : class
         {
             tableInfo.InsertToTempTable = true;
-            if(tableInfo.BulkConfig.UpdateByProperties == null || tableInfo.BulkConfig.UpdateByProperties.Count == 0)
+            if (tableInfo.BulkConfig.UpdateByProperties == null || tableInfo.BulkConfig.UpdateByProperties.Count == 0)
                 tableInfo.CheckHasIdentity(context);
-            
+
             context.Database.SetCommandTimeout(960);
 
             context.Database.ExecuteSqlCommand(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo));
@@ -216,7 +213,6 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             tableInfo.InsertToTempTable = true;
             await tableInfo.CheckHasIdentityAsync(context).ConfigureAwait(false);
 
-           
             await context.Database.ExecuteSqlCommandAsync(SqlQueryBuilder.CreateTableCopy(tableInfo.FullTableName, tableInfo.FullTempTableName, tableInfo)).ConfigureAwait(false);
             if (tableInfo.CreatedOutputTable)
             {
@@ -231,7 +227,6 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                 {
                     try
                     {
-
                         await tableInfo.LoadOutputDataAsync(context, entities).ConfigureAwait(false);
                     }
                     finally
@@ -303,9 +298,11 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
                     await context.Database.ExecuteSqlCommandAsync(SqlQueryBuilder.DropTable(tableInfo.FullTempTableName));
             }
         }
-        #endregion
+
+        #endregion MainOps
 
         #region DataTable
+
         // IMPORTANT: works only if Properties of Entity are in the same order as Columns in Db
         internal static DataTable GetDataTable<T>(DbContext context, IList<T> entities)
         {
@@ -385,9 +382,11 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             }
             return dataTable;
         }
-        #endregion
+
+        #endregion DataTable
 
         #region Connection
+
         internal static SqlConnection OpenAndGetSqlConnection(DbContext context)
         {
             if (context.Database.GetDbConnection().State != ConnectionState.Open)
@@ -405,7 +404,6 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
             }
             return context.Database.GetDbConnection() as SqlConnection;
         }
-        
 
         //private static SqlBulkCopy GetSqlBulkCopy(SqlConnection sqlConnection, DbContextTransaction transaction, bool keepIdentity = false)
         //{
@@ -418,17 +416,17 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         //    return keepIdentity ? new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.KeepIdentity, sqlTransaction) : new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.CheckConstraints, sqlTransaction);
         //}
 
-        private static SqlBulkCopy GetSqlBulkCopy(SqlConnection sqlConnection, IDbContextTransaction transaction, SqlBulkCopyOptions sqlBulkCopyOptions = SqlBulkCopyOptions.CheckConstraints )
+        private static SqlBulkCopy GetSqlBulkCopy(SqlConnection sqlConnection, IDbContextTransaction transaction, SqlBulkCopyOptions sqlBulkCopyOptions = SqlBulkCopyOptions.CheckConstraints)
         {
             if (transaction == null)
             {
-              return   new SqlBulkCopy(sqlConnection, sqlBulkCopyOptions, null);
+                return new SqlBulkCopy(sqlConnection, sqlBulkCopyOptions, null);
             }
 
             var sqlTransaction = (SqlTransaction)transaction.GetDbTransaction();
             return new SqlBulkCopy(sqlConnection, SqlBulkCopyOptions.KeepIdentity, sqlTransaction);
         }
-        #endregion
-    }
 
+        #endregion Connection
+    }
 }

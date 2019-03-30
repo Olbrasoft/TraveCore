@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.Accommodation
     {
         [Key]
         [Column(Order = 1)]
-        public int RealEstateId { get; set; }
+        public int PropertyId { get; set; }
 
         [Key]
         [Column(Order = 2)]

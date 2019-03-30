@@ -48,10 +48,10 @@ namespace Olbrasoft.Travel.Unit.Tests.Suggestion
         }
 
         [Test]
-        public void Enum_GetName_Type_Of_CategoriesOfSuggestion_Two_Return_RealEstates()
+        public void Enum_GetName_Type_Of_CategoriesOfSuggestion_Two_Return_Properties()
         {
             //Arrange
-            const string name = "RealEstates";
+            const string name = "Properties";
 
             //Act
             var result = Enum.GetName(typeof(SuggestionCategories), 2);
@@ -61,13 +61,13 @@ namespace Olbrasoft.Travel.Unit.Tests.Suggestion
         }
 
         [Test]
-        public void RealEstates_GetDescriptions_Return_Properties()
+        public void Properties_GetDescriptions_Return_Properties()
         {
             //Arrange
             const string description = "Properties";
 
             //Act
-            var result = SuggestionCategories.RealEstates.GetDescription();
+            var result = SuggestionCategories.Properties.GetDescription();
 
             //Assert
             Assert.IsTrue(description == result);

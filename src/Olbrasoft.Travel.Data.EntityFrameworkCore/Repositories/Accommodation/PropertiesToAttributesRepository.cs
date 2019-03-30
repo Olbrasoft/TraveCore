@@ -38,7 +38,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
 
                     foreach (var accommodationToAttribute in accommodationsToAttributesArray)
                     {
-                        var tup = new Tuple<int, int>(accommodationToAttribute.RealEstateId, accommodationToAttribute.AttributeId);
+                        var tup = new Tuple<int, int>(accommodationToAttribute.PropertyId, accommodationToAttribute.AttributeId);
 
                         if (!storedAccommodationsIdsAttributesIds.Contains(tup))
                         {
@@ -64,7 +64,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation
         public HashSet<Tuple<int, int>> FindAccommodationsIdsAttributesIds(int languageId)
         {
             return new HashSet<Tuple<int, int>>(AsQueryable().Where(lr => lr.LanguageId == languageId)
-                .Select(ata => new { AccommodationId = ata.RealEstateId, ata.AttributeId }).ToArray()
+                .Select(ata => new { AccommodationId = ata.PropertyId, ata.AttributeId }).ToArray()
                 .Select(p => new Tuple<int, int>(p.AccommodationId, p.AttributeId)));
         }
 

@@ -17,7 +17,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByAccommodationIdAndLanguageIdQuery_Of_IEnumerable_OfRoom()
         {
             //Arrange
-            var type = typeof(ByRealEstateIdAndLanguageIdQuery<IEnumerable<RoomDto>>);
+            var type = typeof(ByPropertyIdAndLanguageIdQuery<IEnumerable<RoomDto>>);
 
             //Act
             var query = Query();
@@ -78,10 +78,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
             Assert.IsInstanceOf(type, query);
         }
 
-        private static RoomsByRealEstateIdAndLanguageIdQuery Query()
+        private static RoomsByPropertyIdAndLanguageIdQuery Query()
         {
             var providerMock = new Mock<IQueryDispatcher>();
-            return new RoomsByRealEstateIdAndLanguageIdQuery(providerMock.Object);
+            return new RoomsByPropertyIdAndLanguageIdQuery(providerMock.Object);
         }
     }
 }

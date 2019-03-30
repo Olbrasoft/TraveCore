@@ -6,19 +6,19 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
     public class PhotoTest
     {
         [Test]
-        public void RealEstateId()
+        public void PropertyId()
         {
             //Arrange
-             const int estateId = 1976;
+            const int estateId = 1976;
 
             //Act
             var photo = new Photo
             {
-                RealEstateId = estateId
+                PropertyId = estateId
             };
 
             //Assert
-            Assert.AreEqual(estateId, photo.RealEstateId);
+            Assert.AreEqual(estateId, photo.PropertyId);
         }
 
         [Test]
@@ -36,7 +36,5 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             //Assert
             Assert.AreEqual(name, photo.FileName);
         }
-
-        
     }
 }

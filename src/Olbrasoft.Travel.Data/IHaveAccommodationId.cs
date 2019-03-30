@@ -2,6 +2,6 @@
 {
     public interface IHaveAccommodationId
     {
-        int AccommodationId { get; set; }
+        int PropertyId { get; set; }
     }
 }

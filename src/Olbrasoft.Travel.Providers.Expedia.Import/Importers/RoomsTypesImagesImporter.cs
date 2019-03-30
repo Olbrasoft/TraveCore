@@ -21,7 +21,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             var photo = new PhotoOfRoom
             {
-                AccommodationId = photoOfAccommodation.RealEstateId,
+                AccommodationId = photoOfAccommodation.PropertyId,
                 PathId = photoOfAccommodation.PathToPhotoId,
                 FileName = photoOfAccommodation.FileName,
                 ExtensionId = photoOfAccommodation.FileExtensionId,
@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             PhotosOfAccommodations = new HashSet<Photo>(Photos.Select(p => new Photo
             {
-                RealEstateId = p.AccommodationId,
+                PropertyId = p.AccommodationId,
                 PathToPhotoId = p.PathId,
                 FileName = p.FileName,
                 FileExtensionId = p.ExtensionId,

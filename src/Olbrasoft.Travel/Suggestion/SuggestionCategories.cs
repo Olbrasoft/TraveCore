@@ -7,8 +7,7 @@ namespace Olbrasoft.Travel.Suggestion
         [Description("Cities/Areas")]
         AreasCities = 1,
 
-        [Description("Properties")]
-        RealEstates,
+        Properties,
 
         Landmarks,
 

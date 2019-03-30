@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Data.Accommodation
 {
     public class Room : OwnerCreatorInfoAndCreator, IHaveExpediaId<int>
     {
-        public int RealEstateId { get; set; }
+        public int PropertyId { get; set; }
 
         public int ExpediaId { get; set; } = int.MinValue;
 

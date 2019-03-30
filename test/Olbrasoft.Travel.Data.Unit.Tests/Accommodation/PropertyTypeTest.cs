@@ -14,11 +14,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             //Act
             var realEstateType = new PropertyType
             {
-                LocalizedRealEstateTypes = localizedRealEstateTypes
+                PropertyTypesTranslations = localizedRealEstateTypes
             };
 
             //Assert
-            Assert.AreSame(localizedRealEstateTypes, realEstateType.LocalizedRealEstateTypes);
+            Assert.AreSame(localizedRealEstateTypes, realEstateType.PropertyTypesTranslations);
         }
 
         [Test]

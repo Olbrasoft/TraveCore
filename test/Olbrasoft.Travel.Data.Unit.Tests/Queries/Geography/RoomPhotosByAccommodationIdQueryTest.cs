@@ -15,7 +15,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
         public void Instance_Is_ByAccommodationIdQuery_Of_IEnumerable_Of_RoomPhoto()
         {
             //Arrange
-            var type = typeof(ByRealEstateIdQuery<IEnumerable<RoomPhotoDto>>);
+            var type = typeof(ByPropertyIdQuery<IEnumerable<RoomPhotoDto>>);
 
             //Act
             var query = Query();
@@ -37,12 +37,12 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
             Assert.IsInstanceOf(type, query);
         }
 
-        private static RoomPhotosByRealEstateIdQuery Query()
+        private static RoomPhotosByPropertyIdQuery Query()
         {
             var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
-            var query = new RoomPhotosByRealEstateIdQuery(providerMock.Object);
+            var query = new RoomPhotosByPropertyIdQuery(providerMock.Object);
             return query;
         }
 
@@ -53,7 +53,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
             var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
-            var query = new RoomPhotosByRealEstateIdQuery(providerMock.Object);
+            var query = new RoomPhotosByPropertyIdQuery(providerMock.Object);
 
             //Assert
             Assert.IsInstanceOf<IHaveAccommodationId>(query);

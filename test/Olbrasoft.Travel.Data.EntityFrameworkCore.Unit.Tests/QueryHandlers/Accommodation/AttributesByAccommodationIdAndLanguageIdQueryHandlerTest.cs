@@ -21,7 +21,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler< AttributesByRealEstateIdAndLanguageIdQuery,
+                typeof(TravelQueryHandler< AttributesByPropertyIdAndLanguageIdQuery,
                     PropertyToAttribute, IEnumerable<AttributeDto>>);
 
             //Act
@@ -39,7 +39,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var handler = Handler();
 
             var providerMock = new Mock<IQueryDispatcher>();
-            var query = new AttributesByRealEstateIdAndLanguageIdQuery(providerMock.Object);
+            var query = new AttributesByPropertyIdAndLanguageIdQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query, default(CancellationToken));

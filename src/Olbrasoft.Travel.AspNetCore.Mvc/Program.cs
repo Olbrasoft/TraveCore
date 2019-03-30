@@ -11,9 +11,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
     }
-
-   
 }

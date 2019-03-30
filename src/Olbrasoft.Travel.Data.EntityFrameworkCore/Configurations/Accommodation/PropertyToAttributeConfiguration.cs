@@ -12,7 +12,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 
         public override void Configuration(EntityTypeBuilder<PropertyToAttribute> builder)
         {
-            builder.HasKey(p => new { AccommodationId = p.RealEstateId, p.AttributeId, p.LanguageId });
+            builder.HasKey(p => new { AccommodationId = p.PropertyId, p.AttributeId, p.LanguageId });
 
             builder.HasOne(ata => ata.Creator).WithMany(u => u.PropertiesToAttributes)
                 .OnDelete(DeleteBehavior.Restrict);

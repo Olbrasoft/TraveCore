@@ -65,7 +65,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             photo = new Photo
             {
-                RealEstateId = accommodationId,
+                PropertyId = accommodationId,
                 PathToPhotoId = pathToPhotoId,
                 FileName = RemovePostFix(url),
                 FileExtensionId = fileExtensionId,

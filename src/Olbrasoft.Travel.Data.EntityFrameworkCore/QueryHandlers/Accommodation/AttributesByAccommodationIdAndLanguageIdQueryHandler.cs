@@ -10,18 +10,18 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByRealEstateIdAndLanguageIdQuery, PropertyToAttribute, IEnumerable<AttributeDto>>
+    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByPropertyIdAndLanguageIdQuery, PropertyToAttribute, IEnumerable<AttributeDto>>
     {
-        public override async Task<IEnumerable<AttributeDto>> HandleAsync(AttributesByRealEstateIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<AttributeDto>> HandleAsync(AttributesByPropertyIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             return await ProjectionToAttribute(Source, query).ToArrayAsync(cancellationToken);
         }
 
-        protected IQueryable<AttributeDto> ProjectionToAttribute(IQueryable<PropertyToAttribute> accommodationsToAttributes, AttributesByRealEstateIdAndLanguageIdQuery query)
+        protected IQueryable<AttributeDto> ProjectionToAttribute(IQueryable<PropertyToAttribute> accommodationsToAttributes, AttributesByPropertyIdAndLanguageIdQuery query)
         {
             accommodationsToAttributes = accommodationsToAttributes.Include(p => p.Attribute)
                     .Include(p => p.Attribute.LocalizedAttributes)
-                    .Where(p => p.RealEstateId == query.AccommodationId)
+                    .Where(p => p.PropertyId == query.PropertyId)
                     .Where(p => p.LanguageId == query.LanguageId)
                     .OrderBy(p => p.Attribute.Ban)
                 ;

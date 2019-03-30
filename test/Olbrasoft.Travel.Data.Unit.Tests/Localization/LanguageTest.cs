@@ -52,7 +52,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Localization
         }
 
         [Test]
-        public void LocalizedRealEstateTypes()
+        public void PropertyTypesTranslations()
         {
             //Arrange
             var localizations = new List<PropertyTypeTranslation>();
@@ -69,7 +69,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Localization
         }
 
         [Test]
-        public void LocalizedRealEstates()
+        public void PropertiesTranslations()
         {
             //Arrange
             var localizations = new List<PropertyTranslation>();
@@ -103,7 +103,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Localization
         }
 
         [Test]
-        public void RealEstatesToAttributes()
+        public void PropertiesToAttributes()
         {
             //Arrange
             var localizations = new List<PropertyToAttribute>();

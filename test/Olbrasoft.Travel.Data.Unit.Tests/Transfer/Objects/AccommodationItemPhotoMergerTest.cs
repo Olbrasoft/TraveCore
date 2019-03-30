@@ -14,10 +14,10 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         public void Instance_Implement_Interface_IAccommodationItemPhotoMerger()
         {
             //Arrange
-            var type = typeof(IAccommodationItemPhotoMerge);
+            var type = typeof(IPropertyItemPhotoMerge);
 
             //Act
-            var merger = new RealEstateItemPhotoMerge();
+            var merger = new PropertyItemPhotoMerge();
 
             //Assert
             Assert.IsInstanceOf(type, merger);
@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
 
                 new PropertyPhotoDto
                 {
-                    RealEstateId = 1,
+                    PropertyId = 1,
                     Path = "Path",
                     Name = "Name",
                     Extension = "Extension"
@@ -60,9 +60,9 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
             Assert.IsTrue(result != null && result == "https://i.travelapi.com/hotels/Path/Name_l.Extension");
         }
 
-        private static RealEstateItemPhotoMerge Merger()
+        private static PropertyItemPhotoMerge Merger()
         {
-            return new RealEstateItemPhotoMerge();
+            return new PropertyItemPhotoMerge();
         }
     }
 }

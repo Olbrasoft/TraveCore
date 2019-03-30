@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Data.Accommodation
     {
         [Required]
         [ForeignKey(nameof(Property))]
-        public int RealEstateId { get; set; }
+        public int PropertyId { get; set; }
 
         public int PathToPhotoId { get; set; }
 

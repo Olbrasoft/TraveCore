@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190329030018_Init.cs" />
+    <Compile Remove="Migrations\20190329030018_Init.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="..\..\..\..\..\..\.nuget\packages\sharprepository.efcorerepository\2.0.2\contentFiles\any\netstandard2.0\repository.efCore.json" Link="repository.efCore.json">
       <Private>False</Private>
       <NuGetPackageVersion>2.0.2</NuGetPackageVersion>
@@ -26,5 +31,9 @@
     <ProjectReference Include="..\Olbrasoft.Extensions\Olbrasoft.Extensions.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel\Olbrasoft.Travel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

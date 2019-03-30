@@ -2,6 +2,6 @@
 {
     public class PropertyPhotoDto : PhotoDto
     {
-        public int RealEstateId { get; set; }
+        public int PropertyId { get; set; }
     }
 }

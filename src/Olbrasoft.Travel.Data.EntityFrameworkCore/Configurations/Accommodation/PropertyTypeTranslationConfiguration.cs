@@ -19,7 +19,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
             builder.HasOne(p => p.Language).WithMany(language => language.PropertyTypesTranslations)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(localizedTypeOfAccommodation => localizedTypeOfAccommodation.PropertyType).WithMany(toa => toa.LocalizedRealEstateTypes)
+            builder.HasOne(localizedTypeOfAccommodation => localizedTypeOfAccommodation.PropertyType).WithMany(toa => toa.PropertyTypesTranslations)
                 .HasForeignKey(p => p.Id).OnDelete(DeleteBehavior.Cascade);
         }
     }

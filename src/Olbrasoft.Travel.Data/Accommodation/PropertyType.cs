@@ -10,7 +10,7 @@ namespace Olbrasoft.Travel.Data.Accommodation
     {
         public int ExpediaId { get; set; } = int.MinValue;
 
-        public virtual ICollection<PropertyTypeTranslation> LocalizedRealEstateTypes { get; set; }
+        public virtual ICollection<PropertyTypeTranslation> PropertyTypesTranslations { get; set; }
 
         public int SuggestionCategoryId { get; set; }
 

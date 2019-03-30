@@ -34,7 +34,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             var typeOfRoom = new Room
             {
                 ExpediaId = ExpediaId,
-                RealEstateId = accommodationId,
+                PropertyId = accommodationId,
                 CreatorId = CreatorId
             };
 

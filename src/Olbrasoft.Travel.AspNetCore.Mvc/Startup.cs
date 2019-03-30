@@ -76,7 +76,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
             #endregion Mapping --------------------------------------------------------------------------------------------
 
             container.Register(
-                Component.For<IAccommodationItemPhotoMerge>().ImplementedBy<RealEstateItemPhotoMerge>()
+                Component.For<IPropertyItemPhotoMerge>().ImplementedBy<PropertyItemPhotoMerge>()
                     .LifestyleCustom<MsScopedLifestyleManager>()
             );
 

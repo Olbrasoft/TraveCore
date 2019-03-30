@@ -10,10 +10,10 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class AccommodationDetailByIdAndLanguageIdQueryHandler : TravelQueryHandler<RealEstateDetailByRealEstateIdAndLanguageIdQuery, Property,
+    public class AccommodationDetailByIdAndLanguageIdQueryHandler : TravelQueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, Property,
         PropertyDetail>
     {
-        public override async Task<PropertyDetail> HandleAsync(RealEstateDetailByRealEstateIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<PropertyDetail> HandleAsync(PropertyDetailByPropertyIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var localizedAccommodations = Source.SelectMany(p => p.PropertiesTranslations);
 
@@ -29,18 +29,18 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return accommodationDetail;
         }
 
-        private IQueryable<DescriptionDto> ProjectToAccommodationDescriptions(IQueryable<PropertyTranslation> source, RealEstateDetailByRealEstateIdAndLanguageIdQuery query)
+        private IQueryable<DescriptionDto> ProjectToAccommodationDescriptions(IQueryable<PropertyTranslation> source, PropertyDetailByPropertyIdAndLanguageIdQuery query)
         {
             var descriptions = source
                 .SelectMany(p => p.Property.DescriptionsTranslations)
-                .Where(p => p.PropertyId == query.AccommodationId && p.LanguageId == query.LanguageId);
+                .Where(p => p.PropertyId == query.PropertyId && p.LanguageId == query.LanguageId);
 
             return ProjectTo<DescriptionDto>(descriptions);
         }
 
-        private IQueryable<PropertyDetail> ProjectToAccommodationsDetails(IQueryable<PropertyTranslation> source, RealEstateDetailByRealEstateIdAndLanguageIdQuery query)
+        private IQueryable<PropertyDetail> ProjectToAccommodationsDetails(IQueryable<PropertyTranslation> source, PropertyDetailByPropertyIdAndLanguageIdQuery query)
         {
-            var localizedAccommodations = source.Include(p => p.Property).Where(la => la.Id == query.AccommodationId && la.LanguageId == query.LanguageId);
+            var localizedAccommodations = source.Include(p => p.Property).Where(la => la.Id == query.PropertyId && la.LanguageId == query.LanguageId);
 
             return ProjectTo<PropertyDetail>(localizedAccommodations);
         }

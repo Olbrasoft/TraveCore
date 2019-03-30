@@ -9,22 +9,22 @@ using Room = Olbrasoft.Travel.Data.Accommodation.Room;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class RoomsByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler< RoomsByRealEstateIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>
+    public class RoomsByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler< RoomsByPropertyIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>
     {
     
-        public override async Task<IEnumerable<Transfer.Objects.Accommodation.RoomDto>> HandleAsync(RoomsByRealEstateIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<Transfer.Objects.Accommodation.RoomDto>> HandleAsync(RoomsByPropertyIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var projection = ProjectionToRooms(Source,query);
             return await projection.ToArrayAsync(cancellationToken);
         }
 
-        protected IQueryable<Transfer.Objects.Accommodation.RoomDto> ProjectionToRooms(IQueryable<Room> typeOfRooms,RoomsByRealEstateIdAndLanguageIdQuery byRealEstateIdAndLanguageIdQuery)
+        protected IQueryable<Transfer.Objects.Accommodation.RoomDto> ProjectionToRooms(IQueryable<Room> typeOfRooms,RoomsByPropertyIdAndLanguageIdQuery byPropertyIdAndLanguageIdQuery)
         {
             var localizedTypesOfRooms = Source.SelectMany(p => p.LocalizedRooms)
-                .Where(p => p.LanguageId == byRealEstateIdAndLanguageIdQuery.LanguageId);
+                .Where(p => p.LanguageId == byPropertyIdAndLanguageIdQuery.LanguageId);
 
             localizedTypesOfRooms = localizedTypesOfRooms.Include(p => p.Type)
-                .Where(p => p.Type.RealEstateId == byRealEstateIdAndLanguageIdQuery.AccommodationId);
+                .Where(p => p.Type.PropertyId == byPropertyIdAndLanguageIdQuery.PropertyId);
 
             return ProjectTo<Transfer.Objects.Accommodation.RoomDto>(localizedTypesOfRooms);
         }

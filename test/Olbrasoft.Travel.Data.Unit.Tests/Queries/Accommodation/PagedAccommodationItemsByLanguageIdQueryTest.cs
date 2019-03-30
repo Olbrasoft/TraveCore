@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
             var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
-            var query = new PagedRealEstateItemsByLanguageIdQuery(providerMock.Object);
+            var query = new PagedPropertyItemsByLanguageIdQuery(providerMock.Object);
 
             //Assert
             Assert.IsInstanceOf(type, query);

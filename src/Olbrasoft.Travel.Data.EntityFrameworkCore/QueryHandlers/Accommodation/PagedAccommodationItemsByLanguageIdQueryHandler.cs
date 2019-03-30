@@ -11,10 +11,10 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedRealEstateItemsByLanguageIdQuery, Property,
+    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedPropertyItemsByLanguageIdQuery, Property,
         IResultWithTotalCount<PropertyItem>>
     {
-        public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedRealEstateItemsByLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedPropertyItemsByLanguageIdQuery query, CancellationToken cancellationToken)
         {
             var localizedAccommodations = PreHandle(Source, query);
             var accommodationItems = ProjectTo<PropertyItem>(localizedAccommodations);
@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return result;
         }
 
-        private static IQueryable<PropertyTranslation> PreHandle(IQueryable<Property> source, PagedRealEstateItemsByLanguageIdQuery query)
+        private static IQueryable<PropertyTranslation> PreHandle(IQueryable<Property> source, PagedPropertyItemsByLanguageIdQuery query)
         {
             var localizedAccommodations = source.SelectMany(p => p.PropertiesTranslations);
 

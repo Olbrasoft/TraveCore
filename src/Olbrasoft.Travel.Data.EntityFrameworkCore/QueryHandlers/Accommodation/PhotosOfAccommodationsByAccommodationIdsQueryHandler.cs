@@ -23,7 +23,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
         private IQueryable<PropertyPhotoDto> ProjectToQueryableOfAccommodationPhoto(IQueryable<Photo> source, PhotosOfAccommodationsByAccommodationIdsQuery query)
         {
             var photoOfAccommodations = from p in source
-                                        where query.AccommodationIds.Contains(p.RealEstateId)
+                                        where query.AccommodationIds.Contains(p.PropertyId)
                                         select p;
 
             if (query.OnlyDefaultPhotos) photoOfAccommodations = photoOfAccommodations.Where(p => p.IsDefault);

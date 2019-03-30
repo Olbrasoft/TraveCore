@@ -26,14 +26,14 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects.Accommodation
             //Arrange
             var photoOfAccommodation = new PropertyPhotoDto
             {
-                RealEstateId = i,
+                PropertyId = i,
                 Path = p,
                 Name = n,
                 Extension = e
             };
 
             //Act
-            var accommodationId = photoOfAccommodation.RealEstateId;
+            var accommodationId = photoOfAccommodation.PropertyId;
             var path = photoOfAccommodation.Path;
             var name = photoOfAccommodation.Name;
             var extension = photoOfAccommodation.Extension;

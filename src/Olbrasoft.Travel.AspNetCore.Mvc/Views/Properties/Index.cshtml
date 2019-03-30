@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using X.PagedList.Mvc.Common
+@model Olbrasoft.Collections.Generic.IPagedList<Olbrasoft.Travel.Data.Transfer.Objects.Accommodation.PropertyItem>
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["H1"] = Localizer["Listing of accommodation"];
+}
+
+<!-- PAGE CONTENT -->
+<section class="mainContentSection HotelSection bg-ash">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 ">
+                <div class="sort-by-section">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            Languages: @ViewData["Languages"]
+                            <div class="sort-by-single">
+                                <div class="sort-select-box">
+                                    <select name="guiest_id3" id="guiest_id3" class="select-drop">
+                                        <option value="0">sort by price</option>
+                                        <option value="1">sort by rating</option>
+                                        <option value="1">sort by popularity</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @foreach (var accommodation in Model)
+                        {
+                            <div class="media packagesList hotelsList">
+                                <a class="media-left fancybox-pop" href="@accommodation.Photo.Replace("_l.","_b.")">
+                                    <img class="media-object" src="@accommodation.Photo" alt="Image">
+                                </a>
+                                <div class="media-body">
+                                    <div class="bodyLeft">
+                                        <h4 class="media-heading">
+                                            <a asp-controller="Properties" asp-action="Detail" asp-route-id="@accommodation.Id" class="list-group-item-heading">@accommodation.Name</a>
+                                        </h4>
+                                        <accommodation-star-rating>@accommodation.StarRating</accommodation-star-rating>
+                                        <div class="countryRating">
+                                            <span>(reviews 75)</span>
+                                        </div>
+                                        @accommodation.Address
+                                        @accommodation.Location
+                                        <ul class="list-inline detailsBtn">
+                                            <li><span class="textInfo"><i class="fa fa-calendar" aria-hidden="true"></i> 27 jan, 2016</span></li>
+                                            <li><span class="textInfo"><i class="fa fa-clock-o" aria-hidden="true"></i> 5 days</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bodyRight">
+                                        <div class="bookingDetails">
+                                            <h2>$31</h2>
+                                            <p>Per Night</p>
+                                            <a href="single-hotel-right-sidebar.html" class="btn buttonTransparent clearfix">Details</a>
+                                            <a href="booking-1.html" class="btn buttonTransparent">book</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="paginationCenter">
+                    <pager list="@Model" options="@PagedListRenderOptionsBase.ClassicPlusFirstAndLast" asp-action="Index" />
+                    @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptionsBase.ClassicPlusFirstAndLast)*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

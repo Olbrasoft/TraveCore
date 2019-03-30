@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void Inherits_From_TravelQueryHandler_Of_IPropertyContext_Comma_RoomPhotosByAccommodationIdQuery_Comma_IQueryable_Of_PhotoOfAccommodation_Comma_IEnumerable_Of_RoomPhoto()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<RoomPhotosByRealEstateIdQuery, Photo, IEnumerable<RoomPhotoDto>>);
+            var type = typeof(TravelQueryHandler<RoomPhotosByPropertyIdQuery, Photo, IEnumerable<RoomPhotoDto>>);
 
             //Act
             var handler = Handler();
@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var type = typeof(Task<IEnumerable<RoomPhotoDto>>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
-            var query = new RoomPhotosByRealEstateIdQuery(providerMock.Object);
+            var query = new RoomPhotosByPropertyIdQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);

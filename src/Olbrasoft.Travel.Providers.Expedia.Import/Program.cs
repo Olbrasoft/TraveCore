@@ -119,7 +119,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         private static void ImportAccommodation(IWindsorContainer container)
         {
-            using (var typesOfAccommodationsImporter = container.Resolve<IImporter>(nameof(RealEstateTypesImporter)))
+            using (var typesOfAccommodationsImporter = container.Resolve<IImporter>(nameof(PropertyTypesImporter)))
             {
                 typesOfAccommodationsImporter.Import(@"D:\Ean\PropertyTypeList.txt");
             }
@@ -129,7 +129,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
                 accommodationsImporter.Import(@"D:\Ean\ChainList.txt");
             }
 
-            using (var accommodationsImporter = container.Resolve<IImporter>(nameof(RealEstatesImporter)))
+            using (var accommodationsImporter = container.Resolve<IImporter>(nameof(PropertiesImporter)))
             {
                 accommodationsImporter.Import(@"D:\Ean\ActivePropertyList.txt");
             }
@@ -324,14 +324,14 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
         private static void RegisterPropertyImporters(IWindsorContainer container)
         {
-            container.Register(Component.For(typeof(IImporter)).ImplementedBy<RealEstateTypesImporter>()
-                .Named(nameof(RealEstateTypesImporter)).Interceptors<IInterceptor>());
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<PropertyTypesImporter>()
+                .Named(nameof(PropertyTypesImporter)).Interceptors<IInterceptor>());
 
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<ChainsImporter>()
                 .Named(nameof(ChainsImporter)).Interceptors<IInterceptor>());
 
-            container.Register(Component.For(typeof(IImporter)).ImplementedBy<RealEstatesImporter>()
-                .Named(nameof(RealEstatesImporter)).Interceptors<IInterceptor>());
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<PropertiesImporter>()
+                .Named(nameof(PropertiesImporter)).Interceptors<IInterceptor>());
 
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<DescriptionsImporter>()
                 .Named(nameof(DescriptionsImporter)).Interceptors<IInterceptor>());

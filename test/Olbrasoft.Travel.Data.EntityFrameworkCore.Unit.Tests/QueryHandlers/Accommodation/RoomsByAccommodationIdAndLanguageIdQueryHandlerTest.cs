@@ -19,7 +19,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<RoomsByRealEstateIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>);
+                typeof(TravelQueryHandler<RoomsByPropertyIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>);
 
             //Act
             var handler = Handler();
@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var type = typeof(Task<IEnumerable<Transfer.Objects.Accommodation.RoomDto>>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
-            var query = new RoomsByRealEstateIdAndLanguageIdQuery(providerMock.Object);
+            var query = new RoomsByPropertyIdAndLanguageIdQuery(providerMock.Object);
             
             //Act
             var result = handler.HandleAsync(query);

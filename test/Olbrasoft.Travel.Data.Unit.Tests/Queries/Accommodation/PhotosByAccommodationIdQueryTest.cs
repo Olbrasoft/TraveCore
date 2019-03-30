@@ -15,7 +15,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_AccommodationIdQuery_Of_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
-            var type = typeof(ByRealEstateIdQuery<IEnumerable<PropertyPhotoDto>>);
+            var type = typeof(ByPropertyIdQuery<IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var query = Query();
@@ -42,20 +42,20 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         {
             //Arrange
             var query = Query();
-            query.AccommodationId = int.MaxValue;
+            query.PropertyId = int.MaxValue;
 
             //Act
-            var accommodationId = query.AccommodationId;
+            var accommodationId = query.PropertyId;
 
             //Assert
             Assert.IsTrue(accommodationId == int.MaxValue);
         }
 
-        private static PhotosByRealEstateIdQuery Query()
+        private static PhotosByPropertyIdQuery Query()
         {
             var dispatcher = new Mock<IQueryDispatcher>();
 
-            return new PhotosByRealEstateIdQuery(dispatcher.Object);
+            return new PhotosByPropertyIdQuery(dispatcher.Object);
         }
     }
 }

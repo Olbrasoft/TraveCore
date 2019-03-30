@@ -44,7 +44,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             var accommodationToAttribute = new PropertyToAttribute
             {
-                RealEstateId = accommodationId,
+                PropertyId = accommodationId,
                 AttributeId = attributeId,
                 LanguageId = DefaultLanguageId,
                 Text = items[3],

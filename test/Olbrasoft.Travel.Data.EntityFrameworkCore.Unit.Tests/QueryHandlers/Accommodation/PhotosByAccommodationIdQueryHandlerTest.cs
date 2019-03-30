@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void MyTestMethod()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<PhotosByRealEstateIdQuery, Photo, IEnumerable<PropertyPhotoDto>>);
+            var type = typeof(TravelQueryHandler<PhotosByPropertyIdQuery, Photo, IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var handler = Handler();
@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
 
-            var query = new PhotosByRealEstateIdQuery(providerMock.Object);
+            var query = new PhotosByPropertyIdQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);

@@ -1,25 +1,25 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Olbrasoft.Travel.Data.Accommodation;
+using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
 {
     public class RoomTest
     {
         [Test]
-        public void RealEstateId()
+        public void PropertyId()
         {
             //Arrange
-            const int estateId = 1976;
+            const int propertyId = 1976;
 
             //Act
             var room = new Room
             {
-                RealEstateId= estateId
+                PropertyId = propertyId
             };
 
             //Assert
-            Assert.AreEqual(estateId, room.RealEstateId);
+            Assert.AreEqual(propertyId, room.PropertyId);
         }
 
         [Test]
@@ -28,18 +28,15 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             //Arrange
             var localizations = new List<RoomTranslation>();
 
-
             //Act
             var room = new Room
             {
-                 LocalizedRooms = localizations
+                LocalizedRooms = localizations
             };
-            
 
             //Assert
             Assert.AreSame(localizations, room.LocalizedRooms);
         }
-
 
         [Test]
         public void PhotosToRooms()
@@ -56,7 +53,5 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             //Assert
             Assert.AreSame(photoToRooms, room.PhotosToRooms);
         }
-
-
     }
 }
