@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
                 regions.SelectMany(p => p.ToChildRegions).Where(p => p.ToId == query.ContinentId).Select(p => p.Id);
 
             var localizedRegions =
-                regions.Where(p => countriesOfContinent.Contains(p.Id)).SelectMany(p => p.LocalizedRegions).Where(p => p.LanguageId == query.LanguageId);
+                regions.Where(p => countriesOfContinent.Contains(p.Id)).SelectMany(p => p.RegionTranslations).Where(p => p.LanguageId == query.LanguageId);
 
             return ProjectTo<CountryItemDto>(localizedRegions);
         }

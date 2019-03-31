@@ -6,6 +6,7 @@ using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Country = Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Geography.Country;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
@@ -105,7 +106,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
                 region.Coordinates.SRID = 4326;
                 region.CenterCoordinates.SRID = 4326;
 
-                region.LocalizedRegions.Add(new RegionTranslation
+                region.RegionTranslations.Add(new RegionTranslation
                 {
                     LanguageId = DefaultLanguageId,
                     Name = probablyMissingCountry.Name,

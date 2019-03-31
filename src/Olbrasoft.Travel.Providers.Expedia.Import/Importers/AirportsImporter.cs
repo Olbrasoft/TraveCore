@@ -4,6 +4,7 @@ using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Geography;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Country = Olbrasoft.Travel.Data.Geography.Country;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
@@ -31,7 +32,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             ImportRegionsToSubtypes(airportsCoordinates, RepositoryFactory.ManyToMany<RegionToSubclass>(),
                 regionsExpediaIdsToIds, RepositoryFactory.Names<Subclass>().GetId("airport"));
-            
+
             ImportRegionsToRegions(airportsCoordinates, RepositoryFactory.ManyToMany<RegionToRegion>(),
                 regionsExpediaIdsToIds, RepositoryFactory.AdditionalRegionsInfo<Country>().CodesToIds,
                 CreatorId);

@@ -11,7 +11,7 @@ namespace Olbrasoft.Travel.Data.Geography
     {
         public Region()
         {
-            LocalizedRegions = new HashSet<RegionTranslation>();
+            RegionTranslations = new HashSet<RegionTranslation>();
         }
 
         [Column(TypeName = "geography")]
@@ -32,7 +32,7 @@ namespace Olbrasoft.Travel.Data.Geography
 
         public ICollection<RegionToRegion> ToChildRegions { get; set; }
 
-        public ICollection<RegionTranslation> LocalizedRegions { get; set; }
+        public ICollection<RegionTranslation> RegionTranslations { get; set; }
 
         public ICollection<RegionToSubclass> ToSubclasses { get; set; }
 

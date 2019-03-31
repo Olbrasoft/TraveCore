@@ -1,14 +1,10 @@
 ﻿using FastMember;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NetTopologySuite.IO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Reflection;
-
-using Microsoft.SqlServer.Types;
 
 namespace Olbrasoft.Data.Entity.Framework.Bulk
 {
@@ -56,24 +52,24 @@ namespace Olbrasoft.Data.Entity.Framework.Bulk
         {
             var value = base.GetValue(i);
 
-            switch (value)
-            {
-                case NetTopologySuite.Geometries.Point dbPoint:
-                    {
-                        var chars = new SqlChars(dbPoint.AsText());
-                        //return dbPoint.ToBinary();
-                        return SqlGeography.STGeomFromText(chars, dbPoint.SRID);
-                    }
-                case NetTopologySuite.Geometries.Polygon dbPolygon:
-                    {
-                        //var geometryWriter = new SqlServerBytesWriter {IsGeography = true };
+            //switch (value)
+            //{
+            //    case NetTopologySuite.Geometries.Point dbPoint:
+            //        {
+            //            var chars = new SqlChars(dbPoint.AsText());
+            //            //return dbPoint.ToBinary();
+            //            return SqlGeography.STGeomFromText(chars, dbPoint.SRID);
+            //        }
+            //    case NetTopologySuite.Geometries.Polygon dbPolygon:
+            //        {
+            //            //var geometryWriter = new SqlServerBytesWriter {IsGeography = true };
 
-                        //return geometryWriter.Write(dbPolygon);
+            //            //return geometryWriter.Write(dbPolygon);
 
-                        var chars = new SqlChars(dbPolygon.AsText());
-                        return SqlGeography.STGeomFromText(chars, dbPolygon.SRID);
-                    }
-            }
+            //            var chars = new SqlChars(dbPolygon.AsText());
+            //            return SqlGeography.STGeomFromText(chars, dbPolygon.SRID);
+            //        }
+            //}
 
             return value;
         }

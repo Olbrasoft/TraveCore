@@ -15,6 +15,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
         {
             builder.HasIndex(p => p.Name);
 
+            builder.HasOne(p => p.Region).WithMany(p => p.RegionTranslations).HasForeignKey(p => p.Id);
+
             builder.HasOne(lr => lr.Creator).WithMany(user => user.LocalizedRegions).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(lr => lr.Language).WithMany(l => l.RegionsTranslations).OnDelete(DeleteBehavior.Restrict);

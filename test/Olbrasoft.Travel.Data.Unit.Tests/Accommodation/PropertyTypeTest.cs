@@ -20,21 +20,5 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Accommodation
             //Assert
             Assert.AreSame(localizedRealEstateTypes, realEstateType.PropertyTypesTranslations);
         }
-
-        [Test]
-        public void SuggestionTypeId()
-        {
-            //Arrange
-            const int suggestionTypeId = 1976;
-
-            //Act
-            var realEstateType = new PropertyType
-            {
-                SuggestionCategoryId = suggestionTypeId
-            };
-
-            //Assert
-            Assert.AreEqual(suggestionTypeId, realEstateType.SuggestionCategoryId);
-        }
     }
 }

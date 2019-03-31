@@ -1,6 +1,6 @@
+using Olbrasoft.Travel.Data.Base;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Olbrasoft.Travel.Data.Base;
 
 namespace Olbrasoft.Travel.Data.Accommodation
 {
@@ -11,8 +11,6 @@ namespace Olbrasoft.Travel.Data.Accommodation
         public int ExpediaId { get; set; } = int.MinValue;
 
         public virtual ICollection<PropertyTypeTranslation> PropertyTypesTranslations { get; set; }
-
-        public int SuggestionCategoryId { get; set; }
 
         public virtual ICollection<Property> Properties { get; set; }
     }

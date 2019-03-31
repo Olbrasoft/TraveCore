@@ -5,7 +5,7 @@ using Olbrasoft.Travel.Data.Repositories.Localization;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Geography;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {
@@ -52,7 +52,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         }
 
         private void ImportRegionsToRegions(IEnumerable<ParentRegion> parentRegions,
-            IManyToManyRepository<RegionToRegion> repository, 
+            IManyToManyRepository<RegionToRegion> repository,
             int batchSize,
             IReadOnlyDictionary<long, int> eanRegionIdsToIds,
             int creatorId)

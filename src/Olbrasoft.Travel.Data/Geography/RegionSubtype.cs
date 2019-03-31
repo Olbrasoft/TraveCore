@@ -11,7 +11,5 @@ namespace Olbrasoft.Travel.Data.Geography
         public string Description { get; set; }
 
         public ICollection<Region> Regions { get; set; }
-
-        public int? SuggestionCategoryId { get; set; }
     }
 }

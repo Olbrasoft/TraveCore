@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.IO;
 using Olbrasoft.Travel.Data.Repositories;

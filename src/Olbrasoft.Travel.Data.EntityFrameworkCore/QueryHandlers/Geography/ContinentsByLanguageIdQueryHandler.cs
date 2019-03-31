@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
         protected IQueryable<ContinentItem> ProjectionToContinentItems(IQueryable<RegionSubtype> source, ContinentsByLanguageIdQuery query)
         {
             var continents = source.Where(p => p.Id == 2).SelectMany(p => p.Regions);
-            var localizedContinents = continents.SelectMany(p => p.LocalizedRegions)
+            var localizedContinents = continents.SelectMany(p => p.RegionTranslations)
                 .Where(p => p.LanguageId == query.LanguageId);
 
             return ProjectTo<ContinentItem>(localizedContinents);

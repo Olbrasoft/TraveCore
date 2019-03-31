@@ -40,18 +40,5 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Geography
             //Assert
             Assert.AreSame(regions, result);
         }
-
-        [Test]
-        public void SuggestionTypeId()
-        {
-            //Arrange
-            const int suggestionTypeId = 1976;
-
-            //Act
-            var subtype = new RegionSubtype { SuggestionCategoryId = suggestionTypeId };
-
-            //Assert
-            Assert.AreEqual(suggestionTypeId, subtype.SuggestionCategoryId);
-        }
     }
 }

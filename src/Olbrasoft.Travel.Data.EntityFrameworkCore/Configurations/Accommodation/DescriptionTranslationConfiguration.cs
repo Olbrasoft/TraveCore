@@ -5,13 +5,13 @@ using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation
 {
-    public class DescriptionTranslationConfiguration : TranslationConfiguration<DescriptionTranslation>
+    public class DescriptionTranslationConfiguration : TravelTypeConfiguration<DescriptionTranslation>
     {
         public DescriptionTranslationConfiguration() : base("DescriptionsTranslations")
         {
         }
 
-        public override void ConfigureTranslation(EntityTypeBuilder<DescriptionTranslation> builder)
+        public override void Configuration(EntityTypeBuilder<DescriptionTranslation> builder)
         {
             builder.HasKey(p => new { p.PropertyId, p.Id, p.LanguageId });
 

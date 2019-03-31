@@ -10,6 +10,7 @@ using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Providers.Expedia.Import.Importers;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization;

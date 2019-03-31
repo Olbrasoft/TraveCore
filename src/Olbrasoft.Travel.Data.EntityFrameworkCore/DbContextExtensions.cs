@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Entity.Framework.Bulk;
+using static System.Threading.Tasks.Task;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 {
@@ -37,16 +39,16 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
                 memberExpression = (MemberExpression)(lambda.Body);
             }
 
-            return ((PropertyInfo)memberExpression.Member).Name;
+            return (memberExpression.Member as PropertyInfo)?.Name;
         }
 
         public static void BulkUpdate<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, int batchSize = 90000, params Expression<Func<T, object>>[] ignoreProperties) where T : class
         {
             var batchesToUpdate = entities.SplitToEnumerableOfList(batchSize);
             var ignoreColumnsUpdate = new HashSet<string>(ignoreProperties.Select(GetPropertyName));
-            const string creatorColumn = "CreatorId";
+            const string creatorIdColumnName = "CreatorId";
 
-            if (!ignoreColumnsUpdate.Contains(creatorColumn)) ignoreColumnsUpdate.Add(creatorColumn);
+            if (!ignoreColumnsUpdate.Contains(creatorIdColumnName)) ignoreColumnsUpdate.Add(creatorIdColumnName);
 
             if (batchSize == 90000)
             {
@@ -64,11 +66,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
                 });
                 onSaved(EventArgs.Empty);
             }
-        }
-
-        public static void BulkUpdate<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, params Expression<Func<T, object>>[] ignoreProperties) where T : class
-        {
-            BulkUpdate(context, entities, onSaved, 90000, ignoreProperties);
         }
 
         public static void BulkInsert<T>(this DbContext context, IEnumerable<T> entities, Action<EventArgs> onSaved, int batchSize = 90000, params Expression<Func<T, object>>[] ignoreProperties) where T : class

@@ -3,6 +3,7 @@ using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Geography;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {
@@ -40,7 +41,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             if (count <= 0) return repository.ExpediaIdsToIds;
 
             LogSave<Region>();
-            repository.BulkSave(regions, r => r.Coordinates, r=>r.SubtypeId);
+            repository.BulkSave(regions, r => r.Coordinates, r => r.SubtypeId);
             LogSaved<Region>();
 
             return repository.ExpediaIdsToIds;

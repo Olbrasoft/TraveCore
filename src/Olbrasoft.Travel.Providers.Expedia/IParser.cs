@@ -2,10 +2,12 @@
 
 namespace Olbrasoft.Travel.Providers.Expedia
 {
-    public interface IParser<TEan> where TEan : class, new()
+    public interface IParser<TExpedia> where TExpedia : class, new()
     {
-        bool TryParse(string line, out TEan entity);
-        IEnumerable<TEan> ParseAll(IEnumerable<string> lines);
-        TEan Parse(string[] items);
+        bool TryParse(string line, out TExpedia entity);
+
+        IEnumerable<TExpedia> ParseAll(IEnumerable<string> lines);
+
+        TExpedia Parse(string[] items);
     }
 }

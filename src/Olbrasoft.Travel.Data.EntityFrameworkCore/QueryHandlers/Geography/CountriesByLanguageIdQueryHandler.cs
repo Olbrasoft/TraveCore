@@ -23,7 +23,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
         {
             var regions = source.Select(p => p.Region);
             var localizedRegions =
-                regions.SelectMany(p => p.LocalizedRegions).Where(p => p.LanguageId == query.LanguageId);
+                regions.SelectMany(p => p.RegionTranslations).Where(p => p.LanguageId == query.LanguageId);
 
             return ProjectTo<CountryItemDto>(localizedRegions);
         }

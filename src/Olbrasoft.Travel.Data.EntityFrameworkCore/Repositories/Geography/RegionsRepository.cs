@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Olbrasoft.Data.Entity.Framework.Bulk;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 
@@ -19,7 +21,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography
             get
             {
                 return _expediaIdsToIds ?? (_expediaIdsToIds = AsQueryable().Where(p => p.ExpediaId >= 0)
-                           .Select(r => new {r.ExpediaId, r.Id })
+                           .Select(r => new { r.ExpediaId, r.Id })
                            .ToDictionary(k => k.ExpediaId, v => v.Id));
 
                 //return _ExpediaIdsToIds ?? (_ExpediaIdsToIds =
@@ -29,6 +31,47 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography
 
             private set => _expediaIdsToIds = value;
         }
+
+        //public Task BulkUpdateAsync(IEnumerable<Region> regions, params Expression<Func<Region, object>>[] ignorePropertiesWhenUpdating)
+        //{
+        //    if (regions == null) throw new ArgumentNullException(nameof(regions));
+
+        //    var ignoreColumnsUpdate = new HashSet<string>(ignorePropertiesWhenUpdating.Select(DbContextExtensions.GetPropertyName));
+        //    const string creatorIdColumnName = "CreatorId";
+
+        //    if (!ignoreColumnsUpdate.Contains(creatorIdColumnName)) ignoreColumnsUpdate.Add(creatorIdColumnName);
+
+        //    return Context.BulkUpdateAsync(regions.ToList(), new BulkConfig
+        //    {
+        //        BatchSize = 45000,
+        //        BulkCopyTimeout = 960,
+        //        IgnoreColumns = new HashSet<string>(new[] { "Created" }),
+        //        IgnoreColumnsUpdate = ignoreColumnsUpdate
+        //    });
+
+        //    //var batchesToUpdate = regions.SplitToEnumerableOfList(90000);
+        //    //var tasks = batchesToUpdate.Select(batch => Context.BulkUpdateAsync(batch, new BulkConfig { BatchSize = 45000, BulkCopyTimeout = 480, IgnoreColumns = new HashSet<string>(new[] { "Created" }), IgnoreColumnsUpdate = ignoreColumnsUpdate }));
+        //    //return Task.WhenAll(tasks.ToArray());
+        //}
+
+        //public async Task<Dictionary<long, int>> BulkSaveAsync(IEnumerable<Region> regions,
+        //    params Expression<Func<Region, object>>[] ignorePropertiesWhenUpdating)
+        //{
+        //    if (regions == null) throw new ArgumentNullException(nameof(regions));
+
+        //    regions = Rebuild(regions.ToArray());
+
+        //    var regionsToUpdate = regions.Where(region => region.Id != 0).ToArray();
+
+        //    if (regionsToUpdate.Any())
+        //    {
+        //        await BulkUpdateAsync(regionsToUpdate, ignorePropertiesWhenUpdating);
+        //        ClearCache();
+        //    }
+
+        //    return await Context.Set<Region>().Where(p => p.ExpediaId >= 0).Select(r => new { r.ExpediaId, r.Id })
+        //        .ToDictionaryAsync(k => k.ExpediaId, v => v.Id);
+        //}
 
         private long MinExpediaId
         {
@@ -65,10 +108,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography
         public void BulkSave(IEnumerable<Region> regions, int batchSize, params Expression<Func<Region, object>>[] ignorePropertiesWhenUpdating)
         {
             if (regions == null) throw new ArgumentNullException(nameof(regions));
-            if (regions == null) throw new ArgumentNullException(nameof(regions));
 
             regions = Rebuild(regions.ToArray());
-            
+
             if (regions.Any(region => region.Id == 0))
             {
                 BulkInsert(regions.Where(region => region.Id == 0), batchSize);
@@ -79,7 +121,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography
                 BulkUpdate(regions.Where(region => region.Id != 0), batchSize, ignorePropertiesWhenUpdating);
             }
         }
-
 
         public void BulkSave(IEnumerable<Region> regions, params Expression<Func<Region, object>>[] ignorePropertiesWhenUpdating)
         {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Repositories;
 using Description = Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation.Description;

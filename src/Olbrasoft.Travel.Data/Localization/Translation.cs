@@ -7,8 +7,6 @@ namespace Olbrasoft.Travel.Data.Localization
 {
     public abstract class Translation : OwnerCreatorInfoAndCreator, IHaveLanguageId
     {
-        [Key]
-        [Column(Order = 2)]
         public int LanguageId { get; set; }
 
         public Language Language { get; set; }

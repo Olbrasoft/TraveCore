@@ -27,16 +27,16 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
             var predicate = query.Terms.Aggregate(PredicateBuilder.New<RegionTranslation>(), (current, term) => current.Or(p => p.Name.Contains(term)));
 
             var areasCitiesQueryable = regions.Where(p => p.SubtypeId > 1 && p.SubtypeId < 9)
-                .SelectMany(p => p.LocalizedRegions).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
+                .SelectMany(p => p.RegionTranslations).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
                 .Take(6).Select(p => new { p.Id, p.Name, Category = "Cities/Areas", Ascending = 1 });
 
             var landmarksQueryable = regions.Where(p => p.SubtypeId == 9 || p.SubtypeId == 10)
-                .SelectMany(p => p.LocalizedRegions).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
+                .SelectMany(p => p.RegionTranslations).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
                 .Take(3).Select(p => new { p.Id, p.Name, Category = "Landmarks", Ascending = 3 });
 
             //Airports/Stations
             var airportsStationsQueryable = regions.Where(p => p.SubtypeId > 10)
-                .SelectMany(p => p.LocalizedRegions).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
+                .SelectMany(p => p.RegionTranslations).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
                 .Take(3).Select(p => new { p.Id, p.Name, Category = "Airports/Stations", Ascending = 4 });
 
             return areasCitiesQueryable.Union(landmarksQueryable).Union(airportsStationsQueryable).Select(p => new SuggestionDto

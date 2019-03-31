@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 using GeoAPI.Geometries;
 using NetTopologySuite.Geometries;
+using Olbrasoft.Travel.Data.EntityFrameworkCore;
 using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Repositories;
-
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {
@@ -44,6 +46,22 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             Regions.Enqueue(region);
         }
 
+        private Task<IReadOnlyDictionary<long, int>> SaveRegionsAsync(IEnumerable<Region> regions)
+        {
+            var context = new TravelDbContext();
+
+            return null;
+        }
+
+        //public async Task ImportAsync(string path)
+        //{
+        //    LogBuild<Region>();
+
+        //    LoadData(path);
+
+        //    var expediaIdsToIds = await RepositoryFactory.Regions().BulkSaveAsync(Regions, p => p.CenterCoordinates);
+        //}
+
         public override void Import(string path)
         {
             LogBuild<Region>();
@@ -59,12 +77,12 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             var regionsExpediaIds = AdeptsToLocalizedRegions.Keys;
 
             AdeptsToLocalizedRegions = null;
-            
+
             ImportRegionsToSubclass(RepositoryFactory.ManyToMany<RegionToSubclass>(), regionsExpediaIds, expediaIdsToIds, SubclassId, CreatorId);
         }
 
         private void ImportRegionsToSubclass(
-            IManyToManyRepository<RegionToSubclass>repository,
+            IManyToManyRepository<RegionToSubclass> repository,
             ICollection<long> regionsExpediaIds,
             IReadOnlyDictionary<long, int> expediaIdsToIds,
             int subclassId,
@@ -99,7 +117,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
                 {
                     Id = id,
                     ToId = subClassId,
-                  //  SubclassId = subclassId,
+                    //  SubclassId = subclassId,
                     CreatorId = creatorId
                 };
 
@@ -116,16 +134,16 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             Coordinate closedPoint = null;
 
             //var pointsString = new StringBuilder();
-          
+
             foreach (var s1 in spl)
             {
                 var latLon = s1.Split(';');
 
-               // pointsString.Append($"{latLon[0]},{latLon[1]}");
-                var coordinate = new Coordinate (double.Parse(latLon[1], CultureInfo.InvariantCulture), double.Parse(latLon[0], CultureInfo.InvariantCulture));
+                // pointsString.Append($"{latLon[0]},{latLon[1]}");
+                var coordinate = new Coordinate(double.Parse(latLon[1], CultureInfo.InvariantCulture), double.Parse(latLon[0], CultureInfo.InvariantCulture));
                 if (closedPoint == null) closedPoint = coordinate;
-                    
-               coordinates.Enqueue(coordinate);
+
+                coordinates.Enqueue(coordinate);
             }
 
             coordinates.Enqueue(closedPoint);
@@ -133,7 +151,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             var polygon = new Polygon(new LinearRing(coordinates.ToArray()));
             polygon.Normalize();
-            
+
             return polygon;
         }
     }
