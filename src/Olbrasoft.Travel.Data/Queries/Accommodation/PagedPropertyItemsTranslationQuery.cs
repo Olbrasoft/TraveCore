@@ -8,7 +8,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
-    public class PagedPropertyItemsByLanguageIdQuery : ByLanguageIdQuery<IResultWithTotalCount<PropertyItem>>
+    public class PagedPropertyItemsTranslationQuery : TranslationQuery<IResultWithTotalCount<PropertyItem>>
     {
         public Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> Sorting
         {
@@ -17,7 +17,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
 
         public IPageInfo Paging { get; set; }
 
-        public PagedPropertyItemsByLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public PagedPropertyItemsTranslationQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

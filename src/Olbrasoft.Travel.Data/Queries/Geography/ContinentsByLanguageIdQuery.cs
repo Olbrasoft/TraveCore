@@ -5,7 +5,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.Queries.Geography
 {
-    public class ContinentsByLanguageIdQuery : ByLanguageIdQuery<IEnumerable<ContinentItem>>
+    public class ContinentsByLanguageIdQuery : TranslationQuery<IEnumerable<ContinentItem>>
     {
         public ContinentsByLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {

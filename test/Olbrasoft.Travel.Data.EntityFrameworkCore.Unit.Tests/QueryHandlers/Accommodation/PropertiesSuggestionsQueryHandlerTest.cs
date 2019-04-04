@@ -19,7 +19,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<PropertiesSuggestionsQuery, PropertyTranslation,
+                typeof(TravelQueryHandler<PropertiesSuggestionsByTermsTranslationQuery, PropertyTranslation,
                     IEnumerable<Transfer.Objects.SuggestionDto>>);
 
             //Act
@@ -36,7 +36,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var type = typeof(Task<IEnumerable<Transfer.Objects.SuggestionDto>>);
             var handler = Handler();
             var dispatcher = new Mock<IQueryDispatcher>();
-            var query = new PropertiesSuggestionsQuery(dispatcher.Object);
+            var query = new PropertiesSuggestionsByTermsTranslationQuery(dispatcher.Object);
 
             //Act
             var result = handler.HandleAsync(query);

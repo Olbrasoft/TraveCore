@@ -11,10 +11,10 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PagedAccommodationItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedPropertyItemsByLanguageIdQuery, Property,
+    public class PagedPropertyItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedPropertyItemsTranslationQuery, Property,
         IResultWithTotalCount<PropertyItem>>
     {
-        public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedPropertyItemsByLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedPropertyItemsTranslationQuery query, CancellationToken cancellationToken)
         {
             var localizedAccommodations = PreHandle(Source, query);
             var accommodationItems = ProjectTo<PropertyItem>(localizedAccommodations);
@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return result;
         }
 
-        private static IQueryable<PropertyTranslation> PreHandle(IQueryable<Property> source, PagedPropertyItemsByLanguageIdQuery query)
+        private static IQueryable<PropertyTranslation> PreHandle(IQueryable<Property> source, PagedPropertyItemsTranslationQuery query)
         {
             var localizedAccommodations = source.SelectMany(p => p.PropertiesTranslations);
 
@@ -40,7 +40,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return localizedAccommodationOrderedQueryable;
         }
 
-        public PagedAccommodationItemsByLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+        public PagedPropertyItemsByLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
         {
         }
     }

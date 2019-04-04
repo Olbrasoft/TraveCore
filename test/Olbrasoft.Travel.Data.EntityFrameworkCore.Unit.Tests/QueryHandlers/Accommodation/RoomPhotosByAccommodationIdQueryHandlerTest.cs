@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void Inherits_From_TravelQueryHandler_Of_IPropertyContext_Comma_RoomPhotosByAccommodationIdQuery_Comma_IQueryable_Of_PhotoOfAccommodation_Comma_IEnumerable_Of_RoomPhoto()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<RoomPhotosByPropertyIdQuery, Photo, IEnumerable<RoomPhotoDto>>);
+            var type = typeof(TravelQueryHandler<RoomPhotosPropertyQuery, Photo, IEnumerable<RoomPhotoDto>>);
 
             //Act
             var handler = Handler();
@@ -29,12 +29,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             Assert.IsInstanceOf(type, handler);
         }
 
-        private static RoomPhotosByAccommodationIdQueryHandler Handler()
+        private static RoomPhotosByPropertyIdQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new RoomPhotosByAccommodationIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new RoomPhotosByPropertyIdQueryHandler(contextMock.Object, projectorMock.Object);
             return handler;
         }
 
@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var type = typeof(Task<IEnumerable<RoomPhotoDto>>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
-            var query = new RoomPhotosByPropertyIdQuery(providerMock.Object);
+            var query = new RoomPhotosPropertyQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);

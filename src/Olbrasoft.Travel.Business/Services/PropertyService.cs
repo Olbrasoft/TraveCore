@@ -74,9 +74,9 @@ namespace Olbrasoft.Travel.Business.Services
             return ofRooms;
         }
 
-        private RoomPhotosByPropertyIdQuery PhotosOfRoomsQuery(int accommodationId)
+        private RoomPhotosPropertyQuery PhotosOfRoomsQuery(int accommodationId)
         {
-            var query = QueryFactory.Get<RoomPhotosByPropertyIdQuery>();
+            var query = QueryFactory.Get<RoomPhotosPropertyQuery>();
             query.PropertyId = accommodationId;
             return query;
         }
@@ -89,9 +89,9 @@ namespace Olbrasoft.Travel.Business.Services
             return query;
         }
 
-        private PhotosByPropertyIdQuery AccommodationPhotosQuery(int accommodationId)
+        private PhotosPropertyQuery AccommodationPhotosQuery(int accommodationId)
         {
-            var query = QueryFactory.Get<PhotosByPropertyIdQuery>();
+            var query = QueryFactory.Get<PhotosPropertyQuery>();
             query.PropertyId = accommodationId;
             return query;
         }
@@ -132,7 +132,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var query = QueryFactory.Get<PropertiesSuggestionsQuery>();
+            var query = QueryFactory.Get<PropertiesSuggestionsByTermsTranslationQuery>();
             query.Terms = terms;
             query.LanguageId = languageId;
 
@@ -152,11 +152,11 @@ namespace Olbrasoft.Travel.Business.Services
             return query;
         }
 
-        private PagedPropertyItemsByLanguageIdQuery GetPagedAccommodationItems(
+        private PagedPropertyItemsTranslationQuery GetPagedAccommodationItems(
             IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting
         )
         {
-            var query = QueryFactory.Get<PagedPropertyItemsByLanguageIdQuery>();
+            var query = QueryFactory.Get<PagedPropertyItemsTranslationQuery>();
             query.Paging = pagingSettings;
             query.LanguageId = languageId;
             query.Sorting = sorting;

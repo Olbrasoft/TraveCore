@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 {
-    public class RegionsSuggestionsByTermAndLanguageIdQueryHandler : TravelQueryHandler<RegionsSuggestionsByTermAndLanguageIdQuery, Region, IEnumerable<SuggestionDto>>
+    public class RegionsSuggestionsByTermsAndLanguageIdQueryHandler : TravelQueryHandler<RegionsSuggestionsByTermsTranslationQuery, Region, IEnumerable<SuggestionDto>>
     {
-        public RegionsSuggestionsByTermAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+        public RegionsSuggestionsByTermsAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
         {
         }
 
-        public override async Task<IEnumerable<SuggestionDto>> HandleAsync(RegionsSuggestionsByTermAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<SuggestionDto>> HandleAsync(RegionsSuggestionsByTermsTranslationQuery query, CancellationToken cancellationToken)
         {
             return await ProjectionToSuggestions(Source, query).ToArrayAsync(cancellationToken);
         }
 
-        private static IQueryable<SuggestionDto> ProjectionToSuggestions(IQueryable<Region> regions, RegionsSuggestionsByTermAndLanguageIdQuery query)
+        private static IQueryable<SuggestionDto> ProjectionToSuggestions(IQueryable<Region> regions, RegionsSuggestionsByTermsTranslationQuery query)
         {
             var predicate = query.Terms.Aggregate(PredicateBuilder.New<RegionTranslation>(), (current, term) => current.Or(p => p.Name.Contains(term)));
-
+            
             var areasCitiesQueryable = regions.Where(p => p.SubtypeId > 1 && p.SubtypeId < 9)
                 .SelectMany(p => p.RegionTranslations).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
                 .Take(6).Select(p => new { p.Id, p.Name, Category = "Cities/Areas", Ascending = 1 });

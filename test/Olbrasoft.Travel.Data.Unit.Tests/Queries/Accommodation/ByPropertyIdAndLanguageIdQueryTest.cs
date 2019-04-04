@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Inherits_From_ByLanguageIdQuery()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<object>);
+            var type = typeof(TranslationQuery<object>);
 
             //Act
             var query = Query();

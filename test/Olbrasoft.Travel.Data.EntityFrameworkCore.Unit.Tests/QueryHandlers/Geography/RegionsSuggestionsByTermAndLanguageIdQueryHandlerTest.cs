@@ -14,12 +14,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
     [TestFixture]
     public class RegionsSuggestionsByTermAndLanguageIdQueryHandlerTest
     {
-        private static RegionsSuggestionsByTermAndLanguageIdQueryHandler Handler()
+        private static RegionsSuggestionsByTermsAndLanguageIdQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new RegionsSuggestionsByTermAndLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new RegionsSuggestionsByTermsAndLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
             return handler;
         }
 
@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<RegionsSuggestionsByTermAndLanguageIdQuery, Region, IEnumerable<Transfer.Objects.SuggestionDto>>);
+                typeof(TravelQueryHandler<RegionsSuggestionsByTermsTranslationQuery, Region, IEnumerable<Transfer.Objects.SuggestionDto>>);
 
             //Act
             var handler = Handler();
@@ -45,7 +45,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
             var handler = Handler();
 
             var dispatcherMock = new Mock<IQueryDispatcher>();
-            var query = new RegionsSuggestionsByTermAndLanguageIdQuery(dispatcherMock.Object);
+            var query = new RegionsSuggestionsByTermsTranslationQuery(dispatcherMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);

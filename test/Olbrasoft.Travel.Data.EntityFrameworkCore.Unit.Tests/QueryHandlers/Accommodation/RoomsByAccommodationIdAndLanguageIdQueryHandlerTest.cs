@@ -28,12 +28,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             Assert.IsInstanceOf(type, handler);
         }
 
-        private static RoomsByAccommodationIdAndLanguageIdQueryHandler Handler()
+        private static RoomsByPropertyIdAndLanguageIdQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projector = new Mock<IProjection>();
 
-            var handler = new RoomsByAccommodationIdAndLanguageIdQueryHandler(contextMock.Object, projector.Object);
+            var handler = new RoomsByPropertyIdAndLanguageIdQueryHandler(contextMock.Object, projector.Object);
             return handler;
         }
 

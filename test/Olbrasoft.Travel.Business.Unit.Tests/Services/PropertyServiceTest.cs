@@ -172,21 +172,21 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
                 Result = items
             };
 
-            queryDispatcher.Setup(p => p.Dispatch(It.IsAny<PagedPropertyItemsByLanguageIdQuery>())).Returns(result);
+            queryDispatcher.Setup(p => p.Dispatch(It.IsAny<PagedPropertyItemsTranslationQuery>())).Returns(result);
 
             var queryFactoryMock = new Mock<IQueryFactory>();
 
             queryFactoryMock.Setup(p => p.Get<PropertyDetailByPropertyIdAndLanguageIdQuery>())
                 .Returns(new PropertyDetailByPropertyIdAndLanguageIdQuery(queryDispatcher.Object));
 
-            queryFactoryMock.Setup(p => p.Get<PagedPropertyItemsByLanguageIdQuery>())
-                .Returns(new PagedPropertyItemsByLanguageIdQuery(queryDispatcher.Object));
+            queryFactoryMock.Setup(p => p.Get<PagedPropertyItemsTranslationQuery>())
+                .Returns(new PagedPropertyItemsTranslationQuery(queryDispatcher.Object));
 
             queryFactoryMock.Setup(p => p.Get<PhotosOfAccommodationsByAccommodationIdsQuery>())
                 .Returns(new PhotosOfAccommodationsByAccommodationIdsQuery(queryDispatcher.Object));
 
-            queryFactoryMock.Setup(p => p.Get<PropertiesSuggestionsQuery>())
-                .Returns(new PropertiesSuggestionsQuery(queryDispatcher.Object));
+            queryFactoryMock.Setup(p => p.Get<PropertiesSuggestionsByTermsTranslationQuery>())
+                .Returns(new PropertiesSuggestionsByTermsTranslationQuery(queryDispatcher.Object));
 
             var mockMerger = new PropertyItemPhotoMerge();
 

@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<PagedPropertyItemsByLanguageIdQuery, Property,
+                typeof(TravelQueryHandler<PagedPropertyItemsTranslationQuery, Property,
                     IResultWithTotalCount<PropertyItem>>);
 
             //Act
@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(QueryHandler<PagedPropertyItemsByLanguageIdQuery, IQueryable<Property>,
+                typeof(QueryHandler<PagedPropertyItemsTranslationQuery, IQueryable<Property>,
                     IResultWithTotalCount<PropertyItem>>);
 
             //Act
@@ -47,12 +47,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             Assert.IsInstanceOf(type, handler);
         }
 
-        private static PagedAccommodationItemsByLanguageIdQueryHandler Handler()
+        private static PagedPropertyItemsByLanguageIdQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PagedAccommodationItemsByLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new PagedPropertyItemsByLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
             return handler;
         }
 
@@ -63,7 +63,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var type = typeof(Task<IResultWithTotalCount<PropertyItem>>);
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
-            var query = new PagedPropertyItemsByLanguageIdQuery(providerMock.Object);
+            var query = new PagedPropertyItemsTranslationQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);

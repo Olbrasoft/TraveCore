@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_is_ByLanguageIdQuery_Of_IEnumerable_Of_Attribute()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<AttributeDto>>);
+            var type = typeof(TranslationQuery<IEnumerable<AttributeDto>>);
 
             //Act
             var query = Query();

@@ -2,7 +2,7 @@
 
 namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
-    public abstract class ByPropertyIdAndLanguageIdQuery<TResult> : ByLanguageIdQuery<TResult>, IHaveAccommodationId
+    public abstract class ByPropertyIdAndLanguageIdQuery<TResult> : TranslationQuery<TResult>, IHaveAccommodationId
     {
         public int PropertyId { get; set; }
 

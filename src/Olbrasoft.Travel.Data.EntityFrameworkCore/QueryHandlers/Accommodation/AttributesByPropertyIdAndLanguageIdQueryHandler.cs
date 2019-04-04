@@ -10,7 +10,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class AttributesByAccommodationIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByPropertyIdAndLanguageIdQuery, PropertyToAttribute, IEnumerable<AttributeDto>>
+    public class AttributesByPropertyIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByPropertyIdAndLanguageIdQuery, PropertyToAttribute, IEnumerable<AttributeDto>>
     {
         public override async Task<IEnumerable<AttributeDto>> HandleAsync(AttributesByPropertyIdAndLanguageIdQuery query, CancellationToken cancellationToken)
         {
@@ -29,7 +29,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return ProjectTo<AttributeDto>(accommodationsToAttributes);
         }
 
-        public AttributesByAccommodationIdAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+        public AttributesByPropertyIdAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
         {
         }
     }

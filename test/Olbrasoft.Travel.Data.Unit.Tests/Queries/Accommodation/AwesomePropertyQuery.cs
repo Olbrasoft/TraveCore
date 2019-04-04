@@ -3,9 +3,9 @@ using Olbrasoft.Travel.Data.Queries.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {
-    internal class AwesomeByPropertyIdQuery : ByPropertyIdQuery<object>
+    internal class AwesomePropertyQuery : PropertyQuery<object>
     {
-        public AwesomeByPropertyIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public AwesomePropertyQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
     }

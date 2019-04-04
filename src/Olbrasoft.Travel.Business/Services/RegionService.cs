@@ -43,7 +43,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] term, int languageId, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var query = QueryFactory.Get<RegionsSuggestionsByTermAndLanguageIdQuery>();
+            var query = QueryFactory.Get<RegionsSuggestionsByTermsTranslationQuery>();
             query.Terms = term;
             query.LanguageId = languageId;
 

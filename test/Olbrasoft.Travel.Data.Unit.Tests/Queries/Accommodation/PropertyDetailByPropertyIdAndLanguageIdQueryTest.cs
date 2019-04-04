@@ -28,7 +28,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByLanguageIdQuery_Of_AccommodationDetail()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<PropertyDetail>);
+            var type = typeof(TranslationQuery<PropertyDetail>);
 
             //Act
             var query = Query();

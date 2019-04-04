@@ -48,12 +48,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             Assert.IsInstanceOf<Task<IEnumerable<AttributeDto>>>(result);
         }
 
-        private static AttributesByAccommodationIdAndLanguageIdQueryHandler Handler()
+        private static AttributesByPropertyIdAndLanguageIdQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new AttributesByAccommodationIdAndLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new AttributesByPropertyIdAndLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
             return handler;
         }
     }

@@ -15,7 +15,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
         public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_Suggestion()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<Data.Transfer.Objects.SuggestionDto>>);
+            var type = typeof(TranslationQuery<IEnumerable<Data.Transfer.Objects.SuggestionDto>>);
 
             //Act
             var query = Query();
@@ -38,11 +38,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
             Assert.AreSame(terms, query.Terms);
         }
 
-        private static RegionsSuggestionsByTermAndLanguageIdQuery Query()
+        private static RegionsSuggestionsByTermsTranslationQuery Query()
         {
             var dispatcherMock = new Mock<IQueryDispatcher>();
 
-            var query = new RegionsSuggestionsByTermAndLanguageIdQuery(dispatcherMock.Object);
+            var query = new RegionsSuggestionsByTermsTranslationQuery(dispatcherMock.Object);
             return query;
         }
     }

@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void MyTestMethod()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<PhotosByPropertyIdQuery, Photo, IEnumerable<PropertyPhotoDto>>);
+            var type = typeof(TravelQueryHandler<PhotosPropertyQuery, Photo, IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var handler = Handler();
@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
 
-            var query = new PhotosByPropertyIdQuery(providerMock.Object);
+            var query = new PhotosPropertyQuery(providerMock.Object);
 
             //Act
             var result = handler.HandleAsync(query);
@@ -46,12 +46,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             Assert.IsInstanceOf(type, result);
         }
 
-        private static PhotosByAccommodationIdQueryHandler Handler()
+        private static PhotosByPropertyIdQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PhotosByAccommodationIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new PhotosByPropertyIdQueryHandler(contextMock.Object, projectorMock.Object);
             return handler;
         }
     }

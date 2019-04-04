@@ -5,10 +5,11 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
-    public class PhotosByPropertyIdQuery :ByPropertyIdQuery<IEnumerable<PropertyPhotoDto>>
+    public class RoomPhotosPropertyQuery : PropertyQuery<IEnumerable<RoomPhotoDto>>
     {
-        public PhotosByPropertyIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public RoomPhotosPropertyQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
         {
         }
+        
     }
 }

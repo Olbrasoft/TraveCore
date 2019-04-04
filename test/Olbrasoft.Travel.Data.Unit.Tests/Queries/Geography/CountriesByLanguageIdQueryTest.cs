@@ -16,7 +16,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
         public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IEnumerable<CountryItemDto>>);
+            var type = typeof(TranslationQuery<IEnumerable<CountryItemDto>>);
 
             //Act
             var query = GetCountriesByLanguageId();

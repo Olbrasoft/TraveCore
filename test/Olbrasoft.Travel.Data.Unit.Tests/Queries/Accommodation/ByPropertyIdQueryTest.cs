@@ -46,12 +46,12 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
             Assert.IsTrue(query.PropertyId == accommodationId);
         }
 
-        private static AwesomeByPropertyIdQuery Query()
+        private static AwesomePropertyQuery Query()
         {
             var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
-            var query = new AwesomeByPropertyIdQuery(providerMock.Object);
+            var query = new AwesomePropertyQuery(providerMock.Object);
             return query;
         }
     }

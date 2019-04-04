@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PropertiesSuggestionsQueryHandler : TravelQueryHandler<PropertiesSuggestionsQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
+    public class PropertiesSuggestionsQueryHandler : TravelQueryHandler<PropertiesSuggestionsByTermsTranslationQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
     {
-        public override async Task<IEnumerable<Transfer.Objects.SuggestionDto>> HandleAsync(PropertiesSuggestionsQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<Transfer.Objects.SuggestionDto>> HandleAsync(PropertiesSuggestionsByTermsTranslationQuery query, CancellationToken cancellationToken)
         {
             var predicate = query.Terms.Aggregate(PredicateBuilder.New<PropertyTranslation>(), (current, term) => current.Or(p => p.Name.Contains(term)));
 

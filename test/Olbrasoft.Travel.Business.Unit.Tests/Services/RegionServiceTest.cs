@@ -117,8 +117,8 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             queryFactoryMock.Setup(p => p.Get<CountriesByContinentIdAndLanguageIdQuery>())
                 .Returns(new CountriesByContinentIdAndLanguageIdQuery(providerMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<RegionsSuggestionsByTermAndLanguageIdQuery>())
-                .Returns(new RegionsSuggestionsByTermAndLanguageIdQuery(providerMock.Object));
+            queryFactoryMock.Setup(p => p.Get<RegionsSuggestionsByTermsTranslationQuery>())
+                .Returns(new RegionsSuggestionsByTermsTranslationQuery(providerMock.Object));
             
             return new RegionService(queryFactoryMock.Object);
         }

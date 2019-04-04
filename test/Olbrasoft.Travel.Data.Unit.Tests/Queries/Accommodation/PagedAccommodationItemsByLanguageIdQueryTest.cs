@@ -16,11 +16,11 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
         public void Instance_Is_ByLanguageIdQuery_Of_IResultWithTotalCount_Of_AccommodationItem()
         {
             //Arrange
-            var type = typeof(ByLanguageIdQuery<IResultWithTotalCount<PropertyItem>>);
+            var type = typeof(TranslationQuery<IResultWithTotalCount<PropertyItem>>);
             var providerMock = new Mock<IQueryDispatcher>();
 
             //Act
-            var query = new PagedPropertyItemsByLanguageIdQuery(providerMock.Object);
+            var query = new PagedPropertyItemsTranslationQuery(providerMock.Object);
 
             //Assert
             Assert.IsInstanceOf(type, query);
