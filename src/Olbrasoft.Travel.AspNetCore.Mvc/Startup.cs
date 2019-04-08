@@ -110,7 +110,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
 
         private static void ConfigureQueryHandlers(IWindsorContainer container)
         {
-            var classes = Classes.FromAssemblyNamed(typeof(TravelQueryHandler<,,>).Assembly.GetName().Name);
+            var classes = Classes.FromAssemblyNamed(typeof(QueryHandler<,,>).Assembly.GetName().Name);
 
             container.Register(classes
                 .Where(ns => ns.Namespace != null && ns.Namespace.Contains(nameof(Data.EntityFrameworkCore.QueryHandlers)))

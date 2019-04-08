@@ -11,7 +11,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 {
-    public class ContinentsByLanguageIdQueryHandler : TravelQueryHandler< ContinentsByLanguageIdQuery, RegionSubtype, IEnumerable<ContinentItem>>
+    public class ContinentsByLanguageIdQueryHandler : QueryHandler< ContinentsByLanguageIdQuery, RegionSubtype, IEnumerable<ContinentItem>>
     {
       
         public override async Task<IEnumerable<ContinentItem>> HandleAsync(ContinentsByLanguageIdQuery query, CancellationToken token)

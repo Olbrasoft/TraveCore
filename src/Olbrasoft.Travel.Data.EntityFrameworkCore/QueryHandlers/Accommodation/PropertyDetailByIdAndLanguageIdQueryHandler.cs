@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PropertyDetailByIdAndLanguageIdQueryHandler : TravelQueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, Property, PropertyDetail>
+    public class PropertyDetailByIdAndLanguageIdQueryHandler : QueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, Property, PropertyDetail>
     {
         public override async Task<PropertyDetail> HandleAsync(PropertyDetailByPropertyIdAndLanguageIdQuery query, CancellationToken token)
         {

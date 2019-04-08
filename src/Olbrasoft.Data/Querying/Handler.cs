@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Data.Querying
 {
-    public abstract class QueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
+    public abstract class Handler<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
         public TResult Handle(TQuery query)
         {
@@ -20,7 +20,7 @@ namespace Olbrasoft.Data.Querying
         public abstract Task<TResult> HandleAsync(TQuery query, CancellationToken token);
     }
 
-    public abstract class QueryHandler<TQuery, TSource, TResult> : QueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
+    public abstract class Handler<TQuery, TSource, TResult> : Handler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
         private TSource _source;
         private IProjection Projector { get; }
@@ -34,7 +34,7 @@ namespace Olbrasoft.Data.Querying
             }
         }
 
-        protected QueryHandler(IProjection projector)
+        protected Handler(IProjection projector)
         {
             Projector = projector;
         }

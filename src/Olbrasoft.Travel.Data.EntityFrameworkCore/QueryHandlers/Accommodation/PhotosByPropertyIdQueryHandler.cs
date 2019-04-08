@@ -11,7 +11,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PhotosByPropertyIdQueryHandler : TravelQueryHandler<PhotosPropertyQuery, Photo, IEnumerable<PropertyPhotoDto>>
+    public class PhotosByPropertyIdQueryHandler : QueryHandler<PhotosPropertyQuery, Photo, IEnumerable<PropertyPhotoDto>>
     {
         public override async Task<IEnumerable<PropertyPhotoDto>> HandleAsync(PhotosPropertyQuery query,
             CancellationToken token)

@@ -21,7 +21,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler< AttributesByPropertyIdAndLanguageIdQuery,
+                typeof(QueryHandler< AttributesByPropertyIdAndLanguageIdQuery,
                     PropertyToAttribute, IEnumerable<AttributeDto>>);
 
             //Act

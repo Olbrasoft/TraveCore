@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void Instance_Is_SuggestionsTranslationQueryHandler_Of_PropertySuggestionTranslationQuery()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<PropertySuggestionsTranslationQuery,PropertyTranslation,IEnumerable<SuggestionDto>>);
+            var type = typeof(QueryHandler<PropertySuggestionsTranslationQuery,PropertyTranslation,IEnumerable<SuggestionDto>>);
 
             //Act
             var handler = Create();

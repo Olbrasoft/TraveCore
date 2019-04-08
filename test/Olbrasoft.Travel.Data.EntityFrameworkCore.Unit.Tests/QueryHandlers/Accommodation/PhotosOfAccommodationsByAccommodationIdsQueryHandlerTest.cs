@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void Inherits_From_TravelQueryHandler_Of_IPropertyContext_Comma_PhotosOfAccommodationsByAccommodationIdsQuery_Comma_IQueryable_Of_PhotoOfAccommodation_Comma_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery,Photo, IEnumerable<PropertyPhotoDto>>);
+            var type = typeof(QueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery,Photo, IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var handler = Handler();

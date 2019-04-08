@@ -20,7 +20,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void MyTestMethod()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<PhotosPropertyQuery, Photo, IEnumerable<PropertyPhotoDto>>);
+            var type = typeof(QueryHandler<PhotosPropertyQuery, Photo, IEnumerable<PropertyPhotoDto>>);
 
             //Act
             var handler = Handler();

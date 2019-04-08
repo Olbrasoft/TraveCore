@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
 {
-    public abstract class TravelQueryHandler<TQuery, TEntity, TResult> : QueryHandler<TQuery, IQueryable<TEntity>, TResult>
+    public abstract class QueryHandler<TQuery, TEntity, TResult> : Handler<TQuery, IQueryable<TEntity>, TResult>
         where TQuery : IQuery<TResult> where TEntity : class
     {
         protected TravelDbContext Context { get; }
@@ -14,7 +14,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers
             return Context.Set<TEntity>();
         }
 
-        protected TravelQueryHandler(TravelDbContext context, IProjection projector) : base(projector)
+        protected QueryHandler(TravelDbContext context, IProjection projector) : base(projector)
         {
             Context = context;
         }

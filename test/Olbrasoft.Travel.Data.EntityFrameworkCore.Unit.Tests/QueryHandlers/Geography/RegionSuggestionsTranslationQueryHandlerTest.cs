@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         public void Instance_Is_TravelQueryHandler()
         {
             //Arrange
-            var type = typeof(TravelQueryHandler<RegionSuggestionsTranslationQuery, Region, IEnumerable<SuggestionDto>>);
+            var type = typeof(QueryHandler<RegionSuggestionsTranslationQuery, Region, IEnumerable<SuggestionDto>>);
 
             //Act
             var handler = CreateHandler();

@@ -21,7 +21,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
+                typeof(QueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
                     IEnumerable<CountryItemDto>>);
 
             var handler = Handler();

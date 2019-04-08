@@ -9,7 +9,7 @@ using Room = Olbrasoft.Travel.Data.Accommodation.Room;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class RoomsByPropertyIdAndLanguageIdQueryHandler : TravelQueryHandler<RoomsByPropertyIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>
+    public class RoomsByPropertyIdAndLanguageIdQueryHandler : QueryHandler<RoomsByPropertyIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>
     {
         public override async Task<IEnumerable<Transfer.Objects.Accommodation.RoomDto>> HandleAsync(RoomsByPropertyIdAndLanguageIdQuery query, CancellationToken token)
         {

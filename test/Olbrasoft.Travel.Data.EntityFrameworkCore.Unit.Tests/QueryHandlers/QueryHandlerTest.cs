@@ -4,7 +4,7 @@ using Olbrasoft.Data.Mapping;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
-    public class TravelQueryHandlerTest
+    public class QueryHandlerTest
     {
         [Test]
         public void Context()
@@ -14,7 +14,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
             var projectorMock = new Mock<IProjection>();
 
             //Act
-            var handler = new AwesomeTravelQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new AwesomeQueryHandler(contextMock.Object, projectorMock.Object);
 
             //Assert
             Assert.AreSame(contextMock.Object, handler.TestContext);

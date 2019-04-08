@@ -171,7 +171,7 @@
     <Compile Include="Querying\QueryDispatcherTest.cs" />
     <Compile Include="Querying\QueryExecutorTest.cs" />
     <Compile Include="Querying\HandlerWithDependentSourceTest.cs" />
-    <Compile Include="Querying\QueryHandlerTest.cs" />
+    <Compile Include="Querying\HandlerTest.cs" />
     <Compile Include="Querying\SomeObject.cs" />
     <Compile Include="Querying\SomeQuery.cs" />
     <Compile Include="QueryWithOutImplementationTest.cs" />

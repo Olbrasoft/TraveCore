@@ -21,7 +21,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, Property,
+                typeof(QueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, Property,
                     PropertyDetail>);
 
             //Act
@@ -36,7 +36,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(QueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, IQueryable<Property>,
+                typeof(Handler<PropertyDetailByPropertyIdAndLanguageIdQuery, IQueryable<Property>,
                     PropertyDetail>);
 
             //Act

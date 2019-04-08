@@ -11,7 +11,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 {
-    public class CountriesByContinentIdAndLanguageIdQueryHandler : TravelQueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
+    public class CountriesByContinentIdAndLanguageIdQueryHandler : QueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
         IEnumerable<CountryItemDto>>
     {
      

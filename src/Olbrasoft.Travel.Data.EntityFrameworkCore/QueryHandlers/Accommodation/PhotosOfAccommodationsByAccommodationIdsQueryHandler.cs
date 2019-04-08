@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PhotosOfAccommodationsByAccommodationIdsQueryHandler : TravelQueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery, Photo, IEnumerable<PropertyPhotoDto>>
+    public class PhotosOfAccommodationsByAccommodationIdsQueryHandler : QueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery, Photo, IEnumerable<PropertyPhotoDto>>
     {
         public override async Task<IEnumerable<PropertyPhotoDto>> HandleAsync(PhotosOfAccommodationsByAccommodationIdsQuery query, CancellationToken token)
         {

@@ -23,7 +23,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler< ContinentsByLanguageIdQuery, RegionSubtype,
+                typeof(QueryHandler< ContinentsByLanguageIdQuery, RegionSubtype,
                     IEnumerable<ContinentItem>>);
             //Act
             var handler = Handler();
@@ -36,7 +36,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         public void Inherits_From_QueryHandler_Of_ContinentsByLanguageIdQuery_Comma_TypeOfRegion_Comma_IEnumerable_Of_ContinentItem()
         {
             //Arrange
-            var type = typeof(QueryHandler<ContinentsByLanguageIdQuery, IQueryable<RegionSubtype>, IEnumerable<ContinentItem>>);
+            var type = typeof(Handler<ContinentsByLanguageIdQuery, IQueryable<RegionSubtype>, IEnumerable<ContinentItem>>);
 
             //Act
             var handler = Handler();

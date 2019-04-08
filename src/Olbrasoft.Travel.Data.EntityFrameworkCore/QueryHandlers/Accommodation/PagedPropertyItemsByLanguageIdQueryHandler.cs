@@ -11,7 +11,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PagedPropertyItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedPropertyItemsTranslationQuery, Property,
+    public class PagedPropertyItemsByLanguageIdQueryHandler : QueryHandler<PagedPropertyItemsTranslationQuery, Property,
         IResultWithTotalCount<PropertyItem>>
     {
         public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedPropertyItemsTranslationQuery query, CancellationToken token)

@@ -22,7 +22,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<CountriesByLanguageIdQuery, Country,
+                typeof(QueryHandler<CountriesByLanguageIdQuery, Country,
                     IEnumerable<CountryItemDto>>);
 
             //Act
@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         public void Instance_Is_QueryHandler_Of_GetCountriesByLanguageId_Comma_Country_Comma_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(QueryHandler<CountriesByLanguageIdQuery, IQueryable<Country>, IEnumerable<CountryItemDto>>);
+            var type = typeof(Handler<CountriesByLanguageIdQuery, IQueryable<Country>, IEnumerable<CountryItemDto>>);
 
 
             //Act

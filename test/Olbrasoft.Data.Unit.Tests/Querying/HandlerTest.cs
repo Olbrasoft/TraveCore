@@ -9,7 +9,7 @@ using Olbrasoft.Data.Querying;
 
 namespace Olbrasoft.Data.Unit.Tests.Querying
 {
-    public class QueryHandlerTest
+    public class HandlerTest
     {
         [Test]
         public void Instance_Implement_Interface_IQueryHandler()
@@ -28,7 +28,7 @@ namespace Olbrasoft.Data.Unit.Tests.Querying
         public void QueryHandler_Is_Abstract()
         {
             //Arrange
-            var type = typeof(QueryHandler<AwesomeQuery, object>);
+            var type = typeof(Handler<AwesomeQuery, object>);
 
             //Act
             var result = type.IsAbstract;
@@ -41,7 +41,7 @@ namespace Olbrasoft.Data.Unit.Tests.Querying
 
     }
 
-    class AwesomeQueryHandler : QueryHandler<AwesomeQuery, object>
+    class AwesomeQueryHandler : Handler<AwesomeQuery, object>
     {
         public override Task<object> HandleAsync(AwesomeQuery query, CancellationToken token)
         {

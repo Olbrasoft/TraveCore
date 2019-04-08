@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 {
-    public class RegionSuggestionsTranslationQueryHandler : TravelQueryHandler<RegionSuggestionsTranslationQuery, Region, IEnumerable<SuggestionDto>>
+    public class RegionSuggestionsTranslationQueryHandler : QueryHandler<RegionSuggestionsTranslationQuery, Region, IEnumerable<SuggestionDto>>
     {
         public RegionSuggestionsTranslationQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
         {

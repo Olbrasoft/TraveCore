@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PropertySuggestionsTranslationQueryHandler : TravelQueryHandler<PropertySuggestionsTranslationQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
+    public class PropertySuggestionsTranslationQueryHandler : QueryHandler<PropertySuggestionsTranslationQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
     {
         public PropertySuggestionsTranslationQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
         {

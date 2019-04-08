@@ -13,7 +13,7 @@ using Olbrasoft.Travel.Suggestion;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PropertiesSuggestionsByTermsTranslationQueryHandler : TravelQueryHandler<PropertiesSuggestionsByTermsTranslationQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
+    public class PropertiesSuggestionsByTermsTranslationQueryHandler : QueryHandler<PropertiesSuggestionsByTermsTranslationQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
     {
         public override async Task<IEnumerable<SuggestionDto>> HandleAsync(PropertiesSuggestionsByTermsTranslationQuery query, CancellationToken token)
         {
