@@ -8,16 +8,14 @@ namespace Olbrasoft.Travel.Business
 {
     public interface IRegions
     {
-        Task<IEnumerable<ContinentItem>> GetContinentsAsync(int languageId,
-            CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<ContinentItem>> GetContinentsAsync(int languageId, CancellationToken token = default);
 
-        Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int languageId,
-            CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int languageId, CancellationToken token = default);
 
-        Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int continentId, int languageId,
-            CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int continentId, int languageId, CancellationToken token = default);
 
-        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] term, int languageId,
-            CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] term, int languageId, CancellationToken token = default);
+
+        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken token = default);
     }
 };

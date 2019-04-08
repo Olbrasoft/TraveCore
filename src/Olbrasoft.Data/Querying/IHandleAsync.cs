@@ -7,7 +7,7 @@ namespace Olbrasoft.Data.Querying
     {
          Task<TResult> HandleAsync(TQuery query);
 
-        Task<TResult> HandleAsync(TQuery query, CancellationToken cancellationToken);
+        Task<TResult> HandleAsync(TQuery query, CancellationToken token);
 
     }
 }

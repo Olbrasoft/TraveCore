@@ -102,6 +102,22 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 
         }
 
+        [Test]
+        public void MyTestMethod()
+        {
+            //Arrange
+            var type = typeof(Task<IEnumerable<SuggestionDto>>);
+            var service = Service();
+
+            //Act
+            var result = service.SuggestionsAsync( "" , 1033);
+
+            //Assert
+            Assert.IsInstanceOf(type, result);
+
+        }
+
+
         private static RegionService Service()
         {
             var providerMock = new Mock<IQueryDispatcher>();
@@ -119,7 +135,11 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 
             queryFactoryMock.Setup(p => p.Get<RegionsSuggestionsByTermsTranslationQuery>())
                 .Returns(new RegionsSuggestionsByTermsTranslationQuery(providerMock.Object));
-            
+
+            queryFactoryMock.Setup(p => p.Get<RegionSuggestionsTranslationQuery>())
+                .Returns(new RegionSuggestionsTranslationQuery(providerMock.Object));
+
+
             return new RegionService(queryFactoryMock.Object);
         }
     }

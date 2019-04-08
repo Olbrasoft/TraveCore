@@ -5,7 +5,22 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Data.Querying
 {
-    public abstract class QueryHandler<TQuery, TSource, TResult> : IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
+    public abstract class QueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
+    {
+        public TResult Handle(TQuery query)
+        {
+            return HandleAsync(query).Result;
+        }
+
+        public Task<TResult> HandleAsync(TQuery query)
+        {
+            return HandleAsync(query, default);
+        }
+
+        public abstract Task<TResult> HandleAsync(TQuery query, CancellationToken token);
+    }
+
+    public abstract class QueryHandler<TQuery, TSource, TResult> : QueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
         private TSource _source;
         private IProjection Projector { get; }
@@ -30,17 +45,5 @@ namespace Olbrasoft.Data.Querying
         {
             return Projector.ProjectTo<TDestination>(source);
         }
-
-        public TResult Handle(TQuery query)
-        {
-            return HandleAsync(query).Result;
-        }
-
-        public Task<TResult> HandleAsync(TQuery query)
-        {
-            return HandleAsync(query, default(CancellationToken));
-        }
-
-        public abstract Task<TResult> HandleAsync(TQuery query, CancellationToken cancellationToken);
     }
 }

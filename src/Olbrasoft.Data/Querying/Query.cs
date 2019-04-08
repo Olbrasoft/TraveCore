@@ -5,21 +5,21 @@ namespace Olbrasoft.Data.Querying
 {
     public abstract class Query<TResult> : IQuery<TResult>
     {
-        protected IQueryDispatcher QueryDispatcher { get; }
+        protected IQueryDispatcher Dispatcher { get; }
 
-        protected Query(IQueryDispatcher queryDispatcher)
+        protected Query(IQueryDispatcher dispatcher)
         {
-            QueryDispatcher = queryDispatcher;
+            Dispatcher = dispatcher;
         }
 
         public TResult Execute()
         {
-            return QueryDispatcher.Dispatch(this);
+            return Dispatcher.Dispatch(this);
         }
 
         public Task<TResult> ExecuteAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            return QueryDispatcher.DispatchAsync(this, cancellationToken);
+            return Dispatcher.DispatchAsync(this, cancellationToken);
         }
     }
 }

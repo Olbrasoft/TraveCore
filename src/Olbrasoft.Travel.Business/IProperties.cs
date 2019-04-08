@@ -10,11 +10,11 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Business
 {
-    public interface IAccommodations
+    public interface IProperties
     {
         PropertyDetail Get(int id, int languageId);
 
-        Task<PropertyDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default(CancellationToken));
+        Task<PropertyDetail> GetAsync(int id, int languageId, CancellationToken cancellationToken = default);
 
         IResultWithTotalCount<PropertyItem> Get(
             IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting
@@ -24,10 +24,14 @@ namespace Olbrasoft.Travel.Business
             IPageInfo pagingSettings,
             int languageId,
             Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting,
-            CancellationToken cancellationToken = default(CancellationToken)
+            CancellationToken cancellationToken = default
         );
 
         Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId,
-            CancellationToken cancellationToken = default(CancellationToken));
+            CancellationToken token = default);
+
+
+        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId,
+            CancellationToken token = default);
     }
 }

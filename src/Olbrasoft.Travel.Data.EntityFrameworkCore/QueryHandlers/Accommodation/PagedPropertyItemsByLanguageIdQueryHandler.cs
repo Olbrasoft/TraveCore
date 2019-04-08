@@ -14,16 +14,16 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
     public class PagedPropertyItemsByLanguageIdQueryHandler : TravelQueryHandler<PagedPropertyItemsTranslationQuery, Property,
         IResultWithTotalCount<PropertyItem>>
     {
-        public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedPropertyItemsTranslationQuery query, CancellationToken cancellationToken)
+        public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedPropertyItemsTranslationQuery query, CancellationToken token)
         {
             var localizedAccommodations = PreHandle(Source, query);
             var accommodationItems = ProjectTo<PropertyItem>(localizedAccommodations);
 
             var result = new ResultWithTotalCount<PropertyItem>
             {
-                Result = await accommodationItems.Skip(query.Paging.CalculateSkip()).Take(query.Paging.PageSize).ToArrayAsync(cancellationToken),
+                Result = await accommodationItems.Skip(query.Paging.CalculateSkip()).Take(query.Paging.PageSize).ToArrayAsync(token),
 
-                TotalCount = await accommodationItems.CountAsync(cancellationToken)
+                TotalCount = await accommodationItems.CountAsync(token)
             };
 
             return result;

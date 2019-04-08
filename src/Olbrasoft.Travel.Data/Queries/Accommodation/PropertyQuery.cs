@@ -6,7 +6,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
     {
         public int PropertyId { get; set; }
 
-        protected PropertyQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        protected PropertyQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

@@ -7,7 +7,7 @@ namespace Olbrasoft.Travel.Data.Queries.Geography
 {
     public class ContinentsByLanguageIdQuery : TranslationQuery<IEnumerable<ContinentItem>>
     {
-        public ContinentsByLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public ContinentsByLanguageIdQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

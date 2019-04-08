@@ -50,9 +50,9 @@
 
     $(document).ready(function() {
        $("#search").catcomplete({
-          source: "@Url.Action("Suggestions", "Home")",
-          delay: 500
-       });
+           source: "@Url.Action("Suggestions", "Home")",
+           minLength: 3
+      });
     });
 </script>
 

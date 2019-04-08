@@ -12,9 +12,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
     public class AttributesByPropertyIdAndLanguageIdQueryHandler : TravelQueryHandler<AttributesByPropertyIdAndLanguageIdQuery, PropertyToAttribute, IEnumerable<AttributeDto>>
     {
-        public override async Task<IEnumerable<AttributeDto>> HandleAsync(AttributesByPropertyIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<AttributeDto>> HandleAsync(AttributesByPropertyIdAndLanguageIdQuery query, CancellationToken token)
         {
-            return await ProjectionToAttribute(Source, query).ToArrayAsync(cancellationToken);
+            return await ProjectionToAttribute(Source, query).ToArrayAsync(token);
         }
 
         protected IQueryable<AttributeDto> ProjectionToAttribute(IQueryable<PropertyToAttribute> accommodationsToAttributes, AttributesByPropertyIdAndLanguageIdQuery query)

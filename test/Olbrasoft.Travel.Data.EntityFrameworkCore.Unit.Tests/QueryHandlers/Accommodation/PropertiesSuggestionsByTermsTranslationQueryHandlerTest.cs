@@ -12,16 +12,15 @@ using Olbrasoft.Travel.Data.Queries.Accommodation;
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
     [TestFixture]
-    public class PropertiesSuggestionsQueryHandlerTest
+    public class PropertiesSuggestionsByTermsTranslationQueryHandlerTest
     {
         [Test]
-        public void MyTestMethod()
+        public void Instance_Is_TravelQueryHandler_Of_()
         {
             //Arrange
             var type =
                 typeof(TravelQueryHandler<PropertiesSuggestionsByTermsTranslationQuery, PropertyTranslation,
                     IEnumerable<Transfer.Objects.SuggestionDto>>);
-
             //Act
             var handler = Handler();
 
@@ -46,12 +45,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             Assert.IsInstanceOf(type, result);
         }
 
-        private static PropertiesSuggestionsQueryHandler Handler()
+        private static PropertiesSuggestionsByTermsTranslationQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PropertiesSuggestionsQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new PropertiesSuggestionsByTermsTranslationQueryHandler(contextMock.Object, projectorMock.Object);
             return handler;
         }
     }

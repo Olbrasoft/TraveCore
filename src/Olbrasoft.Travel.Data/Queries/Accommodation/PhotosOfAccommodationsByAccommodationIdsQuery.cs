@@ -10,7 +10,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
         public IEnumerable<int> AccommodationIds { get; set; }
         public bool OnlyDefaultPhotos { get; set; }
 
-        public PhotosOfAccommodationsByAccommodationIdsQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public PhotosOfAccommodationsByAccommodationIdsQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

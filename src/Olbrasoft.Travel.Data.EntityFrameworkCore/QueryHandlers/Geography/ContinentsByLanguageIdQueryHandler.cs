@@ -14,9 +14,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
     public class ContinentsByLanguageIdQueryHandler : TravelQueryHandler< ContinentsByLanguageIdQuery, RegionSubtype, IEnumerable<ContinentItem>>
     {
       
-        public override async Task<IEnumerable<ContinentItem>> HandleAsync(ContinentsByLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<ContinentItem>> HandleAsync(ContinentsByLanguageIdQuery query, CancellationToken token)
         {
-            return await ProjectionToContinentItems(Source, query).ToArrayAsync(cancellationToken);
+            return await ProjectionToContinentItems(Source, query).ToArrayAsync(token);
         }
 
         protected IQueryable<ContinentItem> ProjectionToContinentItems(IQueryable<RegionSubtype> source, ContinentsByLanguageIdQuery query)

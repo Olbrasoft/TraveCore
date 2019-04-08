@@ -13,7 +13,7 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Business.Services
 {
-    public class PropertyService : Olbrasoft.Business.Service, IAccommodations
+    public class PropertyService : Olbrasoft.Business.Service, IProperties
     {
         protected IPropertyItemPhotoMerge Merger { get; }
 
@@ -130,13 +130,24 @@ namespace Olbrasoft.Travel.Business.Services
             return accommodationItems;
         }
 
-        public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId, CancellationToken cancellationToken = default(CancellationToken))
+
+        public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken token = default)
+        {
+            var query = QueryFactory.Get<PropertySuggestionsTranslationQuery>();
+            query.Term = term;
+            query.LanguageId = languageId;
+
+            return query.ExecuteAsync(token);
+        }
+
+
+        public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId, CancellationToken token = default)
         {
             var query = QueryFactory.Get<PropertiesSuggestionsByTermsTranslationQuery>();
             query.Terms = terms;
             query.LanguageId = languageId;
 
-            return query.ExecuteAsync(cancellationToken);
+            return query.ExecuteAsync(token);
         }
 
         private IResultWithTotalCount<PropertyItem> MergePhotos(IResultWithTotalCount<PropertyItem> master, IEnumerable<PropertyPhotoDto> slave)

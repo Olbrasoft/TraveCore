@@ -9,7 +9,7 @@ namespace Olbrasoft.Travel.Data.Queries.Geography
     {
         public int ContinentId { get; set; }
 
-        public CountriesByContinentIdAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public CountriesByContinentIdAndLanguageIdQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

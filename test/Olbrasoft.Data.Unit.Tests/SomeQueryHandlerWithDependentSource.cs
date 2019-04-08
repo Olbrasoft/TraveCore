@@ -18,7 +18,7 @@ namespace Olbrasoft.Data.Unit.Tests
             throw new System.NotImplementedException();
         }
 
-        public override Task<object> HandleAsync(SomQuery query, CancellationToken cancellationToken)
+        public override Task<object> HandleAsync(SomQuery query, CancellationToken token)
         {
 
 

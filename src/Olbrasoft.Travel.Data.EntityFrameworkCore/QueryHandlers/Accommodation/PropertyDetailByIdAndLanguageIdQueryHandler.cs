@@ -11,15 +11,15 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
     public class PropertyDetailByIdAndLanguageIdQueryHandler : TravelQueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, Property, PropertyDetail>
     {
-        public override async Task<PropertyDetail> HandleAsync(PropertyDetailByPropertyIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<PropertyDetail> HandleAsync(PropertyDetailByPropertyIdAndLanguageIdQuery query, CancellationToken token)
         {
             var localizedAccommodations = Source.SelectMany(p => p.PropertiesTranslations);
 
             var accommodationDetail = await ProjectToAccommodationsDetails(localizedAccommodations, query)
-                .FirstAsync(cancellationToken);
+                .FirstAsync(token);
 
             var defaultDescription = (await ProjectToAccommodationDescriptions(localizedAccommodations, query)
-                .FirstOrDefaultAsync(p => p.DescriptionId == 1, cancellationToken))?.Text;
+                .FirstOrDefaultAsync(p => p.DescriptionId == 1, token))?.Text;
 
             accommodationDetail.Description = defaultDescription;
 

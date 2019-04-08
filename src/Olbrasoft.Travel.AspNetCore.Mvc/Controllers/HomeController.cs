@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Olbrasoft.Travel.Business;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Olbrasoft.Travel.Data.EntityFrameworkCore;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 {
@@ -20,22 +24,6 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var suggestions = await _travel.SuggestionsAsync("Bene", 1033);
-
-            //var q1 = from r in q
-            //         select new SuggestionDto
-            //         {
-            //             Id = r.Id,
-            //             Label = r.Name
-            //         };
-
-            //var result = q1.ToArray();
-
-            //var userLanguages = Request.Headers["Accept-Language"].ToString();
-
-            //if (userLanguages != null) await Response.WriteAsync(userLanguages);
-
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo(1033);
 
             var provider = new AcceptLanguageHeaderRequestCultureProvider();
 
@@ -62,8 +50,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
         public async Task<JsonResult> Suggestions(string term)
         {
             var suggestions = await _travel.SuggestionsAsync(term, 1033);
-
-            return Json(suggestions);
+            return Json( suggestions );
         }
     }
 }

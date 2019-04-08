@@ -6,7 +6,7 @@ namespace Olbrasoft.Travel.Data.Queries.Geography
 {
     public class RegionsSuggestionsByTermsTranslationQuery : TranslationQuery<IEnumerable<SuggestionDto>>
     {
-        public RegionsSuggestionsByTermsTranslationQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public RegionsSuggestionsByTermsTranslationQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
 

@@ -7,7 +7,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
     public class RoomsByPropertyIdAndLanguageIdQuery : ByPropertyIdAndLanguageIdQuery<IEnumerable<RoomDto>>
     {
-        public RoomsByPropertyIdAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public RoomsByPropertyIdAndLanguageIdQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {
     internal class AwesomePropertyQuery : PropertyQuery<object>
     {
-        public AwesomePropertyQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public AwesomePropertyQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

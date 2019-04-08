@@ -5,7 +5,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries
 {
     internal class AwesomeByLanguageIdQuery : TranslationQuery<object>
     {
-        public AwesomeByLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public AwesomeByLanguageIdQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

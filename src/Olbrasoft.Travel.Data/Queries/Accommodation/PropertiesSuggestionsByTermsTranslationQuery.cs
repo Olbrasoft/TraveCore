@@ -8,7 +8,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
     {
         public string[] Terms { get; set; }
 
-        public PropertiesSuggestionsByTermsTranslationQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public PropertiesSuggestionsByTermsTranslationQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

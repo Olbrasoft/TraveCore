@@ -9,7 +9,7 @@ namespace Olbrasoft.Travel.Business
     {
         IRegions Regions { get; }
 
-        IAccommodations Accommodations { get; }
+        IProperties Properties { get; }
 
         Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken));
     }

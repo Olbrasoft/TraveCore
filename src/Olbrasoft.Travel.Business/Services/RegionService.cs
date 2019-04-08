@@ -15,41 +15,49 @@ namespace Olbrasoft.Travel.Business.Services
         {
         }
 
-        public Task<IEnumerable<ContinentItem>> GetContinentsAsync(int languageId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ContinentItem>> GetContinentsAsync(int languageId, CancellationToken token = default(CancellationToken))
         {
             var query = QueryFactory.Get<ContinentsByLanguageIdQuery>();
             query.LanguageId = languageId;
 
-            return query.ExecuteAsync(cancellationToken);
+            return query.ExecuteAsync(token);
         }
 
-        public Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int languageId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int languageId, CancellationToken token = default(CancellationToken))
         {
             var query = QueryFactory.Get<CountriesByLanguageIdQuery>();
             query.LanguageId = languageId;
 
-            return query.ExecuteAsync(cancellationToken);
+            return query.ExecuteAsync(token);
         }
 
         public Task<IEnumerable<CountryItemDto>> GetCountriesAsync(int continentId, int languageId,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken token = default(CancellationToken))
         {
             var query = QueryFactory.Get<CountriesByContinentIdAndLanguageIdQuery>();
             query.ContinentId = continentId;
             query.LanguageId = languageId;
 
-            return query.ExecuteAsync(cancellationToken);
+            return query.ExecuteAsync(token);
         }
 
-        public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] term, int languageId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] term, int languageId, CancellationToken token = default)
         {
             var query = QueryFactory.Get<RegionsSuggestionsByTermsTranslationQuery>();
             query.Terms = term;
             query.LanguageId = languageId;
 
-            return query.ExecuteAsync(cancellationToken);
+            return query.ExecuteAsync(token);
         }
 
-       
+
+        public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken token = default)
+        {
+            var query = QueryFactory.Get<RegionSuggestionsTranslationQuery>();
+            query.Term = term;
+            query.LanguageId = languageId;
+
+            return query.ExecuteAsync(token);
+        }
     }
 }

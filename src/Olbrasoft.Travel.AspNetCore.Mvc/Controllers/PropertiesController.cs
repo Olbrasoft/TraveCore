@@ -9,14 +9,14 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 {
     public class PropertiesController : Controller
     {
-        private readonly IAccommodations _accommodations;
+        private readonly IProperties _properties;
 
-        public PropertiesController(IAccommodations accommodations)
+        public PropertiesController(IProperties properties)
         {
-            _accommodations = accommodations;
+            _properties = properties;
         }
 
-        // GET: Accommodations
+        // GET: Properties
         public async Task<IActionResult> Index(int page = 1)
         {
             var provider = new AcceptLanguageHeaderRequestCultureProvider();
@@ -27,7 +27,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 
             var pageInfo = new PageInfo(10, page);
 
-            var accommodationsItems = await _accommodations.GetAsync(pageInfo, 1033,
+            var accommodationsItems = await _properties.GetAsync(pageInfo, 1033,
                 localizedAccommodations =>
                     localizedAccommodations.OrderBy(p => p.Property.SequenceNumber).ThenBy(p => p.Id));
 
@@ -38,7 +38,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
         {
             if (id == null) return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status400BadRequest);
 
-            var accommodationDetail = await _accommodations.GetAsync((int)id, 1033);
+            var accommodationDetail = await _properties.GetAsync((int)id, 1033);
 
             ViewBag.H1 = accommodationDetail.Name;
 

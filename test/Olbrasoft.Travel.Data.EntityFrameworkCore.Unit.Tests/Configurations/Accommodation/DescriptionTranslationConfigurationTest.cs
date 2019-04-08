@@ -13,7 +13,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Ac
         public void Instance_Is_TranslationConfiguration_Of_DescriptionTranslation()
         {
             //Arrange
-            var type = typeof(TranslationConfiguration<DescriptionTranslation>);
+            var type = typeof(TravelTypeConfiguration<DescriptionTranslation>);
 
             //Act
             var configuration = new DescriptionTranslationConfiguration();

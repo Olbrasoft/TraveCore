@@ -37,7 +37,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests
             regionsServiceMock.Setup(p => p.SuggestionsAsync(It.IsAny<string[]>(),1033, It.IsAny<CancellationToken>()))
                 .Returns(task);
 
-            var accommodationsServiceMock = new Mock<IAccommodations>();
+            var accommodationsServiceMock = new Mock<IProperties>();
             accommodationsServiceMock
                 .Setup(p => p.SuggestionsAsync(It.IsAny<string[]>(), 1033, It.IsAny<CancellationToken>()))
                 .Returns(task);

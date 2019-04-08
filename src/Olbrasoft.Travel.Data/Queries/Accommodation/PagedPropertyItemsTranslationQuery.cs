@@ -17,7 +17,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
 
         public IPageInfo Paging { get; set; }
 
-        public PagedPropertyItemsTranslationQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public PagedPropertyItemsTranslationQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

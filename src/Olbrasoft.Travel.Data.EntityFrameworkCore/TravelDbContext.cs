@@ -10,6 +10,7 @@ using Olbrasoft.Travel.Geography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 {
@@ -60,6 +61,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
                 }
             }
 
+            builder.Query<Suggestion>();
+
             builder.Entity<User>().HasData(User);
 
             builder.Entity<RegionSubtype>().HasData(Subtypes);
@@ -67,6 +70,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
             builder.Entity<AttributeType>().HasData(AttributeTypes);
 
             builder.Entity<AttributeSubtype>().HasData(AttributeSubtypes);
+
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -9,13 +9,13 @@ using System.Collections.Generic;
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {
     [TestFixture]
-    public class PropertiesSuggestionsQueryTest
+    public class PropertiesSuggestionsByTermsTranslationQueryTest
     {
         [Test]
         public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_Suggestion()
         {
             //Arrange
-            var type = typeof(TranslationQuery<IEnumerable<Data.Transfer.Objects.SuggestionDto>>);
+            var type = typeof(TranslationQuery<IEnumerable<SuggestionDto>>);
 
             //Act
             var query = Query();

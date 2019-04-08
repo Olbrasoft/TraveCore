@@ -14,11 +14,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
     public class PhotosByPropertyIdQueryHandler : TravelQueryHandler<PhotosPropertyQuery, Photo, IEnumerable<PropertyPhotoDto>>
     {
         public override async Task<IEnumerable<PropertyPhotoDto>> HandleAsync(PhotosPropertyQuery query,
-            CancellationToken cancellationToken)
+            CancellationToken token)
         {
             var projection = ProjectToQueryableOfAccommodationPhoto(Source, query);
 
-            return await projection.ToArrayAsync(cancellationToken);
+            return await projection.ToArrayAsync(token);
         }
 
         private IQueryable<PropertyPhotoDto> ProjectToQueryableOfAccommodationPhoto(

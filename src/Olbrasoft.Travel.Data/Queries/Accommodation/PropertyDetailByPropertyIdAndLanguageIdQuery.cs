@@ -6,7 +6,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
     public class PropertyDetailByPropertyIdAndLanguageIdQuery : ByPropertyIdAndLanguageIdQuery<PropertyDetail>
     {
-        public PropertyDetailByPropertyIdAndLanguageIdQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public PropertyDetailByPropertyIdAndLanguageIdQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

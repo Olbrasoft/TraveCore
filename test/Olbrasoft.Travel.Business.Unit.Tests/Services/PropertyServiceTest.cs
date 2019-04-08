@@ -33,7 +33,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void Instance_Implement_Interfaces()
         {
             //Arrange
-            var type = typeof(IAccommodations);
+            var type = typeof(IProperties);
 
             //Act
             var facade = AccommodationsService();
@@ -49,7 +49,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void Get_Return_AccommodationDetail()
         {
             //Arrange
-            IAccommodations facade = AccommodationsService();
+            IProperties facade = AccommodationsService();
             const int languageId = 1033;
             const int id = 1;
 
@@ -64,7 +64,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void GetAsync_With_CancellationToken_Return_TaskOfAccommodationDetail()
         {
             //Arrange
-            IAccommodations facade = AccommodationsService();
+            IProperties facade = AccommodationsService();
             const int languageId = 1033;
             const int id = 1;
 
@@ -79,7 +79,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void GetAsync_Return_TaskOfAccommodationDetail()
         {
             //Arrange
-            IAccommodations facade = AccommodationsService();
+            IProperties facade = AccommodationsService();
             const int languageId = 1033;
             const int id = 1;
 
@@ -94,7 +94,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void Get_Return_PagedList_Of_AccommodationItem()
         {
             //Arrange
-            IAccommodations facade = AccommodationsService();
+            IProperties facade = AccommodationsService();
             const int languageId = 1033;
             var pagingMock = new Mock<IPageInfo>();
 
@@ -109,7 +109,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void GetAsync_With_CancellationToken_Return_TaskOfPagedListOfAccommodationItem()
         {
             //Arrange
-            IAccommodations facade = AccommodationsService();
+            IProperties facade = AccommodationsService();
             const int languageId = 1033;
             var pagingMock = new Mock<IPageInfo>();
 
@@ -125,7 +125,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void GetAsync_Return_TaskOfPagedListOfAccommodationItem()
         {
             //Arrange
-            IAccommodations facade = AccommodationsService();
+            IProperties facade = AccommodationsService();
             const int languageId = 1033;
             var pagingMock = new Mock<IPageInfo>();
 

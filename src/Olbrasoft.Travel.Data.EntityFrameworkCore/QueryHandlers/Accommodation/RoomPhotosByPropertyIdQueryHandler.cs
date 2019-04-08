@@ -14,9 +14,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
     public class RoomPhotosByPropertyIdQueryHandler : TravelQueryHandler<RoomPhotosPropertyQuery,
       Photo, IEnumerable<RoomPhotoDto>>
     {
-        public override async Task<IEnumerable<RoomPhotoDto>> HandleAsync(RoomPhotosPropertyQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<RoomPhotoDto>> HandleAsync(RoomPhotosPropertyQuery query, CancellationToken token)
         {
-            return await ProjectionToRoomPhotos(Source, query).ToArrayAsync(cancellationToken);
+            return await ProjectionToRoomPhotos(Source, query).ToArrayAsync(token);
         }
 
         protected IQueryable<RoomPhotoDto> ProjectionToRoomPhotos(IQueryable<Photo> photosOfAccommodations, RoomPhotosPropertyQuery query)

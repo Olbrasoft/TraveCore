@@ -30,6 +30,6 @@ namespace Olbrasoft.Data.Unit.Tests
             return HandleAsync(query, default(CancellationToken));
         }
 
-        public abstract Task<TResult> HandleAsync(TQuery query, CancellationToken cancellationToken);
+        public abstract Task<TResult> HandleAsync(TQuery query, CancellationToken token);
     }
 }

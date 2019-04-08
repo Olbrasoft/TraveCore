@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using System.Collections.Generic;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
 {
     [TestFixture]
-    public class RegionsSuggestionsByTermAndLanguageIdQueryTest
+    public class RegionsSuggestionsByTermsTranslationQueryTest
     {
         [Test]
-        public void Instance_Is_ByLanguageIdQuery_Of_IEnumerable_Of_Suggestion()
+        public void Instance_Is_TranslationQuery_Of_IEnumerable_Of_Suggestion()
         {
             //Arrange
-            var type = typeof(TranslationQuery<IEnumerable<Data.Transfer.Objects.SuggestionDto>>);
+            var type = typeof(TranslationQuery<IEnumerable<SuggestionDto>>);
 
             //Act
             var query = Query();
@@ -23,6 +23,7 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
             //Assert
             Assert.IsInstanceOf(type, query);
         }
+        
 
         [Test]
         public void Terms()

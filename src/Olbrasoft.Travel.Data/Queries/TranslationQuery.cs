@@ -7,7 +7,7 @@ namespace Olbrasoft.Travel.Data.Queries
     {
         public int LanguageId { get; set; }
 
-        protected TranslationQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        protected TranslationQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }

@@ -11,10 +11,10 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
     public class RoomsByPropertyIdAndLanguageIdQueryHandler : TravelQueryHandler<RoomsByPropertyIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>
     {
-        public override async Task<IEnumerable<Transfer.Objects.Accommodation.RoomDto>> HandleAsync(RoomsByPropertyIdAndLanguageIdQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<Transfer.Objects.Accommodation.RoomDto>> HandleAsync(RoomsByPropertyIdAndLanguageIdQuery query, CancellationToken token)
         {
             var projection = ProjectionToRooms(Source, query);
-            return await projection.ToArrayAsync(cancellationToken);
+            return await projection.ToArrayAsync(token);
         }
 
         protected IQueryable<Transfer.Objects.Accommodation.RoomDto> ProjectionToRooms(IQueryable<Room> typeOfRooms, RoomsByPropertyIdAndLanguageIdQuery byPropertyIdAndLanguageIdQuery)

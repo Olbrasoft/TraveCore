@@ -17,9 +17,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
         {
         }
 
-        public override async Task<IEnumerable<SuggestionDto>> HandleAsync(RegionsSuggestionsByTermsTranslationQuery query, CancellationToken cancellationToken)
+        public override async Task<IEnumerable<SuggestionDto>> HandleAsync(RegionsSuggestionsByTermsTranslationQuery query, CancellationToken token)
         {
-            return await ProjectionToSuggestions(Source, query).ToArrayAsync(cancellationToken);
+            return await ProjectionToSuggestions(Source, query).ToArrayAsync(token);
         }
 
         private static IQueryable<SuggestionDto> ProjectionToSuggestions(IQueryable<Region> regions, RegionsSuggestionsByTermsTranslationQuery query)

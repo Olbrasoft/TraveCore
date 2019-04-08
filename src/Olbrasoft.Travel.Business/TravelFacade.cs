@@ -9,20 +9,20 @@ namespace Olbrasoft.Travel.Business
     public class TravelFacade : ITravel
     {
         public IRegions Regions { get; }
-        public IAccommodations Accommodations { get; }
+        public IProperties Properties { get; }
 
-        public TravelFacade(IRegions regions, IAccommodations accommodations)
+        public TravelFacade(IRegions regions, IProperties properties)
         {
             Regions = regions;
-            Accommodations = accommodations;
+            Properties = properties;
         }
 
-        public async Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default)
         {
-            var terms = term.Trim().Split(' ');
+            //var terms = term.Trim().Split(' ');
 
-            var results = await Task.WhenAll(Regions.SuggestionsAsync(terms, languageId, cancellationToken),
-                Accommodations.SuggestionsAsync(terms, languageId, cancellationToken)).ConfigureAwait(false);
+            var results = await Task.WhenAll(Regions.SuggestionsAsync(term, languageId, cancellationToken),
+                Properties.SuggestionsAsync(term, languageId, cancellationToken)).ConfigureAwait(false);
 
             return results.SelectMany(result => result).OrderBy(p => p.Ascending);
 

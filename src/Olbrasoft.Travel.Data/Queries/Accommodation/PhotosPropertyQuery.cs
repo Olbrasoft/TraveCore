@@ -7,7 +7,7 @@ namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {
     public class PhotosPropertyQuery :PropertyQuery<IEnumerable<PropertyPhotoDto>>
     {
-        public PhotosPropertyQuery(IQueryDispatcher queryDispatcher) : base(queryDispatcher)
+        public PhotosPropertyQuery(IQueryDispatcher dispatcher) : base(dispatcher)
         {
         }
     }
