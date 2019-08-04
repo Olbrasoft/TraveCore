@@ -23,6 +23,22 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
         }
 
         [Test]
+        public void CategoryId()
+        {
+            //Arrange
+            const int categoryId = 1976;
+
+            //Act
+            var suggestion = new Data.Transfer.Objects.SuggestionDto()
+            {
+                CategoryId = categoryId
+            };
+
+            //Assert
+            Assert.AreEqual(categoryId, suggestion.CategoryId);
+        }
+
+        [Test]
         public void Text_Set_Get()
         {
             //Arrange

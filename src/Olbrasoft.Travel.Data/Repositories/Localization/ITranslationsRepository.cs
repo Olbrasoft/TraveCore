@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Travel.Data.Localization;
+﻿using Olbrasoft.Travel.Data.Base.Objects.Localization;
 
 namespace Olbrasoft.Travel.Data.Repositories.Localization
 {

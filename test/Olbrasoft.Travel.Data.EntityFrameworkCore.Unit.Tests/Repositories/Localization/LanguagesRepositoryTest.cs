@@ -1,8 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
+using Olbrasoft.Travel.Data.Base.Objects.Localization;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization;
-using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repositories.Localization

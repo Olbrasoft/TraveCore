@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Data.Mapping;
+using Olbrasoft.Mapping;
 
 namespace Olbrasoft.Data.Unit.Tests
 {

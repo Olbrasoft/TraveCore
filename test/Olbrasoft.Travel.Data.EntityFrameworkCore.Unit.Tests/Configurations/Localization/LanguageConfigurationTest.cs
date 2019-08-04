@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
+using Olbrasoft.Travel.Data.Base.Objects.Localization;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
-using Olbrasoft.Travel.Data.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Localization
 {

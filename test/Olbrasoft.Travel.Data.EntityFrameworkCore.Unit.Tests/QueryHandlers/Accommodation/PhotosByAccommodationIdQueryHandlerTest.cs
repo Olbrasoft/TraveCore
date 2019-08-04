@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
@@ -20,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void MyTestMethod()
         {
             //Arrange
-            var type = typeof(QueryHandler<PhotosPropertyQuery, Photo, IEnumerable<PropertyPhotoDto>>);
+            var type = typeof(TravelQueryHandler<PhotosPropertyQuery, IEnumerable<PropertyPhotoDto>,Photo>);
 
             //Act
             var handler = Handler();
@@ -51,7 +49,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PhotosByPropertyIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new PhotosByPropertyIdQueryHandler( projectorMock.Object, contextMock.Object);
             return handler;
         }
     }

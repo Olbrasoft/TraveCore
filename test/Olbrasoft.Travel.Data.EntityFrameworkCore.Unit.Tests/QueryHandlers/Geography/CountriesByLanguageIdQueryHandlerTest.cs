@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Moq;
+using NUnit.Framework;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
+using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography;
+using Olbrasoft.Travel.Data.Queries.Geography;
+using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Moq;
-using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography;
-using Olbrasoft.Travel.Data.Geography;
-using Olbrasoft.Travel.Data.Queries.Geography;
-using Olbrasoft.Travel.Data.Transfer.Objects;
-using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geography
 {
@@ -22,29 +20,27 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(QueryHandler<CountriesByLanguageIdQuery, Country,
-                    IEnumerable<CountryItemDto>>);
+                typeof(TravelQueryHandler<CountriesByLanguageIdQuery,
+                    IEnumerable<CountryItemDto>, Country>);
 
             //Act
             var handler = Handler();
 
             //Assert
             Assert.IsInstanceOf(type, handler);
-
         }
 
         [Test]
         public void Instance_Is_QueryHandler_Of_GetCountriesByLanguageId_Comma_Country_Comma_IEnumerable_Of_CountryItem()
         {
             //Arrange
-            var type = typeof(Handler<CountriesByLanguageIdQuery, IQueryable<Country>, IEnumerable<CountryItemDto>>);
-
+            var type = typeof(QueryHandler<CountriesByLanguageIdQuery, IQueryable<Country>, IEnumerable<CountryItemDto>>);
 
             //Act
             var handler = Handler();
 
             //Assert
-            Assert.IsInstanceOf(type,handler);
+            Assert.IsInstanceOf(type, handler);
         }
 
         [Test]
@@ -60,15 +56,14 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
 
             //Assert
             Assert.IsInstanceOf<Task<IEnumerable<CountryItemDto>>>(result);
-
         }
-        
+
         private static CountriesByLanguageIdQueryHandler Handler()
         {
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
-            
-            return new CountriesByLanguageIdQueryHandler(contextMock.Object,projectorMock.Object);
+
+            return new CountriesByLanguageIdQueryHandler(projectorMock.Object, contextMock.Object);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using System.Collections.Generic;
 using System.Linq;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography
 {

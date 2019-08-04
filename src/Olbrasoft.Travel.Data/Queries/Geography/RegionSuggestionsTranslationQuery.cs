@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Data.Querying;
+﻿using Olbrasoft.Querying;
 
 namespace Olbrasoft.Travel.Data.Queries.Geography
 {

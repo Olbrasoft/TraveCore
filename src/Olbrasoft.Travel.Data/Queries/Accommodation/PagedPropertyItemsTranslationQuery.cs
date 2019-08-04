@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Olbrasoft.Data.Querying;
 using Olbrasoft.Pagination;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Queries.Accommodation

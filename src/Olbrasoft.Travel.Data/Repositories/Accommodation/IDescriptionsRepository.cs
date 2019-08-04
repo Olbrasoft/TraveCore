@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Travel.Data.Accommodation;
+﻿using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using SharpRepository.Repository;
 
 namespace Olbrasoft.Travel.Data.Repositories.Accommodation

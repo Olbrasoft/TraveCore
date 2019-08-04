@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Travel.Data.IO;
+using Olbrasoft.Travel.Data.Base.Objects.IO;
 using Olbrasoft.Travel.Data.Repositories.Routing;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Routing

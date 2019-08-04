@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography;
-using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geography
 {
@@ -21,14 +19,13 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(QueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
-                    IEnumerable<CountryItemDto>>);
+                typeof(TravelQueryHandler<CountriesByContinentIdAndLanguageIdQuery,
+                    IEnumerable<CountryItemDto>, Country>);
 
             var handler = Handler();
 
             //Assert
             Assert.IsInstanceOf(type, handler);
-
         }
 
         private static CountriesByContinentIdAndLanguageIdQueryHandler Handler()
@@ -37,7 +34,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
             var projectorMock = new Mock<IProjection>();
 
             //Act
-            var handler = new CountriesByContinentIdAndLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new CountriesByContinentIdAndLanguageIdQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
 
@@ -54,9 +51,6 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
 
             //Assert
             Assert.IsInstanceOf<Task<IEnumerable<CountryItemDto>>>(result);
-
         }
-
-
     }
 }

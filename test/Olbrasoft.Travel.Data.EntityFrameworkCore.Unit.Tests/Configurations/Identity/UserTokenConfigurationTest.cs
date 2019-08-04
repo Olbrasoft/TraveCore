@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
+using Olbrasoft.Travel.Data.Base.Objects.Identity;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Identity;
-using Olbrasoft.Travel.Data.Identity;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Identity
 {

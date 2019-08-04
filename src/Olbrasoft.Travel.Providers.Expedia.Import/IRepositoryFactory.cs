@@ -1,5 +1,5 @@
 ﻿using Olbrasoft.Travel.Data.Base;
-using Olbrasoft.Travel.Data.Localization;
+using Olbrasoft.Travel.Data.Base.Objects.Localization;
 using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.Repositories.Geography;

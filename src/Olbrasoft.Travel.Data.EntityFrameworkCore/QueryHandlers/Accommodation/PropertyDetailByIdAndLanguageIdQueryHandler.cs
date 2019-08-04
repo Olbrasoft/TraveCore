@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Mapping;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PropertyDetailByIdAndLanguageIdQueryHandler : QueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery, Property, PropertyDetail>
+    public class PropertyDetailByIdAndLanguageIdQueryHandler : TravelQueryHandler<PropertyDetailByPropertyIdAndLanguageIdQuery,  PropertyDetail,Property>
     {
         public override async Task<PropertyDetail> HandleAsync(PropertyDetailByPropertyIdAndLanguageIdQuery query, CancellationToken token)
         {
-            var localizedAccommodations = Source.SelectMany(p => p.PropertiesTranslations);
+            var localizedAccommodations = Entities().SelectMany(p => p.PropertiesTranslations);
 
             var accommodationDetail = await ProjectToAccommodationsDetails(localizedAccommodations, query)
                 .FirstAsync(token);
@@ -42,7 +42,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
             return ProjectTo<PropertyDetail>(localizedAccommodations);
         }
 
-        public PropertyDetailByIdAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+
+        public PropertyDetailByIdAndLanguageIdQueryHandler(IProjection projector, TravelDbContext context) : base(projector, context)
         {
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Travel.Data.Localization;
+using Olbrasoft.Travel.Data.Base.Objects.Localization;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization

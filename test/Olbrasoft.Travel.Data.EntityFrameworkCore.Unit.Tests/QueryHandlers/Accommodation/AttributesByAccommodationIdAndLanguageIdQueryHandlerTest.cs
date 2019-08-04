@@ -3,10 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
@@ -21,8 +20,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(QueryHandler< AttributesByPropertyIdAndLanguageIdQuery,
-                    PropertyToAttribute, IEnumerable<AttributeDto>>);
+                typeof(TravelQueryHandler< AttributesByPropertyIdAndLanguageIdQuery,
+                   IEnumerable<AttributeDto>, PropertyToAttribute>);
 
             //Act
             var handler = Handler();
@@ -53,7 +52,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new AttributesByPropertyIdAndLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new AttributesByPropertyIdAndLanguageIdQueryHandler( projectorMock.Object, contextMock.Object);
             return handler;
         }
     }

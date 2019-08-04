@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+
 using Olbrasoft.Travel.Data.Base;
 using SharpRepository.Repository;
+
 
 namespace Olbrasoft.Travel.Data.Repositories
 {

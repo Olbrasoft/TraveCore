@@ -12,10 +12,10 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Olbrasoft.Travel.Data.Base.Objects.Identity;
+using Olbrasoft.Travel.Data.Base.Objects.Localization;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Localization;
-using Olbrasoft.Travel.Data.Identity;
-using Olbrasoft.Travel.Data.Localization;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 
@@ -72,9 +72,14 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
                     .DependsOn(Dependency.OnValue("creatorId", user.Id), Dependency.OnValue("defaultLanguageId", defaultLanguage.Id))
             );
 
-            ImportGeography(container);
+            // ImportGeography(container);
+            // ImportAccommodation(container);
+            
+            using (var importer = container.Resolve<IImporter>(nameof(PropertiesToRegionsImporter)))
+            {
+                importer.Import(@"D:\Ean\RegionEANHotelIDMapping.txt");
+            }
 
-            ImportAccommodation(container);
 
             //var language = languagesRepository.Get(1031);
 
@@ -317,6 +322,9 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
             RegisterPropertyImporters(container);
 
+            container.Register(Component.For(typeof(IImporter)).ImplementedBy<PropertiesToRegionsImporter>()
+                .Named(nameof(PropertiesToRegionsImporter)).Interceptors<IInterceptor>());
+
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<PathsExtensionsCaptionsImporter>()
                 .Named(nameof(PathsExtensionsCaptionsImporter)).Interceptors<IInterceptor>());
 
@@ -394,6 +402,8 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import
 
             container.Register(Component.For(typeof(IImporter)).ImplementedBy<RegionsCenterImporter>()
                 .Named(nameof(RegionsCenterImporter)).Interceptors<IInterceptor>());
+
+            
         }
 
         public static void Write(object s)

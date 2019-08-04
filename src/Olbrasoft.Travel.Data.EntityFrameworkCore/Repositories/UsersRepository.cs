@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Travel.Data.Identity;
+using Olbrasoft.Travel.Data.Base.Objects.Identity;
 using Olbrasoft.Travel.Data.Repositories;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories

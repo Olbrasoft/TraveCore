@@ -1,14 +1,13 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
@@ -18,7 +17,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void Instance_Is_SuggestionsTranslationQueryHandler_Of_PropertySuggestionTranslationQuery()
         {
             //Arrange
-            var type = typeof(QueryHandler<PropertySuggestionsTranslationQuery,PropertyTranslation,IEnumerable<SuggestionDto>>);
+            var type = typeof(TravelQueryHandler<PropertySuggestionsTranslationQuery, IEnumerable<SuggestionDto>, PropertyTranslation>);
 
             //Act
             var handler = Create();
@@ -32,7 +31,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PropertySuggestionsTranslationQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new PropertySuggestionsTranslationQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
 

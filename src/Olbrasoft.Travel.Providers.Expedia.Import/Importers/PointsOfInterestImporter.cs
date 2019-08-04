@@ -1,10 +1,10 @@
-﻿using Olbrasoft.Travel.Data.Geography;
-using Olbrasoft.Travel.Data.Repositories;
+﻿using Olbrasoft.Travel.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
-using RegionToSubclass = Olbrasoft.Travel.Data.Geography.RegionToSubclass;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
+using RegionToSubclass = Olbrasoft.Travel.Data.Base.Objects.Geography.RegionToSubclass;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {

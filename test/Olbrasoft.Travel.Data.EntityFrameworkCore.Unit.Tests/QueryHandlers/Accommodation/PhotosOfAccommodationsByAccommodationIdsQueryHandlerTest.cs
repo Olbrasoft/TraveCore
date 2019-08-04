@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
@@ -20,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         public void Inherits_From_TravelQueryHandler_Of_IPropertyContext_Comma_PhotosOfAccommodationsByAccommodationIdsQuery_Comma_IQueryable_Of_PhotoOfAccommodation_Comma_IEnumerable_Of_AccommodationPhoto()
         {
             //Arrange
-            var type = typeof(QueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery,Photo, IEnumerable<PropertyPhotoDto>>);
+            var type = typeof(TravelQueryHandler<PhotosOfAccommodationsByAccommodationIdsQuery,IEnumerable<PropertyPhotoDto>,Photo>);
 
             //Act
             var handler = Handler();
@@ -34,7 +32,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PhotosOfAccommodationsByAccommodationIdsQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new PhotosOfAccommodationsByAccommodationIdsQueryHandler( projectorMock.Object, contextMock.Object);
             return handler;
         }
 

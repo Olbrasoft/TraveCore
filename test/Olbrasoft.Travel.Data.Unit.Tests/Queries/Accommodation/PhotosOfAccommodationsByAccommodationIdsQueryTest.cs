@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Querying;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Accommodation
 {

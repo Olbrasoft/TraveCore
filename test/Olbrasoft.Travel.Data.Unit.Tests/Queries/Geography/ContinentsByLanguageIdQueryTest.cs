@@ -1,10 +1,10 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Querying;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 using System.Collections.Generic;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Queries.Geography
 {

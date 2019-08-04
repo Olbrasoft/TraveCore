@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Querying;
 using Olbrasoft.Travel.Business.Services;
-using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
@@ -124,19 +123,19 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
             
             var queryFactoryMock = new Mock<IQueryFactory>();
 
-            queryFactoryMock.Setup(p => p.Get<ContinentsByLanguageIdQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<ContinentsByLanguageIdQuery>())
                 .Returns(new ContinentsByLanguageIdQuery(providerMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<CountriesByLanguageIdQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<CountriesByLanguageIdQuery>())
                 .Returns(new CountriesByLanguageIdQuery(providerMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<CountriesByContinentIdAndLanguageIdQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<CountriesByContinentIdAndLanguageIdQuery>())
                 .Returns(new CountriesByContinentIdAndLanguageIdQuery(providerMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<RegionsSuggestionsByTermsTranslationQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<RegionsSuggestionsByTermsTranslationQuery>())
                 .Returns(new RegionsSuggestionsByTermsTranslationQuery(providerMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<RegionSuggestionsTranslationQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<RegionSuggestionsTranslationQuery>())
                 .Returns(new RegionSuggestionsTranslationQuery(providerMock.Object));
 
 

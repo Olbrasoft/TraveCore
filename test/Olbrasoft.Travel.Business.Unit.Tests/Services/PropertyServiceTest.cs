@@ -1,15 +1,14 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Querying;
 using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Business.Services;
-using Olbrasoft.Travel.Data.Queries;
+using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {
@@ -125,12 +124,28 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void GetAsync_Return_TaskOfPagedListOfAccommodationItem()
         {
             //Arrange
-            IProperties facade = AccommodationsService();
+            IProperties service = AccommodationsService();
             const int languageId = 1033;
             var pagingMock = new Mock<IPageInfo>();
 
             //Act
-            var accommodationItemsTask = facade.GetAsync(pagingMock.Object, languageId, null);
+            var accommodationItemsTask = service.GetAsync(pagingMock.Object, languageId, null);
+
+            //Assert
+            Assert.IsInstanceOf<Task<IResultWithTotalCount<PropertyItem>>>(accommodationItemsTask);
+        }
+
+        [Test]
+        public void GetAsync_By_RegionId_Return_TaskOfPagedListOfAccommodationItem()
+        {
+            //Arrange
+            const int regionId = 1976;
+            IProperties service = AccommodationsService();
+            const int languageId = 1033;
+            var pagingMock = new Mock<IPageInfo>();
+
+            //Act
+            var accommodationItemsTask = service.GetAsync(regionId, pagingMock.Object, languageId, null);
 
             //Assert
             Assert.IsInstanceOf<Task<IResultWithTotalCount<PropertyItem>>>(accommodationItemsTask);
@@ -176,17 +191,20 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 
             var queryFactoryMock = new Mock<IQueryFactory>();
 
-            queryFactoryMock.Setup(p => p.Get<PropertyDetailByPropertyIdAndLanguageIdQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<PropertyDetailByPropertyIdAndLanguageIdQuery>())
                 .Returns(new PropertyDetailByPropertyIdAndLanguageIdQuery(queryDispatcher.Object));
 
-            queryFactoryMock.Setup(p => p.Get<PagedPropertyItemsTranslationQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<PagedPropertyItemsTranslationQuery>())
                 .Returns(new PagedPropertyItemsTranslationQuery(queryDispatcher.Object));
 
-            queryFactoryMock.Setup(p => p.Get<PhotosOfAccommodationsByAccommodationIdsQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<PhotosOfAccommodationsByAccommodationIdsQuery>())
                 .Returns(new PhotosOfAccommodationsByAccommodationIdsQuery(queryDispatcher.Object));
 
-            queryFactoryMock.Setup(p => p.Get<PropertiesSuggestionsByTermsTranslationQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<PropertiesSuggestionsByTermsTranslationQuery>())
                 .Returns(new PropertiesSuggestionsByTermsTranslationQuery(queryDispatcher.Object));
+
+            queryFactoryMock.Setup(p => p.CreateQuery<PagedPropertyItemsByRegionIdTranslationQuery>())
+                .Returns(new PagedPropertyItemsByRegionIdTranslationQuery(queryDispatcher.Object));
 
             var mockMerger = new PropertyItemPhotoMerge();
 

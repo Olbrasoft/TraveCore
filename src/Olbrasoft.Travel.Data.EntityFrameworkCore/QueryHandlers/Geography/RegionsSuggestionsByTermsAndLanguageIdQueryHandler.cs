@@ -1,7 +1,7 @@
 ﻿using LinqKit;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Travel.Data.Geography;
+using Olbrasoft.Mapping;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using System.Collections.Generic;
@@ -11,21 +11,17 @@ using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 {
-    public class RegionsSuggestionsByTermsAndLanguageIdQueryHandler : QueryHandler<RegionsSuggestionsByTermsTranslationQuery, Region, IEnumerable<SuggestionDto>>
+    public class RegionsSuggestionsByTermsAndLanguageIdQueryHandler : TravelQueryHandler<RegionsSuggestionsByTermsTranslationQuery, IEnumerable<SuggestionDto>, Region>
     {
-        public RegionsSuggestionsByTermsAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
-        {
-        }
-
         public override async Task<IEnumerable<SuggestionDto>> HandleAsync(RegionsSuggestionsByTermsTranslationQuery query, CancellationToken token)
         {
-            return await ProjectionToSuggestions(Source, query).ToArrayAsync(token);
+            return await ProjectionToSuggestions(Entities(), query).ToArrayAsync(token);
         }
 
         private static IQueryable<SuggestionDto> ProjectionToSuggestions(IQueryable<Region> regions, RegionsSuggestionsByTermsTranslationQuery query)
         {
             var predicate = query.Terms.Aggregate(PredicateBuilder.New<RegionTranslation>(), (current, term) => current.Or(p => p.Name.Contains(term)));
-            
+
             var areasCitiesQueryable = regions.Where(p => p.SubtypeId > 1 && p.SubtypeId < 9)
                 .SelectMany(p => p.RegionTranslations).Where(p => p.LanguageId == query.LanguageId).Where(predicate)
                 .Take(6).Select(p => new { p.Id, p.Name, Category = "Cities/Areas", Ascending = 1 });
@@ -44,8 +40,11 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
                 Id = p.Id,
                 Label = p.Name,
                 Category = p.Category,
-                Ascending = p.Ascending
             });
+        }
+
+        public RegionsSuggestionsByTermsAndLanguageIdQueryHandler(IProjection projector, TravelDbContext context) : base(projector, context)
+        {
         }
     }
 }

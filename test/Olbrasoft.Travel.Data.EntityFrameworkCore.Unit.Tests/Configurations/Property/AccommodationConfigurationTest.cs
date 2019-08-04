@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Accommodation;
 
@@ -12,7 +11,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Configurations.Pr
         public void Instance_Is_TravelTypeConfiguration_Of_Accommodation()
         {
             //Arrange
-            var type = typeof(TravelTypeConfiguration<Data.Accommodation.Property>);
+            var type = typeof(TravelTypeConfiguration<Base.Objects.Accommodation.Property>);
 
             //Act
             var configuration = new PropertyConfiguration();

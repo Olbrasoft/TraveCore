@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Repositories.Accommodation
 {

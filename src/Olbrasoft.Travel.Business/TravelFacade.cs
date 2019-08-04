@@ -24,7 +24,7 @@ namespace Olbrasoft.Travel.Business
             var results = await Task.WhenAll(Regions.SuggestionsAsync(term, languageId, cancellationToken),
                 Properties.SuggestionsAsync(term, languageId, cancellationToken)).ConfigureAwait(false);
 
-            return results.SelectMany(result => result).OrderBy(p => p.Ascending);
+            return results.SelectMany(result => result).OrderBy(p => p.CategoryId);
 
             //  return await Properties.SuggestionsAsync(terms, languageId, cancellationToken);
         }

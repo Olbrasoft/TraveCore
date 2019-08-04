@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization;
-using Olbrasoft.Travel.Data.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Geography
 {

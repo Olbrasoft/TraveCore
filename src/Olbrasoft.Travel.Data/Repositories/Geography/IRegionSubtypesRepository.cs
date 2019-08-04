@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Olbrasoft.Travel.Data.Geography;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.Repositories.Geography
 {

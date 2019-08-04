@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Olbrasoft.Data.Repository.Bulk;
-using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
+
 
 namespace Olbrasoft.Travel.Data.Repositories.Accommodation
 {

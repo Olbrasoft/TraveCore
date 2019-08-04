@@ -1,7 +1,5 @@
 ﻿using LinqKit;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using System.Collections.Generic;
@@ -9,11 +7,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Olbrasoft.Extensions;
+using Olbrasoft.Mapping;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Suggestion;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PropertiesSuggestionsByTermsTranslationQueryHandler : QueryHandler<PropertiesSuggestionsByTermsTranslationQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
+    public class PropertiesSuggestionsByTermsTranslationQueryHandler : TravelQueryHandler<PropertiesSuggestionsByTermsTranslationQuery,  IEnumerable<SuggestionDto>, PropertyTranslation>
     {
         public override async Task<IEnumerable<SuggestionDto>> HandleAsync(PropertiesSuggestionsByTermsTranslationQuery query, CancellationToken token)
         {
@@ -22,16 +22,17 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 
             const SuggestionCategories propertySuggestion = SuggestionCategories.Properties;
 
-            return await Source.Where(propertyTranslation => propertyTranslation.LanguageId == query.LanguageId)
+            return await Entities().Where(propertyTranslation => propertyTranslation.LanguageId == query.LanguageId)
                 .Where(predicate).Take(3)
                 .Select(p => new SuggestionDto
                 {
                     Id = p.Id, Label = p.Name, Category = propertySuggestion.GetDescription(),
-                    Ascending = (int) propertySuggestion
+                   
                 }).ToArrayAsync(token).ConfigureAwait(false);
         }
 
-        public PropertiesSuggestionsByTermsTranslationQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+
+        public PropertiesSuggestionsByTermsTranslationQueryHandler(IProjection projector, TravelDbContext context) : base(projector, context)
         {
         }
     }

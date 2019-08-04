@@ -1,6 +1,6 @@
-﻿using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
+﻿using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System.Collections.Generic;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.Travel.Data.Queries.Accommodation
 {

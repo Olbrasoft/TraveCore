@@ -3,22 +3,21 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Travel.Data.Geography;
+using Olbrasoft.Mapping;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
 {
-    public class CountriesByContinentIdAndLanguageIdQueryHandler : QueryHandler< CountriesByContinentIdAndLanguageIdQuery, Country,
-        IEnumerable<CountryItemDto>>
+    public class CountriesByContinentIdAndLanguageIdQueryHandler : TravelQueryHandler< CountriesByContinentIdAndLanguageIdQuery, 
+        IEnumerable<CountryItemDto>,Country>
     {
      
 
         public override async Task<IEnumerable<CountryItemDto>> HandleAsync(CountriesByContinentIdAndLanguageIdQuery query, CancellationToken token)
         {
-            return await ProjectionToCountryItems(Source, query).ToArrayAsync(token);
+            return await ProjectionToCountryItems(Entities(), query).ToArrayAsync(token);
         }
 
         protected IQueryable<CountryItemDto> ProjectionToCountryItems(IQueryable<Country> source, CountriesByContinentIdAndLanguageIdQuery query)
@@ -34,7 +33,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography
             return ProjectTo<CountryItemDto>(localizedRegions);
         }
 
-        public CountriesByContinentIdAndLanguageIdQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+
+        public CountriesByContinentIdAndLanguageIdQueryHandler(IProjection projector, TravelDbContext context) : base(projector, context)
         {
         }
     }

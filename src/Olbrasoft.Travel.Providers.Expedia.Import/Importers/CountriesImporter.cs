@@ -1,12 +1,12 @@
 ﻿using GeoAPI.Geometries;
 using NetTopologySuite.Geometries;
-using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Country = Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Geography.Country;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
@@ -77,7 +77,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
             ImportRegionsToRegions(expediaCountries, RepositoryFactory.ManyToMany<RegionToRegion>(), regionsExpediaIdsToIds);
 
-            var countriesRepository = RepositoryFactory.AdditionalRegionsInfo<Data.Geography.Country>();
+            var countriesRepository = RepositoryFactory.AdditionalRegionsInfo<Data.Base.Objects.Geography.Country>();
 
             ImportCountries(expediaCountries, countriesRepository, regionsExpediaIdsToIds);
 
@@ -85,7 +85,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         }
 
         private void ImportProbablyMissingCountries(IEnumerable<CandidateCountry> probablyMissingCountries,
-            IAdditionalRegionsInfoRepository<Data.Geography.Country> countriesRepository, int subtypeCountryId,
+            IAdditionalRegionsInfoRepository<Data.Base.Objects.Geography.Country> countriesRepository, int subtypeCountryId,
             IRegionsRepository regionsRepository)
         {
             foreach (var probablyMissingCountry in probablyMissingCountries)
@@ -115,7 +115,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 
                 region.SubtypeId = subtypeCountryId;
 
-                var country = new Data.Geography.Country
+                var country = new Data.Base.Objects.Geography.Country
                 {
                     Code = probablyMissingCountry.Code,
                     CreatorId = CreatorId
@@ -128,19 +128,19 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         }
 
         private void ImportCountries(Country[] eanCountries,
-            IAdditionalRegionsInfoRepository<Data.Geography.Country> repository,
+            IAdditionalRegionsInfoRepository<Data.Base.Objects.Geography.Country> repository,
             IReadOnlyDictionary<long, int> regionsExpediaIdsToIds
            )
         {
-            LogBuild<Data.Geography.Country>();
+            LogBuild<Data.Base.Objects.Geography.Country>();
             var countries = BuildCountries(eanCountries, regionsExpediaIdsToIds, CreatorId);
             var count = countries.Length;
             LogAssembled(count);
 
             if (count <= 0) return;
-            LogSave<Data.Geography.Country>();
+            LogSave<Data.Base.Objects.Geography.Country>();
             repository.BulkSave(countries);
-            LogSaved<Data.Geography.Country>();
+            LogSaved<Data.Base.Objects.Geography.Country>();
         }
 
         private void ImportRegionsToRegions(
@@ -236,16 +236,16 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             return regionsToRegions.ToArray();
         }
 
-        public Data.Geography.Country[] BuildCountries(Country[] eanCountries,
+        public Data.Base.Objects.Geography.Country[] BuildCountries(Country[] eanCountries,
             IReadOnlyDictionary<long, int> expediaIdsToIds,
             int creatorId)
         {
-            var countries = new Queue<Data.Geography.Country>();
+            var countries = new Queue<Data.Base.Objects.Geography.Country>();
 
             foreach (var eanCountry in eanCountries)
             {
                 if (!expediaIdsToIds.TryGetValue(eanCountry.CountryID, out var id)) continue;
-                var country = new Data.Geography.Country
+                var country = new Data.Base.Objects.Geography.Country
                 {
                     Id = id,
                     Code = eanCountry.CountryCode,

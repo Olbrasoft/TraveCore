@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Data.Entity.Framework.Bulk;
-using Olbrasoft.Travel.Data.Geography;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography

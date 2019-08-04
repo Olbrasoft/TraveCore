@@ -1,8 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories.Geography;
-using Olbrasoft.Travel.Data.Geography;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repositories.Geography
 {

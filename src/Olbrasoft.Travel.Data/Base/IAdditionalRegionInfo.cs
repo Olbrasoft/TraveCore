@@ -1,4 +1,4 @@
-﻿using Olbrasoft.Travel.Data.Geography;
+﻿using Olbrasoft.Travel.Data.Base.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.Base
 {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.Repositories;
-using Attribute = Olbrasoft.Travel.Data.Accommodation.Attribute;
+using Attribute = Olbrasoft.Travel.Data.Base.Objects.Accommodation.Attribute;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {

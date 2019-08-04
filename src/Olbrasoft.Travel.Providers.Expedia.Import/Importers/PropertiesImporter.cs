@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.Geography;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Accommodation;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation;
-using Chain = Olbrasoft.Travel.Data.Accommodation.Chain;
-using PropertyType = Olbrasoft.Travel.Data.Accommodation.PropertyType;
+using Chain = Olbrasoft.Travel.Data.Base.Objects.Accommodation.Chain;
+using PropertyType = Olbrasoft.Travel.Data.Base.Objects.Accommodation.PropertyType;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {

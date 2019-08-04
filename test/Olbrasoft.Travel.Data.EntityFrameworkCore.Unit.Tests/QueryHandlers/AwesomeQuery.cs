@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.Queries;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {

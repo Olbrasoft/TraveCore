@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Olbrasoft.Travel.Data.Geography;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.Mapping.Profiles

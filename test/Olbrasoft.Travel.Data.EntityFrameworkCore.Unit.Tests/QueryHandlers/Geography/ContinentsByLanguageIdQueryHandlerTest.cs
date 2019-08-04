@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography;
-using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geography
 {
@@ -23,8 +21,8 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(QueryHandler< ContinentsByLanguageIdQuery, RegionSubtype,
-                    IEnumerable<ContinentItem>>);
+                typeof(TravelQueryHandler<ContinentsByLanguageIdQuery,
+                    IEnumerable<ContinentItem>, RegionSubtype>);
             //Act
             var handler = Handler();
 
@@ -36,7 +34,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         public void Inherits_From_QueryHandler_Of_ContinentsByLanguageIdQuery_Comma_TypeOfRegion_Comma_IEnumerable_Of_ContinentItem()
         {
             //Arrange
-            var type = typeof(Handler<ContinentsByLanguageIdQuery, IQueryable<RegionSubtype>, IEnumerable<ContinentItem>>);
+            var type = typeof(QueryHandler<ContinentsByLanguageIdQuery, IQueryable<RegionSubtype>, IEnumerable<ContinentItem>>);
 
             //Act
             var handler = Handler();
@@ -52,7 +50,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
 
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new ContinentsByLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new ContinentsByLanguageIdQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
 

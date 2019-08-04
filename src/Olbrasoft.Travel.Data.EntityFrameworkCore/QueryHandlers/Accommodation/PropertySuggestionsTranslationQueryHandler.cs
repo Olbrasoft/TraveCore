@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
 using Olbrasoft.Extensions;
-using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Suggestion;
@@ -9,14 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Mapping;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PropertySuggestionsTranslationQueryHandler : QueryHandler<PropertySuggestionsTranslationQuery, PropertyTranslation, IEnumerable<SuggestionDto>>
+    public class PropertySuggestionsTranslationQueryHandler : TravelQueryHandler<PropertySuggestionsTranslationQuery,  IEnumerable<SuggestionDto>, PropertyTranslation>
     {
-        public PropertySuggestionsTranslationQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
-        {
-        }
+     
 
         public override async Task<IEnumerable<SuggestionDto>> HandleAsync(PropertySuggestionsTranslationQuery query, CancellationToken token)
         {
@@ -25,10 +23,14 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
                 .Select(p => new SuggestionDto
                 {
                     Id = p.Id,
+                    CategoryId = (int)SuggestionCategories.Properties,
                     Category = SuggestionCategories.Properties.GetDescription(),
-                    Label = p.Name,
-                    Ascending = (int)SuggestionCategories.Properties
+                    Label = p.Name
                 }).ToArrayAsync(token);
+        }
+
+        public PropertySuggestionsTranslationQueryHandler(IProjection projector, TravelDbContext context) : base(projector, context)
+        {
         }
     }
 }

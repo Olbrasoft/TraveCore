@@ -7,8 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GeoAPI.Geometries;
 using NetTopologySuite.Geometries;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.EntityFrameworkCore;
-using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Repositories;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.Data.Unit.Tests
 {

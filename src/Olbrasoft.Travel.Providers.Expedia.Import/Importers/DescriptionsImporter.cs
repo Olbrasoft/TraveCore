@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.Repositories;
 using Description = Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Accommodation.Description;
 
@@ -60,11 +60,11 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
         public override void Import(string path)
         {
             const string general = "General";
-            var typesOfDescriptionsRepository = RepositoryFactory.Names<Data.Accommodation.Description>();
+            var typesOfDescriptionsRepository = RepositoryFactory.Names<Data.Base.Objects.Accommodation.Description>();
 
             if (!typesOfDescriptionsRepository.NamesToIds.ContainsKey(general))
             {
-                typesOfDescriptionsRepository.Add(new Data.Accommodation.Description { Name = general, CreatorId = CreatorId });
+                typesOfDescriptionsRepository.Add(new Data.Base.Objects.Accommodation.Description { Name = general, CreatorId = CreatorId });
             }
 
             TypeOfDescriptionId = typesOfDescriptionsRepository.GetId(general);

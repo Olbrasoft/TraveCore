@@ -1,11 +1,11 @@
-﻿using Olbrasoft.Travel.Data.Geography;
-using Olbrasoft.Travel.Data.Repositories;
+﻿using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Data.Repositories.Localization;
 using Olbrasoft.Travel.Providers.Expedia.DataTransfer.Objects.Geography;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
 {

@@ -1,7 +1,5 @@
 ﻿using GeoAPI.Geometries;
 using NetTopologySuite.Geometries;
-using Olbrasoft.Travel.Data.Accommodation;
-using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Repositories;
 using Olbrasoft.Travel.Data.Repositories.Geography;
 using Olbrasoft.Travel.Data.Repositories.Localization;
@@ -11,10 +9,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 
+[assembly: InternalsVisibleTo("Olbrasoft.Travel.Providers.Expedia.Import.Unit.Tests")]
 namespace Olbrasoft.Travel.Providers.Expedia.Import
 {
+   
     internal abstract class Importer<T> : Importer where T : class, new()
     {
         protected readonly object LockMe = new object();

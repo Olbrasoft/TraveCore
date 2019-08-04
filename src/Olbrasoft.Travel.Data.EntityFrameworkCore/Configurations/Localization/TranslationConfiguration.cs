@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Olbrasoft.Travel.Data.Localization;
+using Olbrasoft.Travel.Data.Base.Objects.Localization;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations.Localization
 {

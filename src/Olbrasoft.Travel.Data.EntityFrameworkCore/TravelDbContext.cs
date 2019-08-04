@@ -2,15 +2,14 @@
 using Microsoft.Extensions.Configuration;
 using Olbrasoft.Extensions;
 using Olbrasoft.Travel.Accommodation;
-using Olbrasoft.Travel.Data.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Configurations;
-using Olbrasoft.Travel.Data.Geography;
-using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Geography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
+using Olbrasoft.Travel.Data.Base.Objects.Identity;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore
 {
@@ -61,7 +60,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore
                 }
             }
 
-            builder.Query<Suggestion>();
+            //builder.Query<Suggestion>();
 
             builder.Entity<User>().HasData(User);
 

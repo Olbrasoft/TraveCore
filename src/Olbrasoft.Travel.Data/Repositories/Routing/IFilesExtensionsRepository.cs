@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Olbrasoft.Travel.Data.IO;
+using Olbrasoft.Travel.Data.Base.Objects.IO;
 
 namespace Olbrasoft.Travel.Data.Repositories.Routing
 {

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
     <ProjectReference Include="..\..\src\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
   </ItemGroup>
 

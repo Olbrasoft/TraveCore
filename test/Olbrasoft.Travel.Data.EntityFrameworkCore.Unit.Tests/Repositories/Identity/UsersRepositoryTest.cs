@@ -1,7 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
+using Olbrasoft.Travel.Data.Base.Objects.Identity;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.Repositories;
-using Olbrasoft.Travel.Data.Identity;
 using Olbrasoft.Travel.Data.Repositories;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.Repositories.Identity

@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
-using Room = Olbrasoft.Travel.Data.Accommodation.Room;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Room = Olbrasoft.Travel.Data.Base.Objects.Accommodation.Room;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
@@ -19,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(QueryHandler<RoomsByPropertyIdAndLanguageIdQuery, Room, IEnumerable<Transfer.Objects.Accommodation.RoomDto>>);
+                typeof(TravelQueryHandler<RoomsByPropertyIdAndLanguageIdQuery, IEnumerable<Transfer.Objects.Accommodation.RoomDto>, Room>);
 
             //Act
             var handler = Handler();
@@ -33,10 +32,9 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var contextMock = new Mock<TravelDbContext>();
             var projector = new Mock<IProjection>();
 
-            var handler = new RoomsByPropertyIdAndLanguageIdQueryHandler(contextMock.Object, projector.Object);
+            var handler = new RoomsByPropertyIdAndLanguageIdQueryHandler(projector.Object, contextMock.Object);
             return handler;
         }
-
 
         [Test]
         public void HandleAsync_Return_Task_Of_IEnumerable_Of_Room()
@@ -46,13 +44,12 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var handler = Handler();
             var providerMock = new Mock<IQueryDispatcher>();
             var query = new RoomsByPropertyIdAndLanguageIdQuery(providerMock.Object);
-            
+
             //Act
             var result = handler.HandleAsync(query);
 
             //Assert
-            Assert.IsInstanceOf(type,result);
-
+            Assert.IsInstanceOf(type, result);
         }
     }
 }

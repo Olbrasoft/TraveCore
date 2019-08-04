@@ -165,15 +165,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExtensions.cs" />
     <Compile Include="QueryHandlerWithDependentSource.cs" />
-    <Compile Include="Querying\AsyncHandlerWithDependentSourceTest.cs" />
-    <Compile Include="Querying\Factories\QueryExecutorFactoryTest.cs" />
-    <Compile Include="Querying\Factories\QueryFactoryTest.cs" />
-    <Compile Include="Querying\QueryDispatcherTest.cs" />
-    <Compile Include="Querying\QueryExecutorTest.cs" />
-    <Compile Include="Querying\HandlerWithDependentSourceTest.cs" />
-    <Compile Include="Querying\HandlerTest.cs" />
-    <Compile Include="Querying\SomeObject.cs" />
-    <Compile Include="Querying\SomeQuery.cs" />
     <Compile Include="QueryWithOutImplementationTest.cs" />
     <Compile Include="QueryWithSorting.cs" />
     <Compile Include="SomeAsyncQueryHandlerWithDependentSource.cs" />
@@ -189,13 +180,17 @@
       <Project>{63b91b8f-a335-408a-b158-fa7501298914}</Project>
       <Name>Olbrasoft.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Olbrasoft.Dependence\Olbrasoft.Dependence.csproj">
-      <Project>{3ABA9EDA-DCAC-4AF2-A7CC-F095AF1D522D}</Project>
-      <Name>Olbrasoft.Dependence</Name>
+    <ProjectReference Include="..\..\src\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj">
+      <Project>{a25a5310-c1d3-4568-9d65-060f286cb63b}</Project>
+      <Name>Olbrasoft.Mapping</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj">
       <Project>{4944b51a-79a1-4aa3-9bcb-6b1fc0dc2fb9}</Project>
       <Name>Olbrasoft.Pagination</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying\Olbrasoft.Querying.csproj">
+      <Project>{1BBB5583-21E2-4886-8920-D690C97B3FA7}</Project>
+      <Name>Olbrasoft.Querying</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj">
       <Project>{EC4ABACF-0F2D-45B7-A23E-0A91113F2662}</Project>

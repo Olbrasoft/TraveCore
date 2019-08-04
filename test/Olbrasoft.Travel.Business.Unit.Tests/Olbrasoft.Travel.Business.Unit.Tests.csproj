@@ -94,6 +94,10 @@
       <Project>{4944b51a-79a1-4aa3-9bcb-6b1fc0dc2fb9}</Project>
       <Name>Olbrasoft.Pagination</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying\Olbrasoft.Querying.csproj">
+      <Project>{1BBB5583-21E2-4886-8920-D690C97B3FA7}</Project>
+      <Name>Olbrasoft.Querying</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Travel.Business\Olbrasoft.Travel.Business.csproj">
       <Project>{5baa3864-5c32-4305-87e9-4ac0c7e72287}</Project>
       <Name>Olbrasoft.Travel.Business</Name>

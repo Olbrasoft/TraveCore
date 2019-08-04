@@ -1,16 +1,15 @@
-﻿using Olbrasoft.Data.Mapping;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Olbrasoft.Mapping;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
-    public class AwesomeQueryHandler : QueryHandler<AwesomeQuery, object, object>
+    public class AwesomeQueryHandler : TravelQueryHandler<AwesomeQuery, object, object>
     {
         public object TestContext => base.Context;
 
-        public AwesomeQueryHandler(TravelDbContext context, IProjection projector) : base(context, projector)
+        public AwesomeQueryHandler(IProjection projector,TravelDbContext context) : base( projector,context)
         {
         }
 

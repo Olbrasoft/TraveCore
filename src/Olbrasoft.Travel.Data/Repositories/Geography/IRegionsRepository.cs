@@ -1,8 +1,8 @@
-﻿using Olbrasoft.Travel.Data.Geography;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 
 namespace Olbrasoft.Travel.Data.Repositories.Geography
 {

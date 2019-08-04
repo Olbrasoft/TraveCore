@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Accommodation;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.Repositories;
 
 namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
@@ -23,6 +23,7 @@ namespace Olbrasoft.Travel.Providers.Expedia.Import.Importers
             SharedProperties sharedProperties, ILoggingImports logger)
             : base(provider, repositoryFactory, sharedProperties, logger)
         {
+
         }
 
         protected override void RowLoaded(string[] items)

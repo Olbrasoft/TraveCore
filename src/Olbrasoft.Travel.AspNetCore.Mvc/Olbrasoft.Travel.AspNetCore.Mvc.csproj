@@ -40,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.DependencyInjection.Microsoft\Olbrasoft.Querying.DependencyInjection.Microsoft.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Business\Olbrasoft.Travel.Business.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data.EntityFrameworkCore\Olbrasoft.Travel.Data.EntityFrameworkCore.csproj" />
   </ItemGroup>

@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using Castle.Windsor.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -10,21 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Mapping.AutoMapper;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Data.Querying.Factories;
-using Olbrasoft.Dependence;
-using Olbrasoft.Dependence.Inversion.Of.Control.Containers.Castle;
+using Olbrasoft.Mapping;
+using Olbrasoft.Mapping.AutoMapper;
+using Olbrasoft.Querying.DependencyInjection.Microsoft;
 using Olbrasoft.Travel.Business;
 using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.EntityFrameworkCore;
 using Olbrasoft.Travel.Data.Transfer;
 using Olbrasoft.Travel.Data.Transfer.Objects;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc
 {
@@ -38,7 +30,7 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             //services.Configure<CookiePolicyOptions>(options =>
             //{
@@ -49,40 +41,19 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
 
             ConfigureLocalization(services);
 
-            var container = new WindsorContainer();
+            services.AddDbContext<TravelDbContext>();
 
-            ConfigureContexts(container);
-
-            #region Querying ------------------------------------------------------------------------------------------
-
-            container.Register(Component.For<IResolver>().ImplementedBy<ObjectResolverWithDependentCastle>());
-
-            ConfigureQuerying(container);
-
-            ConfigureQueries(container);
-
-            ConfigureQueryHandlers(container);
-
-            #endregion Querying ------------------------------------------------------------------------------------------
-
-            #region Mapping --------------------------------------------------------------------------------------------
+            services.AddQueryingOnWeb(typeof(IAccommodation).Assembly, typeof(TravelQueryHandler<,,>).Assembly);
 
             services.AddAutoMapper(typeof(Data.Mapping.MapperConfigurationProvider).Assembly);
 
-            //container.Register(Component.For<AutoMapper.IConfigurationProvider>().ImplementedBy<Data.Mapping.MapperConfigurationProvider>().LifestyleSingleton());
+            services.AddSingleton<IProjection, Projector>();
 
-            container.Register(Component.For<IProjection>().ImplementedBy<Projector>().LifestyleSingleton());
+            services.AddScoped<IPropertyItemPhotoMerge, PropertyItemPhotoMerge>();
 
-            #endregion Mapping --------------------------------------------------------------------------------------------
-
-            container.Register(
-                Component.For<IPropertyItemPhotoMerge>().ImplementedBy<PropertyItemPhotoMerge>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
-
-            ConfigureBusiness(container);
-
-            return WindsorRegistrationHelper.CreateServiceProvider(container, services);
+            services.AddScoped<IProperties, PropertyService>();
+            services.AddScoped<IRegions, RegionService>();
+            services.AddScoped<ITravel, TravelFacade>();
         }
 
         private static void ConfigureLocalization(IServiceCollection services)
@@ -97,64 +68,12 @@ namespace Olbrasoft.Travel.AspNetCore.Mvc
                 // Add support for localizing strings in data annotations (e.g. validation messages) via the
                 // IStringLocalizer abstractions.
                 .AddDataAnnotationsLocalization();
-        }
 
-        private static void ConfigureQueries(IWindsorContainer container)
-        {
-            var classes = Classes.FromAssemblyNamed("Olbrasoft.Travel.Data");
-
-            container.Register(classes
-                .Where(type => type.Namespace != null && type.Namespace.Contains("Queries"))
-                .WithServiceSelf());
-        }
-
-        private static void ConfigureQueryHandlers(IWindsorContainer container)
-        {
-            var classes = Classes.FromAssemblyNamed(typeof(QueryHandler<,,>).Assembly.GetName().Name);
-
-            container.Register(classes
-                .Where(ns => ns.Namespace != null && ns.Namespace.Contains(nameof(Data.EntityFrameworkCore.QueryHandlers)))
-                .WithServiceFirstInterface()
-                .LifestyleCustom<MsScopedLifestyleManager>());
-        }
-
-        private static void ConfigureBusiness(IWindsorContainer container)
-        {
-            container.Register(
-                Component.For<IProperties>().ImplementedBy<PropertyService>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
-
-            container.Register(
-                Component.For<IRegions>().ImplementedBy<RegionService>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
-
-            container.Register(
-                Component.For<ITravel>().ImplementedBy<TravelFacade>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
-        }
-
-        private static void ConfigureContexts(IWindsorContainer container)
-        {
-            container.Register(
-                Component.For<TravelDbContext>().ImplementedBy<TravelDbContext>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
-        }
-
-        private static void ConfigureQuerying(IWindsorContainer container)
-        {
-            container.Register(Component.For<IQueryFactory>().ImplementedBy<QueryFactory>().LifestyleSingleton());
-
-            container.Register(Component.For(typeof(QueryExecutor<,>)).ImplementedBy(typeof(QueryExecutor<,>))
-                .LifestyleCustom<MsScopedLifestyleManager>());
-
-            container.Register(
-                Component.For<IQueryExecutorFactory>().ImplementedBy<QueryExecutorFactory>().LifestyleSingleton());
-
-            container.Register(Component.For<IQueryDispatcher>().ImplementedBy<QueryDispatcher>().LifestyleSingleton());
+            // Configure MVC
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

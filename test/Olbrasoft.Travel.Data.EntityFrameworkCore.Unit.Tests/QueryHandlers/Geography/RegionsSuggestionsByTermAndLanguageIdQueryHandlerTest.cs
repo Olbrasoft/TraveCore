@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Geography;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Geography;
-using Olbrasoft.Travel.Data.Geography;
 using Olbrasoft.Travel.Data.Queries.Geography;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geography
 {
@@ -19,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new RegionsSuggestionsByTermsAndLanguageIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new RegionsSuggestionsByTermsAndLanguageIdQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
 
@@ -28,7 +27,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Geo
         {
             //Arrange
             var type =
-                typeof(QueryHandler<RegionsSuggestionsByTermsTranslationQuery, Region, IEnumerable<Transfer.Objects.SuggestionDto>>);
+                typeof(TravelQueryHandler<RegionsSuggestionsByTermsTranslationQuery, IEnumerable<Transfer.Objects.SuggestionDto>, Region>);
 
             //Act
             var handler = Handler();
