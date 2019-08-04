@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Olbrasoft.Pagination;
+﻿using Olbrasoft.Paging;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Olbrasoft.Travel.Data.Transfer.Objects
 {

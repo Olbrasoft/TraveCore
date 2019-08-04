@@ -37,11 +37,15 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="7.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
     <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Paging.X.PagedList.AspNetCore\Olbrasoft.Paging.X.PagedList.AspNetCore.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Paging.X.PagedList\Olbrasoft.Paging.X.PagedList.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Paging\Olbrasoft.Paging.csproj" />
     <ProjectReference Include="..\Olbrasoft.Querying.DependencyInjection.Microsoft\Olbrasoft.Querying.DependencyInjection.Microsoft.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Business\Olbrasoft.Travel.Business.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data.EntityFrameworkCore\Olbrasoft.Travel.Data.EntityFrameworkCore.csproj" />

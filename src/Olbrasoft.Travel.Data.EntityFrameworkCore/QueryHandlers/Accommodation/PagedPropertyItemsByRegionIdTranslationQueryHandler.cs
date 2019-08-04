@@ -1,19 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Pagination;
+using Olbrasoft.Mapping;
+using Olbrasoft.Paging;
 using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Mapping;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation
 {
-    public class PagedPropertyItemsByRegionIdTranslationQueryHandler : TravelQueryHandler<PagedPropertyItemsByRegionIdTranslationQuery, IResultWithTotalCount<PropertyItem>,PropertyToRegion>
+    public class PagedPropertyItemsByRegionIdTranslationQueryHandler : TravelQueryHandler<PagedPropertyItemsByRegionIdTranslationQuery, IResultWithTotalCount<PropertyItem>, PropertyToRegion>
     {
-       
-
         public override async Task<IResultWithTotalCount<PropertyItem>> HandleAsync(PagedPropertyItemsByRegionIdTranslationQuery query, CancellationToken token)
         {
             var localizedAccommodations = PreHandle(Entities(), query);

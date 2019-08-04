@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Olbrasoft.Pagination;
 using Olbrasoft.Travel.Business;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Olbrasoft.Paging;
+using Olbrasoft.Paging.X.PagedList;
 
 namespace Olbrasoft.Travel.AspNetCore.Mvc.Controllers
 {

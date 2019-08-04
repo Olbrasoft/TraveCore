@@ -1,12 +1,12 @@
-﻿using Olbrasoft.Pagination;
+﻿using Olbrasoft.Paging;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
+using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
-using Olbrasoft.Travel.Data.Transfer.Objects;
-using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Business
 {
@@ -37,7 +37,6 @@ namespace Olbrasoft.Travel.Business
 
         Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId,
             CancellationToken token = default);
-
 
         Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId,
             CancellationToken token = default);

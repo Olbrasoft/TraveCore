@@ -1,13 +1,13 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Pagination;
+using Olbrasoft.Mapping;
+using Olbrasoft.Paging;
+using Olbrasoft.Querying;
 using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.EntityFrameworkCore.QueryHandlers.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System.Threading.Tasks;
-using Olbrasoft.Mapping;
-using Olbrasoft.Querying;
 
 namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Accommodation
 {
@@ -18,7 +18,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
         {
             //Arrange
             var type =
-                typeof(TravelQueryHandler<PagedPropertyItemsByRegionIdTranslationQuery, 
+                typeof(TravelQueryHandler<PagedPropertyItemsByRegionIdTranslationQuery,
                     IResultWithTotalCount<PropertyItem>, PropertyToRegion>);
 
             //Act
@@ -49,7 +49,7 @@ namespace Olbrasoft.Travel.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers.Acc
             var contextMock = new Mock<TravelDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PagedPropertyItemsByRegionIdTranslationQueryHandler( projectorMock.Object, contextMock.Object);
+            var handler = new PagedPropertyItemsByRegionIdTranslationQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
     }

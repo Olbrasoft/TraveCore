@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 
 namespace Olbrasoft.Data.Unit.Tests
 {
@@ -14,7 +14,6 @@ namespace Olbrasoft.Data.Unit.Tests
         ///     Gets a list of sort criteria applied on this query.
         /// </summary>
         public Func<IQueryable<T>, IOrderedQueryable<T>> Sorting { get; set; }
-
 
         public TResult Execute()
         {

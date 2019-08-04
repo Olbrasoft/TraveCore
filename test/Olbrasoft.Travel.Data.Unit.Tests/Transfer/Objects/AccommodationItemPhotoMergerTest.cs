@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using NUnit.Framework;
-using Olbrasoft.Pagination;
+﻿using NUnit.Framework;
+using Olbrasoft.Paging;
 using Olbrasoft.Travel.Data.Transfer;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
+using System.Linq;
 
 namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
 {
@@ -38,11 +38,9 @@ namespace Olbrasoft.Travel.Data.Unit.Tests.Transfer.Objects
                     },
                 }
             };
-        
 
-        var accommodationPhotos = new[]
-            {
-
+            var accommodationPhotos = new[]
+                {
                 new PropertyPhotoDto
                 {
                     PropertyId = 1,

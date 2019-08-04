@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
+using Olbrasoft.Querying;
 using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
@@ -8,7 +9,6 @@ using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Querying;
 
 namespace Olbrasoft.Travel.Business.Unit.Tests.Services
 {

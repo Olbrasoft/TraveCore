@@ -184,9 +184,9 @@
       <Project>{a25a5310-c1d3-4568-9d65-060f286cb63b}</Project>
       <Name>Olbrasoft.Mapping</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj">
-      <Project>{4944b51a-79a1-4aa3-9bcb-6b1fc0dc2fb9}</Project>
-      <Name>Olbrasoft.Pagination</Name>
+    <ProjectReference Include="..\..\src\Olbrasoft.Paging\Olbrasoft.Paging.csproj">
+      <Project>{809B20B8-BE1B-41D5-A514-BF55A12C1B2F}</Project>
+      <Name>Olbrasoft.Paging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Querying\Olbrasoft.Querying.csproj">
       <Project>{1BBB5583-21E2-4886-8920-D690C97B3FA7}</Project>

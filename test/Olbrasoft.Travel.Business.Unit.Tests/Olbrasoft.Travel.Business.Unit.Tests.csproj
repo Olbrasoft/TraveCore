@@ -90,9 +90,9 @@
       <Project>{84CD3092-E076-4C15-9EB3-7A219376B321}</Project>
       <Name>Olbrasoft.Globalization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj">
-      <Project>{4944b51a-79a1-4aa3-9bcb-6b1fc0dc2fb9}</Project>
-      <Name>Olbrasoft.Pagination</Name>
+    <ProjectReference Include="..\..\src\Olbrasoft.Paging\Olbrasoft.Paging.csproj">
+      <Project>{809B20B8-BE1B-41D5-A514-BF55A12C1B2F}</Project>
+      <Name>Olbrasoft.Paging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Querying\Olbrasoft.Querying.csproj">
       <Project>{1BBB5583-21E2-4886-8920-D690C97B3FA7}</Project>

@@ -1,16 +1,15 @@
-﻿
-using Olbrasoft.Pagination;
+﻿using Olbrasoft.Querying;
+using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer;
 using Olbrasoft.Travel.Data.Transfer.Objects;
+using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Querying;
-using Olbrasoft.Travel.Data.Base.Objects.Accommodation;
-using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
+using Olbrasoft.Paging;
 
 namespace Olbrasoft.Travel.Business.Services
 {
@@ -134,7 +133,6 @@ namespace Olbrasoft.Travel.Business.Services
         public async Task<IResultWithTotalCount<PropertyItem>> GetAsync(int regionId, IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting,
             CancellationToken cancellationToken = default)
         {
-
             var query = BuildPagedPropertyItemsByRegionIdTranslationQuery(regionId, pagingSettings, languageId, sorting);
 
             var accommodationItems = await query.ExecuteAsync(cancellationToken);
@@ -159,7 +157,6 @@ namespace Olbrasoft.Travel.Business.Services
             return query;
         }
 
-
         public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken token = default)
         {
             var query = QueryFactory.CreateQuery<PropertySuggestionsTranslationQuery>();
@@ -168,7 +165,6 @@ namespace Olbrasoft.Travel.Business.Services
 
             return query.ExecuteAsync(token);
         }
-
 
         public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId, CancellationToken token = default)
         {
@@ -202,8 +198,6 @@ namespace Olbrasoft.Travel.Business.Services
             query.Sorting = sorting;
             return query;
         }
-
-        
 
         private PropertyDetailByPropertyIdAndLanguageIdQuery AccommodationDetailQuery(int id, int languageId)
         {

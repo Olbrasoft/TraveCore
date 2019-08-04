@@ -17,16 +17,16 @@ namespace Olbrasoft.Travel.Business
             Properties = properties;
         }
 
-        public async Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int language, CancellationToken token = default)
         {
             //var terms = term.Trim().Split(' ');
 
-            var results = await Task.WhenAll(Regions.SuggestionsAsync(term, languageId, cancellationToken),
-                Properties.SuggestionsAsync(term, languageId, cancellationToken)).ConfigureAwait(false);
+            var results = await Task.WhenAll(Regions.SuggestionsAsync(term, language, token),
+                Properties.SuggestionsAsync(term, language, token)).ConfigureAwait(false);
 
             return results.SelectMany(result => result).OrderBy(p => p.CategoryId);
 
-            //  return await Properties.SuggestionsAsync(terms, languageId, cancellationToken);
+            //  return await Properties.SuggestionsAsync(terms, language, token);
         }
     }
 }

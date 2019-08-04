@@ -1,5 +1,4 @@
-﻿using Olbrasoft.Pagination;
-using Olbrasoft.Travel.Data.Transfer.Objects;
+﻿using Olbrasoft.Paging;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
 
 namespace Olbrasoft.Travel.Data.Transfer

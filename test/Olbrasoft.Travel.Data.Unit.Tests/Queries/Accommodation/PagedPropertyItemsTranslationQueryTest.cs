@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 using Olbrasoft.Travel.Data.Queries;
 using Olbrasoft.Travel.Data.Queries.Accommodation;

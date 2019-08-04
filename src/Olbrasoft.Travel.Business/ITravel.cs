@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Olbrasoft.Travel.Data.Transfer.Objects;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Olbrasoft.Travel.Data.Transfer.Objects;
 
 namespace Olbrasoft.Travel.Business
 {
@@ -11,6 +11,6 @@ namespace Olbrasoft.Travel.Business
 
         IProperties Properties { get; }
 
-        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int language, CancellationToken token = default);
     }
 }
