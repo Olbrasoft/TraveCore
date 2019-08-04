@@ -13,7 +13,7 @@ using Olbrasoft.Paging;
 
 namespace Olbrasoft.Travel.Business.Services
 {
-    public class PropertyService : Olbrasoft.Business.Service, IProperties
+    public class PropertyService : Olbrasoft.Querying.Business.ServiceWithQueryFactory, IProperties
     {
         protected IPropertyItemPhotoMerge Merger { get; }
 
@@ -52,7 +52,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         private AttributesByPropertyIdAndLanguageIdQuery AttributesQuery(int accommodationId, int languageId)
         {
-            var query = QueryFactory.CreateQuery<AttributesByPropertyIdAndLanguageIdQuery>();
+            var query = GetQuery<AttributesByPropertyIdAndLanguageIdQuery>();
             query.PropertyId = accommodationId;
             query.LanguageId = languageId;
             return query;
@@ -76,14 +76,14 @@ namespace Olbrasoft.Travel.Business.Services
 
         private RoomPhotosPropertyQuery PhotosOfRoomsQuery(int accommodationId)
         {
-            var query = QueryFactory.CreateQuery<RoomPhotosPropertyQuery>();
+            var query = GetQuery<RoomPhotosPropertyQuery>();
             query.PropertyId = accommodationId;
             return query;
         }
 
         private RoomsByPropertyIdAndLanguageIdQuery RoomsQuery(int id, int languageId)
         {
-            var query = QueryFactory.CreateQuery<RoomsByPropertyIdAndLanguageIdQuery>();
+            var query = GetQuery<RoomsByPropertyIdAndLanguageIdQuery>();
             query.PropertyId = id;
             query.LanguageId = languageId;
             return query;
@@ -91,7 +91,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         private PhotosPropertyQuery AccommodationPhotosQuery(int accommodationId)
         {
-            var query = QueryFactory.CreateQuery<PhotosPropertyQuery>();
+            var query = GetQuery<PhotosPropertyQuery>();
             query.PropertyId = accommodationId;
             return query;
         }
@@ -149,7 +149,7 @@ namespace Olbrasoft.Travel.Business.Services
         private PagedPropertyItemsByRegionIdTranslationQuery BuildPagedPropertyItemsByRegionIdTranslationQuery(int regionId,
             IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting)
         {
-            var query = QueryFactory.CreateQuery<PagedPropertyItemsByRegionIdTranslationQuery>();
+            var query = GetQuery<PagedPropertyItemsByRegionIdTranslationQuery>();
             query.Paging = pagingSettings;
             query.LanguageId = languageId;
             query.Sorting = sorting;
@@ -159,7 +159,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string term, int languageId, CancellationToken token = default)
         {
-            var query = QueryFactory.CreateQuery<PropertySuggestionsTranslationQuery>();
+            var query = GetQuery<PropertySuggestionsTranslationQuery>();
             query.Term = term;
             query.LanguageId = languageId;
 
@@ -168,7 +168,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         public Task<IEnumerable<SuggestionDto>> SuggestionsAsync(string[] terms, int languageId, CancellationToken token = default)
         {
-            var query = QueryFactory.CreateQuery<PropertiesSuggestionsByTermsTranslationQuery>();
+            var query = GetQuery<PropertiesSuggestionsByTermsTranslationQuery>();
             query.Terms = terms;
             query.LanguageId = languageId;
 
@@ -182,7 +182,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         private PhotosOfAccommodationsByAccommodationIdsQuery GetDefaultPhotosOfAccommodations(IEnumerable<int> accommodationIds)
         {
-            var query = QueryFactory.CreateQuery<PhotosOfAccommodationsByAccommodationIdsQuery>();
+            var query = GetQuery<PhotosOfAccommodationsByAccommodationIdsQuery>();
             query.AccommodationIds = accommodationIds;
             query.OnlyDefaultPhotos = true;
             return query;
@@ -192,7 +192,7 @@ namespace Olbrasoft.Travel.Business.Services
             IPageInfo pagingSettings, int languageId, Func<IQueryable<PropertyTranslation>, IOrderedQueryable<PropertyTranslation>> sorting
         )
         {
-            var query = QueryFactory.CreateQuery<PagedPropertyItemsTranslationQuery>();
+            var query = GetQuery<PagedPropertyItemsTranslationQuery>();
             query.Paging = pagingSettings;
             query.LanguageId = languageId;
             query.Sorting = sorting;
@@ -201,7 +201,7 @@ namespace Olbrasoft.Travel.Business.Services
 
         private PropertyDetailByPropertyIdAndLanguageIdQuery AccommodationDetailQuery(int id, int languageId)
         {
-            var query = QueryFactory.CreateQuery<PropertyDetailByPropertyIdAndLanguageIdQuery>();
+            var query = GetQuery<PropertyDetailByPropertyIdAndLanguageIdQuery>();
 
             query.PropertyId = id;
             query.LanguageId = languageId;

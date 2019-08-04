@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Olbrasoft.Business\Olbrasoft.Business.csproj" />
     <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
     <ProjectReference Include="..\Olbrasoft.Paging\Olbrasoft.Paging.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.Business\Olbrasoft.Querying.Business.csproj" />
     <ProjectReference Include="..\Olbrasoft.Travel.Data\Olbrasoft.Travel.Data.csproj" />
   </ItemGroup>
 

@@ -9,7 +9,7 @@
     <ProjectGuid>{38676837-A784-48F7-B593-A68B7DE2AD2F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Olbrasoft.Travel.Business.Unit.Tests</RootNamespace>
+    <RootNamespace>Olbrasoft.Travel.Business.Unit</RootNamespace>
     <AssemblyName>Olbrasoft.Travel.Business.Unit.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -78,10 +78,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Olbrasoft.Business\Olbrasoft.Business.csproj">
-      <Project>{D85CDEEE-D517-45AB-AA9F-88E966A46EB2}</Project>
-      <Name>Olbrasoft.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Data\Olbrasoft.Data.csproj">
       <Project>{63b91b8f-a335-408a-b158-fa7501298914}</Project>
       <Name>Olbrasoft.Data</Name>
@@ -93,6 +89,10 @@
     <ProjectReference Include="..\..\src\Olbrasoft.Paging\Olbrasoft.Paging.csproj">
       <Project>{809B20B8-BE1B-41D5-A514-BF55A12C1B2F}</Project>
       <Name>Olbrasoft.Paging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying.Business\Olbrasoft.Querying.Business.csproj">
+      <Project>{b382554f-bd8b-4dfc-a8eb-54bcc944ac52}</Project>
+      <Name>Olbrasoft.Querying.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Olbrasoft.Querying\Olbrasoft.Querying.csproj">
       <Project>{1BBB5583-21E2-4886-8920-D690C97B3FA7}</Project>

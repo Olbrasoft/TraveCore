@@ -8,7 +8,7 @@ using Olbrasoft.Travel.Data.Queries.Geography;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Geography;
 
-namespace Olbrasoft.Travel.Business.Unit.Tests.Services
+namespace Olbrasoft.Travel.Business.Unit.Services
 {
     [TestFixture]
     internal class RegionServiceTest
@@ -17,7 +17,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void Instance_Is_Facade()
         {
             //Arrange
-            var type = typeof(Olbrasoft.Business.Service);
+            var type = typeof(Olbrasoft.Querying.Business.ServiceWithQueryFactory);
 
             //Act
             var service = Service();

@@ -1,4 +1,7 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Moq;
 using NUnit.Framework;
 using Olbrasoft.Paging;
 using Olbrasoft.Querying;
@@ -6,11 +9,8 @@ using Olbrasoft.Travel.Business.Services;
 using Olbrasoft.Travel.Data.Queries.Accommodation;
 using Olbrasoft.Travel.Data.Transfer.Objects;
 using Olbrasoft.Travel.Data.Transfer.Objects.Accommodation;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Olbrasoft.Travel.Business.Unit.Tests.Services
+namespace Olbrasoft.Travel.Business.Unit.Services
 {
     [TestFixture]
     internal class PropertyServiceTest
@@ -19,7 +19,7 @@ namespace Olbrasoft.Travel.Business.Unit.Tests.Services
         public void Instance_Is_Facade()
         {
             //Arrange
-            var type = typeof(Olbrasoft.Business.Service);
+            var type = typeof(Olbrasoft.Querying.Business.ServiceWithQueryFactory);
 
             //Act
             var facade = AccommodationsService();

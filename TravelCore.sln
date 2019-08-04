@@ -31,11 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Data.Unit.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Travel.Business.Unit.Tests", "test\Olbrasoft.Travel.Business.Unit.Tests\Olbrasoft.Travel.Business.Unit.Tests.csproj", "{38676837-A784-48F7-B593-A68B7DE2AD2F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Business.Unit.Tests", "test\Olbrasoft.Business.Unit.Tests\Olbrasoft.Business.Unit.Tests.csproj", "{A9CDAD89-A91C-443D-B3FD-E9BBE9D280B5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.Unit.Tests", "test\Olbrasoft.Travel.Unit.Tests\Olbrasoft.Travel.Unit.Tests.csproj", "{6CDE0137-847C-4949-A934-79A63F47BD95}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Business", "src\Olbrasoft.Business\Olbrasoft.Business.csproj", "{D85CDEEE-D517-45AB-AA9F-88E966A46EB2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests", "test\Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests\Olbrasoft.Travel.AspNetCore.Mvc.Unit.Tests.csproj", "{A1B35C49-DE4D-4932-ABF6-6B6C3D56BF8C}"
 EndProject
@@ -81,7 +77,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Paging.Tests", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Paging.X.PagedList", "src\Olbrasoft.Paging.X.PagedList\Olbrasoft.Paging.X.PagedList.csproj", "{14D61D0A-967E-460D-A999-676C1277FCFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Paging.X.PagedList.AspNetCore", "src\Olbrasoft.Paging.X.PagedList.AspNetCore\Olbrasoft.Paging.X.PagedList.AspNetCore.csproj", "{5E05CFCB-006B-4B6F-B970-53FB29AE8C32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Paging.X.PagedList.AspNetCore", "src\Olbrasoft.Paging.X.PagedList.AspNetCore\Olbrasoft.Paging.X.PagedList.AspNetCore.csproj", "{5E05CFCB-006B-4B6F-B970-53FB29AE8C32}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Querying.Business", "src\Olbrasoft.Querying.Business\Olbrasoft.Querying.Business.csproj", "{B382554F-BD8B-4DFC-A8EB-54BCC944AC52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Querying.Business.Tests", "test\Olbrasoft.Querying.Business.Tests\Olbrasoft.Querying.Business.Tests.csproj", "{573F9F86-80BB-4008-9340-399F3ECD0013}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,18 +141,10 @@ Global
 		{38676837-A784-48F7-B593-A68B7DE2AD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38676837-A784-48F7-B593-A68B7DE2AD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38676837-A784-48F7-B593-A68B7DE2AD2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9CDAD89-A91C-443D-B3FD-E9BBE9D280B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9CDAD89-A91C-443D-B3FD-E9BBE9D280B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9CDAD89-A91C-443D-B3FD-E9BBE9D280B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9CDAD89-A91C-443D-B3FD-E9BBE9D280B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CDE0137-847C-4949-A934-79A63F47BD95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CDE0137-847C-4949-A934-79A63F47BD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CDE0137-847C-4949-A934-79A63F47BD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CDE0137-847C-4949-A934-79A63F47BD95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D85CDEEE-D517-45AB-AA9F-88E966A46EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D85CDEEE-D517-45AB-AA9F-88E966A46EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D85CDEEE-D517-45AB-AA9F-88E966A46EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D85CDEEE-D517-45AB-AA9F-88E966A46EB2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1B35C49-DE4D-4932-ABF6-6B6C3D56BF8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1B35C49-DE4D-4932-ABF6-6B6C3D56BF8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B35C49-DE4D-4932-ABF6-6B6C3D56BF8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -245,6 +237,14 @@ Global
 		{5E05CFCB-006B-4B6F-B970-53FB29AE8C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E05CFCB-006B-4B6F-B970-53FB29AE8C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E05CFCB-006B-4B6F-B970-53FB29AE8C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B382554F-BD8B-4DFC-A8EB-54BCC944AC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B382554F-BD8B-4DFC-A8EB-54BCC944AC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B382554F-BD8B-4DFC-A8EB-54BCC944AC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B382554F-BD8B-4DFC-A8EB-54BCC944AC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{573F9F86-80BB-4008-9340-399F3ECD0013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{573F9F86-80BB-4008-9340-399F3ECD0013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{573F9F86-80BB-4008-9340-399F3ECD0013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{573F9F86-80BB-4008-9340-399F3ECD0013}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -255,7 +255,6 @@ Global
 		{115F18A0-5954-4CCB-A227-E14CF37A1981} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{DDE66592-97BB-414D-9230-B6BA78F654DB} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{38676837-A784-48F7-B593-A68B7DE2AD2F} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
-		{A9CDAD89-A91C-443D-B3FD-E9BBE9D280B5} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{6CDE0137-847C-4949-A934-79A63F47BD95} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{A1B35C49-DE4D-4932-ABF6-6B6C3D56BF8C} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{2EA28FA7-916A-4F53-A25F-7AC4B77D8FE0} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
@@ -266,6 +265,7 @@ Global
 		{0E7DDE7C-82B2-4416-9DCF-7E7D064C6D38} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{262EA4E5-330D-42F6-92E6-284108CB1565} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 		{AAA8F5E6-A7BC-4635-86D7-86899822DEAF} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
+		{573F9F86-80BB-4008-9340-399F3ECD0013} = {8E975FC2-07B3-4349-BFEE-F5A9B26ABE11}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66165930-814C-4C37-89DF-3F97EC492B90}
